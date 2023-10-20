@@ -21,7 +21,7 @@ public class CarController : MonoBehaviour
         speedInput = 0f;
         if (Input.GetAxis("Vertical") > 0)
         {
-            speedInput = Input.GetAxis("Vertical") * forwardAccel * 100f;
+            speedInput = Input.GetAxis("Vertical") * forwardAccel * 800f;
         }
         else if (Input.GetAxis("Vertical") < 0)
         {
@@ -40,7 +40,7 @@ public class CarController : MonoBehaviour
     {
         if (Mathf.Abs(speedInput) > 0)
         {
-            rb.AddForce(transform.forward * speedInput);
+            rb.AddForce(-transform.forward * speedInput);
         }
     }
 }
