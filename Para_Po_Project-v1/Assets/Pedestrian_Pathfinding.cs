@@ -6,7 +6,7 @@ using UnityEngine.AI;
 
 public class Pedestrian_Pathfinding : MonoBehaviour
 {
-    [SerializeField] private float despawnTime = 5f;
+    
 
     public NavMeshAgent nav;
     public Transform goal;
@@ -33,16 +33,8 @@ public class Pedestrian_Pathfinding : MonoBehaviour
         if(collision.gameObject.CompareTag("Player"))
         {
             if(nav != null) { nav.enabled = false; }
-            
 
-            StartCoroutine(Despawn());
         }
     }
 
-    IEnumerator Despawn()
-    {
-        yield return new WaitForSeconds(despawnTime);
-
-        Destroy(gameObject);
-    }
 }
