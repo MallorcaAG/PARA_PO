@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.UI.Image;
 
 public class TrikeController : MonoBehaviour
 {
@@ -14,6 +15,9 @@ public class TrikeController : MonoBehaviour
     [SerializeField] private float tireRotationSpeed = 10000f;
     [SerializeField] private float gravity;
     [SerializeField] private float xTiltIncrement;
+    [SerializeField] private float normalDrag = 2f;
+    [SerializeField] private float driftDrag = 0.5f;
+    [SerializeField] private AnimationCurve turningCurve;
     [Range(0.6f,1f)][SerializeField] private float brakingFactor;
 
     [Header("Audio")]
@@ -79,8 +83,8 @@ public class TrikeController : MonoBehaviour
             if(!Input.GetKey(KeyCode.Space))
             {
                 Acceleration();
-                Rotation();
             }
+            Rotation();
             Brake();
         }
         else
@@ -101,7 +105,7 @@ public class TrikeController : MonoBehaviour
 
     private void Rotation()
     {
-        transform.Rotate(0, steerInput * moveInput * currentVelocityOffset * steerStrength * Time.fixedDeltaTime, 0, Space.World);
+        transform.Rotate(0, steerInput * moveInput * turningCurve.Evaluate(Mathf.Abs(currentVelocityOffset))  * steerStrength * Time.fixedDeltaTime, 0, Space.World);
 
         //Visuals
         Handle.transform.localRotation = 
@@ -115,8 +119,13 @@ public class TrikeController : MonoBehaviour
     private void Brake()
     {
         if(Input.GetKey(KeyCode.Space))
-        {
+        { 
             sphereRB.velocity *= brakingFactor;
+            sphereRB.drag = driftDrag;
+        }
+        else
+        {
+            sphereRB.drag = normalDrag;
         }
     }
 
@@ -148,16 +157,15 @@ public class TrikeController : MonoBehaviour
 
     private bool Grounded()
     {
-        if(Physics.Raycast(sphereRB.position, Vector3.down, out hit, rayLength, drivable))
-        {
-            Debug.DrawLine(sphereRB.position, hit.point, Color.red);
+        float radius = rayLength - 0.02f;
+        Vector3 origin= sphereRB.transform.position + radius * Vector3.up;
 
+        if(Physics.SphereCast(origin, radius + 0.02f, -transform.up, out hit, rayLength, drivable))
+        {
             return true;
         }
         else
         {
-            Debug.DrawLine(sphereRB.position, sphereRB.position + rayLength * Vector3.down, Color.green);
-
             return false;
         }
     }
@@ -169,6 +177,29 @@ public class TrikeController : MonoBehaviour
     private void EngineSound()
     {
         engineSound.pitch = Mathf.Lerp(minPitch, maxPitch, Mathf.Abs(currentVelocityOffset));
+    }
+
+    #endregion
+
+    #region Debugging
+
+    private void OnDrawGizmosSelected()
+    {
+        float radius = rayLength - 0.02f;
+        Vector3 origin = sphereRB.transform.position + radius * Vector3.up;
+
+        if (Physics.SphereCast(origin, radius + 0.02f, -transform.up, out hit, rayLength, drivable))
+        {
+            //Debug.DrawLine(origin, hit.point, Color.red);
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(sphereRB.position, radius);
+        }
+        else
+        {
+            //Debug.DrawLine(sphereRB.position, sphereRB.position + rayLength * Vector3.down, Color.green);
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireSphere(sphereRB.position, radius);
+        }
     }
 
     #endregion
