@@ -20,6 +20,7 @@ public class VehicleController : MonoBehaviour
     [SerializeField] private float dragCoefficient = 1f;
     [SerializeField] private float brakingDeceleration = 100f;
     [SerializeField] private float brakingDragCoefficient = 0.5f;
+    [SerializeField] private float gravity;
 
 
     private Vector3 currentCarLocalVelocity = Vector3.zero;
@@ -85,20 +86,24 @@ public class VehicleController : MonoBehaviour
             Turn();
             SidewaysDrag();
         }
+        else
+        {
+            Gravity();
+        }
     }
 
     private void Acceleration()
     {
         if(currentCarLocalVelocity.z < maxSpeed)
         {
-            vehicleRB.AddForceAtPosition(acceleration * moveInput * transform.forward, accelerationPoint.position, ForceMode.Acceleration);
+            vehicleRB.AddForceAtPosition(acceleration * (!Input.GetKey(KeyCode.Space) ? moveInput : 0) * transform.forward, accelerationPoint.position, ForceMode.Acceleration);
         }
         //Debug.Log(currentCarLocalVelocity.z);
     }
 
     private void Deceleration()
     {
-        vehicleRB.AddForceAtPosition((Input.GetKey(KeyCode.Space) ? brakingDeceleration : deceleration) * Mathf.Abs(carVelocityRatio) * moveInput * -transform.forward, accelerationPoint.position, ForceMode.Acceleration);
+        vehicleRB.AddForceAtPosition((Input.GetKey(KeyCode.Space) ? brakingDeceleration : deceleration) * Mathf.Abs(carVelocityRatio) * (!Input.GetKey(KeyCode.Space) ? moveInput : 0) * -transform.forward, accelerationPoint.position, ForceMode.Acceleration);
     }
 
     private void Turn()
@@ -113,6 +118,11 @@ public class VehicleController : MonoBehaviour
 
         Vector3 dragForce = transform.right * dragMagnitude;
         vehicleRB.AddForceAtPosition(dragForce, vehicleRB.worldCenterOfMass, ForceMode.Acceleration);
+    }
+
+    private void Gravity()
+    {
+        vehicleRB.AddForce(gravity * Vector3.down, ForceMode.Acceleration);
     }
 
     #endregion
