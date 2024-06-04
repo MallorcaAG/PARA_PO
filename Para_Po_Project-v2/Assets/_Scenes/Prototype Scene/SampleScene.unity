@@ -408,8 +408,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.10524398, y: 0.008067087, z: -0.00085378194, w: 0.9944134}
-  m_LocalPosition: {x: -27.1, y: 43.14, z: -49.255646}
+  m_LocalRotation: {x: 0.18481682, y: -0.0006497478, z: 0.00012218929, w: 0.98277277}
+  m_LocalPosition: {x: -27.1, y: 27.34, z: -23.555645}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -635,6 +635,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bus
       objectReference: {fileID: 0}
+    - target: {fileID: 2030680888403038961, guid: c18435e5e09a2be4a86416ee7650c68e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7228920325530847419, guid: c18435e5e09a2be4a86416ee7650c68e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.008067123
+      objectReference: {fileID: 0}
+    - target: {fileID: 7228920325530847419, guid: c18435e5e09a2be4a86416ee7650c68e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.00085378566
+      objectReference: {fileID: 0}
     - target: {fileID: 9141722756971291181, guid: c18435e5e09a2be4a86416ee7650c68e, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -692,13 +704,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5091808106911102500, guid: 62283ca975168ed4e8aa8b040f276a46, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.0006497478
+      objectReference: {fileID: 0}
+    - target: {fileID: 5091808106911102500, guid: 62283ca975168ed4e8aa8b040f276a46, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.00012218929
+      objectReference: {fileID: 0}
     - target: {fileID: 5118979875765987620, guid: 62283ca975168ed4e8aa8b040f276a46, type: 3}
       propertyPath: m_Name
       value: Jeepney-v2
       objectReference: {fileID: 0}
     - target: {fileID: 5118979875765987620, guid: 62283ca975168ed4e8aa8b040f276a46, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7798839625392654268, guid: 62283ca975168ed4e8aa8b040f276a46, type: 3}
       propertyPath: m_RootOrder
