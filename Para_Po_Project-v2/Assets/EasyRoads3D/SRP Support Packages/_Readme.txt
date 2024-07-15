@@ -8,3 +8,5 @@ URP or HDRP packages for the installed version will be auto imported. Materials 
 There will be a notification when no matching package could be found. In that case please contact us.
 
 Email: info@easyroads3d.com
+
+The _URP & HDRP Readme file in the EasyRoads3D root directory includes additional info.
