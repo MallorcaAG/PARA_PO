@@ -7260,29 +7260,23 @@ MonoBehaviour:
     showTrafficPosts: 0
   - roadTypeName: Motorway 2x2
     id: 2
-    timestamp: 1616675915.7232635
-    roadWidth: 16
+    timestamp: 1721383599.4268994
+    roadWidth: 17.16
     faceDistance: 4
     angleTreshold: 45
     uvTiling: 1
     uv4Type: 0
-    type: 0
+    type: 1
     detailDistance: 50
     planarUVs: 0
     outerIndent: 0
     roadShapeDataActive: 1
     roadShapeData:
-      nodes:
-      - {x: -8, y: 0}
-      - {x: 0, y: 0}
-      - {x: 8, y: 0}
-      hardEdge: 000000
+      nodes: []
+      hardEdge: 
       priorityNodeIndexLeft: -1
       priorityNodeIndexRight: -1
-      nodesV3:
-      - {x: -7.9999704, y: 0, z: 0.021806289}
-      - {x: 0, y: 0, z: 0}
-      - {x: 7.9999704, y: 0, z: -0.021806289}
+      nodesV3: []
       lanes: []
       leftLanes: -1
       rightLanes: -1
@@ -7303,14 +7297,14 @@ MonoBehaviour:
     maxSpeed: 55
     speedLimit: 50
     roadShape:
-    - {x: -8, y: 0}
+    - {x: -8.580001, y: 0}
     - {x: 0, y: 0}
-    - {x: 8, y: 0}
+    - {x: 8.580001, y: 0}
     roadShapeExt: []
     roadShapeExt2:
-    - {x: -8, y: 0}
+    - {x: -8.580001, y: 0}
     - {x: 0, y: 0}
-    - {x: 8, y: 0}
+    - {x: 8.580001, y: 0}
     doConnectionTri: 010101
     doConnectionTriExt: 
     roadShapeUVs:
@@ -7445,11 +7439,11 @@ MonoBehaviour:
     connectionAngle: 0
     connectionRadius: 0
     oneWay: 0
-    cornerRadiusMainRoad: 0
-    cornerSementsMainRoad: 0
-    cornerRadiusSecondaryRoad: 0
-    cornerRadiusSecondaryCurvature: 0
-    cornerSementsSecondaryRoad: 0
+    cornerRadiusMainRoad: 1
+    cornerSementsMainRoad: 4
+    cornerRadiusSecondaryRoad: 1
+    cornerRadiusSecondaryCurvature: 0.1
+    cornerSementsSecondaryRoad: 4
     mainRoadsOnly: 0
     isRoadShape: 1
     controlType: 0
