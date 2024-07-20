@@ -48,7 +48,7 @@ MonoBehaviour:
   - version: 2.0.0
     name: Bridge
     id: 1575640414.1523824
-    timestamp: 1661799299.5931346
+    timestamp: 1721467449.9604452
     objectType: 2
     gameobjectGUID: 
     textureGUID: 
@@ -203,7 +203,7 @@ MonoBehaviour:
     heightMaxEndThreshold: 1
     xThresholdDistance: 5
     angleThreshold: 10
-    connectionRatio: 10
+    connectionRatio: 13
     retainingWall: 0
     surroundingControl: 0
     indentControl: 0
