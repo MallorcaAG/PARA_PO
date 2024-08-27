@@ -10133,7 +10133,15 @@ MonoBehaviour:
     roadMaterials: []
     roadPhysicsMaterial: {fileID: 0}
     roadPhysicsMaterials: []
+<<<<<<< Updated upstream
     connectionMaterial: {fileID: 0}
+=======
+<<<<<<< HEAD
+    connectionMaterial: {fileID: 2100000, guid: 3c555588afad81d428ad1704d5d015a7, type: 2}
+=======
+    connectionMaterial: {fileID: 0}
+>>>>>>> 6f3dc68eddc43ea45c53664239c6059db2d839f3
+>>>>>>> Stashed changes
     isSideObject: 0
     isCustomRoad: 0
     subSegments: 1
