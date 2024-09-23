@@ -4,6 +4,7 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - VehicleWaypoint
   - Waypoint
   layers:
   - Default
@@ -15,7 +16,7 @@ TagManager:
   - Driveable
   - SphereRB
   - TrikeBody
-  - 
+  - Navigation
   - 
   - 
   - 
