@@ -25,7 +25,7 @@ public class WaypointEditor
         // Draw a line representing the width of the waypoint
         Gizmos.color = Color.white;
         Gizmos.DrawLine(waypoint.transform.position + (waypoint.transform.right * waypoint.width / 2f),
-                        waypoint.transform.position - (waypoint.transform.right * waypoint.width * 2f));
+                        waypoint.transform.position - (waypoint.transform.right * waypoint.width / 2f));
 
         // Draw a line to the previous waypoint if it exists
         if (waypoint.previousWaypoint != null)
