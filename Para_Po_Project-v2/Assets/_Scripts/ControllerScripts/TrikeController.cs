@@ -58,6 +58,8 @@ public class TrikeController : MonoBehaviour
 
         velocity = TrikeBody.transform.InverseTransformDirection(TrikeBody.velocity);
         currentVelocityOffset = velocity.z / maxSpeed;
+
+        /*Debug.Log(sphereRB.velocity.magnitude.ToString("F4"));*/
     }
 
     private void FixedUpdate()  

@@ -5,7 +5,6 @@ using UnityEngine;
 public class WaypointAttacher : MonoBehaviour
 {
     [SerializeField] private Waypoint myWaypoint;
-    [SerializeField] private GameEvent onListUpdated;
     private List<Waypoint> waypoints = new List<Waypoint>();
 
     Waypoint currentClosestWaypoint;

@@ -6,6 +6,10 @@ TagManager:
   tags:
   - VehicleWaypoint
   - Waypoint
+  - concrete
+  - dirt
+  - wood
+  - water
   layers:
   - Default
   - TransparentFX
@@ -18,7 +22,7 @@ TagManager:
   - TrikeBody
   - Navigation
   - 
-  - 
+  - Landmark
   - 
   - 
   - 
