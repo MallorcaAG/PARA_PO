@@ -9,12 +9,20 @@ public class Landmark : MonoBehaviour
     [SerializeField] private GameEvent onPlayerEnterLandmark;
     [SerializeField] private GameEvent onPlayerExitLandmark;
     [SerializeField] private GameEvent onPlayerStopAtLandmark;
-    [Header("My Waypoints")]
-    [SerializeField] private Waypoint[] waypoints;
+    [Header("Spawn Points")]
+    [SerializeField] private GameObject[] spawnPoints;
+    [SerializeField] private GameObject npc;
 
     private Rigidbody player;
     bool isMoving;
     bool dataSent = false;
+
+    private void Awake()
+    {
+        GameObject npcObj = Instantiate(npc, spawnPoints[0].transform.position, Quaternion.identity);
+        PedestrianAINavigator npcAI = npcObj.GetComponent<PedestrianAINavigator>();
+        npcAI.setMyLandmark(this.gameObject);
+    }
 
     private void LateUpdate()
     {
@@ -28,17 +36,17 @@ public class Landmark : MonoBehaviour
             if (player.velocity.magnitude > 0.1f)
             {
                 isMoving = true;
-
-                if(!dataSent)
-                {
-                    onPlayerStopAtLandmark.Raise(this, this.gameObject);
-
-                    dataSent = true;
-                }
             }
             else
             {
                 isMoving = false;
+
+                if (!dataSent)
+                {
+                    onPlayerStopAtLandmark.Raise(this, this.gameObject);
+                    Debug.Log("Data sent");
+                    dataSent = true;
+                }
             }
 
         }

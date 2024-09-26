@@ -55,8 +55,8 @@ public class CharacterNav : MonoBehaviour
         float fwdDotProduct = Vector3.Dot(transform.forward, velocity);
         float rightDotProduct = Vector3.Dot(transform.right, velocity);
 
-        animator.SetFloat("horizontal", rightDotProduct);
-        animator.SetFloat("Forward", fwdDotProduct);
+        /*animator.SetFloat("horizontal", rightDotProduct);
+        animator.SetFloat("Forward", fwdDotProduct);*/
     }
 
     public void SetDestination(Vector3 newDestination)

@@ -10,23 +10,23 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: f7078a20534df8249863e78c985f9466, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f7078a20534df8249863e78c985f9466, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -53.101868
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f7078a20534df8249863e78c985f9466, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 11.103508
+      value: 0.00001859665
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f7078a20534df8249863e78c985f9466, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -56.51088
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f7078a20534df8249863e78c985f9466, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.65388364
+      value: -0.49115703
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f7078a20534df8249863e78c985f9466, type: 3}
       propertyPath: m_LocalRotation.x
@@ -34,7 +34,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f7078a20534df8249863e78c985f9466, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.75659513
+      value: -0.8710711
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f7078a20534df8249863e78c985f9466, type: 3}
       propertyPath: m_LocalRotation.z
@@ -46,7 +46,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f7078a20534df8249863e78c985f9466, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -98.33
+      value: -238.83301
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f7078a20534df8249863e78c985f9466, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -62,19 +62,43 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f7078a20534df8249863e78c985f9466, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 7556880415137816632}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f7078a20534df8249863e78c985f9466, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 4696477899607024559}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f7078a20534df8249863e78c985f9466, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4274549773040961869}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f7078a20534df8249863e78c985f9466, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1799397092927927223}
+      addedObject: {fileID: 8136705239067089212}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f7078a20534df8249863e78c985f9466, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1102715881874490492}
   m_SourcePrefab: {fileID: 100100000, guid: f7078a20534df8249863e78c985f9466, type: 3}
 --- !u!1 &5442087659124634134 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: f7078a20534df8249863e78c985f9466, type: 3}
   m_PrefabInstance: {fileID: 5136148897057738567}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7556880415137816632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5442087659124634134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 846b75bc564fee641b48ac5a7e75354f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentWaypoint: {fileID: 0}
+  changeDirection: 0
+  state: 0
+  myLandmark: {fileID: 0}
+  desiredLandmark: {fileID: 0}
+  onPedestrianIngress: {fileID: 11400000, guid: 6b79dc4a602068a4cbcc75c2d2e2ea07, type: 2}
 --- !u!114 &4696477899607024559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -114,7 +138,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1799397092927927223
+--- !u!114 &8136705239067089212
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -123,7 +147,50 @@ MonoBehaviour:
   m_GameObject: {fileID: 5442087659124634134}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c91f37abfd6531499e197bff0c7578c, type: 3}
+  m_Script: {fileID: 11500000, guid: 343a05844d3bc104aa8e0351c6314175, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentWaypoint: {fileID: 0}
+  gameEvent: {fileID: 11400000, guid: ff18660bc83484447986685d21755a99, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7556880415137816632}
+        m_TargetAssemblyTypeName: PedestrianAINavigator, AI
+        m_MethodName: setPlayersWaypointRef
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1102715881874490492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5442087659124634134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 343a05844d3bc104aa8e0351c6314175, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: c971c394ba6e6654a9a54f2202a5cd0d, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7556880415137816632}
+        m_TargetAssemblyTypeName: PedestrianAINavigator, AI
+        m_MethodName: GetOnVehicle
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

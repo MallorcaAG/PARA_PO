@@ -6,6 +6,7 @@ public class WaypointNavigator : MonoBehaviour
 {
     CharacterNav controller;
     public Waypoint currentWaypoint;
+    public bool changeDirection = false;
 
     private void Awake()
     {
@@ -21,10 +22,22 @@ public class WaypointNavigator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (currentWaypoint == null)
+        {
+            return;
+        }
+
         // Access reachedDestination through destinationInfo
         if (controller.destinationInfo.reachedDestination)
         {
-            currentWaypoint = currentWaypoint.nextWaypoint;
+            if(!changeDirection)
+            {
+                currentWaypoint = currentWaypoint.nextWaypoint;
+            }
+            else
+            {
+                currentWaypoint = currentWaypoint.previousWaypoint;
+            }
             controller.SetDestination(currentWaypoint.GetPosition());
         }
     }
