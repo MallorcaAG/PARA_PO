@@ -11,17 +11,25 @@ public class Landmark : MonoBehaviour
     [SerializeField] private GameEvent onPlayerStopAtLandmark;
     [Header("Spawn Points")]
     [SerializeField] private GameObject[] spawnPoints;
-    [SerializeField] private GameObject npc;
+    
 
     private Rigidbody player;
     bool isMoving;
     bool dataSent = false;
+    bool playerPassed = false;
+
+    public GameObject[] getSpawnpoints()
+    {
+        return spawnPoints;
+    }
+    public bool PlayerPassedByBefore()
+    {
+        return playerPassed; 
+    }
 
     private void Awake()
     {
-        GameObject npcObj = Instantiate(npc, spawnPoints[0].transform.position, Quaternion.identity);
-        PedestrianAINavigator npcAI = npcObj.GetComponent<PedestrianAINavigator>();
-        npcAI.setMyLandmark(this.gameObject);
+        
     }
 
     private void LateUpdate()
@@ -36,18 +44,28 @@ public class Landmark : MonoBehaviour
             if (player.velocity.magnitude > 0.1f)
             {
                 isMoving = true;
+                //Debug.Log("Player is moving");
+
+                if (dataSent)
+                {
+                    dataSent = false;
+                }
             }
             else
             {
                 isMoving = false;
+                //Debug.Log("Player is still");
 
                 if (!dataSent)
                 {
                     onPlayerStopAtLandmark.Raise(this, this.gameObject);
-                    Debug.Log("Data sent");
+                    //Debug.Log("Data sent");
                     dataSent = true;
                 }
             }
+
+            
+            
 
         }
     }
@@ -65,7 +83,6 @@ public class Landmark : MonoBehaviour
 
             onPlayerEnterLandmark.Raise(this, this.gameObject);
         }
-
     }
 
     private void OnTriggerExit(Collider other)
@@ -75,6 +92,8 @@ public class Landmark : MonoBehaviour
             player = null;
 
             onPlayerExitLandmark.Raise(this, this.gameObject);
+
+            playerPassed = true;
         }
     }
 }

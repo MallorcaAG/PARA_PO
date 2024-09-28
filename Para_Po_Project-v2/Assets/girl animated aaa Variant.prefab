@@ -75,6 +75,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f7078a20534df8249863e78c985f9466, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1102715881874490492}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f7078a20534df8249863e78c985f9466, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -5630035803730144669}
   m_SourcePrefab: {fileID: 100100000, guid: f7078a20534df8249863e78c985f9466, type: 3}
 --- !u!1 &5442087659124634134 stripped
 GameObject:
@@ -99,6 +102,7 @@ MonoBehaviour:
   myLandmark: {fileID: 0}
   desiredLandmark: {fileID: 0}
   onPedestrianIngress: {fileID: 11400000, guid: 6b79dc4a602068a4cbcc75c2d2e2ea07, type: 2}
+  onPedestrianEgress: {fileID: 11400000, guid: 19d91901699597543a10c7311bb5f3dd, type: 2}
 --- !u!114 &4696477899607024559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,6 +189,46 @@ MonoBehaviour:
       - m_Target: {fileID: 7556880415137816632}
         m_TargetAssemblyTypeName: PedestrianAINavigator, AI
         m_MethodName: GetOnVehicle
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 7556880415137816632}
+        m_TargetAssemblyTypeName: PedestrianAINavigator, AI
+        m_MethodName: GetOffVehicle
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &-5630035803730144669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5442087659124634134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 343a05844d3bc104aa8e0351c6314175, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: c222c3cb593aab34d97be389eed79fad, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7556880415137816632}
+        m_TargetAssemblyTypeName: PedestrianAINavigator, AI
+        m_MethodName: LandmarkReached
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

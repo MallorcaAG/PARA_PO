@@ -17,6 +17,7 @@ public class PedestrianAINavigator : MonoBehaviour
     [SerializeField] private GameObject desiredLandmark;
     [Header("Game Event")]
     [SerializeField] private GameEvent onPedestrianIngress;
+    [SerializeField] private GameEvent onPedestrianEgress;
 
     private Waypoint playersWaypoint;
     private CharacterNav controller;
@@ -77,8 +78,6 @@ public class PedestrianAINavigator : MonoBehaviour
             case NPCState.INGRESS:
                 if(controller.destinationInfo.reachedDestination)
                 {
-                    //INSTANTIATE POOFING VFX OR CALL ANOTHER DIFFERENT GAME EVENT TO INSTANTIATE THE VFX
-
                     state= NPCState.RIDING;
 
                     onPedestrianIngress.Raise(this, this.gameObject);
@@ -90,7 +89,13 @@ public class PedestrianAINavigator : MonoBehaviour
                 break;
 
             case NPCState.EGRESS:
-
+                if (controller.destinationInfo.reachedDestination)
+                {
+                    state = NPCState.WALKING;
+                    myLandmark = null;
+                    desiredLandmark = null;
+                    playersWaypoint = null;
+                }
                 break;
 
             
@@ -104,11 +109,27 @@ public class PedestrianAINavigator : MonoBehaviour
         {
             if (!changeDirection)
             {
-                currentWaypoint = currentWaypoint.nextWaypoint;
+                if (currentWaypoint.nextWaypoint != null)
+                {
+                    currentWaypoint = currentWaypoint.nextWaypoint;
+                }
+                else
+                {
+                    //just fukin kys
+                    Destroy(this.gameObject);
+                }
             }
             else
             {
-                currentWaypoint = currentWaypoint.previousWaypoint;
+                if (currentWaypoint.previousWaypoint != null)
+                {
+                    currentWaypoint = currentWaypoint.previousWaypoint;
+                }
+                else
+                {
+                    //just fukin kys
+                    Destroy(this.gameObject);
+                }
             }
 
             controller.SetDestination(currentWaypoint.GetPosition());
@@ -119,18 +140,62 @@ public class PedestrianAINavigator : MonoBehaviour
     {
         if ((GameObject)landmarkPlayerIsIn != myLandmark)
         {
-            Debug.Log("Oh whoops not me kys");
             return;
         }
-        
 
         state = NPCState.INGRESS;
         
         controller.SetDestination(playersWaypoint.GetPosition());
     }
 
-    private void GetOffVehicle()
+    public void LandmarkReached(Component sender, object landmarkPlayerIsIn)
     {
-        
+        if((GameObject)landmarkPlayerIsIn != desiredLandmark)
+        {
+            return;
+        }
+
+        state = NPCState.EGRESS;
+
+        Debug.Log("<b>PARA PO!</b>");
+    }
+
+    public void GetOffVehicle(Component sender, object landmarkPlayerIsIn)
+    {
+        if (state != NPCState.EGRESS)
+        {
+            return;
+        }
+
+        onPedestrianEgress.Raise(this, this.gameObject);
+
+        currentWaypoint = playersWaypoint;
+
+        if (!changeDirection)
+        {
+            if(currentWaypoint.nextWaypoint != null)
+            {
+                currentWaypoint = currentWaypoint.nextWaypoint;
+            }
+            else
+            {
+                //just fukin kys
+                Destroy(this.gameObject);
+            }
+        }
+        else
+        {
+            if (currentWaypoint.nextWaypoint != null)
+            {
+                currentWaypoint = currentWaypoint.nextWaypoint;
+            }
+            else
+            {
+                //just fukin kys
+                Destroy(this.gameObject);
+            }
+        }
+
+        controller.SetDestination(currentWaypoint.GetPosition());
     }
 }
