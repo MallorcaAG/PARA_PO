@@ -6,13 +6,32 @@ public class LandmarkManager : MonoBehaviour
 {
     [SerializeField] private GameObject[] landmarks;
     [SerializeField] private GameObject npc;
+    [Range(1,60)][SerializeField] private int spawnQuantity;
+    
 
     private void Awake()
     {
-        GameObject npcObj = Instantiate(npc, landmarks[0].GetComponent<Landmark>().getSpawnpoints()[0].transform.position, Quaternion.identity);
+        for (int i = spawnQuantity; i > 0; i--)
+        {
+            RandomizeSpawnLoc();
+        }
+
+    }
+
+    void RandomizeSpawnLoc()
+    {
+        Debug.Log("SPAWNING");
+
+        int start = Random.Range(1, landmarks.Length - 2); //Test on a larger scale
+        int end = Random.Range(start + 1, landmarks.Length);
+
+        GameObject[] points = landmarks[start].GetComponent<Landmark>().getSpawnpoints();
+        int startPos = Random.Range(0, points.Length);
+
+        GameObject npcObj = Instantiate(npc, points[startPos].transform.position, Quaternion.identity);
         PedestrianAINavigator npcAI = npcObj.GetComponent<PedestrianAINavigator>();
-        npcAI.setMyLandmark(landmarks[0]);
-        npcAI.setDesiredLandmark(landmarks[3]);
+        npcAI.setMyLandmark(landmarks[start]);
+        npcAI.setDesiredLandmark(landmarks[end]);
     }
 
 }
