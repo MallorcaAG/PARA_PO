@@ -8,13 +8,16 @@ public class PedestrianAINavigator : MonoBehaviour
     {
         WAITING, WALKING, RIDING, INGRESS, EGRESS
     };
+
     [Header("Pathfinding")]
-    [SerializeField] private Waypoint currentWaypoint;
+    [SerializeField] public Waypoint currentWaypoint;
     [SerializeField] private bool changeDirection = false;
+
     [Header("Behavior")]
     [SerializeField] private NPCState state;
     [SerializeField] private GameObject myLandmark;
     [SerializeField] private GameObject desiredLandmark;
+
     [Header("Game Event")]
     [SerializeField] private GameEvent onPedestrianIngress;
     [SerializeField] private GameEvent onPedestrianEgress;
@@ -22,20 +25,25 @@ public class PedestrianAINavigator : MonoBehaviour
     private Waypoint playersWaypoint;
     private CharacterNav controller;
 
+    int direction;
+
     #region Getter/Setter funcs
     public void setMyLandmark(GameObject newLandmark)
     {
         myLandmark = newLandmark;
     }
+
     public void setDesiredLandmark(GameObject newLandmark)
     {
         desiredLandmark = newLandmark;
     }
+
     public void setPlayersWaypointRef(Component component, object data)
     {
         GameObject obj = (GameObject)data;
         playersWaypoint = obj.GetComponent<Waypoint>();
     }
+
     public CharacterNav getController()
     {
         return controller;
@@ -46,18 +54,17 @@ public class PedestrianAINavigator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        direction = Mathf.RoundToInt(Random.Range(0f, 1f)); 
         controller = GetComponent<CharacterNav>();
 
-        if(currentWaypoint == null)
+        if (currentWaypoint == null)
         {
             state = NPCState.WAITING;
-
-            controller.SetDestination(gameObject.transform.position);
+            controller.SetDestination(transform.position);
         }
-        else if(currentWaypoint != null)
+        else
         {
             state = NPCState.WALKING;
-
             controller.SetDestination(currentWaypoint.GetPosition());
         }
     }
@@ -65,10 +72,9 @@ public class PedestrianAINavigator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        switch(state)
+        switch (state)
         {
             case NPCState.WAITING:
-
                 break;
 
             case NPCState.WALKING:
@@ -76,16 +82,14 @@ public class PedestrianAINavigator : MonoBehaviour
                 break;
 
             case NPCState.INGRESS:
-                if(controller.destinationInfo.reachedDestination)
+                if (controller.destinationInfo.reachedDestination)
                 {
-                    state= NPCState.RIDING;
-
-                    onPedestrianIngress.Raise(this, this.gameObject);
+                    state = NPCState.RIDING;
+                    onPedestrianIngress.Raise(this, gameObject);
                 }
                 break;
 
             case NPCState.RIDING:
-
                 break;
 
             case NPCState.EGRESS:
@@ -97,8 +101,6 @@ public class PedestrianAINavigator : MonoBehaviour
                     playersWaypoint = null;
                 }
                 break;
-
-            
         }
     }
     #endregion
@@ -107,31 +109,45 @@ public class PedestrianAINavigator : MonoBehaviour
     {
         if (controller.destinationInfo.reachedDestination)
         {
-            if (!changeDirection)
+            bool shouldBranch = false;
+
+            if(currentWaypoint.branches ! = null && currentWaypoint.branches.Count > 0)
             {
-                if (currentWaypoint.nextWaypoint != null)
-                {
-                    currentWaypoint = currentWaypoint.nextWaypoint;
-                }
-                else
-                {
-                    //just fukin kys
-                    Destroy(this.gameObject);
-                }
+                shouldBranch = Random.Range(0f, 1f) <= currentWaypoint.branchRatio ? true : false;
+            }
+
+            if (shouldBranch)
+            {
+                currentWaypoint = currentWaypoint.branches[Random.Range(0, currentWaypoint.branches.Count - 1)];
             }
             else
             {
-                if (currentWaypoint.previousWaypoint != null)
+                if (direction == 0)
                 {
-                    currentWaypoint = currentWaypoint.previousWaypoint;
+                    if (currentWaypoint.nextWaypoint != null)
+                    {
+                        currentWaypoint = currentWaypoint.nextWaypoint;
+                    }
+                    else
+                    {
+                        currentWaypoint = currentWaypoint.previousWaypoint;
+                        direction == 1;
+                    }
                 }
-                else
+                else if (direction == 1)
                 {
-                    //just fukin kys
-                    Destroy(this.gameObject);
+                    if (currentWaypoint.previousWaypoint != null)
+                    {
+                        currentWaypoint = currentWaypoint.previousWaypoint;
+                    }
+                    else
+                    {
+                        currentWaypoint = currentWaypoint.nextWaypoint;
+                        direction == 0;
+
+                    }
                 }
             }
-
             controller.SetDestination(currentWaypoint.GetPosition());
         }
     }
@@ -144,19 +160,17 @@ public class PedestrianAINavigator : MonoBehaviour
         }
 
         state = NPCState.INGRESS;
-        
         controller.SetDestination(playersWaypoint.GetPosition());
     }
 
     public void LandmarkReached(Component sender, object landmarkPlayerIsIn)
     {
-        if((GameObject)landmarkPlayerIsIn != desiredLandmark)
+        if ((GameObject)landmarkPlayerIsIn != desiredLandmark)
         {
             return;
         }
 
         state = NPCState.EGRESS;
-
         Debug.Log("<b>PARA PO!</b>");
     }
 
@@ -167,32 +181,30 @@ public class PedestrianAINavigator : MonoBehaviour
             return;
         }
 
-        onPedestrianEgress.Raise(this, this.gameObject);
+        onPedestrianEgress.Raise(this, gameObject);
 
-        currentWaypoint = playersWaypoint;
+        currentWaypoint = playersWaypoint ?? currentWaypoint; 
 
         if (!changeDirection)
         {
-            if(currentWaypoint.nextWaypoint != null)
+            if (currentWaypoint.nextWaypoint != null)
             {
-                currentWaypoint = currentWaypoint.nextWaypoint;
+                currentWaypoint = currentWaypoint.nextWaypoint; 
             }
             else
             {
-                //just fukin kys
-                Destroy(this.gameObject);
+                Destroy(gameObject); 
             }
         }
         else
         {
-            if (currentWaypoint.nextWaypoint != null)
+            if (currentWaypoint.previousWaypoint != null)
             {
-                currentWaypoint = currentWaypoint.nextWaypoint;
+                currentWaypoint = currentWaypoint.previousWaypoint;
             }
             else
             {
-                //just fukin kys
-                Destroy(this.gameObject);
+                Destroy(gameObject); 
             }
         }
 

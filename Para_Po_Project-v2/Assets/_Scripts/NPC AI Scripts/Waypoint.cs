@@ -10,6 +10,11 @@ public class Waypoint : MonoBehaviour
     [Range(0f, 5f)]
     public float width = 1f;
 
+    public List<Waypoint> branches;
+
+    [Range(0f, 5f)]
+    public float branchRatio = 0.5f;
+
     public Vector3 GetPosition()
     {
         // Calculate the minimum and maximum bounds based on the width

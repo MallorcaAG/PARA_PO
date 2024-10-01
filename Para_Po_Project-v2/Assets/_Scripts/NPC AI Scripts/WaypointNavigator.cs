@@ -41,4 +41,6 @@ public class WaypointNavigator : MonoBehaviour
             controller.SetDestination(currentWaypoint.GetPosition());
         }
     }
+
+
 }
