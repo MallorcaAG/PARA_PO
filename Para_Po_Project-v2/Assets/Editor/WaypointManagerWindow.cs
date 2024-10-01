@@ -149,12 +149,12 @@ public class WaypointManagerWindow : EditorWindow
 
     void CreateBranch()
     {
-        GameObject.waypointObject = new GameObject("Waypoint" + waypointRoot.childCount, typeof(Waypoint));
+        GameObject waypointObject = new GameObject("Waypoint " + waypointRoot.childCount, typeof(Waypoint));
         waypointObject.transform.SetParent(waypointRoot, false);
 
         Waypoint waypoint = waypointObject.GetComponent<Waypoint>();
 
-        waypoint branchedFrom = Selection.activeGameObject.GetComponent<Waypoint>;
+        Waypoint branchedFrom = Selection.activeGameObject.GetComponent<Waypoint>();
         branchedFrom.branches.Add(waypoint);
 
         waypoint.transform.position = branchedFrom.transform.position;
