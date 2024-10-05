@@ -21,11 +21,16 @@ public class PedestrianAINavigator : MonoBehaviour
     [Header("Game Event")]
     [SerializeField] private GameEvent onPedestrianIngress;
     [SerializeField] private GameEvent onPedestrianEgress;
+    [SerializeField] private GameEvent onImpactWithPlayer;
+    [SerializeField] private GameEvent onSuccessfulEgress;
+
 
     private Waypoint playersWaypoint;
     private CharacterNav controller;
 
     int direction;
+    bool canBeViolated = true;
+    bool isRiding = false;
 
     #region Getter/Setter funcs
     public void setMyLandmark(GameObject newLandmark)
@@ -85,6 +90,7 @@ public class PedestrianAINavigator : MonoBehaviour
                 if (controller.destinationInfo.reachedDestination)
                 {
                     state = NPCState.RIDING;
+                    isRiding = true;
                     onPedestrianIngress.Raise(this, gameObject);
                 }
                 break;
@@ -96,9 +102,11 @@ public class PedestrianAINavigator : MonoBehaviour
                 if (controller.destinationInfo.reachedDestination)
                 {
                     state = NPCState.WALKING;
+                    canBeViolated = true;
                     myLandmark = null;
                     desiredLandmark = null;
                     playersWaypoint = null;
+                    onSuccessfulEgress.Raise(this, gameObject);
                 }
                 break;
         }
@@ -161,6 +169,7 @@ public class PedestrianAINavigator : MonoBehaviour
 
         state = NPCState.INGRESS;
         controller.SetDestination(playersWaypoint.GetPosition());
+        canBeViolated = false;
     }
 
     public void LandmarkReached(Component sender, object landmarkPlayerIsIn)
@@ -170,8 +179,17 @@ public class PedestrianAINavigator : MonoBehaviour
             return;
         }
 
-        state = NPCState.EGRESS;
-        Debug.Log("<b>PARA PO!</b>");
+        if(isRiding)
+        {
+            state = NPCState.EGRESS;
+            Debug.Log("<b>PARA PO!</b>");
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
+        
     }
 
     public void GetOffVehicle(Component sender, object landmarkPlayerIsIn)
@@ -182,7 +200,7 @@ public class PedestrianAINavigator : MonoBehaviour
         }
 
         onPedestrianEgress.Raise(this, gameObject);
-
+        
         currentWaypoint = playersWaypoint ?? currentWaypoint; 
 
         if (!changeDirection)
@@ -207,7 +225,15 @@ public class PedestrianAINavigator : MonoBehaviour
                 Destroy(gameObject); 
             }
         }
-
+        isRiding = false;
         controller.SetDestination(currentWaypoint.GetPosition());
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.transform.CompareTag("Player") && canBeViolated)
+        {
+            onImpactWithPlayer.Raise(this, gameObject);
+        }
     }
 }

@@ -20,7 +20,7 @@ public class LandmarkManager : MonoBehaviour
 
     void RandomizeSpawnLoc()
     {
-        Debug.Log("SPAWNING");
+        //Debug.Log("SPAWNING");
 
         int start = Random.Range(1, landmarks.Length - 2); //Test on a larger scale
         int end = Random.Range(start + 1, landmarks.Length);

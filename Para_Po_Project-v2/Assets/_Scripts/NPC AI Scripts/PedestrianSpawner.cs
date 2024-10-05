@@ -21,18 +21,24 @@ public class PedestrianSpawner : MonoBehaviour
 
     IEnumerator Spawn()
     {
+        if(transform.childCount == 0)
+        {
+            yield break;
+        }
+
         int count = 0;
+
         while (count < pedestriansToSpawn)
         {
             GameObject obj = Instantiate(pedestrianPrefab);
-            Transform child = transform.GetChild(Random.Range(0, transform.childCount - 1));
+            Transform child = transform.GetChild(Random.Range(0, transform.childCount));
             obj.GetComponent<PedestrianAINavigator>().currentWaypoint = child.GetComponent<Waypoint>();
             obj.transform.position = child.position;
 
             yield return new WaitForEndOfFrame();
 
             count++;
-
+            
         }
     }
 }

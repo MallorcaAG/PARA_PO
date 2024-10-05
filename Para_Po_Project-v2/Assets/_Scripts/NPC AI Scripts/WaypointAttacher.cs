@@ -67,6 +67,8 @@ public class WaypointAttacher : MonoBehaviour
         if (!obj.CompareTag("Waypoint"))
             return;
 
+        if(obj.GetComponents<Waypoint>() ==  null || obj.GetComponent<VehicleWaypoint>() != null)
+            return;
 
         waypoints.Add(obj.GetComponent<Waypoint>());
     }
@@ -75,6 +77,9 @@ public class WaypointAttacher : MonoBehaviour
     {
 
         if (!obj.CompareTag("Waypoint"))
+            return;
+
+        if (obj.GetComponents<Waypoint>() == null)
             return;
 
         waypoints.Remove(obj.GetComponent<Waypoint>());
