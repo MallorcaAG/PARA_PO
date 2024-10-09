@@ -21,6 +21,8 @@ public class TrafficEnforcer : MonoBehaviour
     [SerializeField] private float obstructingTrafficOrStalling = -50;
         [Tooltip("BE SURE TO INCLUDE THE NEGATIVE SIGN")]
     [SerializeField] private float speeding = -50;
+        [Tooltip("BE SURE TO INCLUDE THE NEGATIVE SIGN")]
+    [SerializeField] private float notUrFaultBonus = 50;
     [Header("Immunity")]
     [SerializeField] private float immunityCooldown = 3f;
     [SerializeField] private bool immune = false;
@@ -75,6 +77,22 @@ public class TrafficEnforcer : MonoBehaviour
         {
             Debug.LogWarning("Violation Type: Counter Flowing Or Driving On Sidewalk");
             return counterflowingOrDrivingOnSidewalk;
+        }
+        else if (sender.TryGetComponent<VehicleAINavigator>(out VehicleAINavigator car))
+        {
+            
+            switch ((int)data)
+            {
+                case 0:
+                    Debug.Log("YOU HAVE BEEN VIOLATED: Got hit by another vehicle\nDW ITS NOT UR FAULT BOZO");
+                    return notUrFaultBonus;
+                case 1:
+                    Debug.LogWarning("Violation Type: Hit another vehicle");
+                    return hittingAnotherVehicle;
+                default:
+                    return 0;
+
+            }
         }
 
         return 0;

@@ -2,16 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PedestrianAINavigator : MonoBehaviour
+public class PedestrianAINavigator : WaypointNavigator
 {
     private enum NPCState
     {
         WAITING, WALKING, RIDING, INGRESS, EGRESS
     };
-
-    [Header("Pathfinding")]
-    [SerializeField] public Waypoint currentWaypoint;
-    [SerializeField] private bool changeDirection = false;
 
     [Header("Behavior")]
     [SerializeField] private NPCState state;
@@ -24,11 +20,8 @@ public class PedestrianAINavigator : MonoBehaviour
     [SerializeField] private GameEvent onImpactWithPlayer;
     [SerializeField] private GameEvent onSuccessfulEgress;
 
-
     private Waypoint playersWaypoint;
-    private CharacterNav controller;
 
-    int direction;
     bool canBeViolated = true;
     bool isRiding = false;
 
@@ -49,29 +42,25 @@ public class PedestrianAINavigator : MonoBehaviour
         playersWaypoint = obj.GetComponent<Waypoint>();
     }
 
-    public CharacterNav getController()
-    {
-        return controller;
-    }
+    
     #endregion
 
     #region Runtime Functions
     // Start is called before the first frame update
     void Start()
     {
-        direction = Mathf.RoundToInt(Random.Range(0f, 1f)); 
-        controller = GetComponent<CharacterNav>();
-
         if (currentWaypoint == null)
         {
             state = NPCState.WAITING;
-            controller.SetDestination(transform.position);
+            SetDestination(transform.position);
         }
         else
         {
             state = NPCState.WALKING;
-            controller.SetDestination(currentWaypoint.GetPosition());
+            SetDestination(currentWaypoint.GetPosition());
         }
+
+        baseSpeed = 2f;
     }
 
     // Update is called once per frame
@@ -115,51 +104,10 @@ public class PedestrianAINavigator : MonoBehaviour
 
     private void NPCWalking()
     {
-        if (controller.destinationInfo.reachedDestination)
-        {
-            bool shouldBranch = false;
-
-            if(currentWaypoint.branches != null && currentWaypoint.branches.Count > 0)
-            {
-                shouldBranch = Random.Range(0f, 1f) <= currentWaypoint.branchRatio ? true : false;
-            }
-
-            if (shouldBranch)
-            {
-                currentWaypoint = currentWaypoint.branches[Random.Range(0, currentWaypoint.branches.Count - 1)];
-            }
-            else
-            {
-                if (direction == 0)
-                {
-                    if (currentWaypoint.nextWaypoint != null)
-                    {
-                        currentWaypoint = currentWaypoint.nextWaypoint;
-                    }
-                    else
-                    {
-                        currentWaypoint = currentWaypoint.previousWaypoint;
-                        direction = 1;
-                    }
-                }
-                else if (direction == 1)
-                {
-                    if (currentWaypoint.previousWaypoint != null)
-                    {
-                        currentWaypoint = currentWaypoint.previousWaypoint;
-                    }
-                    else
-                    {
-                        currentWaypoint = currentWaypoint.nextWaypoint;
-                        direction = 0;
-
-                    }
-                }
-            }
-            controller.SetDestination(currentWaypoint.GetPosition());
-        }
+        NPCTraversal();
     }
 
+    #region Pedestrian Specific Functions
     public void GetOnVehicle(Component component, object landmarkPlayerIsIn)
     {
         if ((GameObject)landmarkPlayerIsIn != myLandmark)
@@ -168,7 +116,7 @@ public class PedestrianAINavigator : MonoBehaviour
         }
 
         state = NPCState.INGRESS;
-        controller.SetDestination(playersWaypoint.GetPosition());
+        SetDestination(playersWaypoint.GetPosition());
         canBeViolated = false;
     }
 
@@ -226,8 +174,9 @@ public class PedestrianAINavigator : MonoBehaviour
             }
         }
         isRiding = false;
-        controller.SetDestination(currentWaypoint.GetPosition());
+        SetDestination(currentWaypoint.GetPosition());
     }
+    #endregion
 
     private void OnCollisionEnter(Collision collision)
     {

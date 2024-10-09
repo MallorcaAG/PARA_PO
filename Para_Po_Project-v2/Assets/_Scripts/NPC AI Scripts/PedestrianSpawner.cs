@@ -32,7 +32,7 @@ public class PedestrianSpawner : MonoBehaviour
         {
             GameObject obj = Instantiate(pedestrianPrefab);
             Transform child = transform.GetChild(Random.Range(0, transform.childCount));
-            obj.GetComponent<PedestrianAINavigator>().currentWaypoint = child.GetComponent<Waypoint>();
+            obj.GetComponent<PedestrianAINavigator>().setCurrentWaypoint(child.GetComponent<Waypoint>());
             obj.transform.position = child.position;
 
             yield return new WaitForEndOfFrame();
