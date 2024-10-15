@@ -100,7 +100,7 @@ Transform:
   - {fileID: 4857854537812897726}
   - {fileID: 3266118450815740069}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &4439890082230195666
 AudioSource:
@@ -231,6 +231,7 @@ MonoBehaviour:
   currentWaypoint: {fileID: 0}
   changeDirection: 0
   baseSpeed: 7
+  fullStop: 0
   state: 0
   onImpactWithPlayer: {fileID: 11400000, guid: a1736e0de7f699b47a4d5b94abbe16a0, type: 2}
 --- !u!114 &8024902340723111019
@@ -249,7 +250,7 @@ MonoBehaviour:
   maxDistance: 5
   includeLayers:
     serializedVersion: 2
-    m_Bits: 385
+    m_Bits: 4481
   showCastsDebug: 1
 --- !u!65 &4983993465833625945
 BoxCollider:
