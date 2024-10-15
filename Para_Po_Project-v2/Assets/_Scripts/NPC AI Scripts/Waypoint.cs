@@ -12,7 +12,7 @@ public class Waypoint : MonoBehaviour
 
     public List<Waypoint> branches;
 
-    [Range(0f, 5f)]
+    [Range(0f, 1f)]
     public float branchRatio = 0.5f;
 
     public Vector3 GetPosition()
