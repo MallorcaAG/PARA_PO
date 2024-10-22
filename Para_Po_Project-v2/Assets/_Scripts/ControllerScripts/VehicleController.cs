@@ -49,6 +49,8 @@ public class VehicleController : MonoBehaviour
     [SerializeField] private GameObject[] tires = new GameObject[4];
     [SerializeField] private GameObject[] frontTireParents = new GameObject[2];
     [SerializeField] private AudioSource engineSound;
+    [Header("Game Events")]
+    [SerializeField] private GameEvent sendPlayerSpeed;
 
     private int[] wheelIsGrounded = new int[4];
     private bool isGrounded = false;
@@ -57,6 +59,8 @@ public class VehicleController : MonoBehaviour
     private void Start()
     {
         vehicleRB = GetComponent<Rigidbody>();
+
+        StartCoroutine(SendSpeed());
     }
 
     private void FixedUpdate()
@@ -72,6 +76,17 @@ public class VehicleController : MonoBehaviour
     private void Update()
     {
         GetPlayerInput();
+    }
+    #endregion
+
+    #region Coroutines
+    IEnumerator SendSpeed()
+    {
+        sendPlayerSpeed.Raise(this, vehicleRB.velocity.magnitude.ToString("F4"));
+
+        yield return new WaitForSeconds(1f);
+
+        StartCoroutine(SendSpeed());
     }
     #endregion
 

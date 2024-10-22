@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 2968464576385398223}
   - component: {fileID: 8730855887530135823}
   - component: {fileID: 5569390692563988347}
+  - component: {fileID: 8051317679395875255}
   m_Layer: 0
   m_Name: wallBrickTilePilar_001
   m_TagString: Untagged
@@ -137,6 +138,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.5803001, y: 2.8651, z: 0.5955001}
   m_Center: {x: 0.00022657198, y: 0.88705, z: -0.0006058516}
+--- !u!114 &8051317679395875255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8433579245811872294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16ba224b08f2cfb48b2c2f6d8885c9f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onImpactWithPlayer: {fileID: 11400000, guid: a1736e0de7f699b47a4d5b94abbe16a0, type: 2}
 --- !u!1001 &6460446332113402258
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -203,9 +217,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 100004, guid: 577437d53f514944abc6f55dc2469ddc, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4752555251336414951}
+    - targetCorrespondingSourceObject: {fileID: 100004, guid: 577437d53f514944abc6f55dc2469ddc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4897861537473346012}
     - targetCorrespondingSourceObject: {fileID: 100002, guid: 577437d53f514944abc6f55dc2469ddc, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3904413086569018318}
+    - targetCorrespondingSourceObject: {fileID: 100002, guid: 577437d53f514944abc6f55dc2469ddc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5171772098013178035}
   m_SourcePrefab: {fileID: 100100000, guid: 577437d53f514944abc6f55dc2469ddc, type: 3}
 --- !u!1 &6460446332113502000 stripped
 GameObject:
@@ -233,6 +253,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.5803001, y: 2.8651, z: 0.5955001}
   m_Center: {x: 0.00022657198, y: 0.88705, z: -0.0006058516}
+--- !u!114 &5171772098013178035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6460446332113502000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16ba224b08f2cfb48b2c2f6d8885c9f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onImpactWithPlayer: {fileID: 11400000, guid: a1736e0de7f699b47a4d5b94abbe16a0, type: 2}
 --- !u!1 &6460446332113502006 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100004, guid: 577437d53f514944abc6f55dc2469ddc, type: 3}
@@ -259,6 +292,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.3454001, y: 2.1143997, z: 3.9722009}
   m_Center: {x: 0.0008765608, y: 0.51049995, z: -2.0652564}
+--- !u!114 &4897861537473346012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6460446332113502006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16ba224b08f2cfb48b2c2f6d8885c9f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onImpactWithPlayer: {fileID: 11400000, guid: a1736e0de7f699b47a4d5b94abbe16a0, type: 2}
 --- !u!4 &6460446332113789714 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 577437d53f514944abc6f55dc2469ddc, type: 3}

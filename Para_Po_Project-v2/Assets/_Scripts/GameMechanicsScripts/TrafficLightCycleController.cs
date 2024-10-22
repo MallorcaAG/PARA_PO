@@ -7,6 +7,8 @@ public class TrafficLightCycleController : MonoBehaviour
 {
     [Header("Directions")]
     [SerializeField] private TrafficLightLaneManager north, south, east, west;
+    [Header("Red Light Violation Trigger")]
+    [SerializeField] private GameObject isPlayerRedObj;
     [Header("Phases")]
     [SerializeField] private List<TrafficLightPhases> phases;
 
@@ -55,6 +57,15 @@ public class TrafficLightCycleController : MonoBehaviour
     private void runCurrentPhase()
     {
         //HELP THIS IS SPAGETTI TwT
+
+        if (phases[i].isPlayerRed)
+        {
+            isPlayerRedObj.SetActive(true);
+        }
+        else
+        {
+            isPlayerRedObj.SetActive(false);
+        }
 
         //North
         if (north != null)

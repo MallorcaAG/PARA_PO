@@ -38,6 +38,8 @@ public class TrikeController : MonoBehaviour
     [SerializeField] private LayerMask drivable;
     [SerializeField] private AudioSource engineSound;
     [SerializeField] private GameObject[] tires;
+    [Header("Game Events")]
+    [SerializeField] private GameEvent sendPlayerSpeed;
 
     #region Unity Functions
 
@@ -47,6 +49,8 @@ public class TrikeController : MonoBehaviour
         TrikeBody.transform.parent = null;
 
         rayLength = sphereRB.GetComponent<SphereCollider>().radius * 4.83f + 0.2f;
+
+        StartCoroutine(SendSpeed());
     }
 
     private void Update()
@@ -74,6 +78,17 @@ public class TrikeController : MonoBehaviour
         EngineSound();
     }
 
+    #endregion
+
+    #region Coroutines
+    IEnumerator SendSpeed()
+    {
+        sendPlayerSpeed.Raise(this, sphereRB.velocity.magnitude.ToString("F4"));
+
+        yield return new WaitForSeconds(1f);
+
+        StartCoroutine(SendSpeed());
+    }
     #endregion
 
     #region Movement

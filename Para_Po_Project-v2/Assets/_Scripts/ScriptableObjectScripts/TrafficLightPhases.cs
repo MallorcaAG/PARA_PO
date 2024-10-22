@@ -9,6 +9,8 @@ public class TrafficLightPhases : ScriptableObject
     public bool southLeft, southStraight, southRight;
     public bool eastLeft, eastStraight, eastRight;
     public bool westLeft, westStraight, westRight;
+    [Space]
+    public bool isPlayerRed;
 
     public float phaseDuration;
 }

@@ -16,6 +16,8 @@ public class TrafficEnforcer : MonoBehaviour
         [Tooltip("BE SURE TO INCLUDE THE NEGATIVE SIGN")]
     [SerializeField] private float beatingRedLight = -50;
         [Tooltip("BE SURE TO INCLUDE THE NEGATIVE SIGN")]
+    [SerializeField] private float hittingSignPostTrafficObject = -100;
+    [Tooltip("BE SURE TO INCLUDE THE NEGATIVE SIGN")]
     [SerializeField] private float crashingIntoBuilding = -150;
         [Tooltip("BE SURE TO INCLUDE THE NEGATIVE SIGN")]
     [SerializeField] private float obstructingTrafficOrStalling = -50;
@@ -30,8 +32,11 @@ public class TrafficEnforcer : MonoBehaviour
     [SerializeField] private GameEvent onTrafficViolationCommitted;
     [Header("References")]
     [SerializeField] private GameObject player;
+    [SerializeField] private float speedLimit = 16f;
+    [SerializeField] private float obstructionChargeCooldown = 30f;
 
-    private float targetTime;
+
+    private float targetTime, targetTime2, targetTime3;
 
     private void Start()
     {
@@ -45,7 +50,7 @@ public class TrafficEnforcer : MonoBehaviour
         {
             immune = !Timer();  //Once timer finishes, set immune to false
         }
-  
+
     }
 
     public void TrafficViolationCommitted(Component sender, object data)
@@ -73,6 +78,11 @@ public class TrafficEnforcer : MonoBehaviour
             Debug.LogWarning("Violation Type: property damage");
             return crashingIntoBuilding;
         }
+        else if (sender.TryGetComponent<TrafficObject>(out TrafficObject cone))
+        {
+            Debug.LogWarning("Violation Type: property damage");
+            return hittingSignPostTrafficObject;
+        }
         else if (sender.TryGetComponent<LaneReader>(out LaneReader flow))
         {
             Debug.LogWarning("Violation Type: Counter Flowing Or Driving On Sidewalk");
@@ -94,8 +104,38 @@ public class TrafficEnforcer : MonoBehaviour
 
             }
         }
+        else if (sender.TryGetComponent<TrafficLightViolation>(out TrafficLightViolation red))
+        {
+            Debug.LogWarning("Violation Type: Traffic Light Violation");
+            return beatingRedLight;
+        }
+        else if (sender.TryGetComponent<TrafficEnforcer>(out TrafficEnforcer mmda))
+        {
+
+            switch ((int)data)
+            {
+                case 0:
+                    Debug.Log("Violation Type: Speeding");
+                    return speeding;
+                
+                default:
+                    return 0;
+
+            }
+        }
 
         return 0;
+    }
+
+    public void checkPlayerSpeed(Component sender, object data)
+    {
+
+        Debug.Log((string)data + " " + data.GetType());
+
+        if(float.Parse((string)data) >= speedLimit)
+        {
+            TrafficViolationCommitted(this, 0);
+        }
     }
 
     private bool Timer()
