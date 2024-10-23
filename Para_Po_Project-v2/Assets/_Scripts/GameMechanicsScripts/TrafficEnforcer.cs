@@ -20,27 +20,33 @@ public class TrafficEnforcer : MonoBehaviour
     [Tooltip("BE SURE TO INCLUDE THE NEGATIVE SIGN")]
     [SerializeField] private float crashingIntoBuilding = -150;
         [Tooltip("BE SURE TO INCLUDE THE NEGATIVE SIGN")]
-    [SerializeField] private float obstructingTrafficOrStalling = -50;
+    [SerializeField] private float obstructingTrafficStallingOrAFK = -50;
         [Tooltip("BE SURE TO INCLUDE THE NEGATIVE SIGN")]
     [SerializeField] private float speeding = -50;
         [Tooltip("BE SURE TO INCLUDE THE NEGATIVE SIGN")]
     [SerializeField] private float notUrFaultBonus = 50;
     [Header("Immunity")]
     [SerializeField] private float immunityCooldown = 3f;
+    
     [SerializeField] private bool immune = false;
     [Header("Game Events")]
     [SerializeField] private GameEvent onTrafficViolationCommitted;
     [Header("References")]
     [SerializeField] private GameObject player;
     [SerializeField] private float speedLimit = 16f;
-    [SerializeField] private float obstructionChargeCooldown = 30f;
+    [Range(0f, 5f)][SerializeField] private float speedingGracePeriod = 3f;
+    [Range(10f,60f)][SerializeField] private float obstructionChargeCooldown = 20f;
 
 
     private float targetTime, targetTime2, targetTime3;
+    private bool justStarted = true;
 
     private void Start()
     {
         targetTime = immunityCooldown;
+
+        resetTimer2();
+        resetTimer3();
     }
 
     // Update is called once per frame
@@ -117,7 +123,11 @@ public class TrafficEnforcer : MonoBehaviour
                 case 0:
                     Debug.Log("Violation Type: Speeding");
                     return speeding;
-                
+
+                case 1:
+                    Debug.Log("Violation Type: Obstructing Traffic/Stalling/AFK");
+                    return obstructingTrafficStallingOrAFK;
+
                 default:
                     return 0;
 
@@ -130,12 +140,36 @@ public class TrafficEnforcer : MonoBehaviour
     public void checkPlayerSpeed(Component sender, object data)
     {
 
-        Debug.Log((string)data + " " + data.GetType());
+        /*Debug.Log((string)data + " " + data.GetType());*/
 
-        if(float.Parse((string)data) >= speedLimit)
+        float speed = float.Parse((string)data);
+
+        
+
+        if (speed >= speedLimit)
         {
-            TrafficViolationCommitted(this, 0);
+            if(Timer2())
+            {
+                TrafficViolationCommitted(this, 0);
+            }
         }
+        else if (speed > 0.01f)
+        {
+            resetTimer2();
+            resetTimer3();
+
+            justStarted = false;
+        }
+        
+        if (speed <= 0.01f && !justStarted)
+        {
+            if (Timer3())
+            {
+                TrafficViolationCommitted(this, 1);
+            }
+        }
+        
+        
     }
 
     private bool Timer()
@@ -149,5 +183,41 @@ public class TrafficEnforcer : MonoBehaviour
         }
 
         return false;
+    }
+
+    private bool Timer2()
+    {
+        targetTime2 -= 1f;
+
+        if (targetTime2 <= 0.0f)
+        {
+            resetTimer2();
+            return true;
+        }
+
+        return false;
+    }
+
+    private void resetTimer2()
+    {
+        targetTime2 = speedingGracePeriod;
+    }
+
+    private bool Timer3()
+    {
+        targetTime3 -= 1f;
+
+        if (targetTime3 <= 0.0f)
+        {
+            resetTimer3();
+            return true;
+        }
+
+        return false;
+    }
+
+    private void resetTimer3()
+    {
+        targetTime3 = obstructionChargeCooldown;
     }
 }
