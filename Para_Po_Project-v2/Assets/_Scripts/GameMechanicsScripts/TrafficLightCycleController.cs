@@ -6,7 +6,15 @@ using UnityEngine;
 public class TrafficLightCycleController : MonoBehaviour
 {
     [Header("Directions")]
-    [SerializeField] private TrafficLightLaneManager north, south, east, west;
+    [SerializeField] private TrafficLightLaneManager north;
+    [SerializeField] private TrafficLightLaneManager northPedXing;
+    [SerializeField] private TrafficLightLaneManager south;
+    [SerializeField] private TrafficLightLaneManager southPedXing;
+    [SerializeField] private TrafficLightLaneManager east;
+    [SerializeField] private TrafficLightLaneManager eastPedXing;
+    [SerializeField] private TrafficLightLaneManager west;
+    [SerializeField] private TrafficLightLaneManager westPedXing;
+
     [Header("Red Light Violation Trigger")]
     [SerializeField] private GameObject isPlayerRedObj;
     [Header("Phases")]
@@ -86,6 +94,7 @@ public class TrafficLightCycleController : MonoBehaviour
         //HELP THIS IS SPAGETTI TwT
             //MAMAMIA ITSA SPAGHETTI TIME
 
+        // Player Violation Trigger
         if (phases[i].isPlayerRed)
         {
             isPlayerRedObj.SetActive(true);
@@ -95,6 +104,7 @@ public class TrafficLightCycleController : MonoBehaviour
             isPlayerRedObj.SetActive(false);
         }
 
+        // Run Lane Cycle
         //North
         if (north != null)
         {
@@ -353,6 +363,98 @@ public class TrafficLightCycleController : MonoBehaviour
                 westStraightRed.SetActive(true);
                 westStraightYellow.SetActive(false);
                 westStraightGreen.SetActive(false);
+            }
+        }
+
+
+        //Pedestrian Cycle
+        
+        northPedXing.StraightThroughGo();
+        southPedXing.StraightThroughGo();
+        eastPedXing.StraightThroughGo();
+        westPedXing.StraightThroughGo();
+
+        if (northPedXing != null)
+        {
+            if (phases[i].northLeft)
+            {
+                southPedXing.StraightThroughStop();
+                westPedXing.StraightThroughStop();
+            }
+
+            if(phases[i].northRight)
+            {
+                southPedXing.StraightThroughStop();
+                eastPedXing.StraightThroughStop();
+            }
+
+            if (phases[i].northStraight)
+            {
+                southPedXing.StraightThroughStop();
+                northPedXing.StraightThroughStop();
+            }
+        }
+
+        if (southPedXing != null)
+        {
+            if (phases[i].southLeft)
+            {
+                northPedXing.StraightThroughStop();
+                eastPedXing.StraightThroughStop();
+            }
+
+            if (phases[i].southRight)
+            {
+                northPedXing.StraightThroughStop();
+                westPedXing.StraightThroughStop();
+            }
+
+            if (phases[i].southStraight)
+            {
+                northPedXing.StraightThroughStop();
+                southPedXing.StraightThroughStop();
+            }
+        }
+
+        if (eastPedXing != null)
+        {
+            if (phases[i].eastLeft)
+            {
+                southPedXing.StraightThroughStop();
+                eastPedXing.StraightThroughStop();
+            }
+
+            if (phases[i].eastRight)
+            {
+                northPedXing.StraightThroughStop();
+                eastPedXing.StraightThroughStop();
+            }
+
+            if (phases[i].eastStraight)
+            {
+                eastPedXing.StraightThroughStop();
+                westPedXing.StraightThroughStop();
+            }
+        }
+
+        if (westPedXing != null)
+        {
+            if (phases[i].westLeft)
+            {
+                westPedXing.StraightThroughStop();
+                northPedXing.StraightThroughStop();
+            }
+
+            if (phases[i].westRight)
+            {
+                westPedXing.StraightThroughStop();
+                southPedXing.StraightThroughStop();
+            }
+
+            if (phases[i].westStraight)
+            {
+                westPedXing.StraightThroughStop();
+                eastPedXing.StraightThroughStop();
             }
         }
     }

@@ -73,14 +73,15 @@ GameObject:
   m_Component:
   - component: {fileID: 6996394152904910838}
   - component: {fileID: 4439890082230195666}
+  - component: {fileID: 5686203318217383455}
   - component: {fileID: -5045497638686822865}
   - component: {fileID: 8539261155515456467}
-  - component: {fileID: 8024902340723111019}
   - component: {fileID: 4983993465833625945}
   - component: {fileID: 7696431550909371731}
+  - component: {fileID: 449994703325184221}
   m_Layer: 0
   m_Name: VehicleAI
-  m_TagString: Untagged
+  m_TagString: Vehicles
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -198,6 +199,23 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5686203318217383455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2496534766971377730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 265933324592baf458f72dd855cfc913, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nav: {fileID: 0}
+  sensor: {fileID: 0}
+  BaseSpeedToSensorDistanceRatio: {x: 7, y: 4}
+  MinMaxRandSpeed: {x: 7, y: 16}
+  MinMaxRandSensor: {x: 4, y: 8}
 --- !u!114 &-5045497638686822865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -212,7 +230,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeed: 5
   rotationSpeed: 90
-  stopDistance: 0.1
+  stopDistance: 0.5
   destinationInfo:
     coordinates: {x: 0, y: 0, z: 0}
     reachedDestination: 0
@@ -234,24 +252,6 @@ MonoBehaviour:
   fullStop: 0
   state: 0
   onImpactWithPlayer: {fileID: 11400000, guid: a1736e0de7f699b47a4d5b94abbe16a0, type: 2}
---- !u!114 &8024902340723111019
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2496534766971377730}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91cdd490f3a1fcb4d9482bff52c2003c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sensorPosition: {fileID: 4857854537812897726}
-  maxDistance: 5
-  includeLayers:
-    serializedVersion: 2
-    m_Bits: 4481
-  showCastsDebug: 1
 --- !u!65 &4983993465833625945
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -300,6 +300,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &449994703325184221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2496534766971377730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0799fea037d4a394a99c4921ae44b0f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sensorPosition: {fileID: 4857854537812897726}
+  maxDistance: 10
+  includeLayers:
+    serializedVersion: 2
+    m_Bits: 4481
+  showCastsDebug: 1
 --- !u!1001 &2236026179176255747
 PrefabInstance:
   m_ObjectHideFlags: 0

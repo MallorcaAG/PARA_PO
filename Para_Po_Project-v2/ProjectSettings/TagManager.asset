@@ -10,6 +10,8 @@ TagManager:
   - dirt
   - wood
   - water
+  - Pedestrians
+  - Vehicles
   layers:
   - Default
   - TransparentFX
@@ -25,9 +27,9 @@ TagManager:
   - Landmark
   - TrafficLights
   - PlayerTrafficLights
-  - 
-  - 
-  - 
+  - AITrafficLights
+  - PedestrianTrafficSignal
+  - Spawner
   - 
   - 
   - 

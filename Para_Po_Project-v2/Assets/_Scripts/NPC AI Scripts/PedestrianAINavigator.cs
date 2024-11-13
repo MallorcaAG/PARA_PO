@@ -21,6 +21,7 @@ public class PedestrianAINavigator : WaypointNavigator
     [SerializeField] private GameEvent onSuccessfulEgress;
 
     private Waypoint playersWaypoint;
+    private PedestrianAISensors senses;
 
     bool canBeViolated = true;
     bool isRiding = false;
@@ -49,6 +50,8 @@ public class PedestrianAINavigator : WaypointNavigator
     // Start is called before the first frame update
     void Start()
     {
+        senses = GetComponent<PedestrianAISensors>();
+
         if (currentWaypoint == null)
         {
             state = NPCState.WAITING;
@@ -60,7 +63,7 @@ public class PedestrianAINavigator : WaypointNavigator
             SetDestination(currentWaypoint.GetPosition());
         }
 
-        baseSpeed = 2f;
+        baseSpeed = Random.Range(1f,3f);
     }
 
     // Update is called once per frame
@@ -91,6 +94,7 @@ public class PedestrianAINavigator : WaypointNavigator
                 if (controller.destinationInfo.reachedDestination)
                 {
                     state = NPCState.WALKING;
+                    senses.enabled = true;
                     canBeViolated = true;
                     myLandmark = null;
                     desiredLandmark = null;
@@ -107,6 +111,13 @@ public class PedestrianAINavigator : WaypointNavigator
         NPCTraversal();
     }
 
+    public void pivot(Vector3 sense, float maxDistance)
+    {
+        Vector3 pivotPos = transform.TransformPoint(sense * maxDistance);
+
+        SetDestination(pivotPos);
+    }
+
     #region Pedestrian Specific Functions
     public void GetOnVehicle(Component component, object landmarkPlayerIsIn)
     {
@@ -115,6 +126,7 @@ public class PedestrianAINavigator : WaypointNavigator
             return;
         }
 
+        senses.enabled = false;
         state = NPCState.INGRESS;
         SetDestination(playersWaypoint.GetPosition());
         canBeViolated = false;
@@ -146,7 +158,8 @@ public class PedestrianAINavigator : WaypointNavigator
         {
             return;
         }
-
+        
+        
         onPedestrianEgress.Raise(this, gameObject);
         
         currentWaypoint = playersWaypoint ?? currentWaypoint; 

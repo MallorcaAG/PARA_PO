@@ -30,15 +30,23 @@ public class PedestrianSpawner : MonoBehaviour
 
         while (count < pedestriansToSpawn)
         {
-            GameObject obj = Instantiate(pedestrianPrefab);
             Transform child = transform.GetChild(Random.Range(0, transform.childCount));
-            obj.GetComponent<PedestrianAINavigator>().setCurrentWaypoint(child.GetComponent<Waypoint>());
-            obj.transform.position = child.position;
+            
+            if(child.childCount < 1)
+            {
+                GameObject spawner = Instantiate(pedestrianPrefab, child);
+                SpawnManager spawnmanager = spawner.GetComponent<SpawnManager>();
+                spawnmanager.setMyWaypoint(child.GetComponent<Waypoint>());
+                spawnmanager.setMaxNPC(pedestriansToSpawn);
+                /*GameObject obj = spawner.GetComponent<SpawnManager>().getPrefab();
+                obj.GetComponent<PedestrianAINavigator>().setCurrentWaypoint(child.GetComponent<Waypoint>());
+                obj.transform.position = child.position;*/
+                yield return new WaitForFixedUpdate();
 
-            yield return new WaitForEndOfFrame();
+            }
 
             count++;
-            
+
         }
     }
 }

@@ -16,23 +16,34 @@ public class VehicleAINavigator : WaypointNavigator
     [SerializeField] private GameEvent onImpactWithPlayer;
 
     bool isStopped = false;
-    private VehicleAISensors senses;
+    private AISensors senses;
+    private float holdBaseSpd;
+
 
     #region Getter/Setter Functions
-
+    public void setBaseSpeed(float n)
+    {
+        baseSpeed = n;
+    }
+    public float getMyBaseSpeed()
+    {
+        return holdBaseSpd;
+    }
     #endregion
 
     #region Runtime Functions
     // Start is called before the first frame update
     void Start()
     {
-        senses = GetComponent<VehicleAISensors>();
+        senses = GetComponent<AISensors>();
 
         if (currentWaypoint != null)
         {
             state = NPCState.DRIVING;
             SetDestination(currentWaypoint.GetPosition());
         }
+
+        holdBaseSpd = baseSpeed;
     }
 
     // Update is called once per frame
