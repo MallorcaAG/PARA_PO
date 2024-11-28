@@ -39,11 +39,8 @@ public class HUDManager : MonoBehaviour
     #endregion
 
     private int passengerCount;
+    private int violationCount = 0;
 
-    private void Update()
-    {
-        
-    }
 
     private void Start()
     {
@@ -62,6 +59,7 @@ public class HUDManager : MonoBehaviour
         UpdatePassengerCount();
     }
 
+    #region HUD UI Update
     private void UpdatePassengerCount()
     {
         passengerCountText.text = Mathf.Clamp(passengerCount,0,999).ToString("##");
@@ -97,24 +95,167 @@ public class HUDManager : MonoBehaviour
 
     public void UpdateLocationSignageDisplay(Component sender, object data)
     {
-        string str = (string)data;
+        GameObject landmark = (GameObject)data;
 
-        LandmarkText.text = str;
+        LandmarkText.text = landmark.name;
     }
 
-    //Violation Ticket Display
-    //. . .
-    //. . .
-    //. . .
+    public void UpdateTicketViolationDisplay(Component sender, object data)
+    {
+        if (data.GetType() == typeof(float))
+        {
+            return;
+        }
+
+
+        string code = (string)data;
+        string format;
+
+        if (code == "na")
+        {
+            return;
+        }
+
+        violationCount++;
+
+        if(code == "VIOLATION_01") //Running over pedestrian
+        {
+            format = "<=24 CHAR TITLE HERE" + "\n\n" +
+                     "INSERT 135 CHARACTER DESCRIPTION HERE";
+
+            violationTicket(format);
+            violationTriggerAnimation();
+        }
+        else if (code == "VIOLATION_02") //crash into building
+        {
+            format = "<=24 CHAR TITLE HERE" + "\n\n" +
+                     "INSERT 135 CHARACTER DESCRIPTION HERE";
+
+            violationTicket(format);
+            violationTriggerAnimation();
+
+        }
+        else if (code == "VIOLATION_03") //Hitting another car
+        {
+            format = "<=24 CHAR TITLE HERE" + "\n\n" +
+                     "INSERT 135 CHARACTER DESCRIPTION HERE";
+
+            violationTicket(format);
+            violationTriggerAnimation();
+
+        }
+        else if (code == "VIOLATION_04") //Counterflowing
+        {
+            format = "<=24 CHAR TITLE HERE" + "\n\n" +
+                     "INSERT 135 CHARACTER DESCRIPTION HERE";
+
+            violationTicket(format);
+            violationTriggerAnimation();
+
+        }
+        else if (code == "VIOLATION_05") //Hitting a sign/post/traffic object
+        {
+            format = "<=24 CHAR TITLE HERE" + "\n\n" +
+                     "INSERT 135 CHARACTER DESCRIPTION HERE";
+
+            violationTicket(format);
+            violationTriggerAnimation();
+
+        }
+        else if (code == "VIOLATION_06") //Running the red light
+        {
+            format = "<=24 CHAR TITLE HERE" + "\n\n" +
+                     "INSERT 135 CHARACTER DESCRIPTION HERE";
+
+            violationTicket(format);
+            violationTriggerAnimation();
+
+        }
+        else if (code == "VIOLATION_07") // Speeding
+        {
+            format = "<=24 CHAR TITLE HERE" + "\n\n" +
+                     "INSERT 135 CHARACTER DESCRIPTION HERE";
+
+            violationTicket(format);
+            violationTriggerAnimation();
+
+        }
+        else if (code == "VIOLATION_08") // Blocking/Obstructing Traffic/Stalling/AFK
+        {
+            format = "<=24 CHAR TITLE HERE" + "\n\n" +
+                     "INSERT 135 CHARACTER DESCRIPTION HERE";
+
+            violationTicket(format);
+            violationTriggerAnimation();
+
+        }
+
+    }
 
     public void UpdateSpeedDisplay(Component sender, object data)
     {
-        float num = (float)data;
+        float num = float.Parse((string)data);
 
         string format = "Speed: "+ num.ToString("000.00")+"kmph";
 
         SpeedText.text = format;
     }
+    #endregion
+
+    #region Violation Types
+    private void violationTicket(string format)
+    {
+        ViolationPopUpTicketText.text = format;
+
+        switch (violationCount)
+        {
+            case 1:
+                Violation1.text = format;
+                break;
+
+            case 2:
+                Violation2.text = format;
+                break;
+
+            case 3:
+                Violation3.text = format;
+                break;
+        }
+    }
+
+    private void violationTriggerAnimation()
+    {
+        switch (violationCount)
+        {
+            case 1:
+                ViolationsAnimator.CrossFade(FirstViolation, 0f);
+                break;
+
+            case 2:
+                ViolationsAnimator.CrossFade(SecondViolation, 0f);
+                break;
+
+            case 3:
+                ViolationsAnimator.CrossFade(ThirdViolation, 0f);
+                break;
+        }
+    }
+    #endregion
+
+    #region Animation Functions
+    public void TriggerLocationSignageAnimation()
+    {
+        StartCoroutine(PlayLocationSignageAnimationCoroutine());
+    }
+
+    IEnumerator PlayLocationSignageAnimationCoroutine()
+    {
+        LocationAnimator.CrossFade(SignageDrop, SignageTransition);
+        yield return new WaitForSeconds(SignageStayTime);
+        LocationAnimator.CrossFade(SignageRise, SignageTransition);
+    }
+    #endregion
+
 
 
     #region Debug (Comment out or delete entire region once done)

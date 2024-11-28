@@ -15,6 +15,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private bool isGameEnded = false;
     [Tooltip("X = minutes, Y = seconds")]
     [SerializeField] private Vector2 gameTime;
+    [Header("GameEvents")]
+    [SerializeField] private GameEvent sendPointsData;
+    [SerializeField] private GameEvent sendTimerData;
+
 
     private List<float> violationPointsHolder = new List<float>();
     private float gameTimeInFloat;
@@ -25,6 +29,7 @@ public class GameManager : MonoBehaviour
         float min = gameTime.x * 60f, sec = gameTime.y;
         gameTimeInFloat = min + sec;
         targetTime = gameTimeInFloat;
+        StartCoroutine(PointsSender());
     }
 
     private void Update()
@@ -36,6 +41,7 @@ public class GameManager : MonoBehaviour
             return;
         }
 
+        sendTimerData.Raise(this, targetTime);
         checkViolations();
         checkTimeLimit();
     }
@@ -112,12 +118,19 @@ public class GameManager : MonoBehaviour
 
     public void addPoints(Component sender, object data)
     {
-        if((float)data <= 0)
+        if(data.GetType() != typeof(float))
         {
-            violationPointsHolder.Add((float)data);
+            return;
         }
 
-        points = points + (float)data;
+        float num = (float)data;
+
+        if(num <= 0)
+        {
+            violationPointsHolder.Add(num);
+        }
+
+        points = points + num;
     }
     public void addPoints(int p)
     {
@@ -127,6 +140,19 @@ public class GameManager : MonoBehaviour
         }
 
         points = points + p;
+    }
+    IEnumerator PointsSender()
+    {
+        yield return new WaitForSeconds(1f);
+
+        sendPointsData.Raise(this, points);
+
+        if (!isGameEnded)
+        {
+            yield break;
+        }
+
+        PointsSender();
     }
     #endregion
     #region Time Limit

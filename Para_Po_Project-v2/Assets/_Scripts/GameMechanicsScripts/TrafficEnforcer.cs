@@ -65,6 +65,7 @@ public class TrafficEnforcer : MonoBehaviour
         {
             Debug.LogWarning("VIOLATION COMMITTED");
             onTrafficViolationCommitted.Raise(this, PenaltyBasedOnViolationType(sender, data));
+            onTrafficViolationCommitted.Raise(this, ViolationType(sender, data));
 
             immune = true;
         }
@@ -84,19 +85,9 @@ public class TrafficEnforcer : MonoBehaviour
             Debug.LogWarning("Violation Type: property damage");
             return crashingIntoBuilding;
         }
-        else if (sender.TryGetComponent<TrafficObject>(out TrafficObject cone))
-        {
-            Debug.LogWarning("Violation Type: property damage");
-            return hittingSignPostTrafficObject;
-        }
-        else if (sender.TryGetComponent<LaneReader>(out LaneReader flow))
-        {
-            Debug.LogWarning("Violation Type: Counter Flowing Or Driving On Sidewalk");
-            return counterflowingOrDrivingOnSidewalk;
-        }
         else if (sender.TryGetComponent<VehicleAINavigator>(out VehicleAINavigator car))
         {
-            
+
             switch ((int)data)
             {
                 case 0:
@@ -110,6 +101,16 @@ public class TrafficEnforcer : MonoBehaviour
 
             }
         }
+        else if (sender.TryGetComponent<LaneReader>(out LaneReader flow))
+        {
+            Debug.LogWarning("Violation Type: Counter Flowing Or Driving On Sidewalk");
+            return counterflowingOrDrivingOnSidewalk;
+        }
+        else if (sender.TryGetComponent<TrafficObject>(out TrafficObject cone))
+        {
+            Debug.LogWarning("Violation Type: property damage");
+            return hittingSignPostTrafficObject;
+        }   
         else if (sender.TryGetComponent<TrafficLightViolation>(out TrafficLightViolation red))
         {
             Debug.LogWarning("Violation Type: Traffic Light Violation");
@@ -135,6 +136,73 @@ public class TrafficEnforcer : MonoBehaviour
         }
 
         return 0;
+    }
+
+    private string ViolationType(Component sender, object data)
+    {
+        //REORDER THESE FROM WORST TO MILD VIOLATION
+
+        if (sender.TryGetComponent<PedestrianAINavigator>(out PedestrianAINavigator peds))
+        {
+            Debug.LogWarning("Violation Type: Ran over a pedestrian");
+            return "VIOLATION_01";
+        }
+        else if (sender.TryGetComponent<Buildings>(out Buildings property))
+        {
+            Debug.LogWarning("Violation Type: property damage");
+            return "VIOLATION_02";
+        }
+        else if (sender.TryGetComponent<VehicleAINavigator>(out VehicleAINavigator car))
+        {
+
+            switch ((int)data)
+            {
+                case 0:
+                    Debug.Log("YOU HAVE BEEN VIOLATED: Got hit by another vehicle\nDW ITS NOT UR FAULT BOZO");
+                    return "na";
+                case 1:
+                    Debug.LogWarning("Violation Type: Hit another vehicle");
+                    return "VIOLATION_03";
+                default:
+                    return "na";
+
+            }
+        }
+        else if (sender.TryGetComponent<LaneReader>(out LaneReader flow))
+        {
+            Debug.LogWarning("Violation Type: Counter Flowing Or Driving On Sidewalk");
+            return "VIOLATION_04";
+        }
+        else if (sender.TryGetComponent<TrafficObject>(out TrafficObject cone))
+        {
+            Debug.LogWarning("Violation Type: property damage");
+            return "VIOLATION_05";
+        }
+        else if (sender.TryGetComponent<TrafficLightViolation>(out TrafficLightViolation red))
+        {
+            Debug.LogWarning("Violation Type: Traffic Light Violation");
+            return "VIOLATION_06";
+        }
+        else if (sender.TryGetComponent<TrafficEnforcer>(out TrafficEnforcer mmda))
+        {
+
+            switch ((int)data)
+            {
+                case 0:
+                    Debug.Log("Violation Type: Speeding");
+                    return "VIOLATION_07";
+
+                case 1:
+                    Debug.Log("Violation Type: Obstructing Traffic/Stalling/AFK");
+                    return "VIOLATION_08";
+
+                default:
+                    return "na";
+
+            }
+        }
+
+        return "na";
     }
 
     public void checkPlayerSpeed(Component sender, object data)
