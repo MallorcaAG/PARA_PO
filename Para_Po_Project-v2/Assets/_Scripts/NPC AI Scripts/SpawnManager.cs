@@ -7,15 +7,15 @@ public class SpawnManager : MonoBehaviour
 {
     public static int npcCount;
 
-    [SerializeField] private GameObject prefab;
-    [SerializeField] private GameObject mySpawnedObj;
+    [SerializeField] protected GameObject[] prefabCollection;
+    [SerializeField] protected GameObject mySpawnedObj;
 
-    Waypoint myWaypoint;
-    private int maxNPC;
+    protected Waypoint myWaypoint;
+    protected int maxNPC;
 
-    public GameObject getPrefab()
+    public GameObject[] getPrefab()
     {
-        return prefab;
+        return prefabCollection;
     }
     public void setMyWaypoint(Waypoint waypoint)
     {
@@ -26,23 +26,11 @@ public class SpawnManager : MonoBehaviour
         maxNPC = max;
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        Initialize();
-    }
 
     private void OnTriggerEnter(Collider other)
     {
         if(other.name == "SpawningDespawning Influence")
         {
-            if(mySpawnedObj == null)
-            {
-                if (npcCount < maxNPC)
-                {
-                    Initialize();
-                }   
-            }
             if (!mySpawnedObj.activeInHierarchy)
             {
                 mySpawnedObj.SetActive(false);
@@ -70,21 +58,4 @@ public class SpawnManager : MonoBehaviour
         SpawnManager.npcCount--;
     }
 
-    public void Initialize()
-    {
-        /*if (transform.childCount == 0)
-        {*/
-        GameObject obj = Instantiate(prefab);
-
-        SpawnManager.npcCount++;
-
-        obj.transform.position = transform.position;
-        obj.GetComponent<PedestrianAINavigator>().setCurrentWaypoint(myWaypoint);
-
-        mySpawnedObj = obj;
-
-        obj.transform.parent = null;
-
-        /*}*/
-    }
 }
