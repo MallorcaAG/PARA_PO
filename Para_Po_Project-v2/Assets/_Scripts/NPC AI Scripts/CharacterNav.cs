@@ -16,11 +16,10 @@ public class CharacterNav : MonoBehaviour
     public float stopDistance = 0.1f;
     public DestinationInfo destinationInfo;
     private Vector3 lastPosition;
-    private Animator animator;
+
 
     void Start()
     {
-        animator = GetComponent<Animator>();
         lastPosition = transform.position;
     }
 

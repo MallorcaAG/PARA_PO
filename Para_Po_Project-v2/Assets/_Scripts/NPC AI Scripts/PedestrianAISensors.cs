@@ -44,28 +44,35 @@ public class PedestrianAISensors : AISensors
             }
         }
         catch { }
-        
+
+
+        if (myNav.isWaiting())
+        {
+            return;
+        }
 
         if (sensorDetected)
         {
-
             if (LsensorDetected && RsensorDetected)
             {
                 myNav.Stop();
-
+                myNav.changeStateToIdle();
             }
             else if(LsensorDetected)
             {
                 myNav.pivot(-leftSense.forward, maxDistance);
+                myNav.changeStateToWalk();
             }
             else if(RsensorDetected)
             {
                 myNav.pivot(-rightSense.forward, maxDistance);
+                myNav.changeStateToWalk();
             }
         }
         else
         {
             myNav.Go();
+            myNav.changeStateToWalk();
         }
     }
 

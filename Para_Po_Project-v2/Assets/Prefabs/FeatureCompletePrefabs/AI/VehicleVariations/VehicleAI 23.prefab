@@ -79,6 +79,7 @@ GameObject:
   - component: {fileID: 4983993465833625945}
   - component: {fileID: 7696431550909371731}
   - component: {fileID: 449994703325184221}
+  - component: {fileID: 4269185422683478947}
   m_Layer: 0
   m_Name: VehicleAI 23
   m_TagString: Vehicles
@@ -318,6 +319,20 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4481
   showCastsDebug: 1
+--- !u!114 &4269185422683478947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2496534766971377730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67ceb5c1645f53d46bbba6284d57c071, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 300
+  primeDestruction: 0
 --- !u!1001 &7747771002962935644
 PrefabInstance:
   m_ObjectHideFlags: 0

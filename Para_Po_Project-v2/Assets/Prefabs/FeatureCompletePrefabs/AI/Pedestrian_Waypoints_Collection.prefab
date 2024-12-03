@@ -1920,7 +1920,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5255614967988453929}
-  m_LocalRotation: {x: -0, y: 0.43755475, z: -0, w: 0.89919186}
+  m_LocalRotation: {x: 0, y: 0.4375552, z: 0, w: 0.8991915}
   m_LocalPosition: {x: -377.23, y: 0.179, z: -234.27}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1961,7 +1961,7 @@ Transform:
   - {fileID: 4578139438259407434}
   - {fileID: 7134348310285926636}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 51.896, z: 0}
 --- !u!114 &3560890695079199316
 MonoBehaviour:
@@ -1975,7 +1975,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30615c6028fd32f46a04ef9b5f8c5926, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pedestrianPrefab: {fileID: 8385424329408244930, guid: 384c31ad3ed9a5b4c91f7ac3f3462deb, type: 3}
+  pedestrianPrefab: {fileID: 8385424329408244930, guid: b667348c200eec746b81f583af67500e, type: 3}
   pedestriansToSpawn: 50
 --- !u!1 &6126923449633882143
 GameObject:
