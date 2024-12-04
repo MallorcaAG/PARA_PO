@@ -2484,8 +2484,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21a20ce11ecbbef4289c56feba00f774, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levels: []
+  levelNameText: {fileID: 419313756}
+  routeNameText: {fileID: 0}
   map: {fileID: 0}
+  landmarkImgUI: []
+  starsUI: []
+  TrikeShowroom: {fileID: 0}
+  JeepneyShowroom: {fileID: 0}
+  BusShowroom: {fileID: 0}
+  leftArrowNav: {fileID: 0}
+  rightArrowNav: {fileID: 0}
+  playerBestScoreText: {fileID: 0}
+  levels: []
+  BadStar: {fileID: 0}
+  GoodStar: {fileID: 0}
 --- !u!1 &2075566938
 GameObject:
   m_ObjectHideFlags: 0

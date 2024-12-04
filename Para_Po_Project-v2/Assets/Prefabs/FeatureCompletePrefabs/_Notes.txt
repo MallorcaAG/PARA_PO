@@ -1,0 +1,6 @@
+	- Give 'Barrier' prefab appropriate barrier texture. Refer to GDD on what it should look like
+	- Pedestrian Prefab has issues where 'The referenced script on this Behaviour (Game Object '<null>') is missing!'. I suspect this to be an issue on the timing of when the scripts run/execute? 
+WAIT, or maybe its trying to reference the CityPeople.cs script? 
+	- Time Manager - fix day time skybox, it looks weird. Also night skybox doesn't kick in
+	- Implement the raining feature and day/night cycle gameplay-wise
+	- Vehicle Spawning - make it constant spawn as long as in Spawning Range
