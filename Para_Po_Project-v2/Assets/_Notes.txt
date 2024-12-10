@@ -5,3 +5,5 @@ WAIT, or maybe its trying to reference the CityPeople.cs script?
 	- Implement the raining feature and day/night cycle gameplay-wise
 	- Vehicle Spawning - make it constant spawn as long as in Spawning Range
 	- Change Bus mesh
+	- Implement Respawn
+	- Implement Radio
