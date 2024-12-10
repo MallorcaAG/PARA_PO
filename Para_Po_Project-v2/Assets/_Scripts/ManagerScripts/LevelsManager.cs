@@ -10,19 +10,19 @@ public class LevelsManager : Singleton<LevelsManager>
     [Header("UI References")]
     [SerializeField] private TextMeshProUGUI levelNameText;
     [SerializeField] private TextMeshProUGUI routeNameText;
-    [SerializeField] private Image map;
+    [SerializeField] private Image[] map;
     [SerializeField] private Image[] landmarkImgUI;
-    [SerializeField] private Image[] starsUI; 
-    [SerializeField] private Camera TrikeShowroom, JeepneyShowroom, BusShowroom;
+    [SerializeField] private Image[] starsUI;
+    [SerializeField] private RawImage VehiclesShowroomUI;
     [SerializeField] private GameObject leftArrowNav;
     [SerializeField] private GameObject rightArrowNav;
     [SerializeField] private TextMeshProUGUI playerBestScoreText;
 
     [Header("Asset References")]
     [SerializeField] private List<Levels> levels;
+    [SerializeField] private List<RenderTexture> vehicles;
     [SerializeField] private Sprite BadStar;
     [SerializeField] private Sprite GoodStar;
-
     private List<Levels> unlockedLevels;
     private int i;
 
@@ -57,8 +57,9 @@ public class LevelsManager : Singleton<LevelsManager>
 
         levelNameText.text = currentLvl.name;
         routeNameText.text = currentLvl.RouteName;
-        map.sprite = currentLvl.RouteMap;
-        for(int j = 0; j < currentLvl.RouteLandmarkImages.Length; j++)
+        map[0].sprite = currentLvl.getRouteMap();
+        map[1].sprite = currentLvl.getRouteLine();
+        for (int j = 0; j < landmarkImgUI.Length; j++)
         {
             landmarkImgUI[j].sprite = currentLvl.RouteLandmarkImages[j];
         }
@@ -68,6 +69,24 @@ public class LevelsManager : Singleton<LevelsManager>
             starsUI[j].sprite = GoodStar;
         }
         //TrikeShowroom, JeepneyShowroom, BusShowroom;
+        switch(currentLvl.VehicleType)
+        {
+            case VehicleType.TRICYCLE:
+                VehiclesShowroomUI.texture = vehicles[0];
+                break;
+
+            case VehicleType.JEEPNEY:
+                VehiclesShowroomUI.texture = vehicles[1];
+                break;
+
+            case VehicleType.BUS:
+                VehiclesShowroomUI.texture = vehicles[2];
+                break;
+
+            default:
+                VehiclesShowroomUI.texture = vehicles[1];
+                break;
+        }
         checkCurrentArrayPos();
         playerBestScoreText.text = currentLvl.HighScore.ToString("F4");
     }

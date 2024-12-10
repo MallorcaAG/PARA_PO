@@ -15,7 +15,7 @@ public class Levels : ScriptableObject
     [SerializeField] private bool isUnlocked = false;
     [SerializeField] private VehicleType vehicleType;
     [SerializeField] private string routeName;
-    [SerializeField] private Sprite routeMap;
+    [SerializeField] private Sprite[] routeMap;
     [SerializeField] private Sprite[] routeLandmarkImages;
     [SerializeField] private LevelSceneHolder scenes;
     [SerializeField] private int stars = 0;
@@ -30,7 +30,14 @@ public class Levels : ScriptableObject
     public bool IsUnlocked { get { return isUnlocked; } }
     public VehicleType VehicleType { get { return vehicleType; } }
     public string RouteName { get { return routeName; } }
-    public Sprite RouteMap { get { return routeMap; } }
+    public Sprite getRouteMap() 
+    {
+        return routeMap[0];
+    }
+    public Sprite getRouteLine()
+    {
+        return routeMap[1];
+    }
     public Sprite[] RouteLandmarkImages { get { return routeLandmarkImages; } }
     public Scene[] Scenes { get { return scenes.levelScenes; } }
     public int Stars { get { return stars; } set { stars = value; } }
