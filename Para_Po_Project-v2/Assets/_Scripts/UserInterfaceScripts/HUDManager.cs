@@ -120,16 +120,16 @@ public class HUDManager : MonoBehaviour
 
         if(code == "VIOLATION_01") //Running over pedestrian
         {
-            format = "<=24 CHAR TITLE HERE" + "\n\n" +
-                     "INSERT 135 CHARACTER DESCRIPTION HERE";
+            format = "<=Article 365 of R.A No. 4136" + "\n\n" +
+                     "Article 365 of the Revised Penal Code covers charges of Homicide Through Reckless Imprudence for traffic violations that result in fatalities";
 
             violationTicket(format);
             violationTriggerAnimation();
         }
         else if (code == "VIOLATION_02") //crash into building
         {
-            format = "<=24 CHAR TITLE HERE" + "\n\n" +
-                     "INSERT 135 CHARACTER DESCRIPTION HERE";
+            format = "<=Article 365 of R.A No. 4136" + "\n\n" +
+                     "This article addresses reckless or negligent driving that results in damage to property or injury to people. Penalties are based on the severity of the injuries or whether the act resulted in death.";
 
             violationTicket(format);
             violationTriggerAnimation();
@@ -137,8 +137,8 @@ public class HUDManager : MonoBehaviour
         }
         else if (code == "VIOLATION_03") //Hitting another car
         {
-            format = "<=24 CHAR TITLE HERE" + "\n\n" +
-                     "INSERT 135 CHARACTER DESCRIPTION HERE";
+            format = "<=Article 365 of R.A No. 4136" + "\n\n" +
+                     "This article addresses reckless or negligent driving that results in damage to property or injury to people.";
 
             violationTicket(format);
             violationTriggerAnimation();
@@ -146,8 +146,8 @@ public class HUDManager : MonoBehaviour
         }
         else if (code == "VIOLATION_04") //Counterflowing
         {
-            format = "<=24 CHAR TITLE HERE" + "\n\n" +
-                     "INSERT 135 CHARACTER DESCRIPTION HERE";
+            format = "<=R.A 4136" + "\n\n" +
+                     "Restrictions on overtaking and passing. - The driver of a vehicle shall not drive to the left side of the center line of a highway in overtaking or passing another vehicle proceeding in the same direction, unless such left side is clearly visible, and is free of oncoming traffic for a sufficient distance ahead to permit such overtaking or passing to be made in safety.";
 
             violationTicket(format);
             violationTriggerAnimation();
@@ -155,8 +155,8 @@ public class HUDManager : MonoBehaviour
         }
         else if (code == "VIOLATION_05") //Hitting a sign/post/traffic object
         {
-            format = "<=24 CHAR TITLE HERE" + "\n\n" +
-                     "INSERT 135 CHARACTER DESCRIPTION HERE";
+            format = "<=R.A. 4136, Section 48" + "\n\n" +
+                     "Reckless driving. - No person shall operate a motor vehicle on any highway recklessly or without reasonable caution considering the width, traffic, grades, crossing, curvatures, visibility and other conditions of the highway and the conditions of the atmosphere and weather, or so as to endanger the property or the safety or rights of any person or so as to cause excessive or unreasonable damage to the highway.";
 
             violationTicket(format);
             violationTriggerAnimation();
@@ -164,8 +164,8 @@ public class HUDManager : MonoBehaviour
         }
         else if (code == "VIOLATION_06") //Running the red light
         {
-            format = "<=24 CHAR TITLE HERE" + "\n\n" +
-                     "INSERT 135 CHARACTER DESCRIPTION HERE";
+            format = "<=R.A. 4136, Section 48" + "\n\n" +
+                     "Reckless driving. - No person shall operate a motor vehicle on any highway recklessly or without reasonable caution considering the width, traffic, grades, crossing, curvatures, visibility and other conditions of the highway and the conditions of the atmosphere and weather, or so as to endanger the property or the safety or rights of any person or so as to cause excessive or unreasonable damage to the highway.";
 
             violationTicket(format);
             violationTriggerAnimation();
@@ -173,8 +173,8 @@ public class HUDManager : MonoBehaviour
         }
         else if (code == "VIOLATION_07") // Speeding
         {
-            format = "<=24 CHAR TITLE HERE" + "\n\n" +
-                     "INSERT 135 CHARACTER DESCRIPTION HERE";
+            format = "<=R.A. 4136, Section 35" + "\n\n" +
+                     "Any person driving a motor vehicle on a highway shall drive the same at a careful and prudent speed, not greater nor less than is reasonable and proper, having due regard for the traffic, the width of the highway, and of any other condition then and there existing";
 
             violationTicket(format);
             violationTriggerAnimation();
@@ -182,8 +182,8 @@ public class HUDManager : MonoBehaviour
         }
         else if (code == "VIOLATION_08") // Blocking/Obstructing Traffic/Stalling/AFK
         {
-            format = "<=24 CHAR TITLE HERE" + "\n\n" +
-                     "INSERT 135 CHARACTER DESCRIPTION HERE";
+            format = "<=R.A 4136 Section 54" + "\n\n" +
+                     "Obstruction of traffic. - No person shall drive his motor vehicle in such a manner as to obstruct or impede the passage of any vehicle, nor, while discharging or taking on passengers or loading or unloading freight, obstruct the free passage of other vehicles on the highway.";
 
             violationTicket(format);
             violationTriggerAnimation();
