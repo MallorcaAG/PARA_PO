@@ -12,7 +12,7 @@ public class WaypointManagerWindow : EditorWindow
     }
 
     public Transform waypointRoot;
-    public Transform pedestrianWaypointRoot;
+    public GameObject pedestrianWaypointRoot;
 
     void OnGUI()
     {
