@@ -1992,7 +1992,7 @@ MonoBehaviour:
   - version: 2.0.0
     name: Lampposts
     id: 1492633790.5171874
-    timestamp: 1661799719.186276
+    timestamp: 1733831719.1120675
     objectType: 0
     gameobjectGUID: 
     textureGUID: 
@@ -2052,7 +2052,7 @@ MonoBehaviour:
     collider: 0
     boxcollider: 0
     tangents: 0
-    sourceObject: {fileID: 100000, guid: 4ea7c531d5670a042a89583e175e72d1, type: 3}
+    sourceObject: {fileID: 1591510999871370130, guid: 181dc65d305ab9941a99d95b57102fc5, type: 3}
     flipMesh: 0
     startObject: {fileID: 0}
     endObject: {fileID: 0}
@@ -2229,7 +2229,7 @@ MonoBehaviour:
     minBaseRotation: 0
     maxBaseRotation: 0
     baseChildIndex: -1
-    baseConnectorIndex: -1
+    baseConnectorIndex: 0
     continueOnConnections: 0
     ignoreOffsetsOnConnections: 0
   - version: 2.0.0
