@@ -11,8 +11,8 @@ public class WaypointManagerWindow : EditorWindow
         GetWindow<WaypointManagerWindow>();
     }
 
-    public Transform waypointRoot;
-    public GameObject pedestrianWaypointRoot;
+    public Transform waypointRoot;  // Root for general waypoints
+    public GameObject pedestrianWaypointRoot;  // Prefab or template for pedestrian waypoints
 
     void OnGUI()
     {
@@ -71,11 +71,20 @@ public class WaypointManagerWindow : EditorWindow
 
     void CreateWaypoint()
     {
-        // Create a new waypoint and set its position and direction
-        GameObject waypointObject = new GameObject("Waypoint " + waypointRoot.childCount, typeof(Waypoint));
-        waypointObject.transform.SetParent(waypointRoot, false);
+        // Check if pedestrianWaypointRoot is assigned
+        if (pedestrianWaypointRoot == null)
+        {
+            Debug.LogError("Pedestrian Waypoint Root is not assigned!");
+            return;
+        }
+
+        // Instantiate a new waypoint based on the pedestrianWaypointRoot prefab
+        GameObject waypointObject = Instantiate(pedestrianWaypointRoot);
+        waypointObject.name = "Waypoint " + waypointRoot.childCount;
+        waypointObject.transform.SetParent(waypointRoot, false); // Set the waypoint under the waypointRoot
 
         Waypoint waypoint = waypointObject.GetComponent<Waypoint>();
+
         if (waypointRoot.childCount > 1)
         {
             waypoint.previousWaypoint = waypointRoot.GetChild(waypointRoot.childCount - 2).GetComponent<Waypoint>();
@@ -91,7 +100,14 @@ public class WaypointManagerWindow : EditorWindow
     void CreateWaypointBefore()
     {
         // Create a waypoint before the currently selected waypoint
-        GameObject waypointObject = new GameObject("Waypoint" + waypointRoot.childCount, typeof(Waypoint));
+        if (pedestrianWaypointRoot == null)
+        {
+            Debug.LogError("Pedestrian Waypoint Root is not assigned!");
+            return;
+        }
+
+        GameObject waypointObject = Instantiate(pedestrianWaypointRoot);
+        waypointObject.name = "Waypoint " + waypointRoot.childCount;
         waypointObject.transform.SetParent(waypointRoot, false);
 
         Waypoint newWaypoint = waypointObject.GetComponent<Waypoint>();
@@ -117,7 +133,14 @@ public class WaypointManagerWindow : EditorWindow
     void CreateWaypointAfter()
     {
         // Create a waypoint after the currently selected waypoint
-        GameObject waypointObject = new GameObject("Waypoint" + waypointRoot.childCount, typeof(Waypoint));
+        if (pedestrianWaypointRoot == null)
+        {
+            Debug.LogError("Pedestrian Waypoint Root is not assigned!");
+            return;
+        }
+
+        GameObject waypointObject = Instantiate(pedestrianWaypointRoot);
+        waypointObject.name = "Waypoint " + waypointRoot.childCount;
         waypointObject.transform.SetParent(waypointRoot, false);
 
         Waypoint newWaypoint = waypointObject.GetComponent<Waypoint>();
@@ -160,7 +183,14 @@ public class WaypointManagerWindow : EditorWindow
     void CreateBranch()
     {
         // Create a branching waypoint from the currently selected waypoint
-        GameObject waypointObject = new GameObject("Waypoint " + waypointRoot.childCount, typeof(Waypoint));
+        if (pedestrianWaypointRoot == null)
+        {
+            Debug.LogError("Pedestrian Waypoint Root is not assigned!");
+            return;
+        }
+
+        GameObject waypointObject = Instantiate(pedestrianWaypointRoot);
+        waypointObject.name = "Waypoint " + waypointRoot.childCount;
         waypointObject.transform.SetParent(waypointRoot, false);
 
         Waypoint waypoint = waypointObject.GetComponent<Waypoint>();
