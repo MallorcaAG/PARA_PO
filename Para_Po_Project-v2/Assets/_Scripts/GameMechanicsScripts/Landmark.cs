@@ -44,7 +44,7 @@ public class Landmark : MonoBehaviour
             if (player.velocity.magnitude > 0.1f)
             {
                 isMoving = true;
-                //Debug.Log("Player is moving");
+                //Debug.Log("Player is moving: "+ player.velocity.magnitude);
 
                 if (dataSent)
                 {
@@ -54,7 +54,7 @@ public class Landmark : MonoBehaviour
             else
             {
                 isMoving = false;
-                //Debug.Log("Player is still");
+                //Debug.Log("Player is still: " + player.velocity.magnitude);
 
                 if (!dataSent)
                 {
@@ -72,6 +72,8 @@ public class Landmark : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        //Debug.Log(other.gameObject);
+
         if(player != null)
         {
             return;

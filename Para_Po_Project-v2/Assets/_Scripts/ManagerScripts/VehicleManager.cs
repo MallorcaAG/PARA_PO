@@ -32,8 +32,9 @@ public class VehicleManager : MonoBehaviour
     {
         GameObject obj = (GameObject)data;
         //INSTANTIATE POOFING VFX OR CALL DIFFERENT GAME EVENT TO INSTANTIATE THE VFX
-        obj.transform.localPosition = new Vector3(myWaypoint.transform.position.x, myWaypoint.transform.position.y + 0.05f, myWaypoint.transform.position.z);
-        obj.transform.parent = null;
+        obj.transform.parent = null;    
+        obj.transform.position = new Vector3(myWaypoint.transform.position.x, myWaypoint.transform.position.y + 0.05f, myWaypoint.transform.position.z);
+        
 
 
     }

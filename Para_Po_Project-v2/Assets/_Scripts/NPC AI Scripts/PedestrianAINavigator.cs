@@ -32,6 +32,7 @@ public class PedestrianAINavigator : WaypointNavigator
 
     private Waypoint playersWaypoint;
     private PedestrianAISensors senses;
+    private Rigidbody myRB;
 
     bool canBeViolated = true;
     bool isRiding = false;
@@ -51,7 +52,7 @@ public class PedestrianAINavigator : WaypointNavigator
     }
 
     public void setPlayersWaypointRef(Component component, object data)
-    {
+    {   
         GameObject obj = (GameObject)data;
         playersWaypoint = obj.GetComponent<Waypoint>();
     }
@@ -63,6 +64,7 @@ public class PedestrianAINavigator : WaypointNavigator
     // Start is called before the first frame update
     void Start()
     {
+        myRB = GetComponent<Rigidbody>();
         senses = GetComponent<PedestrianAISensors>();
 
         walkPersonality = Random.Range(0, 5);
@@ -114,7 +116,10 @@ public class PedestrianAINavigator : WaypointNavigator
                     animator.CrossFade(personalityToIdleAnimation(), 0f);
                     state = NPCState.RIDING;
                     isRiding = true;
+                    myRB.useGravity = false;
                     onPedestrianIngress.Raise(this, gameObject);
+                    SetDestination(Vector3.zero);
+                    controller.destinationInfo.reachedDestination = false;
                 }
                 break;
 
@@ -128,6 +133,7 @@ public class PedestrianAINavigator : WaypointNavigator
 
                 if (controller.destinationInfo.reachedDestination)
                 {
+                    //Debug.Log("Got to sidewalk safely"); 
                     state = NPCState.WALKING;
                     senses.enabled = true;
                     canBeViolated = true;
@@ -284,9 +290,13 @@ public class PedestrianAINavigator : WaypointNavigator
         {
             return;
         }
-        
+
         animator.CrossFade(personalityToWalkAnimation(),0f);
 
+        transform.parent = null;    
+        transform.position = new Vector3(playersWaypoint.transform.position.x, 0.05f, playersWaypoint.transform.position.z);
+
+        myRB.useGravity = true;
 
         onPedestrianEgress.Raise(this, gameObject);
         
@@ -316,6 +326,7 @@ public class PedestrianAINavigator : WaypointNavigator
         }
         isRiding = false;
         SetDestination(currentWaypoint.GetPosition());
+
     }
     #endregion
 

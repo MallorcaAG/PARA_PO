@@ -84,7 +84,7 @@ public class GameManager : Singleton<GameManager>
     #region Violations
     private void checkViolations()
     {
-        if(currentTrafficViolations == maxTrafficViolations)
+        if(currentTrafficViolations >= maxTrafficViolations)
         {
             endGame();
         }

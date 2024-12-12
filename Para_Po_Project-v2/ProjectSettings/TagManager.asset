@@ -31,8 +31,8 @@ TagManager:
   - PedestrianTrafficSignal
   - Spawner
   - Barrier
-  - Player
-  - 
+  - VehicleRB
+  - VehicleBody
   - 
   - 
   - 
