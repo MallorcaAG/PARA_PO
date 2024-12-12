@@ -1,3 +1,4 @@
+using PlasticGui.EventTracking;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,13 @@ public class VehicleManager : MonoBehaviour
     [SerializeField] private GameObject myWaypoint;
     /*    [SerializeField] private List<GameObject> mySeats;*/
     [SerializeField] private List<GameObject> myPassengers;
+
+    private Landmark checkpoint;
+
+    public Landmark getCheckpoint()
+    {
+        return checkpoint;
+    }
 
     private void Start()
     {
@@ -45,7 +53,7 @@ public class VehicleManager : MonoBehaviour
 
         if(!obj.PlayerPassedByBefore())
         {
-            routeCheckpoint++;
+            checkpoint = obj;
         }
     }
 }
