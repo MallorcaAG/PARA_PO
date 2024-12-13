@@ -1039,6 +1039,10 @@ PrefabInstance:
       propertyPath: sendPlayerSpeed
       value: 
       objectReference: {fileID: 11400000, guid: 5a58ba77a25d2764aad4b08298c32925, type: 2}
+    - target: {fileID: 465616466467907360, guid: 62283ca975168ed4e8aa8b040f276a46, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: -5011124640074835082, guid: b36a23ca844cde248844bc14c6365d47, type: 2}
     - target: {fileID: 862230125276566276, guid: 62283ca975168ed4e8aa8b040f276a46, type: 3}
       propertyPath: m_Drag
       value: 4
@@ -1368,6 +1372,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStartPosition: {fileID: 0}
   onPlayerRespawn: {fileID: 11400000, guid: 404b828bab71e0d47ac959963b42ea99, type: 2}
+  vehicleManager: {fileID: 0}
 --- !u!4 &3177283408058861967 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5279652022471822407, guid: 62283ca975168ed4e8aa8b040f276a46, type: 3}

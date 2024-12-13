@@ -31,7 +31,7 @@ public class RespawnManager : MonoBehaviour
     {
         if(Timer())
         {
-            if (Input.GetKeyDown(KeyCode.R))
+            if (Input.GetKeyDown(KeyCode.Tab))
             {
                 targetTime = 2f;
                 InitiateRespawn();

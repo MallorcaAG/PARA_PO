@@ -1069,6 +1069,10 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0.00030914246
       objectReference: {fileID: 0}
+    - target: {fileID: 4439890082230195666, guid: 25ad06362f360934b960d94f34b1a4a2, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: -5011124640074835082, guid: b36a23ca844cde248844bc14c6365d47, type: 2}
     - target: {fileID: 4837999916386514424, guid: 25ad06362f360934b960d94f34b1a4a2, type: 3}
       propertyPath: m_TagString
       value: Player
@@ -1324,3 +1328,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStartPosition: {fileID: 0}
   onPlayerRespawn: {fileID: 11400000, guid: 404b828bab71e0d47ac959963b42ea99, type: 2}
+  vehicleManager: {fileID: 0}
