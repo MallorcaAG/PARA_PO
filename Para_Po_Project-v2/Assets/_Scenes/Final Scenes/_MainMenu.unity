@@ -3499,7 +3499,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainMenuMusic: {fileID: 8300000, guid: 4a0605691d0092d45af84b05b96246dc, type: 3}
-  radioStations: []
+  radioTransition: {fileID: 8300000, guid: 5887400c96be06b48b0ee092b47d2c48, type: 3}
+  radioStations:
+  - {fileID: 11400000, guid: 02c70dbde3e4352438b3a567874c592a, type: 2}
   backgroundMusicObjectPrefab2D: {fileID: 3037692482357034387, guid: 5fbf81a1f9dfccd4486818b2bfe60782, type: 3}
 --- !u!1 &1096068221
 GameObject:

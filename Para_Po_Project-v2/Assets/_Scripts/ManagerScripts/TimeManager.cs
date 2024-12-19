@@ -17,12 +17,13 @@ public class TimeManager : MonoBehaviour
 
     [SerializeField] private Light globalLight;
 
-    private int minutes;
+    [Header("Settings")]
+    [SerializeField] private int minutes;
 
     public int Minutes
     { get { return minutes; } set { minutes = value; OnMinutesChange(value); } }
 
-    private int hours = 5;
+    [SerializeField] private int hours = 5;
 
     public int Hours
     { get { return hours; } set { hours = value; OnHoursChange(value); } }
@@ -47,7 +48,7 @@ public class TimeManager : MonoBehaviour
 
     private void OnMinutesChange(int value)
     {
-        globalLight.transform.Rotate(Vector3.up, (1f / (1440f / 4f)) * 360f, Space.World);
+        globalLight.transform.Rotate(Vector3.right, (1f / (1440f / 4f)) * 360f, Space.World);
         if (value >= 60)
         {
             Hours++;
