@@ -51,7 +51,7 @@ MonoBehaviour:
   width: 0
   branches: []
   branchRatio: 0.5
-  correctLane: 1
+  correctLane: 0
 --- !u!135 &1056832403462070542
 SphereCollider:
   m_ObjectHideFlags: 0

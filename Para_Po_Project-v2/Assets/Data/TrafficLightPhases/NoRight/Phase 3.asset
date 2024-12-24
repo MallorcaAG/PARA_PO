@@ -25,4 +25,4 @@ MonoBehaviour:
   westStraight: 0
   westRight: 0
   isPlayerRed: 1
-  phaseDuration: 5
+  phaseDuration: 3

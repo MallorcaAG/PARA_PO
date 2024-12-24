@@ -67,8 +67,14 @@ public class TrafficEnforcer : MonoBehaviour
             onTrafficViolationCommitted.Raise(this, PenaltyBasedOnViolationType(sender, data));
             onTrafficViolationCommitted.Raise(this, ViolationType(sender, data));
 
-            immune = true;
+            giveImmunity();
         }
+    }
+
+
+    public void giveImmunity()
+    {
+        immune = true;
     }
 
     private float PenaltyBasedOnViolationType(Component sender, object data)

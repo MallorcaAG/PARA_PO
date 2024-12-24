@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 6690477295173208168}
   - component: {fileID: 7916178857525515500}
   - component: {fileID: 3408840519851359408}
+  - component: {fileID: 7844092705739025470}
+  - component: {fileID: 8379251431121661563}
   m_Layer: 0
   m_Name: TrafficLawManager
   m_TagString: Untagged
@@ -28,7 +30,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1399650478197509201}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -61,7 +63,7 @@ MonoBehaviour:
   immune: 0
   onTrafficViolationCommitted: {fileID: 11400000, guid: a31cd28086627ea43915bcd62967315f, type: 2}
   player: {fileID: 0}
-  speedLimit: 16
+  speedLimit: 50.8
   speedingGracePeriod: 3
   obstructionChargeCooldown: 30
 --- !u!114 &8537920040941080037
@@ -176,3 +178,43 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &7844092705739025470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1399650478197509201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 343a05844d3bc104aa8e0351c6314175, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 404b828bab71e0d47ac959963b42ea99, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5851544227808819528}
+        m_TargetAssemblyTypeName: TrafficEnforcer, Mechanics
+        m_MethodName: giveImmunity
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &8379251431121661563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1399650478197509201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c028458ba193ef47972b9cf85577c75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

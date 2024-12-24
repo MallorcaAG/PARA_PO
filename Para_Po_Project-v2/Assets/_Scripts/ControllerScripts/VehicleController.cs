@@ -42,7 +42,7 @@ public class VehicleController : MonoBehaviour
     [Range(1, 5)] private float maxPitch = 5f;
 
     [Header("References")]
-    [SerializeField] private Rigidbody vehicleRB;
+    [SerializeField] private Rigidbody vehicleRB, vehicleBody;
     [SerializeField] private Transform[] rayPoints;
     [SerializeField] private LayerMask drivable;
     [SerializeField] private Transform accelerationPoint;
@@ -58,7 +58,7 @@ public class VehicleController : MonoBehaviour
     #region Unity Functions
     private void Start()
     {
-        vehicleRB = GetComponent<Rigidbody>();
+        //vehicleRB = GetComponent<Rigidbody>();
 
         StartCoroutine(SendSpeed());
     }

@@ -17,7 +17,7 @@ public class Landmark : MonoBehaviour
     bool isMoving;
     bool dataSent = false;
     bool playerPassed = false;
-
+    bool clearArea = false;
     public GameObject[] getSpawnpoints()
     {
         return spawnPoints;
@@ -25,6 +25,10 @@ public class Landmark : MonoBehaviour
     public bool PlayerPassedByBefore()
     {
         return playerPassed; 
+    }
+    public GameObject[] getSpawnPoints()
+    {
+        return spawnPoints;
     }
 
     private void Awake()
@@ -44,7 +48,7 @@ public class Landmark : MonoBehaviour
             if (player.velocity.magnitude > 0.1f)
             {
                 isMoving = true;
-                //Debug.Log("Player is moving");
+                //Debug.Log("Player is moving: "+ player.velocity.magnitude);
 
                 if (dataSent)
                 {
@@ -54,7 +58,7 @@ public class Landmark : MonoBehaviour
             else
             {
                 isMoving = false;
-                //Debug.Log("Player is still");
+                //Debug.Log("Player is still: " + player.velocity.magnitude);
 
                 if (!dataSent)
                 {
@@ -72,6 +76,8 @@ public class Landmark : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        //Debug.Log(other.gameObject);
+
         if(player != null)
         {
             return;
@@ -95,5 +101,31 @@ public class Landmark : MonoBehaviour
 
             playerPassed = true;
         }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if(clearArea)
+        {
+            if(other.gameObject.CompareTag("Pedestrians") || other.gameObject.CompareTag("Vehicles"))
+            {
+                Debug.Log(other.gameObject.name + ": AHHHH IM GETTING ERADICATED\nbleeeehhhh *dying noises*");
+                Destroy(other.gameObject);
+            }
+        }
+    }
+
+    public void ClearArea()
+    {
+        StartCoroutine(clearAreaCoroutine());
+    }
+
+    private IEnumerator clearAreaCoroutine()
+    {
+        clearArea = true;
+
+        yield return new WaitForSeconds(1f);
+
+        clearArea = false;
     }
 }

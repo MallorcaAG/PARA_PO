@@ -1,3 +1,4 @@
+using PlasticGui.EventTracking;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,13 @@ public class VehicleManager : MonoBehaviour
     [SerializeField] private GameObject myWaypoint;
     /*    [SerializeField] private List<GameObject> mySeats;*/
     [SerializeField] private List<GameObject> myPassengers;
+
+    private Landmark checkpoint;
+
+    public Landmark getCheckpoint()
+    {
+        return checkpoint;
+    }
 
     private void Start()
     {
@@ -32,8 +40,9 @@ public class VehicleManager : MonoBehaviour
     {
         GameObject obj = (GameObject)data;
         //INSTANTIATE POOFING VFX OR CALL DIFFERENT GAME EVENT TO INSTANTIATE THE VFX
-        obj.transform.localPosition = new Vector3(myWaypoint.transform.position.x, myWaypoint.transform.position.y + 0.05f, myWaypoint.transform.position.z);
-        obj.transform.parent = null;
+        obj.transform.parent = null;    
+        obj.transform.position = new Vector3(myWaypoint.transform.position.x, myWaypoint.transform.position.y + 0.05f, myWaypoint.transform.position.z);
+        
 
 
     }
@@ -44,7 +53,7 @@ public class VehicleManager : MonoBehaviour
 
         if(!obj.PlayerPassedByBefore())
         {
-            routeCheckpoint++;
+            checkpoint = obj;
         }
     }
 }
