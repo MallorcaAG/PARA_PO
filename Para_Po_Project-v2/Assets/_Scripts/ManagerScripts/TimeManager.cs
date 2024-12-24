@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TimeManager : MonoBehaviour
@@ -10,100 +9,134 @@ public class TimeManager : MonoBehaviour
     [SerializeField] private Texture2D skyboxDay;
     [SerializeField] private Texture2D skyboxSunset;
 
-    [SerializeField] private Gradient graddientNightToSunrise;
-    [SerializeField] private Gradient graddientSunriseToDay;
-    [SerializeField] private Gradient graddientDayToSunset;
-    [SerializeField] private Gradient graddientSunsetToNight;
+    [SerializeField] private Gradient gradientNightToSunrise;
+    [SerializeField] private Gradient gradientSunriseToDay;
+    [SerializeField] private Gradient gradientDayToSunset;
+    [SerializeField] private Gradient gradientSunsetToNight;
 
     [SerializeField] private Light globalLight;
 
-    private int minutes;
+    [SerializeField] private float cycleDurationInSeconds = 240f; // Total duration for a full day-night cycle
 
-    public int Minutes
-    { get { return minutes; } set { minutes = value; OnMinutesChange(value); } }
+    private float elapsedTime;
+    private float secondsPerHour;
+    private int currentHour;
+    private float skyboxScrollSpeed;
 
-    private int hours = 5;
-
-    public int Hours
-    { get { return hours; } set { hours = value; OnHoursChange(value); } }
-
-    private int days;
-
-    public int Days
-    { get { return days; } set { days = value; } }
-
-    private float tempSecond;
-
-    public void Update()
+    private void Start()
     {
-        tempSecond += Time.deltaTime;
+        secondsPerHour = cycleDurationInSeconds / 24f; // Divide total duration by 24 hours
+        skyboxScrollSpeed = 1f / cycleDurationInSeconds; // Scroll speed proportional to cycle duration
+        elapsedTime = secondsPerHour * 8; // Start at hour 8, which is daytime
+        currentHour = 8;
+        OnHoursChange(currentHour, true);
+    }
 
-        if (tempSecond >= 1)
+    private void Update()
+    {
+        elapsedTime += Time.deltaTime;
+
+        int newHour = Mathf.FloorToInt((elapsedTime / secondsPerHour) % 24);
+        if (newHour != currentHour)
         {
-            Minutes += 1;
-            tempSecond = 0;
+            currentHour = newHour;
+            OnHoursChange(currentHour, false);
+        }
+
+        // Rotate global light to simulate sun movement
+        globalLight.transform.Rotate(Vector3.up, (360f / (cycleDurationInSeconds / 4f)) * Time.deltaTime, Space.World);
+
+        // Scroll the skybox texture to simulate moving clouds
+        RenderSettings.skybox.SetFloat("_Offset", Time.time * skyboxScrollSpeed);
+    }
+
+    private void OnHoursChange(int hour, bool isInitialSetup)
+    {
+        if (hour == 8)
+        {
+            if (isInitialSetup)
+            {
+                RenderSettings.skybox.SetTexture("_Texture1", skyboxDay);
+                RenderSettings.skybox.SetFloat("_Blend", 0);
+                globalLight.color = gradientSunriseToDay.Evaluate(1f);
+                globalLight.intensity = 1.0f;
+                RenderSettings.fogColor = globalLight.color;
+            }
+            else
+            {
+                StartCoroutine(LerpSkybox(skyboxSunrise, skyboxDay, secondsPerHour));
+                StartCoroutine(LerpLight(gradientSunriseToDay, secondsPerHour));
+                StartCoroutine(LerpIntensity(globalLight.intensity, 1.0f, secondsPerHour)); // Bright light for daytime
+            }
+        }
+        else if (hour == 18)
+        {
+            StartCoroutine(LerpSkybox(skyboxDay, skyboxSunset, secondsPerHour));
+            StartCoroutine(LerpLight(gradientDayToSunset, secondsPerHour));
+            StartCoroutine(LerpIntensity(globalLight.intensity, 0.7f, secondsPerHour)); // Dimmer light for sunset
+        }
+        else if (hour == 22)
+        {
+            StartCoroutine(LerpSkybox(skyboxSunset, skyboxNight, secondsPerHour));
+            StartCoroutine(LerpLight(gradientSunsetToNight, secondsPerHour));
+            StartCoroutine(LerpIntensity(globalLight.intensity, 0.3f, secondsPerHour)); // Very dim light for night
+        }
+        else if (hour == 6)
+        {
+            StartCoroutine(LerpSkybox(skyboxNight, skyboxSunrise, secondsPerHour));
+            StartCoroutine(LerpLight(gradientNightToSunrise, secondsPerHour));
+            StartCoroutine(LerpIntensity(globalLight.intensity, 0.5f, secondsPerHour)); // Dim light for sunrise
+
+            // Transition from sunrise to day
+            StartCoroutine(DelayTransitionToDay());
         }
     }
 
-    private void OnMinutesChange(int value)
+    private IEnumerator DelayTransitionToDay()
     {
-        globalLight.transform.Rotate(Vector3.up, (1f / (1440f / 4f)) * 360f, Space.World);
-        if (value >= 60)
-        {
-            Hours++;
-            minutes = 0;
-        }
-        if (Hours >= 24)
-        {
-            Hours = 0;
-            Days++;
-        }
+        yield return new WaitForSeconds(secondsPerHour);
+        StartCoroutine(LerpSkybox(skyboxSunrise, skyboxDay, secondsPerHour));
+        StartCoroutine(LerpLight(gradientSunriseToDay, secondsPerHour));
+        StartCoroutine(LerpIntensity(globalLight.intensity, 1.0f, secondsPerHour)); // Transition to bright daytime light
     }
 
-    private void OnHoursChange(int value)
+    private IEnumerator LerpSkybox(Texture2D fromTexture, Texture2D toTexture, float duration)
     {
-        if (value == 6)
-        {
-            StartCoroutine(LerpSkybox(skyboxNight, skyboxSunrise, 10f));
-            StartCoroutine(LerpLight(graddientNightToSunrise, 10f));
-        }
-        else if (value == 8)
-        {
-            StartCoroutine(LerpSkybox(skyboxSunrise, skyboxDay, 10f));
-            StartCoroutine(LerpLight(graddientSunriseToDay, 10f));
-        }
-        else if (value == 18)
-        {
-            StartCoroutine(LerpSkybox(skyboxDay, skyboxSunset, 10f));
-            StartCoroutine(LerpLight(graddientDayToSunset, 10f));
-        }
-        else if (value == 22)
-        {
-            StartCoroutine(LerpSkybox(skyboxSunset, skyboxNight, 10f));
-            StartCoroutine(LerpLight(graddientSunsetToNight, 10f));
-        }
-    }
-
-    private IEnumerator LerpSkybox(Texture2D a, Texture2D b, float time)
-    {
-        RenderSettings.skybox.SetTexture("_Texture1", a);
-        RenderSettings.skybox.SetTexture("_Texture2", b);
+        RenderSettings.skybox.SetTexture("_Texture1", fromTexture);
+        RenderSettings.skybox.SetTexture("_Texture2", toTexture);
         RenderSettings.skybox.SetFloat("_Blend", 0);
-        for (float i = 0; i < time; i += Time.deltaTime)
+
+        for (float t = 0; t < duration; t += Time.deltaTime)
         {
-            RenderSettings.skybox.SetFloat("_Blend", i / time);
+            float blend = t / duration;
+            RenderSettings.skybox.SetFloat("_Blend", blend);
             yield return null;
         }
-        RenderSettings.skybox.SetTexture("_Texture1", b);
+
+        RenderSettings.skybox.SetTexture("_Texture1", toTexture);
+        RenderSettings.skybox.SetFloat("_Blend", 0);
     }
 
-    private IEnumerator LerpLight(Gradient lightGradient, float time)
+    private IEnumerator LerpLight(Gradient lightGradient, float duration)
     {
-        for (float i = 0; i < time; i += Time.deltaTime)
+        for (float t = 0; t < duration; t += Time.deltaTime)
         {
-            globalLight.color = lightGradient.Evaluate(i / time);
+            float progress = t / duration;
+            globalLight.color = lightGradient.Evaluate(progress);
             RenderSettings.fogColor = globalLight.color;
             yield return null;
         }
+    }
+
+    private IEnumerator LerpIntensity(float fromIntensity, float toIntensity, float duration)
+    {
+        for (float t = 0; t < duration; t += Time.deltaTime)
+        {
+            float blend = t / duration;
+            globalLight.intensity = Mathf.Lerp(fromIntensity, toIntensity, blend);
+            yield return null;
+        }
+
+        globalLight.intensity = toIntensity;
     }
 }
