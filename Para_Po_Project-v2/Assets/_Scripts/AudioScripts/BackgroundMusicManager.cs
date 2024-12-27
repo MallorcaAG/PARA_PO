@@ -7,9 +7,10 @@ public class BackgroundMusicManager : PersistentSingleton<BackgroundMusicManager
     [SerializeField] private AudioClip mainMenuMusic;
     [SerializeField] private AudioClip radioTransition;
     [SerializeField] private RadioStations[] radioStations;
-    [SerializeField] private AudioSource backgroundMusicObjectPrefab2D;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField][Range(0f,1f)] private float defaultVolume = 1f;
 
-    private GameObject currentBGM;
+
     private int i, start;
     private RadioStations currentStation;
     private float targetTime = 3f;
@@ -38,29 +39,16 @@ public class BackgroundMusicManager : PersistentSingleton<BackgroundMusicManager
 
     private void PlayBGM(AudioClip audioClip, Transform spawnTransform, float volume)
     {
-        if(currentBGM != null)
-        {
-            Destroy(currentBGM);
-        }
-
-        AudioSource audioSource = Instantiate(backgroundMusicObjectPrefab2D, spawnTransform.position, Quaternion.identity);
-
         audioSource.clip = audioClip;
 
         audioSource.volume = volume;
 
         audioSource.Play();
-
-        float clipLength = audioSource.clip.length;
-
-        currentBGM = audioSource.gameObject;
-
-        Destroy(currentBGM, clipLength);
     }
 
     public void PlayMainMenuMusic()
     {
-        PlayBGM(mainMenuMusic, transform, 1f);
+        PlayBGM(mainMenuMusic, transform, defaultVolume);
     }
 
     public void StartRadio()
@@ -75,7 +63,7 @@ public class BackgroundMusicManager : PersistentSingleton<BackgroundMusicManager
     {
         for(int j = start; j < currentStation.Tracks.Length; j++)
         {
-            PlayBGM(currentStation.Tracks[j], transform, 1f);
+            PlayBGM(currentStation.Tracks[j], transform, defaultVolume);
 
             yield return new WaitForSeconds(currentStation.Tracks[j].length);
         }
@@ -89,7 +77,7 @@ public class BackgroundMusicManager : PersistentSingleton<BackgroundMusicManager
     {
         StopCoroutine(PlayRadio());
 
-        PlayBGM(radioTransition, transform, 1f);
+        PlayBGM(radioTransition, transform, defaultVolume);
 
         yield return new WaitForSeconds(radioTransition.length);
 
