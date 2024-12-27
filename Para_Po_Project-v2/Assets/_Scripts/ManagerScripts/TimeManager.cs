@@ -44,7 +44,7 @@ public class TimeManager : MonoBehaviour
         }
 
         // Rotate global light to simulate sun movement
-        globalLight.transform.Rotate(Vector3.up, (360f / (cycleDurationInSeconds / 4f)) * Time.deltaTime, Space.World);
+        globalLight.transform.Rotate(Vector3.right, (360f / (cycleDurationInSeconds / 4f)) * Time.deltaTime, Space.World);
 
         // Scroll the skybox texture to simulate moving clouds
         RenderSettings.skybox.SetFloat("_Offset", Time.time * skyboxScrollSpeed);
