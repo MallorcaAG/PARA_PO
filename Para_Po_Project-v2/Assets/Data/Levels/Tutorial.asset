@@ -17,5 +17,6 @@ MonoBehaviour:
   routeName: Pulanglupa to CAA
   routeMap: []
   routeLandmarkImages: []
+  scenes: {fileID: 0}
   stars: 0
   highScore: 0

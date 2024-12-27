@@ -12,4 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87ff43e30ca4c3a44a1a92a9d9071473, type: 3}
   m_Name: EurobeatFM
   m_EditorClassIdentifier: 
-  musicTracks: []
+  audioTracks:
+  - {fileID: 8300000, guid: afeab5c4efd3ed94aa9ca11de74a00e1, type: 3}
+  - {fileID: 8300000, guid: 195a63366181bbd428245b5f32b55ec4, type: 3}
+  - {fileID: 8300000, guid: 29916acae4fb2924b8d0828039e677b2, type: 3}
+  - {fileID: 8300000, guid: 92dc207ce766a604888b10d078aa505e, type: 3}
+  - {fileID: 8300000, guid: fb9412aef7b956544b914b6089f8d992, type: 3}
+  - {fileID: 8300000, guid: 2eb6f69b715ca944a880de215b6fb84f, type: 3}
+  - {fileID: 8300000, guid: 358baa8882935454c9ba55a25a190349, type: 3}
+  - {fileID: 8300000, guid: ad204e270c5035e478aa1a693e45e2be, type: 3}
+  - {fileID: 8300000, guid: f933ae047af859941b7f4cd91473f221, type: 3}
+  - {fileID: 8300000, guid: 00a83b3ff8d8bff488df2ecd16385d76, type: 3}
+  - {fileID: 8300000, guid: 9eeee804bff35c94e8a67e5b0a996ed5, type: 3}
