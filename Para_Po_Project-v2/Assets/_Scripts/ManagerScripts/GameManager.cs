@@ -18,11 +18,13 @@ public class GameManager : Singleton<GameManager>
     [Header("GameEvents")]
     [SerializeField] private GameEvent sendPointsData;
     [SerializeField] private GameEvent sendTimerData;
+    [SerializeField] private GameEvent onEndGame;
 
 
     private List<float> violationPointsHolder = new List<float>();
     private float gameTimeInFloat;
     private float targetTime;
+    private string failType;
 
     private void Start()
     {
@@ -36,8 +38,20 @@ public class GameManager : Singleton<GameManager>
     {
         if (isGameEnded)
         {
+            if(!routeSuccessful)
+            {
+                onEndGame.Raise(this, failType);
+                return;
+            }
+
             calculateStarsToGive(calculateEndOfGamePoints());
             Debug.Log("Game end\nStars Given: "+starsToGive);
+
+            float[] f = new float[2];
+            f[0] = points;
+            f[1] = (float)starsToGive;
+            onEndGame.Raise(this,f);
+
             return;
         }
 
@@ -86,6 +100,8 @@ public class GameManager : Singleton<GameManager>
     {
         if(currentTrafficViolations >= maxTrafficViolations)
         {
+            failType = "Violations Exceeded";
+
             endGame();
         }
     }
@@ -160,6 +176,8 @@ public class GameManager : Singleton<GameManager>
     {
         if(Timer())
         {
+            failType = "Timer Expired";
+
             endGame();
             return;
         }

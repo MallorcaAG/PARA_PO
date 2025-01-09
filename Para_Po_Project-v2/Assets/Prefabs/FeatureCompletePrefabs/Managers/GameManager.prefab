@@ -57,6 +57,7 @@ MonoBehaviour:
   gameTime: {x: 10, y: 5}
   sendPointsData: {fileID: 11400000, guid: 5164d3190bbf4ad4e88efe6e8553d7fe, type: 2}
   sendTimerData: {fileID: 11400000, guid: 371e3b5218c11954486e338f60be9c31, type: 2}
+  onEndGame: {fileID: 11400000, guid: 2bf38cd1ec3b71247820d63409243bf9, type: 2}
 --- !u!114 &2738187708898693185
 MonoBehaviour:
   m_ObjectHideFlags: 0
