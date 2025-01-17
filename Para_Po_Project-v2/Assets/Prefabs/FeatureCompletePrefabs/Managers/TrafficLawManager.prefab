@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 7916178857525515500}
   - component: {fileID: 3408840519851359408}
   - component: {fileID: 7844092705739025470}
-  - component: {fileID: 8379251431121661563}
   m_Layer: 0
   m_Name: TrafficLawManager
   m_TagString: Untagged
@@ -36,7 +35,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5851544227808819528
 MonoBehaviour:
@@ -206,15 +205,3 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &8379251431121661563
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1399650478197509201}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c028458ba193ef47972b9cf85577c75, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

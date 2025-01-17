@@ -81,7 +81,7 @@ public class HUDManager : MonoBehaviour
             return;
         }
 
-        format = min.ToString()+ ":" + sec.ToString();
+        format = min.ToString("00")+ ":" + sec.ToString("00");
         gameTimerText.text = format;
 
     }

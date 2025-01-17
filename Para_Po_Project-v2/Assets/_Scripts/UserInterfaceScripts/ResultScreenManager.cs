@@ -16,6 +16,10 @@ public class ResultScreenManager : MonoBehaviour
     [SerializeField] private FailureScreen failure;
     [Header("Game Event")]
     [SerializeField] private GameEvent onTimeScaleChange;
+    [SerializeField] private GameEvent onContinueButtonPresssed;
+    [SerializeField] private GameEvent onTryAgainButtonPresssed;
+    [SerializeField] private GameEvent onExitButtonPresssed;
+
 
 
     private void Start()
@@ -24,7 +28,7 @@ public class ResultScreenManager : MonoBehaviour
         success.panel.SetActive(false);
         failure.panel.SetActive(false);
     }
-
+    #region UI
     private void DisplayWin()
     {
         success.panel.SetActive(true);
@@ -34,7 +38,7 @@ public class ResultScreenManager : MonoBehaviour
     {
         failure.panel.SetActive(true);
     }
-
+    #endregion
     public void gameEnded(Component sender, object data)
     {
         ZaWarudo();
@@ -45,21 +49,38 @@ public class ResultScreenManager : MonoBehaviour
             DisplayLose();
             failure.failureTypeTxt.text = (string)data;
             failure.populateViolationsTxt(playerViolationsCode);
-
+            
             return;
         }
 
         DisplayWin();
         float[] f = (float[])data;
         success.scoreTxt.text = f[0].ToString("F4");
-        //success.highScoreTxt.text = 
-        for(int i = 0; i < (int)f[1]; i++)
+        success.highScoreTxt.text = f[2].ToString("F4");
+        for (int i = 0; i < (int)f[1]; i++)
         {
             success.stars[i].sprite = activeStar;
         }
         success.populateViolationsTxt(playerViolationsCode);
     }
 
+    #region Buttons
+    public void ContinueButton()
+    {
+        onContinueButtonPresssed.Raise(this, 0);
+    }
+
+    public void TryAgainButton()
+    {
+        onTryAgainButtonPresssed.Raise(this, 0);
+    }
+
+    public void ExitButton()
+    {
+        onExitButtonPresssed.Raise(this, 0);
+    }
+    #endregion
+    #region Utility
     public void addViolations(Component sender, object data)
     {
         if (data.GetType() == typeof(float))
@@ -80,6 +101,7 @@ public class ResultScreenManager : MonoBehaviour
     {
         onTimeScaleChange.Raise(this, 1f);
     }
+    #endregion
 }
 
 [System.Serializable]

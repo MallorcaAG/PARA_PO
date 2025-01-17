@@ -1569,7 +1569,7 @@ RectTransform:
   m_Children:
   - {fileID: 5598172718042810218}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1604,7 +1604,10 @@ MonoBehaviour:
     panel: {fileID: 5265611028373382131}
     failureTypeTxt: {fileID: 6772717199403324163}
     violationsPos: []
-  onTimeScaleChange: {fileID: 0}
+  onTimeScaleChange: {fileID: 11400000, guid: d7aede6da92d47a4ebc117735ba704a7, type: 2}
+  onContinueButtonPresssed: {fileID: 11400000, guid: 2515659baeb09e5458947f529b450eae, type: 2}
+  onTryAgainButtonPresssed: {fileID: 11400000, guid: ad27b16266320064eb4a54c771c0c1d2, type: 2}
+  onExitButtonPresssed: {fileID: 11400000, guid: 19c29a8cfcd6b9744a5531c6aadc6e03, type: 2}
 --- !u!114 &1765138078312033698
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1682,7 +1685,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &684430347373694896
 MonoBehaviour:
@@ -2410,7 +2413,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 626465259699896810}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8420667509128298384}
+        m_TargetAssemblyTypeName: ResultScreenManager, UI
+        m_MethodName: ContinueButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6155707162842486823
 GameObject:
   m_ObjectHideFlags: 0

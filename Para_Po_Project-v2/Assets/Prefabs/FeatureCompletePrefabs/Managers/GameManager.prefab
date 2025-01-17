@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8228947226556283889}
   - component: {fileID: 6993020591668849996}
   - component: {fileID: 5411068728448986803}
+  - component: {fileID: 592202547482848005}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -28,7 +29,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7659036989042607094}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 371.6357, y: -2.2195895, z: 228.05717}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -58,6 +59,7 @@ MonoBehaviour:
   sendPointsData: {fileID: 11400000, guid: 5164d3190bbf4ad4e88efe6e8553d7fe, type: 2}
   sendTimerData: {fileID: 11400000, guid: 371e3b5218c11954486e338f60be9c31, type: 2}
   onEndGame: {fileID: 11400000, guid: 2bf38cd1ec3b71247820d63409243bf9, type: 2}
+  sceneString: _MainMenu
 --- !u!114 &2738187708898693185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -174,6 +176,34 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: GameManager, Project
         m_MethodName: endOfRouteReached
         m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &592202547482848005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7659036989042607094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 343a05844d3bc104aa8e0351c6314175, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 2515659baeb09e5458947f529b450eae, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1319798362026771080}
+        m_TargetAssemblyTypeName: GameManager, Project
+        m_MethodName: saveGame
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

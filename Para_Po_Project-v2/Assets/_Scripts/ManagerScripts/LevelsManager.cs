@@ -26,6 +26,8 @@ public class LevelsManager : Singleton<LevelsManager>
     private List<Levels> unlockedLevels;
     private int i;
 
+    public List<Levels> Levels { get { return levels; } }
+
     private void Start()
     {
         populateUnlockedLevelsArray();
@@ -33,10 +35,14 @@ public class LevelsManager : Singleton<LevelsManager>
         i = 0;
 
         UpdateUI();
+
+        gameObject.SetActive(false);
     }
 
     private void populateUnlockedLevelsArray()
     {
+        unlockedLevels = new List<Levels>();
+
         foreach(Levels level in levels)
         {
             if(level.IsUnlocked)
@@ -53,7 +59,7 @@ public class LevelsManager : Singleton<LevelsManager>
 
     public void UpdateUI()
     {
-        Levels currentLvl = levels[i];
+        Levels currentLvl = unlockedLevels[i];
 
         levelNameText.text = currentLvl.name;
         routeNameText.text = currentLvl.RouteName;
@@ -104,11 +110,13 @@ public class LevelsManager : Singleton<LevelsManager>
     {
         i--;
         clampIterator();
+        UpdateUI();
     }
     public void RightArrowPressed()
     {
         i++;
         clampIterator();
+        UpdateUI();
     }
     private void checkCurrentArrayPos()
     {
@@ -143,5 +151,11 @@ public class LevelsManager : Singleton<LevelsManager>
     }
     #endregion
 
-    
+    public void LoadLevel()
+    {
+        Levels currentLvl = unlockedLevels[i];
+
+        DataManager.Instance.CurrentLevel = currentLvl;
+        SceneLoadManager.Instance.LoadLevelsScenes(currentLvl);
+    }
 }

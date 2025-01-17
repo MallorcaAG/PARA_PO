@@ -12,14 +12,17 @@ public enum VehicleType
 [CreateAssetMenu(fileName = "Level 0", menuName = "Level Data")]
 public class Levels : ScriptableObject
 {
-    [SerializeField] private bool isUnlocked = false;
+    [Header("Savable/Loadable")]
+    [SerializeField] private bool isUnlocked = false;   //get set
+    [Range(0,3)][SerializeField] private int stars = 0; //get set
+    [SerializeField] private float highScore = 0;       //get set
+    [SerializeField] private string[] scenes;           //get
+    [Header("Metadata")]
     [SerializeField] private VehicleType vehicleType;
     [SerializeField] private string routeName;
     [SerializeField] private Sprite[] routeMap;
     [SerializeField] private Sprite[] routeLandmarkImages;
-    [SerializeField] private LevelSceneHolder scenes;
-    [SerializeField] private int stars = 0;
-    [SerializeField] private float highScore = 0;
+    
     
 
     #region Getter/Setter Functions
@@ -39,7 +42,7 @@ public class Levels : ScriptableObject
         return routeMap[1];
     }
     public Sprite[] RouteLandmarkImages { get { return routeLandmarkImages; } }
-    public Scene[] Scenes { get { return scenes.levelScenes; } }
+    public string[] Scenes { get { return scenes; } }
     public int Stars { get { return stars; } set { stars = value; } }
     public float HighScore { get { return highScore; } set { highScore = value; } }  
     #endregion

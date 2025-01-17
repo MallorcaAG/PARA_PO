@@ -64,6 +64,11 @@ public class TrafficEnforcer : MonoBehaviour
         if(!immune)
         {
             Debug.LogWarning("VIOLATION COMMITTED");
+            if(PenaltyBasedOnViolationType(sender, data) > 0f)
+            {
+                giveImmunity();
+                return;
+            }
             onTrafficViolationCommitted.Raise(this, PenaltyBasedOnViolationType(sender, data));
             onTrafficViolationCommitted.Raise(this, ViolationType(sender, data));
 
