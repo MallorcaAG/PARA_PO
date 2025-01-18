@@ -11,6 +11,7 @@ public class RandomMovementSpeed : MonoBehaviour
     [SerializeField] private Vector2 MinMaxRandSpeed;
     [SerializeField] private Vector2 MinMaxRandSensor;
 
+    
     float baseSpeed, sensorDistance;
 
     // Start is called before the first frame update
@@ -39,6 +40,25 @@ public class RandomMovementSpeed : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    public void reduceSpeed(float val)
+    {
+        baseSpeed = nav.getMyBaseSpeed() / val;
+        nav.setBaseSpeed(baseSpeed);
+        sensor.setMaxDistance(ratioD(BaseSpeedToSensorDistanceRatio.x, BaseSpeedToSensorDistanceRatio.y, baseSpeed));
+    }
+
+    public void increaseSpeed()
+    {
+        baseSpeed = nav.getMyBaseSpeed();
+        nav.setBaseSpeed(baseSpeed);
+        sensor.setMaxDistance(ratioD(BaseSpeedToSensorDistanceRatio.x, BaseSpeedToSensorDistanceRatio.y, baseSpeed));
+    }
+
+    public void disableSensor()
+    {
+        sensor.setMaxDistance(0f);
     }
 
     private float ratioD(float A, float B, float C)

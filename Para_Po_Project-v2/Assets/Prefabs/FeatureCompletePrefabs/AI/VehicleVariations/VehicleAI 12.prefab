@@ -230,7 +230,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 5
-  rotationSpeed: 90
+  rotationSpeed: 180
   stopDistance: 0.5
   destinationInfo:
     coordinates: {x: 0, y: 0, z: 0}

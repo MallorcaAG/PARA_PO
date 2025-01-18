@@ -20,7 +20,7 @@ public class VehicleSpawnManager : SpawnManager
         {
             return;
         }
-        GameObject obj = Instantiate(prefabCollection[Random.Range(0, prefabCollection.Length)]);
+        GameObject obj = Instantiate(prefabCollection[Random.Range(0, prefabCollection.Length)], gameObject.transform);
 
         SpawnManager.npcCount++;
 
