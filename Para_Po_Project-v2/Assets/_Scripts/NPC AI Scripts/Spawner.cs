@@ -48,7 +48,7 @@ public class Spawner : MonoBehaviour
                     GameObject spawner = Instantiate(pedestrianPrefab, child);
                     SpawnManager spawnmanager = spawner.GetComponent<SpawnManager>();
                     spawnmanager.setMyWaypoint(child.GetComponent<Waypoint>());
-                    spawnmanager.setMaxNPC(pedestriansToSpawn);
+                    //spawnmanager.setMaxNPC(pedestriansToSpawn);
                 /*GameObject obj = spawner.GetComponent<SpawnManager>().getPrefab();
                 obj.GetComponent<PedestrianAINavigator>().setCurrentWaypoint(child.GetComponent<Waypoint>());
                 obj.transform.position = child.position;*/

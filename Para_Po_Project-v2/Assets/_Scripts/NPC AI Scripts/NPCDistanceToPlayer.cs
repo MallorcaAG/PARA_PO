@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class NPCDistanceToPlayer : MonoBehaviour
 {
+    [SerializeField] private NPCCount npcs;
     [SerializeField] private float range;
     public bool primeDestruction;
 
@@ -13,6 +14,15 @@ public class NPCDistanceToPlayer : MonoBehaviour
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
+
+        StartCoroutine(Wait());
+    }
+
+    private IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(5f);
+
+        primeDestruction = true;
     }
 
     private void Update()
@@ -23,6 +33,18 @@ public class NPCDistanceToPlayer : MonoBehaviour
         {
             if(distance >= range)
             {
+                if(gameObject.TryGetComponent<PedestrianAINavigator>(out PedestrianAINavigator peds))
+                {
+                    npcs.subtractPedestrianNPC();
+                }
+                else if(gameObject.TryGetComponent<VehicleAINavigator>(out VehicleAINavigator car))
+                {
+                    npcs.subtractVehicleNPC();
+                }
+
+                //Turn this off because omae wa mou shindeiru
+                primeDestruction = false;
+
                 Destroy(gameObject);
             }
         }

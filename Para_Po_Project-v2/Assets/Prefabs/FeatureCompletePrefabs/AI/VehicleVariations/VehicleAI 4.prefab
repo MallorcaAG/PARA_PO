@@ -331,6 +331,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67ceb5c1645f53d46bbba6284d57c071, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  npcs: {fileID: 11400000, guid: b2e29010714b1c74c86042b36a2dc227, type: 2}
   range: 300
   primeDestruction: 0
 --- !u!1001 &2395256165399890894

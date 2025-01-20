@@ -23,7 +23,7 @@ public class GameManager : Singleton<GameManager>
     [Header("Next Scene")]
     [Tooltip("Load into Main Menu or enter cutscene name")]
     [SerializeField] private string sceneString;
-
+    [SerializeField] private NPCCount npcs;
 
     private List<float> violationPointsHolder = new List<float>();
     private float gameTimeInFloat;
@@ -34,6 +34,8 @@ public class GameManager : Singleton<GameManager>
 
     private void Start()
     {
+        npcs.ResetCurrentNPCValues();
+
         float min = gameTime.x * 60f, sec = gameTime.y;
         gameTimeInFloat = min + sec;
         targetTime = gameTimeInFloat;
@@ -86,6 +88,7 @@ public class GameManager : Singleton<GameManager>
     public void saveGame()
     {
         DataManager.Instance.save();
+        npcs.ResetCurrentNPCValues();
         SceneLoadManager.Instance.LoadScene(sceneString);
     }
 
