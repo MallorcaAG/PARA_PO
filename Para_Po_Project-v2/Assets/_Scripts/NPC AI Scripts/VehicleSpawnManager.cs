@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum SpawnType
+{
+    CONSTANT, ONETIME
+}
+
 public class VehicleSpawnManager : SpawnManager
 {
+    [SerializeField] private SpawnType spawnType = SpawnType.CONSTANT;
     [SerializeField] private VehicleWaypoint newWaypoint;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        Initialize();
-    }
-
-    public void Initialize()
+    public void Spawn()
     {
         /*if (transform.childCount == 0)
         {*/
@@ -22,7 +22,7 @@ public class VehicleSpawnManager : SpawnManager
         }
         GameObject obj = Instantiate(prefabCollection[Random.Range(0, prefabCollection.Length)], gameObject.transform);
 
-        SpawnManager.npcCount++;
+        npcs.addVehicleNPC();
 
         obj.transform.position = transform.position;
         obj.GetComponent<VehicleAINavigator>().setCurrentWaypoint(newWaypoint);
@@ -34,25 +34,27 @@ public class VehicleSpawnManager : SpawnManager
         /*}*/
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.name == "SpawningDespawning Influence")
         {
             if (mySpawnedObj == null)
             {
-                if (npcCount < maxNPC)
+                if (!npcs.maxVehicleCountReached())
                 {
-                    Initialize();
+                    Spawn();
+
+                    if(spawnType == SpawnType.CONSTANT)
+                        StartCoroutine(Wait());
                 }
             }
-            if (!mySpawnedObj.activeInHierarchy)
-            {
-                mySpawnedObj.SetActive(false);
-            }
-            if (mySpawnedObj.GetComponent<NPCDistanceToPlayer>().primeDestruction == true)
-            {
-                mySpawnedObj.GetComponent<NPCDistanceToPlayer>().primeDestruction = false;
-            }
         }
+    }
+
+    private IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(5f);
+
+        mySpawnedObj = null;
     }
 }

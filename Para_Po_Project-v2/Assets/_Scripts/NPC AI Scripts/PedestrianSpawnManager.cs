@@ -5,12 +5,8 @@ using UnityEngine;
 public class PedestrianSpawnManager : SpawnManager
 {
 
-    void Start()
-    {
-        Initialize();
-    }
 
-    public void Initialize()
+    public void Spawn()
     {
         /*if (transform.childCount == 0)
         {*/
@@ -20,7 +16,7 @@ public class PedestrianSpawnManager : SpawnManager
         }
         GameObject obj = Instantiate(prefabCollection[Random.Range(0,prefabCollection.Length)]);
 
-        SpawnManager.npcCount++;
+        npcs.addPedestrianNPC();
 
         obj.transform.position = transform.position;
         obj.GetComponent<PedestrianAINavigator>().setCurrentWaypoint(myWaypoint);
@@ -32,24 +28,16 @@ public class PedestrianSpawnManager : SpawnManager
         /*}*/
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.name == "SpawningDespawning Influence")
         {
             if (mySpawnedObj == null)
             {
-                if (npcCount < maxNPC)
+                if (!npcs.maxPedestrianCountReached())
                 {
-                    Initialize();
+                    Spawn();
                 }
-            }
-            if (!mySpawnedObj.activeInHierarchy)
-            {
-                mySpawnedObj.SetActive(false);
-            }
-            if (mySpawnedObj.GetComponent<NPCDistanceToPlayer>().primeDestruction == true)
-            {
-                mySpawnedObj.GetComponent<NPCDistanceToPlayer>().primeDestruction = false;
             }
         }
     }

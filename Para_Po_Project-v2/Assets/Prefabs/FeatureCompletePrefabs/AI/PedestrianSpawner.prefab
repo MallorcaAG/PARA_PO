@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5d6461196e711549a57c4c16af70426, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  npcs: {fileID: 11400000, guid: b2e29010714b1c74c86042b36a2dc227, type: 2}
   prefabCollection:
   - {fileID: 7763500617937828572, guid: 1643abdd5dde9e14fb621468e2f20def, type: 3}
   - {fileID: 7763500617937828572, guid: ee85d93671bc4d44f8b6143098fd68e1, type: 3}
