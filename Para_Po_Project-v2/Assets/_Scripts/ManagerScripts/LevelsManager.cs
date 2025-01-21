@@ -156,6 +156,6 @@ public class LevelsManager : Singleton<LevelsManager>
         Levels currentLvl = unlockedLevels[i];
 
         DataManager.Instance.CurrentLevel = currentLvl;
-        SceneLoadManager.Instance.LoadLevelsScenes(currentLvl);
+        SceneLoadManager.Instance.LoadLevelsScenes(currentLvl, i);
     }
 }
