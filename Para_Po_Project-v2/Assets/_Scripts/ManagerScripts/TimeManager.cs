@@ -74,13 +74,13 @@ public class TimeManager : MonoBehaviour
         {
             StartCoroutine(LerpSkybox(skyboxDay, skyboxSunset, secondsPerHour));
             StartCoroutine(LerpLight(gradientDayToSunset, secondsPerHour));
-            StartCoroutine(LerpIntensity(globalLight.intensity, 0.7f, secondsPerHour)); // Dimmer light for sunset
+            StartCoroutine(LerpIntensity(globalLight.intensity, 0.2f, secondsPerHour)); // Dim light for sunset
         }
         else if (hour == 22)
         {
             StartCoroutine(LerpSkybox(skyboxSunset, skyboxNight, secondsPerHour));
             StartCoroutine(LerpLight(gradientSunsetToNight, secondsPerHour));
-            StartCoroutine(LerpIntensity(globalLight.intensity, 0.3f, secondsPerHour)); // Very dim light for night
+            StartCoroutine(LerpIntensity(globalLight.intensity, 0.05f, secondsPerHour)); // Very dim light for night
         }
         else if (hour == 6)
         {
