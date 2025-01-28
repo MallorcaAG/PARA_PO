@@ -21,6 +21,10 @@ public class PedestrianAINavigator : WaypointNavigator
     [SerializeField] private GameEvent onPedestrianEgress;
     [SerializeField] private GameEvent onImpactWithPlayer;
     [SerializeField] private GameEvent onSuccessfulEgress;
+    [SerializeField] private GameEvent onSFXPlay;
+
+    [Header("References")]
+    [SerializeField] private AudioClip voiceline;
 
     private static readonly int Idle0 = Animator.StringToHash("Idle0");
     private static readonly int Idle1 = Animator.StringToHash("Idle1");
@@ -275,6 +279,7 @@ public class PedestrianAINavigator : WaypointNavigator
         {
             state = NPCState.EGRESS;
             Debug.Log("<b>PARA PO!</b>");
+            onSFXPlay.Raise(this, voiceline);
         }
         else
         {
