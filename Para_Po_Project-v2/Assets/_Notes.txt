@@ -2,3 +2,4 @@
 	- Implement the raining feature and day/night cycle gameplay-wise
 	- Pause screen, show controls and adjust audiomixer.
 	- Add 'Para Po' voicelines in Pedestrian prefab. Save AudioClips in Asset/Audio/Voicelines
+	- Yellow Traffic Light not working properly
