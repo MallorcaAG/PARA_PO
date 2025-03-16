@@ -16,6 +16,7 @@ public class TimeManager : MonoBehaviour
 
     [SerializeField] private Light globalLight;
 
+    [Tooltip("Lower means = faster, Higher means = slower")]
     [SerializeField] private float cycleDurationInSeconds = 240f; // Total duration for a full day-night cycle
 
     private float elapsedTime;
