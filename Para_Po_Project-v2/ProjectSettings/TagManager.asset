@@ -12,6 +12,7 @@ TagManager:
   - water
   - Vehicles
   - Pedestrians
+  - Audio
   layers:
   - Default
   - TransparentFX
