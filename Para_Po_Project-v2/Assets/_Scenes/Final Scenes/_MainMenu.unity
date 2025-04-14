@@ -1979,7 +1979,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &611474042
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7659,7 +7659,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2074060853
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7715,6 +7715,9 @@ MonoBehaviour:
   playerBestScoreText: {fileID: 697914462}
   levels:
   - {fileID: 11400000, guid: 8f912590fa6d38849b4ff0c7964698c2, type: 2}
+  - {fileID: 11400000, guid: a3495157ce92c4e4eb609ad2cfe15e8d, type: 2}
+  - {fileID: 11400000, guid: cbe28bfbcce3c394895297a8f096605c, type: 2}
+  - {fileID: 11400000, guid: b5cfc61c16c49784aa7fdca31d0ccf0b, type: 2}
   vehicles:
   - {fileID: 8400000, guid: a65ff33d782b26b4bbec9e41c2a22082, type: 2}
   - {fileID: 8400000, guid: 0865314f8381adf498d545b1df0b2c3b, type: 2}

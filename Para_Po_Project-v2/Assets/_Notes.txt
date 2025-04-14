@@ -1,5 +1,5 @@
 	- Give 'Barrier' prefab appropriate barrier texture. Refer to GDD on what it could look like or make it look better 
-	- Implement the raining feature and day/night cycle gameplay-wise
-	- Pause screen, show controls and adjust audiomixer.
+	- Pause screen, show controls and adjust audiomixer. (Havent tested yet. . .)
 	- Add 'Para Po' voicelines in Pedestrian prefab. Save AudioClips in Asset/Audio/Voicelines
 	- Yellow Traffic Light not working properly
+	- optionsPanel in PauseScreen not disabling properly

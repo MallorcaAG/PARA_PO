@@ -23,6 +23,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: e922579f57f4b364685d4a87cf92d41f, type: 3}
   - {fileID: 21300000, guid: 42cc081b5116e9a4ab298ec5aab572bc, type: 3}
   routeLandmarkImages:
-  - {fileID: 21300000, guid: 41c73623b6f25c74eaf6fbfa11bd0f9b, type: 3}
-  - {fileID: 21300000, guid: 41c73623b6f25c74eaf6fbfa11bd0f9b, type: 3}
-  - {fileID: 21300000, guid: 41c73623b6f25c74eaf6fbfa11bd0f9b, type: 3}
+  - {fileID: 21300000, guid: bf525cdd4fb496d469e42d56b7627474, type: 3}
+  - {fileID: 21300000, guid: 780740605d77bf14498398e6dd13cbf0, type: 3}
+  - {fileID: 21300000, guid: 2afa382c7c2ac2049a43c7e0dac48fa7, type: 3}

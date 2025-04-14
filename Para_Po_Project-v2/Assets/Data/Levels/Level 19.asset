@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb68b1502438c394a880c782e90e9d0a, type: 3}
+  m_Name: Level 19
+  m_EditorClassIdentifier: 
+  isUnlocked: 1
+  stars: 0
+  highScore: 0
+  scenes:
+  - Level 19
+  vehicleType: 0
+  routeName: PRC to Taft
+  routeMap:
+  - {fileID: 21300000, guid: 59b6e336604afa5479a46f6a5621e5f0, type: 3}
+  - {fileID: 21300000, guid: 1384dfd807f821d4a8aaee091353937e, type: 3}
+  routeLandmarkImages:
+  - {fileID: 21300000, guid: 0a16ec1c16e99a347a97238206034689, type: 3}
+  - {fileID: 21300000, guid: 11315233f5aedc64c9e571454b16bbbd, type: 3}
+  - {fileID: 21300000, guid: d9583a29032d46a4092032e5e4e759b1, type: 3}
