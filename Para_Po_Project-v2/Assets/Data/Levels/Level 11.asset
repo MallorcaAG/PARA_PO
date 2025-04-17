@@ -17,7 +17,7 @@ MonoBehaviour:
   highScore: 0
   scenes:
   - Level 11
-  vehicleType: 0
+  vehicleType: 1
   routeName: BelAir to Washington
   routeMap:
   - {fileID: 21300000, guid: cd4ae6e52ca643049a445a56e78d4413, type: 3}

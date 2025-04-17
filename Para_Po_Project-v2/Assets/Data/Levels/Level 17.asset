@@ -17,7 +17,7 @@ MonoBehaviour:
   highScore: 0
   scenes:
   - Level 17
-  vehicleType: 0
+  vehicleType: 1
   routeName: PRC to Taft
   routeMap:
   - {fileID: 21300000, guid: 59b6e336604afa5479a46f6a5621e5f0, type: 3}

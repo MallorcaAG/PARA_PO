@@ -975,7 +975,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5560531363695113829}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8420667509128298384}
+        m_TargetAssemblyTypeName: ResultScreenManager, UI
+        m_MethodName: ExitButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2950095271032508346
 GameObject:
   m_ObjectHideFlags: 0
@@ -2622,7 +2634,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3936179206187814415}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8420667509128298384}
+        m_TargetAssemblyTypeName: ResultScreenManager, UI
+        m_MethodName: TryAgainButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7043076426355798846
 GameObject:
   m_ObjectHideFlags: 0

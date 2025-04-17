@@ -11,4 +11,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scenes/Final Scenes/Trike/Level 1.unity
     guid: 089b5d9ed6f782647a1383ec9a306404
+  - enabled: 1
+    path: Assets/_Scenes/Final Scenes/Trike/Level 6.unity
+    guid: e5fa6acec3cc6ab4fafdb2627c16ee0c
+  - enabled: 1
+    path: Assets/_Scenes/Final Scenes/Level 11/Level 11.unity
+    guid: eee14f142a60dca4bb96bdcf588e285a
+  - enabled: 1
+    path: Assets/_Scenes/Final Scenes/Level 17/Level 17.unity
+    guid: 4f95fdb1d5e0c924fa03a2ac9a6e0bb0
   m_configObjects: {}

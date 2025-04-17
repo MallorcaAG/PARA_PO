@@ -2,4 +2,30 @@
 	- Pause screen, show controls and adjust audiomixer. (Havent tested yet. . .)
 	- Add 'Para Po' voicelines in Pedestrian prefab. Save AudioClips in Asset/Audio/Voicelines
 	- Yellow Traffic Light not working properly
-	- optionsPanel in PauseScreen not disabling properly
+	- Give Lamppost prefab lights
+	- Slowdown time if violation is given and increase immunity time
+
+	MainMenu Testing Bugs
+	- "The referenced script (Unknown) on this Behaviour is missing!" HUH ?????
+
+	Level 1 Testing Bugs
+	- Vehicles dont stop and just run you over. I think Vehicle Sensors acting weird. Doesnt slow down in time or at all
+	- FAILURE result: TryAgain and Exit buttons dont work 
+	- Immunity cooldown not working? Like got hit by a car and got 2 violations when I should only get one
+	- Change Culling distance of vehicles. Suddenly appears too close to player and noticable
+	- Lighting stuff
+	- SakayPeds not spawning
+	- Points not working
+	- Radio doesnt automatically start
+
+	Level 6 Testing Bugs
+	- Same issues as Level 1
+	- 2 Radios playing at the same time?
+	- Time did not stop after winning or losing
+	- Spawnings are delayed?
+
+	Level 11 Testing Bugs
+	- No player, cant test
+
+	Level 17 Testing Bugs
+	- Violation Type: Counter Flowing Or Driving On Sidewalk (VehicleWaypoints not set properly)
