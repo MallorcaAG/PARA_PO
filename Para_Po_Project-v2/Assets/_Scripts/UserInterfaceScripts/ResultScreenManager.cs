@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ResultScreenManager : MonoBehaviour
 {
@@ -16,9 +17,9 @@ public class ResultScreenManager : MonoBehaviour
     [SerializeField] private FailureScreen failure;
     [Header("Game Event")]
     [SerializeField] private GameEvent onTimeScaleChange;
-    [SerializeField] private GameEvent onContinueButtonPresssed;
-    [SerializeField] private GameEvent onTryAgainButtonPresssed;
-    [SerializeField] private GameEvent onExitButtonPresssed;
+    [SerializeField] private GameEvent onContinueButtonPressed;
+    [SerializeField] private GameEvent onTryAgainButtonPressed;
+    [SerializeField] private GameEvent onExitButtonPressed;
 
 
 
@@ -67,17 +68,17 @@ public class ResultScreenManager : MonoBehaviour
     #region Buttons
     public void ContinueButton()
     {
-        onContinueButtonPresssed.Raise(this, 0);
+        onContinueButtonPressed.Raise(this, 0);
     }
 
     public void TryAgainButton()
     {
-        onTryAgainButtonPresssed.Raise(this, 0);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); 
     }
 
     public void ExitButton()
     {
-        onExitButtonPresssed.Raise(this, 0);
+        SceneManager.LoadScene("_MainMenu");
     }
     #endregion
     #region Utility

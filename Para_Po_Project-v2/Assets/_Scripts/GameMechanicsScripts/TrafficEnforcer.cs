@@ -1,92 +1,110 @@
-using Codice.CM.SEIDInfo;
+﻿using Codice.CM.SEIDInfo;
 using System.Collections;
 using System.Collections.Generic;
-using System.Threading;
 using UnityEngine;
 
 public class TrafficEnforcer : MonoBehaviour
 {
     [Header("Violations Cost")]
-        [Tooltip("BE SURE TO INCLUDE THE NEGATIVE SIGN")]
+    [Tooltip("BE SURE TO INCLUDE THE NEGATIVE SIGN")]
     [SerializeField] private float runningOverPedestrians = -150;
-        [Tooltip("BE SURE TO INCLUDE THE NEGATIVE SIGN")]
+    [Tooltip("BE SURE TO INCLUDE THE NEGATIVE SIGN")]
     [SerializeField] private float hittingAnotherVehicle = -100;
-        [Tooltip("BE SURE TO INCLUDE THE NEGATIVE SIGN")]
+    [Tooltip("BE SURE TO INCLUDE THE NEGATIVE SIGN")]
     [SerializeField] private float counterflowingOrDrivingOnSidewalk = -100;
-        [Tooltip("BE SURE TO INCLUDE THE NEGATIVE SIGN")]
+    [Tooltip("BE SURE TO INCLUDE THE NEGATIVE SIGN")]
     [SerializeField] private float beatingRedLight = -50;
-        [Tooltip("BE SURE TO INCLUDE THE NEGATIVE SIGN")]
+    [Tooltip("BE SURE TO INCLUDE THE NEGATIVE SIGN")]
     [SerializeField] private float hittingSignPostTrafficObject = -100;
     [Tooltip("BE SURE TO INCLUDE THE NEGATIVE SIGN")]
     [SerializeField] private float crashingIntoBuilding = -150;
-        [Tooltip("BE SURE TO INCLUDE THE NEGATIVE SIGN")]
+    [Tooltip("BE SURE TO INCLUDE THE NEGATIVE SIGN")]
     [SerializeField] private float obstructingTrafficStallingOrAFK = -50;
-        [Tooltip("BE SURE TO INCLUDE THE NEGATIVE SIGN")]
+    [Tooltip("BE SURE TO INCLUDE THE NEGATIVE SIGN")]
     [SerializeField] private float speeding = -50;
-        [Tooltip("BE SURE TO INCLUDE THE NEGATIVE SIGN")]
+    [Tooltip("BE SURE TO INCLUDE THE NEGATIVE SIGN")]
     [SerializeField] private float notUrFaultBonus = 50;
+
     [Header("Immunity")]
     [SerializeField] private float immunityCooldown = 3f;
-    
-    [SerializeField] private bool immune = false;
+
+    private bool immune = false;
+    private float immunityTimer = 0f;
+
     [Header("Game Events")]
     [SerializeField] private GameEvent onTrafficViolationCommitted;
+
     [Header("References")]
     [SerializeField] private GameObject player;
     [SerializeField] private float speedLimit = 16f;
-    [Range(0f, 5f)][SerializeField] private float speedingGracePeriod = 3f;
-    [Range(10f,60f)][SerializeField] private float obstructionChargeCooldown = 20f;
-
+    [Range(0f, 5f)] [SerializeField] private float speedingGracePeriod = 3f;
+    [Range(10f, 60f)] [SerializeField] private float obstructionChargeCooldown = 20f;
 
     private float targetTime, targetTime2, targetTime3;
-    private bool justStarted = true;
+    private bool justStarted = false;
 
     private void Start()
     {
-        targetTime = immunityCooldown;
-
         resetTimer2();
         resetTimer3();
+        immunityTimer = immunityCooldown;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if(immune)
-        {
-            immune = !Timer();  //Once timer finishes, set immune to false
-        }
 
+        if (immune)
+        {
+            immunityTimer -= Time.deltaTime;
+
+
+            Debug.Log("Immunity Timer: " + immunityTimer.ToString("F2") + " seconds remaining.");
+
+            if (immunityTimer <= 0f)
+            {
+                immune = false;
+                immunityTimer = immunityCooldown;
+                Debug.Log("Immunity Ended.");
+            }
+        }
     }
 
     public void TrafficViolationCommitted(Component sender, object data)
     {
-        if(!immune)
+        if (!immune)
         {
             Debug.LogWarning("VIOLATION COMMITTED");
-            if(PenaltyBasedOnViolationType(sender, data) > 0f)
-            {
-                giveImmunity();
-                return;
-            }
-            onTrafficViolationCommitted.Raise(this, PenaltyBasedOnViolationType(sender, data));
-            onTrafficViolationCommitted.Raise(this, ViolationType(sender, data));
 
-            giveImmunity();
+
+            float penalty = PenaltyBasedOnViolationType(sender, data);
+            if (penalty > 0f)
+            {
+
+                onTrafficViolationCommitted.Raise(this, penalty);
+                onTrafficViolationCommitted.Raise(this, ViolationType(sender, data));
+            }
+            else
+            {
+
+                giveImmunity();
+                onTrafficViolationCommitted.Raise(this, penalty);
+                onTrafficViolationCommitted.Raise(this, ViolationType(sender, data));
+            }
         }
     }
-
 
     public void giveImmunity()
     {
         immune = true;
+        immunityTimer = immunityCooldown;
+        Debug.Log("Immunity Granted! Timer set to: " + immunityCooldown + " seconds.");
     }
 
     private float PenaltyBasedOnViolationType(Component sender, object data)
     {
-        //REORDER THESE FROM WORST TO MILD VIOLATION
 
-        if(sender.TryGetComponent<PedestrianAINavigator>(out PedestrianAINavigator peds))
+
+        if (sender.TryGetComponent<PedestrianAINavigator>(out PedestrianAINavigator peds))
         {
             Debug.LogWarning("Violation Type: Ran over a pedestrian");
             return runningOverPedestrians;
@@ -98,7 +116,6 @@ public class TrafficEnforcer : MonoBehaviour
         }
         else if (sender.TryGetComponent<VehicleAINavigator>(out VehicleAINavigator car))
         {
-
             switch ((int)data)
             {
                 case 0:
@@ -109,7 +126,6 @@ public class TrafficEnforcer : MonoBehaviour
                     return hittingAnotherVehicle;
                 default:
                     return 0;
-
             }
         }
         else if (sender.TryGetComponent<LaneReader>(out LaneReader flow))
@@ -121,7 +137,7 @@ public class TrafficEnforcer : MonoBehaviour
         {
             Debug.LogWarning("Violation Type: property damage");
             return hittingSignPostTrafficObject;
-        }   
+        }
         else if (sender.TryGetComponent<TrafficLightViolation>(out TrafficLightViolation red))
         {
             Debug.LogWarning("Violation Type: Traffic Light Violation");
@@ -129,20 +145,16 @@ public class TrafficEnforcer : MonoBehaviour
         }
         else if (sender.TryGetComponent<TrafficEnforcer>(out TrafficEnforcer mmda))
         {
-
             switch ((int)data)
             {
                 case 0:
                     Debug.Log("Violation Type: Speeding");
                     return speeding;
-
                 case 1:
                     Debug.Log("Violation Type: Obstructing Traffic/Stalling/AFK");
                     return obstructingTrafficStallingOrAFK;
-
                 default:
                     return 0;
-
             }
         }
 
@@ -151,65 +163,50 @@ public class TrafficEnforcer : MonoBehaviour
 
     private string ViolationType(Component sender, object data)
     {
-        //REORDER THESE FROM WORST TO MILD VIOLATION
+
 
         if (sender.TryGetComponent<PedestrianAINavigator>(out PedestrianAINavigator peds))
         {
-            Debug.LogWarning("Violation Type: Ran over a pedestrian");
             return "VIOLATION_01";
         }
         else if (sender.TryGetComponent<Buildings>(out Buildings property))
         {
-            Debug.LogWarning("Violation Type: property damage");
             return "VIOLATION_02";
         }
         else if (sender.TryGetComponent<VehicleAINavigator>(out VehicleAINavigator car))
         {
-
             switch ((int)data)
             {
                 case 0:
-                    Debug.Log("YOU HAVE BEEN VIOLATED: Got hit by another vehicle\nDW ITS NOT UR FAULT BOZO");
                     return "na";
                 case 1:
-                    Debug.LogWarning("Violation Type: Hit another vehicle");
                     return "VIOLATION_03";
                 default:
                     return "na";
-
             }
         }
         else if (sender.TryGetComponent<LaneReader>(out LaneReader flow))
         {
-            Debug.LogWarning("Violation Type: Counter Flowing Or Driving On Sidewalk");
             return "VIOLATION_04";
         }
         else if (sender.TryGetComponent<TrafficObject>(out TrafficObject cone))
         {
-            Debug.LogWarning("Violation Type: property damage");
             return "VIOLATION_05";
         }
         else if (sender.TryGetComponent<TrafficLightViolation>(out TrafficLightViolation red))
         {
-            Debug.LogWarning("Violation Type: Traffic Light Violation");
             return "VIOLATION_06";
         }
         else if (sender.TryGetComponent<TrafficEnforcer>(out TrafficEnforcer mmda))
         {
-
             switch ((int)data)
             {
                 case 0:
-                    Debug.Log("Violation Type: Speeding");
                     return "VIOLATION_07";
-
                 case 1:
-                    Debug.Log("Violation Type: Obstructing Traffic/Stalling/AFK");
                     return "VIOLATION_08";
-
                 default:
                     return "na";
-
             }
         }
 
@@ -219,15 +216,15 @@ public class TrafficEnforcer : MonoBehaviour
     public void checkPlayerSpeed(Component sender, object data)
     {
 
-        /*Debug.Log((string)data + " " + data.GetType());*/
+
 
         float speed = float.Parse((string)data);
 
-        
+
 
         if (speed >= speedLimit)
         {
-            if(Timer2())
+            if (Timer2())
             {
                 TrafficViolationCommitted(this, 0);
             }
@@ -239,7 +236,7 @@ public class TrafficEnforcer : MonoBehaviour
 
             justStarted = false;
         }
-        
+
         if (speed <= 0.01f && !justStarted)
         {
             if (Timer3())
@@ -247,15 +244,15 @@ public class TrafficEnforcer : MonoBehaviour
                 TrafficViolationCommitted(this, 1);
             }
         }
-        
-        
+
+
     }
 
     private bool Timer()
     {
         targetTime -= Time.deltaTime;
 
-        if(targetTime <= 0.0f)
+        if (targetTime <= 0.0f)
         {
             targetTime = immunityCooldown;
             return true;

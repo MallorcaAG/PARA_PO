@@ -61,45 +61,44 @@ public class PauseScreen : MonoBehaviour
         }
     }
 
-    // Resume the game (unpauses)
+   
     public void ResumeGame()
     {
         Unpause();
     }
 
-    // Restart the game (reloads the current scene)
     public void RestartGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    // Open the options panel and close the current pause menu panel
+    
     public void OpenOptions()
     {
         Debug.Log("Opening options...");
 
-        // Disable the pause menu panel
+       
         panel.SetActive(false);
 
-        // Enable the options panel
+     
         optionsPanel.SetActive(true);
     }
 
-    // Close the options panel and return to the pause menu
+  
     public void CloseOptions()
     {
         Debug.Log("Closing options...");
 
-        // Disable the options panel
+ 
         optionsPanel.SetActive(false);
 
-        // Re-enable the pause menu panel
+  
         panel.SetActive(true);
     }
 
-    // Exit the game (loads a different scene, like a main menu or quits)
+
     public void ExitGame()
     {
-        SceneManager.LoadScene("_MainMenu"); // Replace with the appropriate scene name
+        SceneManager.LoadScene("_MainMenu"); 
     }
 }

@@ -24,6 +24,9 @@ public class GameManager : Singleton<GameManager>
     [Tooltip("Load into Main Menu or enter cutscene name")]
     [SerializeField] private string sceneString;
     [SerializeField] private NPCCount npcs;
+    [Header("Violation Settings")]
+    [SerializeField] private float slowMoDuration = 2f; 
+    [SerializeField] private float slowMoTimeScale = 0.2f; 
 
     private List<float> violationPointsHolder = new List<float>();
     private float gameTimeInFloat;
@@ -128,19 +131,33 @@ public class GameManager : Singleton<GameManager>
         if(currentTrafficViolations >= maxTrafficViolations)
         {
             failType = "Violations Exceeded";
-
+            Time.timeScale = 0f;
             endGame();
         }
     }
 
     public void IncreaseTrafficViolation()
     {
-        currentTrafficViolations++;
+        currentTrafficViolations++;  
+        StartCoroutine(SlowDownTimeTemporarily());  
+        checkViolations();  
     }
     public void DecreaseTrafficViolation()
     {
         currentTrafficViolations--;
     }
+
+    private IEnumerator SlowDownTimeTemporarily()
+    {
+        Time.timeScale = slowMoTimeScale;  
+        Time.fixedDeltaTime = 0.02f * Time.timeScale; 
+
+        yield return new WaitForSecondsRealtime(slowMoDuration);  
+
+        Time.timeScale = 1f; 
+        Time.fixedDeltaTime = 0.02f; 
+    }
+
     #endregion
     #region Points System
     private void calculateStarsToGive(float p)

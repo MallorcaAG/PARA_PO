@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c5a15b6ab2804c244b46554de022c0fe, type: 3}
-  m_Name: onTryAagainButtonPressed
+  m_Name: onTryAgainButtonPressed
   m_EditorClassIdentifier: 
   listeners: []
