@@ -20,6 +20,8 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private GameEvent sendPointsData;
     [SerializeField] private GameEvent sendTimerData;
     [SerializeField] private GameEvent onEndGame;
+    [SerializeField] private GameEvent onTimeScaleChange;
+    [SerializeField] private GameEvent onFixedDeltaTimeChange;
     [Header("Next Scene")]
     [Tooltip("Load into Main Menu or enter cutscene name")]
     [SerializeField] private string sceneString;
@@ -64,7 +66,7 @@ public class GameManager : Singleton<GameManager>
 
             float[] f = new float[3];
             f[0] = points;
-            f[1] = (float)starsToGive;
+            f[1] = (float)starsToGive;  
             if(points > currentHighScore)
             {
                 f[2] = points;
@@ -93,6 +95,18 @@ public class GameManager : Singleton<GameManager>
         DataManager.Instance.save();
         npcs.ResetCurrentNPCValues();
         SceneLoadManager.Instance.LoadScene(sceneString);
+    }
+
+    public void restartGame(Component sender, object data)
+    {
+        string s = (string)data;
+
+        SceneLoadManager.Instance.LoadScene(s);
+    }
+
+    public void exitGame(Component sender, object data)
+    {
+        SceneLoadManager.Instance.LoadScene((string)data);
     }
 
     public void endOfRouteReached(Component sender, object data)
@@ -140,7 +154,6 @@ public class GameManager : Singleton<GameManager>
     {
         currentTrafficViolations++;  
         StartCoroutine(SlowDownTimeTemporarily());  
-        checkViolations();  
     }
     public void DecreaseTrafficViolation()
     {
@@ -149,13 +162,14 @@ public class GameManager : Singleton<GameManager>
 
     private IEnumerator SlowDownTimeTemporarily()
     {
-        Time.timeScale = slowMoTimeScale;  
-        Time.fixedDeltaTime = 0.02f * Time.timeScale; 
+        onTimeScaleChange.Raise(this, slowMoTimeScale);
+        onFixedDeltaTimeChange.Raise(this, 0.02f * slowMoTimeScale);
 
         yield return new WaitForSecondsRealtime(slowMoDuration);  
 
-        Time.timeScale = 1f; 
-        Time.fixedDeltaTime = 0.02f; 
+        onTimeScaleChange.Raise(this, 1f);
+        onFixedDeltaTimeChange.Raise(this, 0.02f);
+        
     }
 
     #endregion
@@ -192,6 +206,8 @@ public class GameManager : Singleton<GameManager>
         if(num <= 0)
         {
             violationPointsHolder.Add(num);
+
+            IncreaseTrafficViolation();
         }
 
         points = points + num;

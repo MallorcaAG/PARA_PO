@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7548366361833454933}
   - component: {fileID: 4346816911212585729}
   - component: {fileID: 4340405537824128004}
+  - component: {fileID: 8291981721327836324}
   m_Layer: 0
   m_Name: TimeScaleManager
   m_TagString: Untagged
@@ -64,6 +65,34 @@ MonoBehaviour:
       - m_Target: {fileID: 4346816911212585729}
         m_TargetAssemblyTypeName: TimeScaleManager, Project
         m_MethodName: onTimeScaleChange
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &8291981721327836324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4970715685089938281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 343a05844d3bc104aa8e0351c6314175, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 5c7acc4273bfe1d409398ca44468fc09, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4346816911212585729}
+        m_TargetAssemblyTypeName: TimeScaleManager, Project
+        m_MethodName: onFixedDeltaTimeChange
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

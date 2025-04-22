@@ -9,6 +9,8 @@ public class PauseScreen : MonoBehaviour
     [SerializeField] private GameObject panel; // The main pause menu panel
     [SerializeField] private GameObject optionsPanel; // The options panel
     [SerializeField] private GameEvent onTimeScaleChange;
+    [SerializeField] private GameEvent onTryAgainButtonPressed;
+    [SerializeField] private GameEvent onExitButtonPressed;
 
     private bool paused = false;
 
@@ -69,7 +71,7 @@ public class PauseScreen : MonoBehaviour
 
     public void RestartGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        onTryAgainButtonPressed.Raise(this, SceneManager.GetActiveScene().name);
     }
 
     
@@ -99,6 +101,6 @@ public class PauseScreen : MonoBehaviour
 
     public void ExitGame()
     {
-        SceneManager.LoadScene("_MainMenu"); 
+        onExitButtonPressed.Raise(this, "_MainMenu");
     }
 }

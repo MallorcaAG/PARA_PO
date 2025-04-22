@@ -59,6 +59,8 @@ MonoBehaviour:
   panel: {fileID: 8233416496762630242}
   optionsPanel: {fileID: 2210910046042315509}
   onTimeScaleChange: {fileID: 11400000, guid: d7aede6da92d47a4ebc117735ba704a7, type: 2}
+  onTryAgainButtonPressed: {fileID: 11400000, guid: ad27b16266320064eb4a54c771c0c1d2, type: 2}
+  onExitButtonPressed: {fileID: 11400000, guid: 19c29a8cfcd6b9744a5531c6aadc6e03, type: 2}
 --- !u!223 &6438196228854898296
 Canvas:
   m_ObjectHideFlags: 0

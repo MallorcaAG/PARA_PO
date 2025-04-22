@@ -10,4 +10,10 @@ public class TimeScaleManager : Singleton<TimeScaleManager>
         Time.timeScale = (float)data;
     }
 
+    public void onFixedDeltaTimeChange(Component sender, object data)
+    {
+        Time.fixedDeltaTime = (float)data;
+    }
+
+
 }

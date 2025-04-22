@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 6993020591668849996}
   - component: {fileID: 5411068728448986803}
   - component: {fileID: 592202547482848005}
+  - component: {fileID: 6476444006444681967}
+  - component: {fileID: 5996392527468436717}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -59,8 +61,12 @@ MonoBehaviour:
   sendPointsData: {fileID: 11400000, guid: 5164d3190bbf4ad4e88efe6e8553d7fe, type: 2}
   sendTimerData: {fileID: 11400000, guid: 371e3b5218c11954486e338f60be9c31, type: 2}
   onEndGame: {fileID: 11400000, guid: 2bf38cd1ec3b71247820d63409243bf9, type: 2}
+  onTimeScaleChange: {fileID: 11400000, guid: d7aede6da92d47a4ebc117735ba704a7, type: 2}
+  onFixedDeltaTimeChange: {fileID: 11400000, guid: 5c7acc4273bfe1d409398ca44468fc09, type: 2}
   sceneString: _MainMenu
   npcs: {fileID: 11400000, guid: b2e29010714b1c74c86042b36a2dc227, type: 2}
+  slowMoDuration: 2
+  slowMoTimeScale: 0.2
 --- !u!114 &2738187708898693185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77,18 +83,6 @@ MonoBehaviour:
   response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1319798362026771080}
-        m_TargetAssemblyTypeName: GameManager, Project
-        m_MethodName: IncreaseTrafficViolation
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1319798362026771080}
         m_TargetAssemblyTypeName: GameManager, Project
         m_MethodName: addPoints
@@ -205,6 +199,62 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: GameManager, Project
         m_MethodName: saveGame
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &6476444006444681967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7659036989042607094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 343a05844d3bc104aa8e0351c6314175, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: ad27b16266320064eb4a54c771c0c1d2, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1319798362026771080}
+        m_TargetAssemblyTypeName: GameManager, Project
+        m_MethodName: restartGame
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &5996392527468436717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7659036989042607094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 343a05844d3bc104aa8e0351c6314175, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 19c29a8cfcd6b9744a5531c6aadc6e03, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1319798362026771080}
+        m_TargetAssemblyTypeName: GameManager, Project
+        m_MethodName: exitGame
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

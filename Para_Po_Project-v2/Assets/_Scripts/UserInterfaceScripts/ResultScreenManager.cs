@@ -73,12 +73,12 @@ public class ResultScreenManager : MonoBehaviour
 
     public void TryAgainButton()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); 
+        onTryAgainButtonPressed.Raise(this, SceneManager.GetActiveScene().name);
     }
 
     public void ExitButton()
     {
-        SceneManager.LoadScene("_MainMenu");
+        onExitButtonPressed.Raise(this, "_MainMenu");
     }
     #endregion
     #region Utility
