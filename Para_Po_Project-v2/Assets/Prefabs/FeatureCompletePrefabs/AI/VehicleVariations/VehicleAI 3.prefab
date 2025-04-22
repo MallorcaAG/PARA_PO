@@ -214,9 +214,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nav: {fileID: 0}
   sensor: {fileID: 0}
-  BaseSpeedToSensorDistanceRatio: {x: 7, y: 4}
+  BaseSpeedToSensorDistanceRatio: {x: 7, y: 4.5}
   MinMaxRandSpeed: {x: 7, y: 16}
-  MinMaxRandSensor: {x: 4, y: 8}
+  MinMaxRandSensor: {x: 5, y: 8}
 --- !u!114 &-5045497638686822865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -252,6 +252,7 @@ MonoBehaviour:
   baseSpeed: 7
   fullStop: 0
   state: 0
+  deathFromImpactWithPlayerTimer: 5
   onImpactWithPlayer: {fileID: 11400000, guid: a1736e0de7f699b47a4d5b94abbe16a0, type: 2}
 --- !u!65 &4983993465833625945
 BoxCollider:
@@ -401,6 +402,34 @@ PrefabInstance:
     - target: {fileID: 2154991810469058351, guid: b8900c0ae15063241abc0a16d24da40f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6828188651115268889, guid: b8900c0ae15063241abc0a16d24da40f, type: 3}
+      propertyPath: m_Size
+      value: 3.8010962
+      objectReference: {fileID: 0}
+    - target: {fileID: 6828188651115268889, guid: b8900c0ae15063241abc0a16d24da40f, type: 3}
+      propertyPath: m_LocalReferencePoint.x
+      value: 0.007270336
+      objectReference: {fileID: 0}
+    - target: {fileID: 6828188651115268889, guid: b8900c0ae15063241abc0a16d24da40f, type: 3}
+      propertyPath: m_LocalReferencePoint.y
+      value: 0.6515176
+      objectReference: {fileID: 0}
+    - target: {fileID: 6828188651115268889, guid: b8900c0ae15063241abc0a16d24da40f, type: 3}
+      propertyPath: m_LocalReferencePoint.z
+      value: -0.013832092
+      objectReference: {fileID: 0}
+    - target: {fileID: 6828188651115268889, guid: b8900c0ae15063241abc0a16d24da40f, type: 3}
+      propertyPath: m_LODs.Array.data[0].screenRelativeHeight
+      value: 0.08193332
+      objectReference: {fileID: 0}
+    - target: {fileID: 6828188651115268889, guid: b8900c0ae15063241abc0a16d24da40f, type: 3}
+      propertyPath: m_LODs.Array.data[1].screenRelativeHeight
+      value: 0.04152728
+      objectReference: {fileID: 0}
+    - target: {fileID: 6828188651115268889, guid: b8900c0ae15063241abc0a16d24da40f, type: 3}
+      propertyPath: m_LODs.Array.data[2].screenRelativeHeight
+      value: 0.013842426
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

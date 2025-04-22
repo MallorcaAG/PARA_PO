@@ -45,7 +45,6 @@ public class GameManager : Singleton<GameManager>
         gameTimeInFloat = min + sec;
         targetTime = gameTimeInFloat;
         currentHighScore = DataManager.Instance.CurrentLevel.HighScore;
-        StartCoroutine(PointsSender());
     }
 
     private void Update()
@@ -80,6 +79,7 @@ public class GameManager : Singleton<GameManager>
             return;
         }
 
+        sendPointsData.Raise(this, points);
         sendTimerData.Raise(this, targetTime);
         checkViolations();
         checkTimeLimit();
@@ -145,7 +145,7 @@ public class GameManager : Singleton<GameManager>
         if(currentTrafficViolations >= maxTrafficViolations)
         {
             failType = "Violations Exceeded";
-            Time.timeScale = 0f;
+
             endGame();
         }
     }
@@ -221,18 +221,9 @@ public class GameManager : Singleton<GameManager>
 
         points = points + p;
     }
-    IEnumerator PointsSender()
+    void PointsSender()
     {
-        yield return new WaitForSeconds(1f);
-
         sendPointsData.Raise(this, points);
-
-        if (!isGameEnded)
-        {
-            yield break;
-        }
-
-        PointsSender();
     }
     #endregion
     #region Time Limit

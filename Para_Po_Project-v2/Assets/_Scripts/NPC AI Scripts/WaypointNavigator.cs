@@ -122,6 +122,12 @@ public class WaypointNavigator : MonoBehaviour
         }
     }
 
+    public void FULLSTOPNOW()
+    {
+        controller.movementSpeed = 0f;
+        fullStop = true;
+    }
+
     public void Go()
     {
         //Old implementation, dont remove cause idk if i may need this later

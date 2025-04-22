@@ -28,7 +28,7 @@ public class TrafficEnforcer : MonoBehaviour
     [Header("Immunity")]
     [SerializeField] private float immunityCooldown = 3f;
 
-    private bool immune = false;
+    private bool immune = true;
     private float immunityTimer = 0f;
 
     [Header("Game Events")]
@@ -58,7 +58,7 @@ public class TrafficEnforcer : MonoBehaviour
             immunityTimer -= Time.deltaTime;
 
 
-            Debug.Log("Immunity Timer: " + immunityTimer.ToString("F2") + " seconds remaining.");
+            //Debug.Log("Immunity Timer: " + immunityTimer.ToString("F2") + " seconds remaining.");
 
             if (immunityTimer <= 0f)
             {
@@ -75,6 +75,8 @@ public class TrafficEnforcer : MonoBehaviour
         {
             Debug.LogWarning("VIOLATION COMMITTED");
 
+            resetTimer2();
+            resetTimer3();
 
             float penalty = PenaltyBasedOnViolationType(sender, data);
             if (penalty > 0f)

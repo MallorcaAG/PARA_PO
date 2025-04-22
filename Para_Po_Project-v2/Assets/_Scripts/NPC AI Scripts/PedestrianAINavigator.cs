@@ -296,6 +296,8 @@ public class PedestrianAINavigator : WaypointNavigator
             return;
         }
 
+        gameObject.GetComponent<NPCDistanceToPlayer>().excempted = false;
+
         animator.CrossFade(personalityToWalkAnimation(),0f);
 
         transform.parent = null;    

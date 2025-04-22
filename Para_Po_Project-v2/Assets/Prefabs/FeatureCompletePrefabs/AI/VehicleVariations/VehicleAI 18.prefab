@@ -214,9 +214,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nav: {fileID: 0}
   sensor: {fileID: 0}
-  BaseSpeedToSensorDistanceRatio: {x: 7, y: 4}
+  BaseSpeedToSensorDistanceRatio: {x: 7, y: 4.5}
   MinMaxRandSpeed: {x: 7, y: 16}
-  MinMaxRandSensor: {x: 4, y: 8}
+  MinMaxRandSensor: {x: 5, y: 8}
 --- !u!114 &-5045497638686822865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -252,6 +252,7 @@ MonoBehaviour:
   baseSpeed: 7
   fullStop: 0
   state: 0
+  deathFromImpactWithPlayerTimer: 5
   onImpactWithPlayer: {fileID: 11400000, guid: a1736e0de7f699b47a4d5b94abbe16a0, type: 2}
 --- !u!65 &4983993465833625945
 BoxCollider:

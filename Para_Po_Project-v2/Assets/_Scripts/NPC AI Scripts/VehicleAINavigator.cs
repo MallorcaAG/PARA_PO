@@ -11,12 +11,14 @@ public class VehicleAINavigator : WaypointNavigator
 
     [Header("Behavior")]
     [SerializeField] private NPCState state;
+    [SerializeField] private float deathFromImpactWithPlayerTimer = 5f;
 
     [Header("Game Event")]
     [SerializeField] private GameEvent onImpactWithPlayer;
 
-    bool isStopped = false;
+    bool isStopped = false, playerHit = false;
     private AISensors senses;
+    private NPCDistanceToPlayer destroyer;
     private float holdBaseSpd;
 
 
@@ -36,6 +38,7 @@ public class VehicleAINavigator : WaypointNavigator
     void Start()
     {
         senses = GetComponent<AISensors>();
+        destroyer = GetComponent<NPCDistanceToPlayer>();
 
         if (currentWaypoint != null)
         {
@@ -57,6 +60,11 @@ public class VehicleAINavigator : WaypointNavigator
         {
             Go();
         }
+
+        if(playerHit)
+        {
+            FULLSTOPNOW();
+        }
     }
     #endregion
 
@@ -75,6 +83,7 @@ public class VehicleAINavigator : WaypointNavigator
     {
         if (collision.transform.CompareTag("Player"))
         {
+            playerHit = true;
             if(senses.getSensors() && !fullStop)
             {
                 //I'm at fault
@@ -87,10 +96,18 @@ public class VehicleAINavigator : WaypointNavigator
                 onImpactWithPlayer.Raise(this, 1);
 
             }
-            
+            FULLSTOPNOW();
+            StartCoroutine(kys());
             
         }
         isStopped = true;
+    }
+
+    private IEnumerator kys()
+    {
+        yield return new WaitForSeconds(deathFromImpactWithPlayerTimer);
+
+        destroyer.kys();
     }
 
 }

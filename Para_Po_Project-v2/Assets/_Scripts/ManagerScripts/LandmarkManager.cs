@@ -46,6 +46,8 @@ public class LandmarkManager : Singleton<LandmarkManager>
             Quaternion.identity
         );
 
+        npcObj.GetComponent<NPCDistanceToPlayer>().excempted = true;
+
         Instantiate(uiIndicator, npcObj.transform, false);
 
         PedestrianAINavigator npcAI = npcObj.GetComponent<PedestrianAINavigator>();

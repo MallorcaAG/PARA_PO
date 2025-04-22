@@ -6,7 +6,7 @@ public class NPCDistanceToPlayer : MonoBehaviour
 {
     [SerializeField] private NPCCount npcs;
     [SerializeField] private float range;
-    public bool primeDestruction;
+    public bool primeDestruction, excempted = false;
 
     private Transform player;
     private float distance;
@@ -21,12 +21,15 @@ public class NPCDistanceToPlayer : MonoBehaviour
     private IEnumerator Wait()
     {
         yield return new WaitForSeconds(5f);
-
+        
         primeDestruction = true;
     }
 
     private void Update()
     {
+        if (excempted)
+            return;
+
         distance = Vector3.Distance(player.position, transform.position);
 
         if(primeDestruction)
@@ -48,5 +51,14 @@ public class NPCDistanceToPlayer : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+    }
+
+    public void kys() //ONLY USED WHEN CONTACT WITH PLAYER IS MADE
+    {
+        npcs.subtractVehicleNPC();
+
+        primeDestruction = false;
+
+        Destroy(gameObject);
     }
 }
