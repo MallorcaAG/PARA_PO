@@ -45,6 +45,7 @@ public class LandmarkManager : Singleton<LandmarkManager>
         Vector2 randomOffset = Random.insideUnitCircle * spawnRadius;
         Vector3 spawnPosition = basePosition + new Vector3(randomOffset.x, 0, randomOffset.y);
 
+
         GameObject npcObj = Instantiate(
             npc[Random.Range(0, npc.Length)],
             spawnPosition,

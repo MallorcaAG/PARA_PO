@@ -33,7 +33,7 @@ public class SceneLoadManager : PersistentSingleton<SceneLoadManager>
 
     private void Update()
     {
-        progressBar.value = Mathf.MoveTowards(progressBar.value, target, 3 * Time.deltaTime);
+        progressBar.value = Mathf.MoveTowards(progressBar.value, target, 5f * Time.unscaledDeltaTime);
     }
 
     #region SceneManagement
@@ -100,21 +100,26 @@ public class SceneLoadManager : PersistentSingleton<SceneLoadManager>
         loaderCanvas.SetActive(true);
         tipTextBox.text = tips[Random.Range(0, tips.Length)];
 
-        do
+        // Start checking progress
+        while (!scene.isDone)
         {
-            await Task.Delay(100);
+            float progress = Mathf.Clamp01(scene.progress / 0.9f); // Normalize to 0-1
+            target = progress;
 
-            target = scene.progress + 0.09f;
+            // Only allow activation if ready
+            if (scene.progress >= 0.9f)
+            {
+                await Task.Delay(200); // Short optional wait (smoother transition)
+                scene.allowSceneActivation = true;
+            }
 
-        } while (scene.progress < 0.9f);
+            await Task.Yield(); // No delay, keeps UI responsive
+        }
 
-        await Task.Delay(1000);
-
-        scene.allowSceneActivation = true;
         loaderCanvas.SetActive(false);
 
         //IF loadIntoLevelSelectionPanel
-            //SCREAM GAMEEVENT TO OPEN IN LEVEL SELECTION PANEL IN MAINMENU CANVAS
+        //SCREAM GAMEEVENT TO OPEN IN LEVEL SELECTION PANEL IN MAINMENU CANVAS
     }
     #endregion
 
