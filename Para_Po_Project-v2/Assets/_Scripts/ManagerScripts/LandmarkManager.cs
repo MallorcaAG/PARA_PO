@@ -30,7 +30,6 @@ public class LandmarkManager : Singleton<LandmarkManager>
         int start = Random.Range(0, landmarks.Length - 1);
         int end = Random.Range(start + 1, landmarks.Length);
 
-        // Safety check for valid spawn points
         GameObject[] points = landmarks[start].GetComponent<Landmark>().getSpawnpoints();
         if (points == null || points.Length == 0)
         {
@@ -39,10 +38,16 @@ public class LandmarkManager : Singleton<LandmarkManager>
         }
 
         int startPos = Random.Range(0, points.Length);
+        Vector3 basePosition = points[startPos].transform.position;
+
+        
+        float spawnRadius = 2.5f; 
+        Vector2 randomOffset = Random.insideUnitCircle * spawnRadius;
+        Vector3 spawnPosition = basePosition + new Vector3(randomOffset.x, 0, randomOffset.y);
 
         GameObject npcObj = Instantiate(
             npc[Random.Range(0, npc.Length)],
-            points[startPos].transform.position,
+            spawnPosition,
             Quaternion.identity
         );
 
@@ -52,4 +57,5 @@ public class LandmarkManager : Singleton<LandmarkManager>
         npcAI.setMyLandmark(landmarks[start]);
         npcAI.setDesiredLandmark(landmarks[end]);
     }
+
 }
