@@ -13,11 +13,14 @@
 	- Vehicles dont stop and just run you over. I think Vehicle Sensors acting weird. Doesnt slow down in time or at all 
 		(Apply a stopping modifier when collider is hit??)
 			> Adjustment code made. Not tested yet
+			> Testing details: Stay on road or Overtake Car and stop some distance ahead of them. See if car stops or slows down faster, and dies if impacted with player
 	- Change Culling distance of vehicles. Suddenly appears too close to player and noticable
 			> Adjustment made. Not tested yet
+			> Testing details: Observe cars on road if they appear too close
 	- Lighting stuff
 	- SakayPeds not spawning
 			> Adjustment code made. Not tested yet
+			> Testing details: Play scene and pause, then in Scene view, see if SakayPeds spawned in distant landmarks
 	- Points not working
 			> Fixed. I think?
 	- Radio doesnt automatically start
