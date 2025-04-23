@@ -5,6 +5,9 @@
 	- Add 'Para Po' voicelines in Pedestrian prefab. Save AudioClips in Asset/Audio/Voicelines
 	- Yellow Traffic Light not working properly
 	- Give Lamppost prefab lights
+			> Testing details: Check if lampposts turn on during sunset and off on sunrise, stay off on day and stay on on night
+	- Pagbaba ng mga passengers sira again TwT fuuukkk
+	- Landmark NPCs random spawning inconsistency bug
 
 	MainMenu Testing Bugs
 	- "The referenced script (Unknown) on this Behaviour is missing!" HUH ?????
@@ -28,9 +31,12 @@
 	Level 6 Testing Bugs
 	- Same issues as Level 1
 	- 2 Radios playing at the same time?
+			> Rename Background in AudioManager to Ambience
 	- Time did not stop after winning or losing
 			> No TimeScaleManager in Scene. Fixed
 	- Spawnings are delayed?
+	- Lack of props on route plyer drives on
+	- Unnecessary props on roads player doesnt drive on (NOTE: DO NOT REMOVE TREES)
 
 	Level 11 Testing Bugs
 	- Violation Type: property damage ????

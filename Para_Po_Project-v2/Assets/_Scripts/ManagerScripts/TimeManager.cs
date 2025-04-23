@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class TimeManager : MonoBehaviour
 {
+    [SerializeField] private GameEvent onDayActivated;
+    [SerializeField] private GameEvent onSunsetActivated;
+    [SerializeField] private GameEvent onNightActivated;
+    [SerializeField] private GameEvent onSunriseActivated;
+
     [SerializeField] private Texture2D skyboxNight;
     [SerializeField] private Texture2D skyboxSunrise;
     [SerializeField] private Texture2D skyboxDay;
@@ -30,6 +35,7 @@ public class TimeManager : MonoBehaviour
         skyboxScrollSpeed = 1f / cycleDurationInSeconds; // Scroll speed proportional to cycle duration
         elapsedTime = secondsPerHour * 8; // Start at hour 8, which is daytime
         currentHour = 8;
+        onDayActivated.Raise(this, 0f); //Lets other objects know it is daytime
         OnHoursChange(currentHour, true);
     }
 
@@ -42,7 +48,7 @@ public class TimeManager : MonoBehaviour
         {
             currentHour = newHour;
             OnHoursChange(currentHour, false);
-        }
+        }   
 
         // Calculate the sun's rotation angle based on the elapsed time and cycle speed
         float rotationAngle = (elapsedTime / cycleDurationInSeconds) * 360f;
@@ -54,7 +60,7 @@ public class TimeManager : MonoBehaviour
 
     private void OnHoursChange(int hour, bool isInitialSetup)
     {
-        if (hour == 8)
+        if (hour == 7) //Sunrise to Day
         {
             if (isInitialSetup)
             {
@@ -66,25 +72,29 @@ public class TimeManager : MonoBehaviour
             }
             else
             {
+                onDayActivated.Raise(this, 0);
                 StartCoroutine(LerpSkybox(skyboxSunrise, skyboxDay, secondsPerHour));
                 StartCoroutine(LerpLight(gradientSunriseToDay, secondsPerHour));
                 StartCoroutine(LerpIntensity(globalLight.intensity, 1.0f, secondsPerHour)); // Bright light for daytime
             }
         }
-        else if (hour == 18)
+        else if (hour == 17) //Day to Sunset
         {
+            onSunsetActivated.Raise(this, 0);
             StartCoroutine(LerpSkybox(skyboxDay, skyboxSunset, secondsPerHour));
             StartCoroutine(LerpLight(gradientDayToSunset, secondsPerHour));
             StartCoroutine(LerpIntensity(globalLight.intensity, 0.2f, secondsPerHour)); // Dim light for sunset
         }
-        else if (hour == 22)
+        else if (hour == 21) //Sunset to Night
         {
+            onNightActivated.Raise(this, 0);
             StartCoroutine(LerpSkybox(skyboxSunset, skyboxNight, secondsPerHour));
             StartCoroutine(LerpLight(gradientSunsetToNight, secondsPerHour));
             StartCoroutine(LerpIntensity(globalLight.intensity, 0.05f, secondsPerHour)); // Very dim light for night
         }
-        else if (hour == 6)
+        else if (hour == 5) //Night to Sunrise
         {
+            onSunriseActivated.Raise(this, 0);
             StartCoroutine(LerpSkybox(skyboxNight, skyboxSunrise, secondsPerHour));
             StartCoroutine(LerpLight(gradientNightToSunrise, secondsPerHour));
             StartCoroutine(LerpIntensity(globalLight.intensity, 0.5f, secondsPerHour)); // Dim light for sunrise

@@ -44,6 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce38604728c52d5439eb7610aef9b118, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onDayActivated: {fileID: 11400000, guid: 981f1408ba35eec4f89f7c64fcf0b80a, type: 2}
+  onSunsetActivated: {fileID: 11400000, guid: f18e7dbe83dfe83418c14637903eb5af, type: 2}
+  onNightActivated: {fileID: 11400000, guid: f2bba88de4f310a4fb507b09bc807c77, type: 2}
+  onSunriseActivated: {fileID: 11400000, guid: 5c90f2fdcd1b96d4fadb57a0ec67f95c, type: 2}
   skyboxNight: {fileID: 2800000, guid: 3cf4d52b14bd4254d9f4fd063f8d9bfd, type: 3}
   skyboxSunrise: {fileID: 2800000, guid: 7deb3454b299fae498f2365d40aee326, type: 3}
   skyboxDay: {fileID: 2800000, guid: 90bac99dc822bf641b140cdc291b845e, type: 3}
@@ -201,7 +205,7 @@ Transform:
   - {fileID: 1104906693321331617}
   - {fileID: 4868913542413310344}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8104023637284270601
 GameObject:
