@@ -12,8 +12,13 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private int currentTrafficViolations = 0;
     [SerializeField] private int maxTrafficViolations = 3;
     [Header("Game Variables")]
-    [SerializeField] private bool routeSuccessful = false;
-    [SerializeField] private bool isGameEnded = false;
+    [SerializeField] private bool hardDifficulty = false;
+    [SerializeField] private int easyLevelPedestrianNPCCount = 50;
+    [SerializeField] private int easyLevelVehicleNPCCount = 20;
+    [SerializeField] private int hardLevelPedestrianNPCCount;
+    [SerializeField] private int hardLevelVehicleNPCCount;
+    private bool routeSuccessful = false;
+    private bool isGameEnded = false;
     [Tooltip("X = minutes, Y = seconds")]
     [SerializeField] private Vector2 gameTime;
     [Header("GameEvents")]
@@ -45,6 +50,15 @@ public class GameManager : Singleton<GameManager>
         gameTimeInFloat = min + sec;
         targetTime = gameTimeInFloat;
         currentHighScore = DataManager.Instance.CurrentLevel.HighScore;
+
+        if(!hardDifficulty)
+        {
+            npcs.setMaxPedestrianCount(easyLevelPedestrianNPCCount);
+            npcs.setMaxVehicleCount(easyLevelVehicleNPCCount);
+            return;
+        }
+        npcs.setMaxPedestrianCount(hardLevelPedestrianNPCCount);
+        npcs.setMaxVehicleCount(hardLevelVehicleNPCCount);
     }
 
     private void Update()

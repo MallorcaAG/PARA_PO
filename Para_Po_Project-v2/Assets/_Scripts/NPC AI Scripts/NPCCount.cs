@@ -13,6 +13,27 @@ public class NPCCount : ScriptableObject
     [SerializeField] private int currentPedestrianCount;
     [SerializeField] private int currentVehicleCount;
 
+    #region Game Initialization Setting Functions
+    public void setMaxPedestrianCount(int num)
+    {
+        maxPedestrianCount = num;
+    }
+
+    public void setMaxVehicleCount(int num)
+    {
+        maxVehicleCount = num;
+    }
+
+    public void setDefaultNPCCount()
+    {
+        int ped = 50;
+        int veh = 20;
+
+        setMaxPedestrianCount(ped);
+        setMaxVehicleCount(veh);
+    }
+    #endregion
+    #region InGame NPC Functions
     public void ResetCurrentNPCValues()
     {
         currentPedestrianCount = 0;
@@ -58,5 +79,5 @@ public class NPCCount : ScriptableObject
 
         return false;
     }
-
+    #endregion
 }

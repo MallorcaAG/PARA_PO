@@ -1,5 +1,3 @@
-	- Give 'Barrier' prefab appropriate barrier texture. Refer to GDD on what it could look like or make it look better 
-			> DONE
 	- Pause screen, show controls and adjust audiomixer. 
 			> (Havent tested yet. . .)
 	- Add 'Para Po' voicelines in Pedestrian prefab. Save AudioClips in Asset/Audio/Voicelines
@@ -8,6 +6,8 @@
 			> Testing details: Check if lampposts turn on during sunset and off on sunrise, stay off on day and stay on on night
 	- Pagbaba ng mga passengers sira again TwT fuuukkk
 	- Landmark NPCs random spawning inconsistency bug
+	- We have 2 AudioMixers?
+
 
 	MainMenu Testing Bugs
 	- "The referenced script (Unknown) on this Behaviour is missing!" HUH ?????
