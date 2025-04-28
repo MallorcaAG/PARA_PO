@@ -35,8 +35,6 @@
 	- Time did not stop after winning or losing
 			> No TimeScaleManager in Scene. Fixed
 	- Spawnings are delayed?
-	- Lack of props on route plyer drives on
-	- Unnecessary props on roads player doesnt drive on (NOTE: DO NOT REMOVE TREES)
 
 	Level 11 Testing Bugs
 	- Violation Type: property damage ????
