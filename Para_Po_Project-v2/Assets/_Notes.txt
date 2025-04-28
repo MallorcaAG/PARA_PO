@@ -42,4 +42,3 @@
 
 	Level 17 Testing Bugs
 	- Violation Type: Counter Flowing Or Driving On Sidewalk (VehicleWaypoints not set properly)
-	- Trees are missing
