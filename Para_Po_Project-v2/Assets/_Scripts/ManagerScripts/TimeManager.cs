@@ -71,8 +71,15 @@ public class TimeManager : MonoBehaviour
         float rotationAngle = (elapsedTime / cycleDurationInSeconds) * 360f;
         globalLight.transform.rotation = Quaternion.Euler(new Vector3(rotationAngle - 90f, 0f, 0f));
 
-       
-        RenderSettings.skybox.SetFloat("_Offset", Time.time * skyboxScrollSpeed);
+
+        if (RenderSettings.skybox != null)
+        {
+            RenderSettings.skybox.SetFloat("_Offset", Time.time * skyboxScrollSpeed);
+        }
+        else
+        {
+            Debug.LogWarning("RenderSettings.skybox is null. Make sure Skybox_DualPanoramic is assigned.");
+        }
     }
 
     private void OnHoursChange(int hour, bool isInitialSetup)
