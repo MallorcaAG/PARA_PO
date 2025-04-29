@@ -13,6 +13,7 @@
 		(Apply a stopping modifier when collider is hit??)
 			> Adjustment code made. Not tested yet
 			> Testing details: Stay on road or Overtake Car and stop some distance ahead of them. See if car stops or slows down faster, and dies if impacted with player
+	- Vehicle hitting violation not working
 	- No NPC loads from MainMenu
 			> Bruh, forgot to set diff NPC Count in GameManager
 	- Lamppost dont light up during sunset
