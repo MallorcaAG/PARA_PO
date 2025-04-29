@@ -16,7 +16,6 @@
 	- Vehicle hitting violation not working
 	- No NPC loads from MainMenu
 			> Bruh, forgot to set diff NPC Count in GameManager
-	- Lamppost dont light up during sunset
 	- SakayPedestrian had desired landmark the player passed by already
 	- Only 1 SakayPed left when 2 had same desired landmark
 	- Route Completion points not given
