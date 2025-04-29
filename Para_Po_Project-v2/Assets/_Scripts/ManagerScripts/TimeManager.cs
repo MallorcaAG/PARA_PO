@@ -13,6 +13,7 @@ public class TimeManager : MonoBehaviour
     [SerializeField] private Texture2D skyboxSunrise;
     [SerializeField] private Texture2D skyboxDay;
     [SerializeField] private Texture2D skyboxSunset;
+    [SerializeField] private Material Skybox_DualPanoramic;
 
     [SerializeField] private Gradient gradientNightToSunrise;
     [SerializeField] private Gradient gradientSunriseToDay;
@@ -31,11 +32,27 @@ public class TimeManager : MonoBehaviour
 
     private void Start()
     {
-        secondsPerHour = cycleDurationInSeconds / 24f; // Divide total duration by 24 hours
-        skyboxScrollSpeed = 1f / cycleDurationInSeconds; // Scroll speed proportional to cycle duration
-        elapsedTime = secondsPerHour * 8; // Start at hour 8, which is daytime
+       
+        RenderSettings.skybox = Skybox_DualPanoramic;
+        RenderSettings.skybox.SetTexture("_Texture1", skyboxDay);
+        RenderSettings.skybox.SetFloat("_Blend", 0);
+
+       
+        RenderSettings.sun = globalLight;
+
+      
+        globalLight.color = gradientSunriseToDay.Evaluate(1f);
+        globalLight.intensity = 1.0f;
+        RenderSettings.fogColor = globalLight.color;
+
+    
+        secondsPerHour = cycleDurationInSeconds / 24f;
+        skyboxScrollSpeed = 1f / cycleDurationInSeconds;
+        elapsedTime = secondsPerHour * 8; 
         currentHour = 8;
-        onDayActivated.Raise(this, 0f); //Lets other objects know it is daytime
+
+       
+        onDayActivated.Raise(this, 0f);
         OnHoursChange(currentHour, true);
     }
 
@@ -50,11 +67,11 @@ public class TimeManager : MonoBehaviour
             OnHoursChange(currentHour, false);
         }   
 
-        // Calculate the sun's rotation angle based on the elapsed time and cycle speed
+        
         float rotationAngle = (elapsedTime / cycleDurationInSeconds) * 360f;
         globalLight.transform.rotation = Quaternion.Euler(new Vector3(rotationAngle - 90f, 0f, 0f));
 
-        // Scroll the skybox texture to simulate moving clouds
+       
         RenderSettings.skybox.SetFloat("_Offset", Time.time * skyboxScrollSpeed);
     }
 
