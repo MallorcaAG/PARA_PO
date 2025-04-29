@@ -214,9 +214,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nav: {fileID: 0}
   sensor: {fileID: 0}
-  BaseSpeedToSensorDistanceRatio: {x: 7, y: 4.5}
-  MinMaxRandSpeed: {x: 7, y: 16}
-  MinMaxRandSensor: {x: 5, y: 8}
+  BaseSpeedToSensorDistanceRatio: {x: 7, y: 5.5}
+  MinMaxRandSpeed: {x: 7, y: 12}
+  MinMaxRandSensor: {x: 5, y: 7}
 --- !u!114 &-5045497638686822865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -335,6 +335,7 @@ MonoBehaviour:
   npcs: {fileID: 11400000, guid: b2e29010714b1c74c86042b36a2dc227, type: 2}
   range: 300
   primeDestruction: 0
+  excempted: 0
 --- !u!1001 &6252527170459818703
 PrefabInstance:
   m_ObjectHideFlags: 0

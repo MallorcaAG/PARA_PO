@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using log4net.Core;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -21,5 +22,20 @@ public class SoundMixerManager : MonoBehaviour
     public void SetMusicVolume(float level)
     {
         audioMixer.SetFloat("musicVolume", Mathf.Log10(level) * 20f);
+    }
+
+    public void SendDataMasterVolume(float level)
+    {
+        DataManager.Instance.MasterVolumeSliderValue = level;
+    }
+
+    public void SendDataSFXVolume(float level)
+    {
+        DataManager.Instance.MasterVolumeSliderValue = level;
+    }
+
+    public void SendDataMusicVolume(float level)
+    {
+        DataManager.Instance.MasterVolumeSliderValue = level;
     }
 }

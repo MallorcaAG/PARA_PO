@@ -13,9 +13,25 @@ public class VolumeSettings : MonoBehaviour
 
     private void Start()
     {
+        Initialize();
         SetMasterVolume();
         SetMusicVolume();
         SetSFXVolume();
+    }
+
+    private void Initialize()
+    {
+        if(DataManager.Instance == null)
+        {
+            masterSlider.value = 0.5f;
+            musicSlider.value = 0.5f;
+            sfxSlider.value = 0.5f;
+            return;
+        }
+
+        masterSlider.value = DataManager.Instance.MasterVolumeSliderValue;
+        musicSlider.value = DataManager.Instance.MusicVolumeSliderValue;
+        sfxSlider.value = DataManager.Instance.SFXVolumeSliderValue;
     }
 
     public void SetMasterVolume()
@@ -34,5 +50,20 @@ public class VolumeSettings : MonoBehaviour
     {
         float volume = sfxSlider.value;
         myMixer.SetFloat("sfxVolume", Mathf.Log10(volume) * 20);
+    }
+
+    public void SendDataMasterVolume(float level)
+    {
+        DataManager.Instance.MasterVolumeSliderValue = level;
+    }
+
+    public void SendDataSFXVolume(float level)
+    {
+        DataManager.Instance.MasterVolumeSliderValue = level;
+    }
+
+    public void SendDataMusicVolume(float level)
+    {
+        DataManager.Instance.MasterVolumeSliderValue = level;
     }
 }

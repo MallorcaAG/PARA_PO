@@ -31,10 +31,15 @@ public class BackgroundMusicManager : PersistentSingleton<BackgroundMusicManager
         {
             if (Input.GetKeyDown(KeyCode.R))
             {
-                targetTime = 3f;
-                StartCoroutine(ChangeRadioStation());
+                InitRadio();
             }
         }
+    }
+
+    public void InitRadio()
+    {
+        targetTime = 3f;
+        StartCoroutine(ChangeRadioStation());
     }
 
     private void PlayBGM(AudioClip audioClip, Transform spawnTransform, float volume)
@@ -99,6 +104,12 @@ public class BackgroundMusicManager : PersistentSingleton<BackgroundMusicManager
         StopAllCoroutines();
 
         PlayMainMenuMusic();
+    }
+
+    public void StopAllMusic()
+    {
+        StopAllCoroutines();
+        audioSource.Stop();
     }
 
     private bool Timer()

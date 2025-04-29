@@ -319,6 +319,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 151902255521570063}
+        m_TargetAssemblyTypeName: VolumeSettings, Audio
+        m_MethodName: SendDataSFXVolume
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &605208497257820384
 GameObject:
   m_ObjectHideFlags: 0
@@ -414,6 +426,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: VolumeSettings, Audio
         m_MethodName: SetMasterVolume
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 151902255521570063}
+        m_TargetAssemblyTypeName: VolumeSettings, Audio
+        m_MethodName: SendDataMasterVolume
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -554,6 +578,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: VolumeSettings, Audio
         m_MethodName: SetMusicVolume
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 151902255521570063}
+        m_TargetAssemblyTypeName: VolumeSettings, Audio
+        m_MethodName: SendDataMusicVolume
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -788,7 +824,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76cfb7fad33e8d4458f1faa810a514f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myMixer: {fileID: 24100000, guid: 223ec7d9de5ce35438e09a72214f42eb, type: 2}
+  myMixer: {fileID: 24100000, guid: b36a23ca844cde248844bc14c6365d47, type: 2}
   masterSlider: {fileID: 5925151982545505}
   sfxSlider: {fileID: 647839945536489480}
   musicSlider: {fileID: 1865806544658898385}

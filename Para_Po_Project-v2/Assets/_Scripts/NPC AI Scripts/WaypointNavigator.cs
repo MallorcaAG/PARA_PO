@@ -113,7 +113,7 @@ public class WaypointNavigator : MonoBehaviour
 
         if(controller.movementSpeed > 0.1f)
         {
-            controller.movementSpeed -= 0.1f;
+            controller.movementSpeed -= 0.25f;
         }
         else if (controller.movementSpeed <= 0.1f)
         {

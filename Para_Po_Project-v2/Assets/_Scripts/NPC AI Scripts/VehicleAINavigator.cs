@@ -16,7 +16,7 @@ public class VehicleAINavigator : WaypointNavigator
     [Header("Game Event")]
     [SerializeField] private GameEvent onImpactWithPlayer;
 
-    bool isStopped = false, playerHit = false;
+    bool isStopped = false, playerHit = false, dying = false;
     private AISensors senses;
     private NPCDistanceToPlayer destroyer;
     private float holdBaseSpd;
@@ -81,6 +81,8 @@ public class VehicleAINavigator : WaypointNavigator
 
     private void OnCollisionEnter(Collision collision)
     {
+        if (dying) return;
+
         if (collision.transform.CompareTag("Player"))
         {
             playerHit = true;
@@ -100,7 +102,13 @@ public class VehicleAINavigator : WaypointNavigator
             StartCoroutine(kys());
             
         }
+        else if (collision.transform.CompareTag("Vehicles"))
+        {
+            FULLSTOPNOW();
+            StartCoroutine(kys());
+        }
         isStopped = true;
+        dying = true;
     }
 
     private IEnumerator kys()

@@ -942,6 +942,7 @@ GameObject:
   m_Component:
   - component: {fileID: 273699316}
   - component: {fileID: 273699317}
+  - component: {fileID: 273699318}
   m_Layer: 5
   m_Name: MusicVolumeSlider
   m_TagString: Untagged
@@ -1035,6 +1036,32 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1580530441}
+        m_TargetAssemblyTypeName: SoundMixerManager, Project
+        m_MethodName: SendDataMusicVolume
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &273699318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 273699315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9c5d6d939ee3ed4fa3d3779a6b66e93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mySlider: {fileID: 273699317}
+  myAudioType: 1
 --- !u!1 &290844431
 GameObject:
   m_ObjectHideFlags: 0
@@ -2353,6 +2380,7 @@ GameObject:
   m_Component:
   - component: {fileID: 687640907}
   - component: {fileID: 687640908}
+  - component: {fileID: 687640909}
   m_Layer: 5
   m_Name: SFXVolumeSlider
   m_TagString: Untagged
@@ -2446,6 +2474,32 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1580530441}
+        m_TargetAssemblyTypeName: SoundMixerManager, Project
+        m_MethodName: SendDataSFXVolume
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &687640909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 687640906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9c5d6d939ee3ed4fa3d3779a6b66e93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mySlider: {fileID: 687640908}
+  myAudioType: 2
 --- !u!1 &697914460
 GameObject:
   m_ObjectHideFlags: 0
@@ -3482,6 +3536,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentLevel: {fileID: 0}
   nextLevel: {fileID: 0}
+  masterVolumeSliderValue: 0.5
+  sfxVolumeSliderValue: 0.5
+  musicVolumeSliderValue: 0.5
 --- !u!4 &882874750
 Transform:
   m_ObjectHideFlags: 0
@@ -4058,6 +4115,9 @@ GameObject:
   - component: {fileID: 1085721918}
   - component: {fileID: 1085721919}
   - component: {fileID: 1085721920}
+  - component: {fileID: 1085721923}
+  - component: {fileID: 1085721922}
+  - component: {fileID: 1085721921}
   m_Layer: 0
   m_Name: BGM
   m_TagString: Untagged
@@ -4196,6 +4256,90 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1085721921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1085721917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 343a05844d3bc104aa8e0351c6314175, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 6726e841f998ca04abec5efd422c3874, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1085721919}
+        m_TargetAssemblyTypeName: BackgroundMusicManager, Audio
+        m_MethodName: StopAllMusic
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1085721922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1085721917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 343a05844d3bc104aa8e0351c6314175, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: f150cd39e96768b45b729f1f52377183, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1085721919}
+        m_TargetAssemblyTypeName: BackgroundMusicManager, Audio
+        m_MethodName: InitRadio
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1085721923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1085721917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 343a05844d3bc104aa8e0351c6314175, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 9204f70fa2ffae4479ece7e48332a6f7, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1085721919}
+        m_TargetAssemblyTypeName: BackgroundMusicManager, Audio
+        m_MethodName: StopRadio
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1096068221
 GameObject:
   m_ObjectHideFlags: 0
@@ -5111,6 +5255,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1292467186}
   - component: {fileID: 1292467187}
+  - component: {fileID: 1292467188}
   m_Layer: 5
   m_Name: MasterVolumeSlider
   m_TagString: Untagged
@@ -5204,6 +5349,32 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1580530441}
+        m_TargetAssemblyTypeName: SoundMixerManager, Project
+        m_MethodName: SendDataMasterVolume
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1292467188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1292467185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9c5d6d939ee3ed4fa3d3779a6b66e93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mySlider: {fileID: 1292467187}
+  myAudioType: 0
 --- !u!1 &1294952131
 GameObject:
   m_ObjectHideFlags: 0
@@ -20799,6 +20970,67 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1001 &8375723582661159064
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4235357254169980211, guid: 93aab2bf9ada2fb48a676af00610179b, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4235357254169980211, guid: 93aab2bf9ada2fb48a676af00610179b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 166.84889
+      objectReference: {fileID: 0}
+    - target: {fileID: 4235357254169980211, guid: 93aab2bf9ada2fb48a676af00610179b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 227.11748
+      objectReference: {fileID: 0}
+    - target: {fileID: 4235357254169980211, guid: 93aab2bf9ada2fb48a676af00610179b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -539.0244
+      objectReference: {fileID: 0}
+    - target: {fileID: 4235357254169980211, guid: 93aab2bf9ada2fb48a676af00610179b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4235357254169980211, guid: 93aab2bf9ada2fb48a676af00610179b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4235357254169980211, guid: 93aab2bf9ada2fb48a676af00610179b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4235357254169980211, guid: 93aab2bf9ada2fb48a676af00610179b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4235357254169980211, guid: 93aab2bf9ada2fb48a676af00610179b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4235357254169980211, guid: 93aab2bf9ada2fb48a676af00610179b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4235357254169980211, guid: 93aab2bf9ada2fb48a676af00610179b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6701271836231686167, guid: 93aab2bf9ada2fb48a676af00610179b, type: 3}
+      propertyPath: m_Name
+      value: SceneBGM
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 93aab2bf9ada2fb48a676af00610179b, type: 3}
 --- !u!33 &8382287796290808187
 MeshFilter:
   m_ObjectHideFlags: 0
