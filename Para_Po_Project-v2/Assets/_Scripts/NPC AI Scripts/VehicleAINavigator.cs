@@ -81,7 +81,8 @@ public class VehicleAINavigator : WaypointNavigator
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (dying) return;
+        if (dying) 
+            { return; }
 
         if (collision.transform.CompareTag("Player"))
         {
