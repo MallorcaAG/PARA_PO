@@ -301,7 +301,7 @@ public class PedestrianAINavigator : WaypointNavigator
         animator.CrossFade(personalityToWalkAnimation(),0f);
 
         transform.parent = null;    
-        transform.position = new Vector3(playersWaypoint.transform.position.x, 0.05f, playersWaypoint.transform.position.z);
+        transform.position = new Vector3(playersWaypoint.transform.position.x, playersWaypoint.transform.position.y + 0.1f, playersWaypoint.transform.position.z);
 
         myRB.useGravity = true;
 

@@ -12,6 +12,7 @@
 
 	Level 1 Testing Bugs
 	- SakayPedestrian had desired landmark the player passed by already
+		> Adjustment made. Not tested
 	- Only 1 SakayPed egressed when 2 had same desired landmark
 	- Result Screen Violation text too long.
 		> Adjustment made.

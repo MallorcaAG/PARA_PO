@@ -22,8 +22,12 @@ public class LandmarkManager : Singleton<LandmarkManager>
             return;
         }
 
-        // Randomly spawn NPCs per landmark based on inspector range
-        foreach (GameObject landmark in landmarks)
+        // Removes last spawnable landmark so npc has a desired destination
+        List<GameObject> spawnableLandmarks = new List<GameObject>(landmarks);
+        spawnableLandmarks.RemoveAt(spawnableLandmarks.Count - 1);
+        
+        // Randomly spawn NPCs per landmark based on list of spawnable landmarks
+        foreach (GameObject landmark in spawnableLandmarks)
         {
             int npcCount = Random.Range(0, maxNPCsPerLandmark + 1); // inclusive
             for (int i = 0; i < npcCount; i++)
@@ -72,6 +76,7 @@ public class LandmarkManager : Singleton<LandmarkManager>
         Debug.LogWarning($"Failed to spawn NPC near waypoints at {landmark.name}");
     }
 
+    //DEPRECATED
     void RandomizeSpawnLoc()
     {
         for (int attempts = 0; attempts < maxAttempts; attempts++)
@@ -123,7 +128,12 @@ public class LandmarkManager : Singleton<LandmarkManager>
     GameObject GetRandomDifferentLandmark(GameObject exclude)
     {
         List<GameObject> options = new List<GameObject>(landmarks);
+        int index = 0;
+        for(int i = 0; i < options.Count; i++)
+        {
+            if(options[i] == exclude) index = i;
+        }
         options.Remove(exclude);
-        return options[Random.Range(0, options.Count)];
+        return options[Random.Range(index, options.Count)];
     }
 }
