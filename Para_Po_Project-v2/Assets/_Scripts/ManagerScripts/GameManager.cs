@@ -66,20 +66,20 @@ public class GameManager : Singleton<GameManager>
         if (isGameEnded)
         {
             if(end)
-                return;
+                { return; }
 
             if(!routeSuccessful)
             {
                 onEndGame.Raise(this, failType);
                 return;
             }
-
+            Debug.Log("Calculating points...");
             calculateStarsToGive(calculateEndOfGamePoints());
             Debug.Log("Game end\nStars Given: "+starsToGive);
 
             float[] f = new float[3];
             f[0] = points;
-            f[1] = (float)starsToGive;  
+            f[1] = Mathf.Clamp((float)starsToGive,0,3);  
             if(points > currentHighScore)
             {
                 f[2] = points;
@@ -90,7 +90,6 @@ public class GameManager : Singleton<GameManager>
             }
             onEndGame.Raise(this,f);
             end = true;
-            return;
         }
 
         sendPointsData.Raise(this, points);
@@ -138,8 +137,8 @@ public class GameManager : Singleton<GameManager>
         if(routeSuccessful)
         {
             totalPoints = points + 250f + targetTime;
-
-            return totalPoints;
+            points = totalPoints;
+            return points;
         }
         else
         {
@@ -148,9 +147,11 @@ public class GameManager : Singleton<GameManager>
             {
                 totalPoints += num;
             }
-
-            return totalPoints;
+            points = totalPoints;
+            return points;
         }
+
+
     }
     #endregion
     #region Violations

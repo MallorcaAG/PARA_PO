@@ -4,21 +4,15 @@
 	- Yellow Traffic Light not working properly
 	- Pagbaba ng mga passengers sira again TwT fuuukkk
 	- Lighting issue (World looks too reddish hue now I think)
+		> Start the game when the skybox looks midday in editor
 
 	MainMenu Testing Bugs
 	- "The referenced script (Unknown) on this Behaviour is missing!" HUH ?????
 
 	Level 1 Testing Bugs
-	- Vehicles dont stop and just run you over. I think Vehicle Sensors acting weird. Doesnt slow down in time or at all 
-		(Apply a stopping modifier when collider is hit??)
-			> Adjustment code made. Not tested yet
-			> Testing details: Stay on road or Overtake Car and stop some distance ahead of them. See if car stops or slows down faster, and dies if impacted with player
-	- Vehicle hitting violation not working
-	- No NPC loads from MainMenu
-			> Bruh, forgot to set diff NPC Count in GameManager
 	- SakayPedestrian had desired landmark the player passed by already
-	- Only 1 SakayPed left when 2 had same desired landmark
-	- Route Completion points not given
+	- Only 1 SakayPed egressed when 2 had same desired landmark
+	- Route Completion gives too many points
 
 	Level 6 Testing Bugs
 	- Same issues as Level 1

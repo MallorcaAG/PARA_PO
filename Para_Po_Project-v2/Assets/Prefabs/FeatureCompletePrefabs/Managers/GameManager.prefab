@@ -37,7 +37,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1319798362026771080
 MonoBehaviour:
@@ -55,8 +55,11 @@ MonoBehaviour:
   starsToGive: 0
   currentTrafficViolations: 0
   maxTrafficViolations: 3
-  routeSuccessful: 0
-  isGameEnded: 0
+  hardDifficulty: 0
+  easyLevelPedestrianNPCCount: 50
+  easyLevelVehicleNPCCount: 20
+  hardLevelPedestrianNPCCount: 0
+  hardLevelVehicleNPCCount: 0
   gameTime: {x: 10, y: 5}
   sendPointsData: {fileID: 11400000, guid: 5164d3190bbf4ad4e88efe6e8553d7fe, type: 2}
   sendTimerData: {fileID: 11400000, guid: 371e3b5218c11954486e338f60be9c31, type: 2}

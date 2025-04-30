@@ -60,7 +60,8 @@ public class ResultScreenManager : MonoBehaviour
         success.highScoreTxt.text = f[2].ToString("F4");
         for (int i = 0; i < (int)f[1]; i++)
         {
-            success.stars[i].sprite = activeStar;
+            if(success.stars[i] != null)
+                success.stars[i].sprite = activeStar;
         }
         success.populateViolationsTxt(playerViolationsCode);
     }

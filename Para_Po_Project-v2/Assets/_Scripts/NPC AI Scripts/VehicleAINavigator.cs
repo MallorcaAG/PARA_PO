@@ -84,10 +84,11 @@ public class VehicleAINavigator : WaypointNavigator
         if (dying) 
             { return; }
 
+
         if (collision.transform.CompareTag("Player"))
         {
             playerHit = true;
-            if(senses.getSensors() && !fullStop)
+            if(senses.getSensors() && controller.movementSpeed > 0.1f)
             {
                 //I'm at fault
                 onImpactWithPlayer.Raise(this, 0);
@@ -101,7 +102,6 @@ public class VehicleAINavigator : WaypointNavigator
             }
             FULLSTOPNOW();
             StartCoroutine(kys());
-            
         }
         else if (collision.transform.CompareTag("Vehicles"))
         {
@@ -109,13 +109,12 @@ public class VehicleAINavigator : WaypointNavigator
             StartCoroutine(kys());
         }
         isStopped = true;
-        dying = true;
     }
 
     private IEnumerator kys()
     {
         yield return new WaitForSeconds(deathFromImpactWithPlayerTimer);
-
+        dying = true;
         destroyer.kys();
     }
 
