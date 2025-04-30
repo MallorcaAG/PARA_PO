@@ -88,8 +88,9 @@ public class GameManager : Singleton<GameManager>
             {
                 f[2] = currentHighScore;
             }
-            onEndGame.Raise(this,f);
             end = true;
+            onEndGame.Raise(this,f); //PROBLEMATIC
+            
         }
 
         sendPointsData.Raise(this, points);

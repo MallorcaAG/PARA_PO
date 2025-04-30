@@ -5,6 +5,7 @@
 	- Pagbaba ng mga passengers sira again TwT fuuukkk
 	- Lighting issue (World looks too reddish hue now I think)
 		> Start the game when the skybox looks midday in editor
+	- Add EndOfRoute Texture. Use shaders, make it look like a beacon/sphere.
 
 	MainMenu Testing Bugs
 	- "The referenced script (Unknown) on this Behaviour is missing!" HUH ?????
@@ -12,7 +13,8 @@
 	Level 1 Testing Bugs
 	- SakayPedestrian had desired landmark the player passed by already
 	- Only 1 SakayPed egressed when 2 had same desired landmark
-	- Route Completion gives too many points
+	- Result Screen Violation text too long.
+		> Adjustment made.
 
 	Level 6 Testing Bugs
 	- Same issues as Level 1
