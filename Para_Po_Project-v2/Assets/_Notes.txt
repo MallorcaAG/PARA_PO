@@ -2,6 +2,7 @@
 			> (Havent tested yet. . .)
 	- Add 'Para Po' voicelines in Pedestrian prefab. Save AudioClips in Asset/Audio/Voicelines
 	- Yellow Traffic Light not working properly
+		> Issue resolved. Please test nalang just in case
 	- Pagbaba ng mga passengers sira again TwT fuuukkk
 		> Code adjustment made. Not tested
 	- Lighting issue (World looks too reddish hue now I think)
@@ -28,7 +29,6 @@
 
 	Level 11 Testing Bugs
 	- Violation Type: property damage ????
-	- TrafficLightsSystem_003 having a stroke
 
 	Level 17 Testing Bugs
 	- Violation Type: Counter Flowing Or Driving On Sidewalk (VehicleWaypoints not set properly)

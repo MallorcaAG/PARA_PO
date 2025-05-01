@@ -45,10 +45,12 @@ public class TrafficLightCycleController : MonoBehaviour
     [SerializeField] private GameObject westLeftYellow;
     [SerializeField] private GameObject westLeftGreen;
     [Header("Settings")]
+    [Tooltip("Percentage of which the current phase's duration should be yellow.\n0.1 is 10% length of time being yellow, and 0.5 is 50% length of time being yellow")]
     [Range(0.1f,0.5f)][SerializeField] private float yellowLightTransition;
 
     float targetTime;
     int i = 0;
+    bool yellow = false;
 
     private void Start()
     {
@@ -59,10 +61,10 @@ public class TrafficLightCycleController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Timer())
-            runCurrentPhase();
+        Timer();
+        runCurrentPhase();
+        yellowLightTrigger();
     }
-
 
     private bool Timer()
     {
@@ -92,7 +94,8 @@ public class TrafficLightCycleController : MonoBehaviour
     private void runCurrentPhase()
     {
         //HELP THIS IS SPAGETTI TwT
-            //MAMAMIA ITSA SPAGHETTI TIME
+        //MAMAMIA ITSA SPAGHETTI TIME
+
 
         // Player Violation Trigger
         if (phases[i].isPlayerRed)
@@ -112,7 +115,7 @@ public class TrafficLightCycleController : MonoBehaviour
             {
                 north.LeftTurnGo();
 
-                if (targetTime <= (phases[i].phaseDuration * yellowLightTransition))
+                if (yellow)
                 {
                     northLeftRed.SetActive(false);
                     northLeftYellow.SetActive(true);
@@ -148,7 +151,7 @@ public class TrafficLightCycleController : MonoBehaviour
             {
                 north.StraightThroughGo();
 
-                if (targetTime <= (phases[i].phaseDuration * yellowLightTransition))
+                if (yellow)
                 {
                     northStraightRed.SetActive(false);
                     northStraightYellow.SetActive(true);
@@ -178,7 +181,7 @@ public class TrafficLightCycleController : MonoBehaviour
             {
                 south.LeftTurnGo();
 
-                if (targetTime <= (phases[i].phaseDuration * yellowLightTransition))
+                if (yellow)
                 {
                     southLeftRed.SetActive(false);
                     southLeftYellow.SetActive(true);
@@ -213,7 +216,7 @@ public class TrafficLightCycleController : MonoBehaviour
             {
                 south.StraightThroughGo();
 
-                if (targetTime <= (phases[i].phaseDuration * yellowLightTransition))
+                if (yellow)
                 {
                     southStraightRed.SetActive(false);
                     southStraightYellow.SetActive(true);
@@ -243,7 +246,7 @@ public class TrafficLightCycleController : MonoBehaviour
             {
                 east.LeftTurnGo();
 
-                if (targetTime <= (phases[i].phaseDuration * yellowLightTransition))
+                if (yellow)
                 {
                     eastLeftRed.SetActive(false);
                     eastLeftYellow.SetActive(true);
@@ -278,7 +281,7 @@ public class TrafficLightCycleController : MonoBehaviour
             {
                 east.StraightThroughGo();
 
-                if (targetTime <= (phases[i].phaseDuration * yellowLightTransition))
+                if (yellow)
                 {
                     eastStraightRed.SetActive(false);
                     eastStraightYellow.SetActive(true);
@@ -308,7 +311,7 @@ public class TrafficLightCycleController : MonoBehaviour
             {
                 west.LeftTurnGo();
 
-                if (targetTime <= (phases[i].phaseDuration * yellowLightTransition))
+                if (yellow)
                 {
                     westLeftRed.SetActive(false);
                     westLeftYellow.SetActive(true);
@@ -343,7 +346,7 @@ public class TrafficLightCycleController : MonoBehaviour
             {
                 west.StraightThroughGo();
 
-                if (targetTime <= (phases[i].phaseDuration * yellowLightTransition))
+                if (yellow)
                 {
                     westStraightRed.SetActive(false);
                     westStraightYellow.SetActive(true);
@@ -456,6 +459,18 @@ public class TrafficLightCycleController : MonoBehaviour
                 westPedXing.StraightThroughStop();
                 eastPedXing.StraightThroughStop();
             }
+        }
+    }
+
+    private void yellowLightTrigger()
+    {
+        if (targetTime <= (phases[i].phaseDuration * yellowLightTransition))
+        {
+            yellow = true;
+        }
+        else
+        {
+            yellow = false;
         }
     }
 }
