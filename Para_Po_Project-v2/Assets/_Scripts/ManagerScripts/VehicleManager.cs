@@ -23,6 +23,11 @@ public class VehicleManager : MonoBehaviour
 
     private void Start()
     {
+        SendMyWaypoint();
+    }
+
+    public void SendMyWaypoint()
+    {
         shareMyWaypoint.Raise(this, myWaypoint);
     }
 

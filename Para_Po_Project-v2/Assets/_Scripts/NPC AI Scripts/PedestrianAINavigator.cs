@@ -60,7 +60,10 @@ public class PedestrianAINavigator : WaypointNavigator
         GameObject obj = (GameObject)data;
         playersWaypoint = obj.GetComponent<Waypoint>();
     }
-
+    public Waypoint getPlayersWaypoint()
+    {
+        return playersWaypoint;
+    }
     
     #endregion
 
@@ -115,6 +118,9 @@ public class PedestrianAINavigator : WaypointNavigator
             case NPCState.INGRESS:
                 currentState = state;
 
+                //SOMEHOW CHANGE THIS TO BECOME ONLY ONCOLLISION WITH
+                //PLAYERWAYPOINT, TO PREVENT SAKAYPEDS TO RIDE INGRESS
+                //WHEN PLAYER IS NOT THERE ATM
                 if (controller.destinationInfo.reachedDestination)
                 {
                     animator.CrossFade(personalityToIdleAnimation(), 0f);
@@ -301,9 +307,11 @@ public class PedestrianAINavigator : WaypointNavigator
         animator.CrossFade(personalityToWalkAnimation(),0f);
 
         transform.parent = null;    
-        transform.position = new Vector3(playersWaypoint.transform.position.x, playersWaypoint.transform.position.y + 0.1f, playersWaypoint.transform.position.z);
+        transform.position = new Vector3(playersWaypoint.transform.position.x, playersWaypoint.transform.position.y + 0.15f, playersWaypoint.transform.position.z);
 
         myRB.useGravity = true;
+
+        Debug.Log("Getting off vehicle: " + gameObject.name);
 
         onPedestrianEgress.Raise(this, gameObject);
         

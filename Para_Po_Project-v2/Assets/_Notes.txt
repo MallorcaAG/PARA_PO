@@ -3,9 +3,11 @@
 	- Add 'Para Po' voicelines in Pedestrian prefab. Save AudioClips in Asset/Audio/Voicelines
 	- Yellow Traffic Light not working properly
 	- Pagbaba ng mga passengers sira again TwT fuuukkk
+		> Code adjustment made. Not tested
 	- Lighting issue (World looks too reddish hue now I think)
 		> Start the game when the skybox looks midday in editor
 	- Add EndOfRoute Texture. Use shaders, make it look like a beacon/sphere.
+	- Add ragdoll to pedestrian
 
 	MainMenu Testing Bugs
 	- "The referenced script (Unknown) on this Behaviour is missing!" HUH ?????
@@ -14,6 +16,7 @@
 	- SakayPedestrian had desired landmark the player passed by already
 		> Adjustment made. Not tested
 	- Only 1 SakayPed egressed when 2 had same desired landmark
+		> Issue somehow no longer exist wtf????? Ok?
 	- Result Screen Violation text too long.
 		> Adjustment made.
 
