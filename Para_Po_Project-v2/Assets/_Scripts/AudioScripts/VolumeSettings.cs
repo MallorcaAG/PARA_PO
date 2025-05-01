@@ -11,7 +11,7 @@ public class VolumeSettings : MonoBehaviour
     [SerializeField] private Slider sfxSlider;
     [SerializeField] private Slider musicSlider;
 
-    private void Start()
+    private void OnEnable()
     {
         Initialize();
         SetMasterVolume();
