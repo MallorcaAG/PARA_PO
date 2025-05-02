@@ -53,6 +53,13 @@ public class PauseScreen : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            if (optionsPanel.activeSelf)
+            {
+              
+                CloseOptions();
+                return;
+            }
+
             if (!paused)
             {
                 Pause();
