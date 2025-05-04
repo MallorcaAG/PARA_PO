@@ -36,4 +36,9 @@ public class DataManager : PersistentSingleton<DataManager>
         currentLevel.HighScore = data.highScore;
     }
 
+    private void OnDestroy()
+    {
+        Debug.Log("OH NO IM FUCKING DYING WTF AAAAHHHHH");
+    }
+
 } 

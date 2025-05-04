@@ -2381,7 +2381,7 @@ MonoBehaviour:
   ParaPoTextStayTime: 1
   ParaPoTextFadeOutTransition: 1
   SignageTransition: 1
-  SignageStayTime: 1
+  SignageStayTime: 3
   PassengerCountAnimator: {fileID: 4050988256308499041}
   LocationAnimator: {fileID: 4723420741391195243}
   ViolationsAnimator: {fileID: 8898873809299105068}

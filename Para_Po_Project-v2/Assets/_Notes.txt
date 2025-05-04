@@ -1,14 +1,8 @@
 	- Pause screen, show controls and adjust audiomixer. 
 			> (Havent tested yet. . .)
 	- Add 'Para Po' voicelines in Pedestrian prefab. Save AudioClips in Asset/Audio/Voicelines
-	- Yellow Traffic Light not working properly
-		> Issue resolved. Please test nalang just in case
-	- Pagbaba ng mga passengers sira again TwT fuuukkk
-		> Code adjustment made. Not tested
-	- Lighting issue (World looks too reddish hue now I think)
-		> Start the game when the skybox looks midday in editor
 	- Add EndOfRoute Texture. Use shaders, make it look like a beacon/sphere.
-		- Done. To add, search "Quad" in assets, unpack, then edit accordingly.
+		> Parented "Quad" to EndOfRoute prefab for consistency
 	- Add ragdoll to pedestrian
 	- Add poof particle vfx on SakayPed ingress and egress
 	- Modify SakayPed code to ingress on collision with PlayerWaypoint as opposed to walking to PlayerWaypoint location,
@@ -20,23 +14,17 @@
 	- "The referenced script (Unknown) on this Behaviour is missing!" HUH ?????
 
 	Level 1 Testing Bugs
-	- Pause Screen -> Option panel not closing on ESC pressed. (Exit btn works tho)
-		- Fixed. To try, press esc.
 	- DataManager did not persist to Level Scene
 	- MissingReferenceException: 'GameObject' been destroyed but still trying to access. SceneLoadManager.cs:100
 	- SakayPed Counter UI, 'Para Po' UI indicator not activating.
 	- SakayPed Counter UI, displays nothings when 0 passengers. Should display atleast 0
 	- SakayPedestrian had desired landmark the player passed by already
 		> Adjustment made. Not tested
-	- Only 1 SakayPed egressed when 2 had same desired landmark
-		> Issue somehow no longer exist wtf????? Ok?
 	- Result Screen Violation text too long.
 		> Adjustment made.
 
 	Level 6 Testing Bugs
 	- Same issues as Level 1
-	- 2 Radios playing at the same time?
-			> Replace Remus' AudioManager for Remus' AmbientMain
 	- Spawnings are delayed?
 
 	Level 11 Testing Bugs

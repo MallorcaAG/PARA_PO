@@ -23,6 +23,7 @@ ASSETS USED
 - EasyRoads3D Pro by AndaSoft https://assetstore.unity.com/packages/tools/terrain/easyroads3d-pro-v3-469
 - Fantasy Skybox FREE by Render Knight https://assetstore.unity.com/packages/2d/textures-materials/sky/fantasy-skybox-free-18353
 - City Generated using Blosm for Blender by Prochitecture https://prochitecture.gumroad.com/l/blender-osm?layout=profile 
+- Particle Pack by Unity Technologies https://assetstore.unity.com/packages/vfx/particles/particle-pack-127325
 	Visual
 - Colored Main Roads Map Screenshots by YeetMaps https://snazzymaps.com/style/603883/colored-main-roads-idk
 - Jeepney1 Landmark 1 by Sian Labay https://maps.app.goo.gl/G997AW89kqVChVFM9

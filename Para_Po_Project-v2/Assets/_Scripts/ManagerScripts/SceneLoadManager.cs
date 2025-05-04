@@ -146,4 +146,11 @@ public class SceneLoadManager : PersistentSingleton<SceneLoadManager>
 
     }*/
     #endregion
+
+    private void OnDestroy()
+    {
+        Debug.Log("OH NO IM FUCKING DYING WTF AAAAHHHHH");
+    }
+
+
 }
