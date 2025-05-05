@@ -15,6 +15,7 @@
 
 	Level 1 Testing Bugs
 	- DataManager did not persist to Level Scene
+		> ARE YOU FUCKING KIDDING ME? IT SHOULDN'T BE CHILDED WTFFFFF?!?!?!
 	- MissingReferenceException: 'GameObject' been destroyed but still trying to access. SceneLoadManager.cs:100
 	- SakayPed Counter UI, 'Para Po' UI indicator not activating.
 	- SakayPed Counter UI, displays nothings when 0 passengers. Should display atleast 0

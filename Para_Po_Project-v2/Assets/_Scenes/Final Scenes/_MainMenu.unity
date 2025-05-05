@@ -4132,13 +4132,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1085721917}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -147.25024, y: -99.28251, z: 1.835295}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_Father: {fileID: 1245567502}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1085721919
 MonoBehaviour:
@@ -4693,6 +4693,11 @@ Transform:
   m_Father: {fileID: 1245567502}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1177092606 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4235357254169980211, guid: 93aab2bf9ada2fb48a676af00610179b, type: 3}
+  m_PrefabInstance: {fileID: 8375723582661159064}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1217048242
 GameObject:
   m_ObjectHideFlags: 0
@@ -5013,6 +5018,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1684237323}
+  - {fileID: 1580530440}
+  - {fileID: 1085721918}
+  - {fileID: 1177092606}
   - {fileID: 1314696034}
   - {fileID: 882874750}
   - {fileID: 1175594088}
@@ -5730,7 +5739,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1aabe5e651790c94eacad3273127cda1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tips: []
+  tips:
+  - "Hey guys, did you know that in terms of male human and female Pok\xE9mon breeding,
+    Vaporeon is the most compatible Pok\xE9mon for humans? Not only are they in the
+    field egg group, which is mostly . . ."
   loadIntoLevelSelectionPanel: 0
   Levels:
   - {fileID: 11400000, guid: 8f912590fa6d38849b4ff0c7964698c2, type: 2}
@@ -6251,13 +6263,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1580530439}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -147.25024, y: -99.28251, z: 1.835295}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_Father: {fileID: 1245567502}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1580530441
 MonoBehaviour:
@@ -6557,13 +6569,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1684237321}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -147.25024, y: -99.28251, z: 1.835295}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_Father: {fileID: 1245567502}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1684237324
 MonoBehaviour:
@@ -20976,23 +20988,23 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1245567502}
     m_Modifications:
     - target: {fileID: 4235357254169980211, guid: 93aab2bf9ada2fb48a676af00610179b, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 4235357254169980211, guid: 93aab2bf9ada2fb48a676af00610179b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -147.25024
       objectReference: {fileID: 0}
     - target: {fileID: 4235357254169980211, guid: 93aab2bf9ada2fb48a676af00610179b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -99.28251
       objectReference: {fileID: 0}
     - target: {fileID: 4235357254169980211, guid: 93aab2bf9ada2fb48a676af00610179b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 1.835295
       objectReference: {fileID: 0}
     - target: {fileID: 4235357254169980211, guid: 93aab2bf9ada2fb48a676af00610179b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -21000,15 +21012,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4235357254169980211, guid: 93aab2bf9ada2fb48a676af00610179b, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4235357254169980211, guid: 93aab2bf9ada2fb48a676af00610179b, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4235357254169980211, guid: 93aab2bf9ada2fb48a676af00610179b, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4235357254169980211, guid: 93aab2bf9ada2fb48a676af00610179b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
