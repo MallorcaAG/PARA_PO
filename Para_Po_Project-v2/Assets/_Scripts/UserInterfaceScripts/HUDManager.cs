@@ -62,7 +62,7 @@ public class HUDManager : MonoBehaviour
     #region HUD UI Update
     private void UpdatePassengerCount()
     {
-        passengerCountText.text = Mathf.Clamp(passengerCount,0,999).ToString("##");
+        passengerCountText.text = Mathf.Clamp(passengerCount,0,999).ToString("#0");
     }
 
     public void UpdateTimerDisplay(Component sender, object data)

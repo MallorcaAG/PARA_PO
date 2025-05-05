@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.NetworkInformation;
 using UnityEditorInternal;
 using UnityEngine;
 
@@ -15,6 +16,8 @@ public class PedestrianAINavigator : WaypointNavigator
     [SerializeField] private GameObject myLandmark;
     [SerializeField] private GameObject desiredLandmark;
     [SerializeField] private Animator animator;
+    [SerializeField] private float deathFromImpactWithPlayerTimer = 5f;
+
 
     [Header("Game Event")]
     [SerializeField] private GameEvent onPedestrianIngress;
@@ -22,6 +25,7 @@ public class PedestrianAINavigator : WaypointNavigator
     [SerializeField] private GameEvent onImpactWithPlayer;
     [SerializeField] private GameEvent onSuccessfulEgress;
     [SerializeField] private GameEvent onSFXPlay;
+    [SerializeField] private GameEvent onParaPo;
 
     [Header("References")]
     [SerializeField] private AudioClip voiceline;
@@ -42,7 +46,8 @@ public class PedestrianAINavigator : WaypointNavigator
     bool isRiding = false;
     private int walkPersonality = 0;
     private int idlePersonality = 0;
-
+    private bool allowIngress = false, dying = false;
+    private NPCDistanceToPlayer destroyer;
 
     #region Getter/Setter funcs
     public void setMyLandmark(GameObject newLandmark)
@@ -63,6 +68,31 @@ public class PedestrianAINavigator : WaypointNavigator
     public Waypoint getPlayersWaypoint()
     {
         return playersWaypoint;
+    }
+    
+    public void AllowIngress(bool con)
+    {
+        if(con)
+        {
+            allowIngress = true;
+        }
+        else
+        {
+            allowIngress = false;
+        }
+    }
+    
+    public int getNPCState()
+    {
+        switch(currentState)
+        {
+            case NPCState.INGRESS:
+                return 0;
+            case NPCState.EGRESS:
+                return 1;
+            default:
+                return -1;
+        }
     }
     
     #endregion
@@ -123,13 +153,22 @@ public class PedestrianAINavigator : WaypointNavigator
                 //WHEN PLAYER IS NOT THERE ATM
                 if (controller.destinationInfo.reachedDestination)
                 {
-                    animator.CrossFade(personalityToIdleAnimation(), 0f);
-                    state = NPCState.RIDING;
-                    isRiding = true;
-                    myRB.useGravity = false;
-                    onPedestrianIngress.Raise(this, gameObject);
-                    SetDestination(Vector3.zero);
-                    controller.destinationInfo.reachedDestination = false;
+                    if(allowIngress)
+                    {
+                        animator.CrossFade(personalityToIdleAnimation(), 0f);
+                        state = NPCState.RIDING;
+                        isRiding = true;
+                        myRB.useGravity = false;
+                        onPedestrianIngress.Raise(this, gameObject);
+                        SetDestination(Vector3.zero);
+                        controller.destinationInfo.reachedDestination = false;
+                    }
+                    else
+                    {
+                        state = NPCState.WAITING;
+                        SetDestination(transform.position);
+                        StartCoroutine(kys());
+                    }
                 }
                 break;
 
@@ -286,6 +325,7 @@ public class PedestrianAINavigator : WaypointNavigator
             state = NPCState.EGRESS;
             Debug.Log("<b>PARA PO!</b>");
             onSFXPlay.Raise(this, voiceline);
+            onParaPo.Raise(this, 0);
         }
         else
         {
@@ -350,6 +390,17 @@ public class PedestrianAINavigator : WaypointNavigator
         if(collision.transform.CompareTag("Player") && canBeViolated)
         {
             onImpactWithPlayer.Raise(this, gameObject);
+
+            //Ragdoll activate here
+
+            StartCoroutine(kys());
         }
+    }
+
+    private IEnumerator kys()
+    {
+        yield return new WaitForSeconds(deathFromImpactWithPlayerTimer);
+        dying = true;
+        destroyer.kys();
     }
 }

@@ -19,6 +19,7 @@
 	- MissingReferenceException: 'GameObject' been destroyed but still trying to access. SceneLoadManager.cs:100
 	- SakayPed Counter UI, 'Para Po' UI indicator not activating.
 	- SakayPed Counter UI, displays nothings when 0 passengers. Should display atleast 0
+		> Adjustment made. Not tested
 	- SakayPedestrian had desired landmark the player passed by already
 		> Adjustment made. Not tested
 	- Result Screen Violation text too long.
