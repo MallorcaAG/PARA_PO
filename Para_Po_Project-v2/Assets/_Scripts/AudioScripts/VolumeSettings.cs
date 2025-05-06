@@ -59,11 +59,11 @@ public class VolumeSettings : MonoBehaviour
 
     public void SendDataSFXVolume(float level)
     {
-        DataManager.Instance.MasterVolumeSliderValue = level;
+        DataManager.Instance.SFXVolumeSliderValue = level;
     }
 
     public void SendDataMusicVolume(float level)
     {
-        DataManager.Instance.MasterVolumeSliderValue = level;
+        DataManager.Instance.MusicVolumeSliderValue = level;
     }
 }

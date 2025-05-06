@@ -1298,6 +1298,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shareMyWaypoint: {fileID: 11400000, guid: ff18660bc83484447986685d21755a99, type: 2}
+  onPassengerCountChange: {fileID: 11400000, guid: bd8c05d4e49cbc843b8f985d836dff19, type: 2}
   routeCheckpoint: 0
   myWaypoint: {fileID: 219341284776256437}
   myPassengers: []

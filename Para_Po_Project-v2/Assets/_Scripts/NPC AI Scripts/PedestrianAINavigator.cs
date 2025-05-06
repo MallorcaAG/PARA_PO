@@ -152,9 +152,6 @@ public class PedestrianAINavigator : WaypointNavigator
             case NPCState.INGRESS:
                 currentState = state;
 
-                //SOMEHOW CHANGE THIS TO BECOME ONLY ONCOLLISION WITH
-                //PLAYERWAYPOINT, TO PREVENT SAKAYPEDS TO RIDE INGRESS
-                //WHEN PLAYER IS NOT THERE ATM
                 if (controller.destinationInfo.reachedDestination)
                 {
                     if(allowIngress)
