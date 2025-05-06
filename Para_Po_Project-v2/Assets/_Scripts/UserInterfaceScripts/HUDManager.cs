@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 public class HUDManager : MonoBehaviour
@@ -18,6 +19,10 @@ public class HUDManager : MonoBehaviour
     [SerializeField] private Animator PassengerCountAnimator;
     [SerializeField] private Animator LocationAnimator;
     [SerializeField] private Animator ViolationsAnimator;
+    [SerializeField] private GameObject PARA_PO;
+    [SerializeField] private Animator Para_PoAnimator;
+    [SerializeField] private GameEvent onParaPo; 
+
     [SerializeField] private TextMeshProUGUI passengerCountText;
     [SerializeField] private TextMeshProUGUI gameTimerText;
     [SerializeField] private TextMeshProUGUI pointsText;
@@ -30,7 +35,7 @@ public class HUDManager : MonoBehaviour
     
     //Animation Hashes
     private static readonly int ParaPoFadeIn = Animator.StringToHash("ParaPo_FadeIn");
-    private static readonly int ParaPoFadeOut = Animator.StringToHash("PassengerCount");
+    private static readonly int ParaPoFadeOut = Animator.StringToHash("ParaPo_FadeOut");
     private static readonly int SignageDrop = Animator.StringToHash("RevealLocation");
     private static readonly int SignageRise = Animator.StringToHash("Default");
     private static readonly int FirstViolation = Animator.StringToHash("First Violation");
@@ -46,6 +51,7 @@ public class HUDManager : MonoBehaviour
     {
         //StartCoroutine(AnimationTest());
     }
+
 
     public void passengerIngress()
     {
@@ -253,6 +259,25 @@ public class HUDManager : MonoBehaviour
         LocationAnimator.CrossFade(SignageDrop, SignageTransition);
         yield return new WaitForSeconds(SignageStayTime);
         LocationAnimator.CrossFade(SignageRise, SignageTransition);
+    }
+
+    public void TriggerParaPoAnimation()
+    {
+        if (!PARA_PO.activeSelf)
+        {
+            PARA_PO.SetActive(true); 
+        }
+
+        StartCoroutine(PlayParaPoAnimationCoroutine());
+    }
+
+    private IEnumerator PlayParaPoAnimationCoroutine()
+    {
+        Para_PoAnimator.CrossFade(ParaPoFadeIn, ParaPoTextFadeInTransition);
+        yield return new WaitForSeconds(ParaPoTextStayTime);
+        Para_PoAnimator.CrossFade(ParaPoFadeOut, ParaPoTextFadeOutTransition);
+        yield return new WaitForSeconds(ParaPoTextFadeOutTransition); 
+        PARA_PO.SetActive(false); 
     }
     #endregion
 
