@@ -1,12 +1,13 @@
 	- Pause screen, show controls and adjust audiomixer. 
 			> (Havent tested yet. . .)
-	- Add 'Para Po' voicelines in Pedestrian prefab. Save AudioClips in Asset/Audio/Voicelines
 	- Add EndOfRoute Texture. Use shaders, make it look like a beacon/sphere.
 		> Parented "Quad" to EndOfRoute prefab for consistency
 	- Add ragdoll to pedestrian
+		> Working
 	- Add poof particle vfx on SakayPed ingress and egress
 	- Modify SakayPed code to ingress on collision with PlayerWaypoint as opposed to walking to PlayerWaypoint location,
 		because SakayPed still ingresses if Player moved but SakayPed reached waypoint's last known position.
+			> Adjustment made
 	- Modify SakayPed code egress similar to Landmark SakayPed spawning.
 		If 2 or more SakayPed egresses in same landmark, they tp onto each other and jump into the air (weird collision)
 
@@ -18,6 +19,7 @@
 		> ARE YOU FUCKING KIDDING ME? IT SHOULDN'T BE CHILDED WTFFFFF?!?!?!
 	- MissingReferenceException: 'GameObject' been destroyed but still trying to access. SceneLoadManager.cs:100
 	- SakayPed Counter UI, 'Para Po' UI indicator not activating.
+		> Working na
 	- SakayPed Counter UI, displays nothings when 0 passengers. Should display atleast 0
 		> Adjustment made. Not tested
 	- SakayPedestrian had desired landmark the player passed by already

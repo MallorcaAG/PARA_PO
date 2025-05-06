@@ -18,7 +18,7 @@ public class GameEventSFXPlayer : MonoBehaviour
         InitializeReferences();
     }
 
-    private void InitializeReferences()
+    public void InitializeReferences()
     {
         if (!initialized)
         {
@@ -26,23 +26,31 @@ public class GameEventSFXPlayer : MonoBehaviour
             if (playerObj != null)
             {
                 playerPos = playerObj.transform;
+                initialized = true;
             }
             else
             {
                 Debug.LogWarning("GameEventSFXPlayer: Player object not found. Ensure it has the 'Player' tag and is active.");
+                initialized = false;
+
             }
 
             if (Camera.main != null)
             {
                 audioListenerPosition = Camera.main.transform;
+                initialized = true;
             }
             else
             {
                 Debug.LogWarning("GameEventSFXPlayer: Main camera not found. Assign the 'MainCamera' tag to your camera.");
+                initialized = false;
             }
-
-            initialized = true;
         }
+    }
+
+    public void deInitialize()
+    {
+        initialized = false;
     }
 
     public void PlaySFXviaGameEvent(Component sender, object data)

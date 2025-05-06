@@ -6541,6 +6541,7 @@ GameObject:
   - component: {fileID: 1684237322}
   - component: {fileID: 1684237325}
   - component: {fileID: 1684237324}
+  - component: {fileID: 1684237326}
   m_Layer: 0
   m_Name: SoundFXManager
   m_TagString: Untagged
@@ -6617,6 +6618,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b875319078042a445828e9f0d2666d15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1684237326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1684237321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 343a05844d3bc104aa8e0351c6314175, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: f150cd39e96768b45b729f1f52377183, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1684237325}
+        m_TargetAssemblyTypeName: GameEventSFXPlayer, Project
+        m_MethodName: deInitialize
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1684237325}
+        m_TargetAssemblyTypeName: GameEventSFXPlayer, Project
+        m_MethodName: InitializeReferences
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1710412243
 GameObject:
   m_ObjectHideFlags: 0

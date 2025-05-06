@@ -32,68 +32,77 @@ ASSETS USED
 - Jeepney1 Landmark 8 by SMDC https://www.promosmdc.com/jazzresidences
 - Jeepney2 Landmark 2 - 7 by Google Street View https://www.google.com/streetview/
 	Audio
-- radio-static Sound Effect by freesound_community from Pixabay
-- VehicleSFX and Ambiance Sounds in The GameAudioGDC Bundle by Sonniss LTD
-- UI Audio and Interface Sounds by Kenney
-- Grand-Opening by Lud and Schlatt Crossing
-- We Shop Song by Lud and Schlatt Crossing
-- The 25th Hour by Lud and Schlatt Crossing
-- Sunset Pier by Lud and Schlatt Crossing
-- Financial Obligations by Lud and Schlatt Crossing
-- Dentists Office by Lud and Schlatt Crossing
-- 10AM by Lud and Schlatt Crossing
 - 2PM by Lud and Schlatt Crossing
-- Double Horizon by LittleLight
+- 10AM by Lud and Schlatt Crossing
+- Ammil by The Tides
 - BAKIT BA by Siakol
-- Sirena by Ebe Dancel ft. Gloc-9 
+- Chill City by Skule Toyama
+- Deja Vu by Dave Rodgers
+- Dentists Office by Lud and Schlatt Crossing
+- Don't stop the music by Lou Grant
+- Double Horizon by LittleLight
+- Dreaming by Oak Studios
+- Financial Obligations by Lud and Schlatt Crossing
+- GAS GAS GAS by MANUEL
+- Grand-Opening by Lud and Schlatt Crossing
 - Halaga by Parokya Ni Edgar
+- happy tomorrow by Snoozybeats
+- Hari Ng Sablay by Sugarfree	
+- I need your love by Dave Simons
+- Killing My Love by Leslie Parrish
 - Lintik by Brownman Revival
 - Lord Patawad by Bassilyo
+- Medical Hospital Clinic by INPLUSMUSIC
 - Miss U (Miss, Miss Sa Loob Ng Jeepney) by Grin Department
 - My Banyo Queen (feat. Rica Peralejo) by Andrew E.
+- Night of Fire by Niko
 - Pagsubok by Orient Pearl
 - Pare Ko by Eraserheads
 - Pauwi Nako by PDL, Skusta Clee, Jnske, Bullet D, Yuri Dope & Flow-G
 - Prinsesa by Teeth
-- Salamat by The Dawn
-- Sama-Sama by Alamid
-- Hari Ng Sablay by Sugarfree	
-- Sumayaw Sumunod by The Boyfriends
-- Tuloy Pa Rin by Neocolours
-- Deja Vu by Dave Rodgers
-- Don't stop the music by Lou Grant
-- I need your love by Dave Simons
-- Killing My Love by Leslie Parrish
-- Night of Fire by Niko
+- radio-static Sound Effect by freesound_community from Pixabay
 - Rage Your Dream by M.O.V.E
 - Remember Me by Leslie Parrish
 - Running In The 90's by Max Coveri
+- Salamat by The Dawn
+- Sama-Sama by Alamid
 - Save Me by Leslie Parrish
+- Sirena by Ebe Dancel ft. Gloc-9
 - Speed Lover by Speedman
-- GAS GAS GAS by MANUEL
+- Sumayaw Sumunod by The Boyfriends
+- Sunset Pier by Lud and Schlatt Crossing
+- The 25th Hour by Lud and Schlatt Crossing
+- Tuloy Pa Rin by Neocolours
+- UI Audio and Interface Sounds by Kenney
+- VehicleSFX and Ambiance Sounds in The GameAudioGDC Bundle by Sonniss LTD
 - Vibing in the 20s by Context Sensitive
-- happy tomorrow by Snoozybeats
-- Dreaming by Oak Studios
-- Ammil by The Tides
-- Medical Hospital Clinic by INPLUSMUSIC
-- Chill City by Skule Toyama
+- We Shop Song by Lud and Schlatt Crossing
 	NPC Voices
-Gloria Capulong
-Helen Mallorca
+Aldrin Jacob Hilaria
+Alfonso Bendanillo
 Alliah Dela Cruz
 Alyssa Dela Cruz
-Daniela Dela Cruz
+Angelo Gabriel Mallorca
+Darwin Dela Cruz
 Desiree Dela Cruz
+Dex Gumera
 Divina Mendoza
+Dylan Mackenzie Lombos
+Elaiza Urriza
+Gina Capulong
+Gloria Capulong
+Helen Mallorca
+Ioan Phoenix Lombos
+Jessie Miguel Palamo
+Jessie Palamo
+Lea Katrina Lombos
+Marian Capulong
 Nathalie Gumera
+Nelson Mendoza
 Nova Gumera
 Patricia Dela Cruz
 Princess Dela Cruz
-Elaiza Urriza
-Darwin Dela Cruz
-Dex Gumera
-Nelson Mendoza
 Remus Gumera
-Alfonso Bendanillo
-Jessie Miguel Palamo
-Aldrin Jacob Hilaria
+Renzo Capulong
+Roland Paul Capulong
+Ruther Dennis Lombos
