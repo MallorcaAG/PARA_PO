@@ -101,6 +101,7 @@ public class PedestrianAINavigator : WaypointNavigator
     // Start is called before the first frame update
     void Start()
     {
+        destroyer = gameObject.GetComponent<NPCDistanceToPlayer>();
         myRB = GetComponent<Rigidbody>();
         senses = GetComponent<PedestrianAISensors>();
 
@@ -119,6 +120,9 @@ public class PedestrianAINavigator : WaypointNavigator
         }
 
         baseSpeed = personalityToWalkSpeed();
+
+        setRigidbodyState(true);
+        setColliderState(true);
     }
 
     // Update is called once per frame
@@ -391,7 +395,12 @@ public class PedestrianAINavigator : WaypointNavigator
         {
             onImpactWithPlayer.Raise(this, gameObject);
 
-            //Ragdoll activate here
+            animator.enabled = false;
+            myRB.isKinematic = true;
+            setRigidbodyState(false);
+            setColliderState(true);
+            ZeroOutRigidbodyVelocity();
+            DisableNavigation();
 
             StartCoroutine(kys());
         }
@@ -402,5 +411,39 @@ public class PedestrianAINavigator : WaypointNavigator
         yield return new WaitForSeconds(deathFromImpactWithPlayerTimer);
         dying = true;
         destroyer.kys();
+    }
+
+    private void setRigidbodyState(bool state)
+    {
+        Rigidbody[] rigidbodies = GetComponentsInChildren<Rigidbody>();
+        foreach (Rigidbody rigidbody in rigidbodies)
+        {
+            rigidbody.isKinematic = state;
+        }
+    }
+    private void DisableNavigation()
+    {
+        controller.destinationInfo.reachedDestination = true;
+        controller.enabled = false; // if exists
+        SetDestination(transform.position); // freeze position
+    }
+
+    private void setColliderState(bool state)
+    {
+        Collider[] colliders = GetComponentsInChildren<Collider>();
+        foreach (Collider collider in colliders)
+        {
+            collider.enabled = state;
+        }
+    }
+
+    private void ZeroOutRigidbodyVelocity()
+    {
+        Rigidbody[] rigidbodies = GetComponentsInChildren<Rigidbody>();
+        foreach (Rigidbody rb in rigidbodies)
+        {
+            rb.velocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+        }
     }
 }

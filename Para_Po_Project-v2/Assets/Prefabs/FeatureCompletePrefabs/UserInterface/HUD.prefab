@@ -805,7 +805,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &773848805853619728
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2318,7 +2318,7 @@ RectTransform:
   - {fileID: 49760617708642471}
   - {fileID: 8581414991045127602}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2408,7 +2408,7 @@ MonoBehaviour:
   PassengerCountAnimator: {fileID: 4050988256308499041}
   LocationAnimator: {fileID: 4723420741391195243}
   ViolationsAnimator: {fileID: 8898873809299105068}
-  PARA_PO: {fileID: 0}
+  PARA_PO: {fileID: 1483485865698004853}
   Para_PoAnimator: {fileID: 4031764267515697757}
   onParaPo: {fileID: 11400000, guid: bb52dec0e31d74f4ea8bc081d7187ebc, type: 2}
   passengerCountText: {fileID: 1131028115575648582}
