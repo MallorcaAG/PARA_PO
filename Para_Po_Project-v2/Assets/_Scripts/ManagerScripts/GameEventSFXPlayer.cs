@@ -1,30 +1,75 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameEventSFXPlayer : MonoBehaviour
 {
     private Transform playerPos;
     private Transform audioListenerPosition;
+    private bool initialized = false;
 
-
-    private void Start()
+    private void OnEnable()
     {
-        playerPos = GameObject.FindGameObjectWithTag("Player").transform;
-        audioListenerPosition = Camera.main.transform;
+        StartCoroutine(InitializeDelayed());
+    }
+
+    private IEnumerator InitializeDelayed()
+    {
+        yield return null; 
+        InitializeReferences();
+    }
+
+    private void InitializeReferences()
+    {
+        if (!initialized)
+        {
+            GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+            if (playerObj != null)
+            {
+                playerPos = playerObj.transform;
+            }
+            else
+            {
+                Debug.LogWarning("GameEventSFXPlayer: Player object not found. Ensure it has the 'Player' tag and is active.");
+            }
+
+            if (Camera.main != null)
+            {
+                audioListenerPosition = Camera.main.transform;
+            }
+            else
+            {
+                Debug.LogWarning("GameEventSFXPlayer: Main camera not found. Assign the 'MainCamera' tag to your camera.");
+            }
+
+            initialized = true;
+        }
     }
 
     public void PlaySFXviaGameEvent(Component sender, object data)
     {
-        AudioClip clip = (AudioClip)data;
+        if (!initialized)
+        {
+            InitializeReferences(); 
+        }
 
-        if(playerPos != null)
+        AudioClip clip = data as AudioClip;
+        if (clip == null)
+        {
+            Debug.LogError("GameEventSFXPlayer: Provided data is not a valid AudioClip.");
+            return;
+        }
+
+        if (playerPos != null)
         {
             SoundFXManager.Instance.PlaySoundFXClip(clip, playerPos, 1f);
         }
-        else
+        else if (audioListenerPosition != null)
         {
             SoundFXManager.Instance.PlaySoundFXClip(clip, audioListenerPosition, 1f);
+        }
+        else
+        {
+            Debug.LogWarning("GameEventSFXPlayer: No valid position found to play the sound effect.");
         }
     }
 }
