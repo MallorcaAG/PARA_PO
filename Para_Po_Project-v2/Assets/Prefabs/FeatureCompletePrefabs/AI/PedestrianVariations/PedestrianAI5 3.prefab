@@ -196,6 +196,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 465cd192842d3004f92c90bf6586ce2b, type: 2}
     - target: {fileID: 3799668568912276919, guid: cbf810d05e32c9647b788c0355ad8562, type: 3}
+      propertyPath: voiceline
+      value: 
+      objectReference: {fileID: 8300000, guid: 2d7af7bfa798d7543a8952cd11916da8, type: 3}
+    - target: {fileID: 3799668568912276919, guid: cbf810d05e32c9647b788c0355ad8562, type: 3}
       propertyPath: onImpactWithPlayer
       value: 
       objectReference: {fileID: 11400000, guid: a1736e0de7f699b47a4d5b94abbe16a0, type: 2}
