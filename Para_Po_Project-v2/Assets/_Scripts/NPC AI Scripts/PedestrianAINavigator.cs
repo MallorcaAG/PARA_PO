@@ -50,6 +50,7 @@ public class PedestrianAINavigator : WaypointNavigator
     private int idlePersonality = 0;
     private bool allowIngress = false, dying = false;
     private NPCDistanceToPlayer destroyer;
+    private Vector2 playerVehiclePassengerStatus;
 
     #region Getter/Setter funcs
     public void setMyLandmark(GameObject newLandmark)
@@ -70,6 +71,10 @@ public class PedestrianAINavigator : WaypointNavigator
     public Waypoint getPlayersWaypoint()
     {
         return playersWaypoint;
+    }
+    public void setPlayerVehiclePassengerStatus(Component sender, object data)
+    {
+        playerVehiclePassengerStatus = (Vector2)data;
     }
     
     public void AllowIngress(bool con)
@@ -153,6 +158,11 @@ public class PedestrianAINavigator : WaypointNavigator
 
             case NPCState.INGRESS:
                 currentState = state;
+
+                if (!(playerVehiclePassengerStatus.x > playerVehiclePassengerStatus.y))
+                {
+                    state = NPCState.WAITING;
+                }
 
                 if (controller.destinationInfo.reachedDestination)
                 {
@@ -312,6 +322,18 @@ public class PedestrianAINavigator : WaypointNavigator
         if (desiredLandmark == null)
         {
             Debug.LogWarning($"{gameObject.name} attempted to board without a desired landmark!");
+            return;
+        }
+
+        if(playerVehiclePassengerStatus == null)
+        {
+            Debug.LogWarning($"{gameObject.name} does not know the Player's vehicle passenger status.");
+            return;
+        }
+
+        //If NOT passenger count > vehicle max passenger capacity
+        if(!(playerVehiclePassengerStatus.x > playerVehiclePassengerStatus.y))
+        {
             return;
         }
 

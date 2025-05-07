@@ -1450,6 +1450,9 @@ PrefabInstance:
       insertIndex: 4
       addedObject: {fileID: 6296285581486942223}
     - targetCorrespondingSourceObject: {fileID: 5152190990239909319, guid: cbf810d05e32c9647b788c0355ad8562, type: 3}
+      insertIndex: 6
+      addedObject: {fileID: 4582907239667984890}
+    - targetCorrespondingSourceObject: {fileID: 5152190990239909319, guid: cbf810d05e32c9647b788c0355ad8562, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4607171660091049897}
     - targetCorrespondingSourceObject: {fileID: 5152190990239909319, guid: cbf810d05e32c9647b788c0355ad8562, type: 3}
@@ -1459,6 +1462,17 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: -3643098176640292505}
   m_SourcePrefab: {fileID: 100100000, guid: cbf810d05e32c9647b788c0355ad8562, type: 3}
+--- !u!114 &1767133623841575596 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3799668568912276919, guid: cbf810d05e32c9647b788c0355ad8562, type: 3}
+  m_PrefabInstance: {fileID: 3187770930696978203}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7763500617937828572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 846b75bc564fee641b48ac5a7e75354f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &6986963193294086246 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5533677941533679485, guid: cbf810d05e32c9647b788c0355ad8562, type: 3}
@@ -1505,6 +1519,34 @@ MonoBehaviour:
   range: 300
   primeDestruction: 0
   excempted: 0
+--- !u!114 &4582907239667984890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7763500617937828572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 343a05844d3bc104aa8e0351c6314175, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 6ffaeded5df4db84a8253341b38098e0, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1767133623841575596}
+        m_TargetAssemblyTypeName: PedestrianAINavigator, AI
+        m_MethodName: setPlayerVehiclePassengerStatus
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!54 &4607171660091049897
 Rigidbody:
   m_ObjectHideFlags: 0

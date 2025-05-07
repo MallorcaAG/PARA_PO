@@ -6,10 +6,15 @@
 	- "The referenced script (Unknown) on this Behaviour is missing!" HUH ?????
 	- Lighting issue when loaded from another scene
 	- Silence after BGM ends
+	- Player can change BGM to radio in MainMenu. 
+		(Should we keep it, or this shouldnt be allowed to happen? WDYT?)
 	- Singleton error: loading MainMenu in Runtime duplicates DontDestroyOnLoad objects
 
 	Level 1 Testing Bugs
 	- Vehicle's passenger capacity functionality not implemented
+		> Implemented but not tested. 
+			To test: temporarily set maxPassenger to 1. Try to ingress 2 peds. 
+			Test with 1 from 2 diff Landmarks, then 2 from same Landmark
 	- Passengers randomly suddenly ceasing to exist??
 	- Runtime-spawned SakayPeds egress errors: Doesn't reposition onto gameworld correctly, 
 		If 2 or more peds egress only 1 does and the other wants me to move and stop again,
@@ -21,7 +26,7 @@
 	Level 6 Testing Bugs
 	- Same issues as Level 1
 	- Spawnings are delayed?
-	- Trike (Assign onPassengerCountChange GameEvent, VFX prefab, Horn.cs, AudioSource for horn)
+	- Trike (Assign onPassengerCountChange GameEvent and playerVehiclePassengerStatus, VFX prefab, Horn.cs, AudioSource for horn)
 
 	Level 11 Testing Bugs
 	- Violation Type: property damage ????

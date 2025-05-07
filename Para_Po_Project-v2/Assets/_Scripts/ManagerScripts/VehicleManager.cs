@@ -9,8 +9,10 @@ public class VehicleManager : MonoBehaviour
     [Header("Game Events")]
     [SerializeField] private GameEvent shareMyWaypoint;
     [SerializeField] private GameEvent onPassengerCountChange;
+    [SerializeField] private GameEvent playerVehiclePassengerStatus;
     [Header("Variables")]
     [SerializeField] private int routeCheckpoint;
+    [SerializeField] private int maxPassengers = 4;
     [SerializeField] private GameObject VFXPrefab;
     [SerializeField] private GameObject myWaypoint;
     /*    [SerializeField] private List<GameObject> mySeats;*/
@@ -23,16 +25,29 @@ public class VehicleManager : MonoBehaviour
         return checkpoint;
     }
 
+
     private void Start()
     {
         SendMyWaypoint();
+    }
+
+    private void Update()
+    {
+        sendPlayerVehiclePassengerStatus();
     }
 
     public void SendMyWaypoint()
     {
         shareMyWaypoint.Raise(this, myWaypoint);
     }
+    public void sendPlayerVehiclePassengerStatus()
+    {
+        Vector2 vals = new Vector2();
+        vals.x = myPassengers.Count;
+        vals.y = maxPassengers;
 
+        playerVehiclePassengerStatus.Raise(this, vals);
+    }
     public void PedestrianIngress(Component sender, object data)
     {
         GameObject obj = (GameObject)data;
