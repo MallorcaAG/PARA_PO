@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Net.NetworkInformation;
 using UnityEditorInternal;
@@ -37,6 +37,8 @@ public class PedestrianAINavigator : WaypointNavigator
     private static readonly int Walk2 = Animator.StringToHash("Walk2");
     private static readonly int Walk3 = Animator.StringToHash("Walk3");
     private static readonly int Jog = Animator.StringToHash("Jog");
+    private static Queue<PedestrianAINavigator> egressQueue = new Queue<PedestrianAINavigator>();
+    private static bool isEgressing = false;
 
     private Waypoint playersWaypoint;
     private PedestrianAISensors senses;
@@ -306,6 +308,13 @@ public class PedestrianAINavigator : WaypointNavigator
         {
             return;
         }
+
+        if (desiredLandmark == null)
+        {
+            Debug.LogWarning($"{gameObject.name} attempted to board without a desired landmark!");
+            return;
+        }
+
         animator.CrossFade(personalityToWalkAnimation(), 0f);
 
         senses.enabled = false;
@@ -316,24 +325,58 @@ public class PedestrianAINavigator : WaypointNavigator
 
     public void LandmarkReached(Component sender, object landmarkPlayerIsIn)
     {
+        if (desiredLandmark == null)
+        {
+            Debug.LogWarning($"{gameObject.name} has no desired landmark on LandmarkReached call.");
+            return;
+        }
+
         if ((GameObject)landmarkPlayerIsIn != desiredLandmark)
         {
             return;
         }
 
-        if(isRiding)
+        if (isRiding)
         {
-            state = NPCState.EGRESS;
-            Debug.Log("<b>PARA PO!</b>");
-            onSFXPlay.Raise(this, voiceline);
-            onParaPo.Raise(this, 0);
+            egressQueue.Enqueue(this);
+            TryStartEgressQueue();
         }
         else
         {
+            Debug.LogWarning($"{gameObject.name} destroyed without riding. Possible logic error.");
             Destroy(gameObject);
         }
+    }
 
-        
+    private static void TryStartEgressQueue()
+    {
+        if (!isEgressing && egressQueue.Count > 0)
+        {
+            PedestrianAINavigator nextPedestrian = egressQueue.Dequeue();
+            nextPedestrian.StartCoroutine(nextPedestrian.EgressWithDelayCoroutine());
+        }
+    }
+    private IEnumerator EgressWithDelayCoroutine()
+    {
+        isEgressing = true;
+
+        yield return new WaitForSeconds(Random.Range(0.5f, 1.2f)); 
+
+        if (desiredLandmark == null)
+        {
+            Debug.LogWarning($"{gameObject.name} tried to egress but has no desired landmark!");
+            isEgressing = false;
+            TryStartEgressQueue();
+            yield break;
+        }
+
+        state = NPCState.EGRESS;
+        Debug.Log($"<b>PARA PO!</b> {gameObject.name} is egressing at {desiredLandmark.name}");
+        onSFXPlay.Raise(this, voiceline);
+        onParaPo.Raise(this, 0);
+
+        isEgressing = false;
+        TryStartEgressQueue();
     }
 
     public void GetOffVehicle(Component sender, object landmarkPlayerIsIn)
@@ -347,8 +390,13 @@ public class PedestrianAINavigator : WaypointNavigator
 
         animator.CrossFade(personalityToWalkAnimation(),0f);
 
-        transform.parent = null;    
-        transform.position = new Vector3(playersWaypoint.transform.position.x, playersWaypoint.transform.position.y + 0.15f, playersWaypoint.transform.position.z);
+        transform.parent = null;
+        Vector3 offset = new Vector3(Random.Range(-0.5f, 0.5f), 0, Random.Range(-0.5f, 0.5f));
+        transform.position = new Vector3(
+            playersWaypoint.transform.position.x,
+            playersWaypoint.transform.position.y + 0.15f,
+            playersWaypoint.transform.position.z
+        ) + offset;
 
         myRB.useGravity = true;
 
@@ -421,8 +469,8 @@ public class PedestrianAINavigator : WaypointNavigator
     private void DisableNavigation()
     {
         controller.destinationInfo.reachedDestination = true;
-        controller.enabled = false; // if exists
-        SetDestination(transform.position); // freeze position
+        controller.enabled = false; 
+        SetDestination(transform.position); 
     }
 
     private void setColliderState(bool state)
