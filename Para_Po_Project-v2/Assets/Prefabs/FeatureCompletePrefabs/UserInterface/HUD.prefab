@@ -2284,7 +2284,6 @@ GameObject:
   - component: {fileID: 703078911083525069}
   - component: {fileID: 552059276836304028}
   - component: {fileID: 2449382575604485749}
-  - component: {fileID: 6495750871643618592}
   - component: {fileID: 1975403244018471730}
   - component: {fileID: 1034155691247220622}
   - component: {fileID: 873862800135014402}
@@ -2460,34 +2459,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &6495750871643618592
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5515928290848815458}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 343a05844d3bc104aa8e0351c6314175, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 6b79dc4a602068a4cbcc75c2d2e2ea07, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 552059276836304028}
-        m_TargetAssemblyTypeName: HUDManager, UI
-        m_MethodName: passengerIngress
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &1975403244018471730
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2500,14 +2471,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 343a05844d3bc104aa8e0351c6314175, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 19d91901699597543a10c7311bb5f3dd, type: 2}
+  gameEvent: {fileID: 11400000, guid: bd8c05d4e49cbc843b8f985d836dff19, type: 2}
   response:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 552059276836304028}
         m_TargetAssemblyTypeName: HUDManager, UI
-        m_MethodName: passengerEgress
-        m_Mode: 1
+        m_MethodName: PassengerCountChanged
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2644,13 +2615,13 @@ MonoBehaviour:
   response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5515928290848815458}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 0
+      - m_Target: {fileID: 552059276836304028}
+        m_TargetAssemblyTypeName: HUDManager, UI
+        m_MethodName: TriggerParaPoAnimation
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
