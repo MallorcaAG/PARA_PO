@@ -360,7 +360,7 @@ public class PedestrianAINavigator : WaypointNavigator
     {
         isEgressing = true;
 
-        yield return new WaitForSeconds(Random.Range(0.5f, 1.2f)); 
+        yield return new WaitForSeconds(Random.Range(0.3f, 0.3f)); 
 
         if (desiredLandmark == null)
         {
@@ -375,8 +375,7 @@ public class PedestrianAINavigator : WaypointNavigator
         onSFXPlay.Raise(this, voiceline);
         onParaPo.Raise(this, 0);
 
-        isEgressing = false;
-        TryStartEgressQueue();
+      
     }
 
     public void GetOffVehicle(Component sender, object landmarkPlayerIsIn)
@@ -430,6 +429,9 @@ public class PedestrianAINavigator : WaypointNavigator
         }
         isRiding = false;
         SetDestination(currentWaypoint.GetPosition());
+
+        isEgressing = false;
+        TryStartEgressQueue();
 
     }
     #endregion
