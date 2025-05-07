@@ -1,21 +1,22 @@
 	- Add poof particle vfx on SakayPed ingress and egress
 		> Code added. Prefab not assigned yet. Not tested
-	- Modify SakayPed code egress similar to Landmark SakayPed spawning.
-		If 2 or more SakayPed egresses in same landmark, they tp onto each other and jump into the air (weird collision)
 	- We need a skybox resetter script to always reset skybox to highnoon when DayNight cycle is not active
 
 	MainMenu Testing Bugs
 	- "The referenced script (Unknown) on this Behaviour is missing!" HUH ?????
+	- Lighting issue when loaded from another scene
+	- Silence after BGM ends
+	- Singleton error: loading MainMenu in Runtime duplicates DontDestroyOnLoad objects
 
 	Level 1 Testing Bugs
-	- Adjust PeddyNavToucher to be bigger
-		> Adjustment made. Test if passengers struggle to ingress
-	- PeddyNavToucher or Peddy ingress adds false number
-		> Adjustment made. PassengerCount now relies on VehicleManager's myPassenger
 	- Vehicle's passenger capacity functionality not implemented
 	- Passengers randomly suddenly ceasing to exist??
-	- SakayPedestrian did not egress properly? Why?? Also ayaw na nilang bumaba after bumaba na yung isa
+	- Runtime-spawned SakayPeds egress errors: Doesn't reposition onto gameworld correctly, 
+		If 2 or more peds egress only 1 does and the other wants me to move and stop again,
+		(Also 2 or more sakaypeds) Reference to SakayPed becomes Missing in Passenger list
+		upon 2nd SakayPed egress
 	- Result Screen Violation text too long. Still too long
+	- Pedestrians are off the ground/flying
 
 	Level 6 Testing Bugs
 	- Same issues as Level 1
