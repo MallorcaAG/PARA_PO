@@ -20,7 +20,7 @@
 	Level 6 Testing Bugs
 	- Same issues as Level 1
 	- Spawnings are delayed?
-	- Trike (Assign onPassengerCountChange GameEvent, VFX prefab)
+	- Trike (Assign onPassengerCountChange GameEvent, VFX prefab, Horn.cs, AudioSource for horn)
 
 	Level 11 Testing Bugs
 	- Violation Type: property damage ????

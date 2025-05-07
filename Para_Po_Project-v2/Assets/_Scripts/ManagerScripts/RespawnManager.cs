@@ -46,7 +46,7 @@ public class RespawnManager : MonoBehaviour
 
         if(vehicleManager.getCheckpoint() == null)
         {
-            transform.position = playerStartPosition.transform.position;
+            transform.position = playerStartPosition.transform.position + Vector3.up;
             transform.rotation = playerStartPosition.transform.rotation;
             return;
         }
@@ -54,7 +54,7 @@ public class RespawnManager : MonoBehaviour
         lastCheckpoint = vehicleManager.getCheckpoint();
         lastCheckpoint.ClearArea();
         GameObject spawnpoint = lastCheckpoint.getSpawnpoints()[0];
-        transform.position = spawnpoint.transform.position;
+        transform.position = spawnpoint.transform.position + Vector3.up;
         transform.rotation = spawnpoint.transform.rotation;
     }
 
