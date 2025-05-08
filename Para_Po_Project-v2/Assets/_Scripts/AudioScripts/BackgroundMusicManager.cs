@@ -17,7 +17,7 @@ public class BackgroundMusicManager : PersistentSingleton<BackgroundMusicManager
 
     private void Start()
     {
-        PlayMainMenuMusic();
+        StartCoroutine(PlayMainMenuMusic());
     }
 
     private void Update()
@@ -51,9 +51,18 @@ public class BackgroundMusicManager : PersistentSingleton<BackgroundMusicManager
         audioSource.Play();
     }
 
-    public void PlayMainMenuMusic()
+    public IEnumerator PlayMainMenuMusic()
     {
         PlayBGM(mainMenuMusic, transform, defaultVolume);
+
+        yield return new WaitForSeconds(mainMenuMusic.length);
+
+        ReplayMainMenuMusic();
+    }
+
+    private void ReplayMainMenuMusic()
+    {
+        StartCoroutine(PlayMainMenuMusic());
     }
 
     public void StartRadio()
@@ -103,7 +112,7 @@ public class BackgroundMusicManager : PersistentSingleton<BackgroundMusicManager
     {
         StopAllCoroutines();
 
-        PlayMainMenuMusic();
+        StartCoroutine(PlayMainMenuMusic());
     }
 
     public void StopAllMusic()

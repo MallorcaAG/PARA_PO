@@ -6,9 +6,11 @@
 	- "The referenced script (Unknown) on this Behaviour is missing!" HUH ?????
 	- Lighting issue when loaded from another scene
 	- Silence after BGM ends
+		> Adjustment made. Not tested
 	- Player can change BGM to radio in MainMenu. 
 		(Should we keep it, or this shouldnt be allowed to happen? WDYT?)
 	- Singleton error: loading MainMenu in Runtime duplicates DontDestroyOnLoad objects
+		> Adjustment made. 
 
 	Level 1 Testing Bugs
 	- Vehicle's passenger capacity functionality not implemented
