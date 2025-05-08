@@ -1,12 +1,18 @@
 ﻿CREDITS
 
-Producer:
-Project Management:
-Programming:
-Game Design:
-Art Asset Creation:
-Cutscene Animation:
-Research:
+Producer: Cristina A. Pascua
+Project Manager: Remus Newell Gumera
+Gameplay Programmer: Angelo Gabriel Mallorca
+AI Programmer: Angelo Gabriel Mallorca
+Level Designers: Remus Newell Gumera, Angelo Gabriel Mallorca 
+UI/UX Designers: Remus Newell Gumera, Phoenix Lombos
+Systems Designers: Remus Newell Gumera, Angelo Gabriel Mallorca
+Narrative Designers: Remus Newell Gumera, Ioan Phoenix Lombos
+Sound Designers: Remus Newell Gumera, Angelo Gabriel Mallorca
+2D Artist: Ioan Phoenix Lombos
+Animator: Ioan Phoenix Lombos
+Testers: Remus Newell Gumera, Angelo Gabriel Mallorca 
+Researchers: Remus Newell Gumera, Ioan Phoenix Lombos, Angelo Gabriel Mallorca 
 
 ASSETS USED
 
