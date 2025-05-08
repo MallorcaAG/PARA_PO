@@ -11,7 +11,7 @@ public class CutsceneScene : MonoBehaviour
     [SerializeField] private string sceneString = "_MainMenu";
 
     private VideoClip clip;
-    private bool skipCutscene = false;
+    private bool skipCutscene = false, loadingScene = false;
 
     // Start is called before the first frame update
     void Start()
@@ -59,7 +59,10 @@ public class CutsceneScene : MonoBehaviour
             StopAllCoroutines();
 
             //Load Next Scene
-            LoadNextScene();
+            if(!loadingScene)
+            {
+                LoadNextScene();
+            }
         }
         
     }
@@ -68,11 +71,15 @@ public class CutsceneScene : MonoBehaviour
     {
         yield return new WaitForSeconds(duration);
 
-        LoadNextScene();
+        if (!loadingScene)
+        {
+            LoadNextScene();
+        }
     }
 
     private void LoadNextScene()
     {
+        loadingScene = true;
         SceneLoadManager.Instance.LoadScene(sceneString);
     }
 }
