@@ -226,15 +226,15 @@ public class PedestrianAINavigator : WaypointNavigator
     {
         if (!isEgressing && egressQueue.Count > 0)
         {
-            PedestrianAINavigator nextPedestrian = egressQueue.Peek(); // Peek but don’t dequeue yet
+            PedestrianAINavigator nextPedestrian = egressQueue.Peek(); 
             if (nextPedestrian != null && nextPedestrian.desiredLandmark != null)
             {
                 nextPedestrian.StartCoroutine(nextPedestrian.EgressWithDelayCoroutine());
             }
             else
             {
-                egressQueue.Dequeue(); // Clean up broken entry
-                TryStartEgressQueue(); // Try next
+                egressQueue.Dequeue(); 
+                TryStartEgressQueue(); 
             }
         }
     }
@@ -305,11 +305,11 @@ public class PedestrianAINavigator : WaypointNavigator
 
     private void EnableRagdoll()
     {
-        // Prevent ragdoll if the pedestrian is boarding (INGRESS), riding (RIDING), or waiting (WAITING)
+        
         if (state == NPCState.INGRESS || state == NPCState.RIDING || state == NPCState.WAITING)
         {
             Debug.Log("Ragdoll disabled during boarding, riding, or waiting.");
-            return; // Exit method if in one of these states
+            return; 
         }
 
         if (animator != null) animator.enabled = false;
