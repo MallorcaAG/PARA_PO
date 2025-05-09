@@ -25,9 +25,7 @@
 		(Also 2 or more sakaypeds) Reference to SakayPed becomes Missing in Passenger list
 		upon 2nd SakayPed egress
 	- Passengers now refuse to ride for some reason (have not touched anything regarding this so im confused)
-	- Result Screen Violation text too long. Still too long
-	- Pedestrians are off the ground/flying
-		> Fixed. Waypoint now snaps to ground to prevent them from flying.
+
 
 	Level 6 Testing Bugs
 	- Same issues as Level 1
