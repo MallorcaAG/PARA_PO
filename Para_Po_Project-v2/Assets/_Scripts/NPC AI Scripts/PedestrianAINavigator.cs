@@ -1,15 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Net.NetworkInformation;
-using UnityEditorInternal;
 using UnityEngine;
 
 public class PedestrianAINavigator : WaypointNavigator
 {
-    private enum NPCState
-    {
-        STOPPED, WAITING, WALKING, RIDING, INGRESS, EGRESS
-    };
+    private enum NPCState { STOPPED, WAITING, WALKING, RIDING, INGRESS, EGRESS }
 
     [Header("Behavior")]
     [SerializeField] private NPCState state, currentState;
@@ -17,7 +12,6 @@ public class PedestrianAINavigator : WaypointNavigator
     [SerializeField] private GameObject desiredLandmark;
     [SerializeField] private Animator animator;
     [SerializeField] private float deathFromImpactWithPlayerTimer = 5f;
-
 
     [Header("Game Event")]
     [SerializeField] private GameEvent onPedestrianIngress;
@@ -37,6 +31,7 @@ public class PedestrianAINavigator : WaypointNavigator
     private static readonly int Walk2 = Animator.StringToHash("Walk2");
     private static readonly int Walk3 = Animator.StringToHash("Walk3");
     private static readonly int Jog = Animator.StringToHash("Jog");
+
     private static Queue<PedestrianAINavigator> egressQueue = new Queue<PedestrianAINavigator>();
     private static bool isEgressing = false;
 
@@ -52,60 +47,28 @@ public class PedestrianAINavigator : WaypointNavigator
     private NPCDistanceToPlayer destroyer;
     private Vector2 playerVehiclePassengerStatus;
 
-    #region Getter/Setter funcs
-    public void setMyLandmark(GameObject newLandmark)
-    {
-        myLandmark = newLandmark;
-    }
-
-    public void setDesiredLandmark(GameObject newLandmark)
-    {
-        desiredLandmark = newLandmark;
-    }
-
+    #region Getters and Setters
+    public void setMyLandmark(GameObject newLandmark) => myLandmark = newLandmark;
+    public void setDesiredLandmark(GameObject newLandmark) => desiredLandmark = newLandmark;
     public void setPlayersWaypointRef(Component component, object data)
-    {   
+    {
         GameObject obj = (GameObject)data;
         playersWaypoint = obj.GetComponent<Waypoint>();
     }
-    public Waypoint getPlayersWaypoint()
-    {
-        return playersWaypoint;
-    }
-    public void setPlayerVehiclePassengerStatus(Component sender, object data)
-    {
-        playerVehiclePassengerStatus = (Vector2)data;
-    }
-    
-    public void AllowIngress(bool con)
-    {
-        if(con)
-        {
-            allowIngress = true;
-        }
-        else
-        {
-            allowIngress = false;
-        }
-    }
-    
+    public Waypoint getPlayersWaypoint() => playersWaypoint;
+    public void setPlayerVehiclePassengerStatus(Component sender, object data) => playerVehiclePassengerStatus = (Vector2)data;
+    public void AllowIngress(bool con) => allowIngress = con;
     public int getNPCState()
     {
-        switch(currentState)
+        return currentState switch
         {
-            case NPCState.INGRESS:
-                return 0;
-            case NPCState.EGRESS:
-                return 1;
-            default:
-                return -1;
-        }
+            NPCState.INGRESS => 0,
+            NPCState.EGRESS => 1,
+            _ => -1,
+        };
     }
-    
     #endregion
 
-    #region Runtime Functions
-    // Start is called before the first frame update
     void Start()
     {
         destroyer = gameObject.GetComponent<NPCDistanceToPlayer>();
@@ -115,16 +78,8 @@ public class PedestrianAINavigator : WaypointNavigator
         walkPersonality = Random.Range(0, 5);
         idlePersonality = Random.Range(0, 3);
 
-        if (currentWaypoint == null)
-        {
-            state = NPCState.WAITING;
-            SetDestination(transform.position);
-        }
-        else
-        {
-            state = NPCState.WALKING;
-            SetDestination(currentWaypoint.GetPosition());
-        }
+        state = currentWaypoint == null ? NPCState.WAITING : NPCState.WALKING;
+        SetDestination(currentWaypoint?.GetPosition() ?? transform.position);
 
         baseSpeed = personalityToWalkSpeed();
 
@@ -132,41 +87,34 @@ public class PedestrianAINavigator : WaypointNavigator
         setColliderState(true);
     }
 
-    // Update is called once per frame
     void Update()
     {
         switch (state)
         {
             case NPCState.STOPPED:
-                if (state == currentState) break;
-                animator.CrossFade(personalityToIdleAnimation(), 0f);
-                currentState = state;
-                break;
-
             case NPCState.WAITING:
-                if (state == currentState) break;
-                animator.CrossFade(personalityToIdleAnimation(), 0f);
-                currentState = state;
+                if (state != currentState)
+                {
+                    animator.CrossFade(personalityToIdleAnimation(), 0f);
+                    currentState = state;
+                }
                 break;
 
             case NPCState.WALKING:
-                if (state == currentState) break;
-                animator.CrossFade(personalityToWalkAnimation(),0f);
-                NPCWalking();
-                currentState = state;
+                if (state != currentState)
+                {
+                    animator.CrossFade(personalityToWalkAnimation(), 0f);
+                    NPCWalking();
+                    currentState = state;
+                }
                 break;
 
             case NPCState.INGRESS:
                 currentState = state;
-
-                if (!(playerVehiclePassengerStatus.x > playerVehiclePassengerStatus.y))
-                {
-                    state = NPCState.WAITING;
-                }
-
+                if (!(playerVehiclePassengerStatus.x > playerVehiclePassengerStatus.y)) state = NPCState.WAITING;
                 if (controller.destinationInfo.reachedDestination)
                 {
-                    if(allowIngress)
+                    if (allowIngress)
                     {
                         animator.CrossFade(personalityToIdleAnimation(), 0f);
                         state = NPCState.RIDING;
@@ -187,15 +135,12 @@ public class PedestrianAINavigator : WaypointNavigator
 
             case NPCState.RIDING:
                 currentState = state;
-
                 break;
 
             case NPCState.EGRESS:
                 currentState = state;
-
                 if (controller.destinationInfo.reachedDestination)
                 {
-                    //Debug.Log("Got to sidewalk safely"); 
                     state = NPCState.WALKING;
                     senses.enabled = true;
                     canBeViolated = true;
@@ -207,156 +152,64 @@ public class PedestrianAINavigator : WaypointNavigator
                 break;
         }
     }
-    #endregion
 
-    public void changeStateToIdle()
+    private int personalityToIdleAnimation() => idlePersonality switch
     {
-        state = NPCState.STOPPED;
-    }
+        0 => Idle0,
+        1 => Idle1,
+        2 => Idle2,
+        _ => Idle0
+    };
 
-    public void changeStateToWalk()
+    private int personalityToWalkAnimation() => walkPersonality switch
     {
-        state = NPCState.WALKING;
-    }
+        0 => Walk1,
+        1 => Walk2,
+        2 => Walk3,
+        4 => Jog,
+        _ => Walk1
+    };
 
-    public bool isWaiting()
+    private float personalityToWalkSpeed() => walkPersonality switch
     {
-        switch(state)
-        {
-            case NPCState.WAITING:
-                return true;
+        0 => 1.8f,
+        1 => 1.2f,
+        2 => 0.7f,
+        4 => 3f,
+        _ => 0.8f
+    };
 
-            default:
-                return false;
-        }
-    }
-
-    private int personalityToIdleAnimation()
-    {
-        switch(idlePersonality)
-        {
-            case 0:
-                return Idle0;
-                
-
-            case 1:
-                return Idle1;
-                
-
-            case 2:
-                return Idle2;
-                
-
-        }
-
-        return Idle0;
-    }
-
-    private int personalityToWalkAnimation()
-    {
-        switch (walkPersonality)
-        {
-            case 0:
-                return Walk1;
-                
-
-            case 1:
-                return Walk2;
-                
-
-            case 2:
-                return Walk3;
-                
-
-            case 4:
-                return Jog;
-                
-        }
-
-        return Walk1;
-    }
-
-    private float personalityToWalkSpeed()
-    {
-        switch (walkPersonality)
-        {
-            case 0:
-                return 1.8f;
-
-
-            case 1:
-                return 1.2f;
-
-
-            case 2:
-                return 0.7f;
-
-            case 4:
-                return 3f;
-
-        }
-
-        return 0.8f;
-    }
-
-    private void NPCWalking()
-    {
-        NPCTraversal();
-    }
+    private void NPCWalking() => NPCTraversal();
 
     public void pivot(Vector3 sense, float maxDistance)
     {
         Vector3 pivotPos = transform.TransformPoint(sense * maxDistance);
-
         SetDestination(pivotPos);
     }
 
-    #region Pedestrian Specific Functions
     public void GetOnVehicle(Component component, object landmarkPlayerIsIn)
     {
-        if ((GameObject)landmarkPlayerIsIn != myLandmark)
+        if ((GameObject)landmarkPlayerIsIn != myLandmark || desiredLandmark == null) return;
+        if (!(playerVehiclePassengerStatus.x > playerVehiclePassengerStatus.y)) return;
+
+        // Only allow boarding if not in ragdoll states (avoid ragdoll interference)
+        if (state != NPCState.INGRESS && state != NPCState.RIDING && state != NPCState.WAITING)
         {
-            return;
+            animator.CrossFade(personalityToWalkAnimation(), 0f);
+            senses.enabled = false;
+            state = NPCState.INGRESS;
+            SetDestination(playersWaypoint.GetPosition());
+            canBeViolated = false;
         }
-
-        if (desiredLandmark == null)
+        else
         {
-            Debug.LogWarning($"{gameObject.name} attempted to board without a desired landmark!");
-            return;
+            Debug.Log("Attempted to board while in invalid state: " + state);
         }
-
-        if(playerVehiclePassengerStatus == null)
-        {
-            Debug.LogWarning($"{gameObject.name} does not know the Player's vehicle passenger status.");
-            return;
-        }
-
-        //If NOT passenger count > vehicle max passenger capacity
-        if(!(playerVehiclePassengerStatus.x > playerVehiclePassengerStatus.y))
-        {
-            return;
-        }
-
-        animator.CrossFade(personalityToWalkAnimation(), 0f);
-
-        senses.enabled = false;
-        state = NPCState.INGRESS;
-        SetDestination(playersWaypoint.GetPosition());
-        canBeViolated = false;
     }
 
     public void LandmarkReached(Component sender, object landmarkPlayerIsIn)
     {
-        if (desiredLandmark == null)
-        {
-            Debug.LogWarning($"{gameObject.name} has no desired landmark on LandmarkReached call.");
-            return;
-        }
-
-        if ((GameObject)landmarkPlayerIsIn != desiredLandmark)
-        {
-            return;
-        }
+        if (desiredLandmark == null || (GameObject)landmarkPlayerIsIn != desiredLandmark) return;
 
         if (isRiding)
         {
@@ -365,7 +218,6 @@ public class PedestrianAINavigator : WaypointNavigator
         }
         else
         {
-            Debug.LogWarning($"{gameObject.name} destroyed without riding. Possible logic error.");
             Destroy(gameObject);
         }
     }
@@ -374,42 +226,44 @@ public class PedestrianAINavigator : WaypointNavigator
     {
         if (!isEgressing && egressQueue.Count > 0)
         {
-            PedestrianAINavigator nextPedestrian = egressQueue.Dequeue();
-            nextPedestrian.StartCoroutine(nextPedestrian.EgressWithDelayCoroutine());
+            PedestrianAINavigator nextPedestrian = egressQueue.Peek(); // Peek but don’t dequeue yet
+            if (nextPedestrian != null && nextPedestrian.desiredLandmark != null)
+            {
+                nextPedestrian.StartCoroutine(nextPedestrian.EgressWithDelayCoroutine());
+            }
+            else
+            {
+                egressQueue.Dequeue(); // Clean up broken entry
+                TryStartEgressQueue(); // Try next
+            }
         }
     }
+
     private IEnumerator EgressWithDelayCoroutine()
     {
         isEgressing = true;
 
-        yield return new WaitForSeconds(Random.Range(0.3f, 0.3f)); 
+        yield return new WaitForSeconds(Random.Range(0.15f, 0.25f)); // Short delay for realism
 
         if (desiredLandmark == null)
         {
-            Debug.LogWarning($"{gameObject.name} tried to egress but has no desired landmark!");
+            egressQueue.Dequeue();
             isEgressing = false;
             TryStartEgressQueue();
             yield break;
         }
 
         state = NPCState.EGRESS;
-        Debug.Log($"<b>PARA PO!</b> {gameObject.name} is egressing at {desiredLandmark.name}");
-        onSFXPlay.Raise(this, voiceline);
-        onParaPo.Raise(this, 0);
-
-      
+        onSFXPlay?.Raise(this, voiceline);
+        onParaPo?.Raise(this, 0);
     }
 
     public void GetOffVehicle(Component sender, object landmarkPlayerIsIn)
     {
-        if (state != NPCState.EGRESS)
-        {
-            return;
-        }
+        if (state != NPCState.EGRESS) return;
 
         gameObject.GetComponent<NPCDistanceToPlayer>().excempted = false;
-
-        animator.CrossFade(personalityToWalkAnimation(),0f);
+        animator.CrossFade(personalityToWalkAnimation(), 0f);
 
         transform.parent = null;
         Vector3 offset = new Vector3(Random.Range(-0.5f, 0.5f), 0, Random.Range(-0.5f, 0.5f));
@@ -420,60 +274,58 @@ public class PedestrianAINavigator : WaypointNavigator
         ) + offset;
 
         myRB.useGravity = true;
+        onPedestrianEgress?.Raise(this, gameObject);
 
-        Debug.Log("Getting off vehicle: " + gameObject.name);
+        // Set next waypoint correctly
+        currentWaypoint = playersWaypoint ?? currentWaypoint;
+        currentWaypoint = !changeDirection ?
+            currentWaypoint.nextWaypoint ?? currentWaypoint :
+            currentWaypoint.previousWaypoint ?? currentWaypoint;
 
-        onPedestrianEgress.Raise(this, gameObject);
-        
-        currentWaypoint = playersWaypoint ?? currentWaypoint; 
-
-        if (!changeDirection)
-        {
-            if (currentWaypoint.nextWaypoint != null)
-            {
-                currentWaypoint = currentWaypoint.nextWaypoint; 
-            }
-            else
-            {
-                Destroy(gameObject); 
-            }
-        }
-        else
-        {
-            if (currentWaypoint.previousWaypoint != null)
-            {
-                currentWaypoint = currentWaypoint.previousWaypoint;
-            }
-            else
-            {
-                Destroy(gameObject); 
-            }
-        }
         isRiding = false;
         SetDestination(currentWaypoint.GetPosition());
 
+        // Only dequeue after successful GetOff
+        if (egressQueue.Count > 0 && egressQueue.Peek() == this)
+            egressQueue.Dequeue();
+
         isEgressing = false;
         TryStartEgressQueue();
-
     }
-    #endregion
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.transform.CompareTag("Player") && canBeViolated)
+        if (collision.transform.CompareTag("Player") && canBeViolated)
         {
             onImpactWithPlayer.Raise(this, gameObject);
-
-            animator.enabled = false;
-            myRB.isKinematic = true;
-            setRigidbodyState(false);
-            setColliderState(true);
-            ZeroOutRigidbodyVelocity();
-            DisableNavigation();
-
+            EnableRagdoll();
             StartCoroutine(kys());
         }
     }
+
+    private void EnableRagdoll()
+    {
+        // Prevent ragdoll if the pedestrian is boarding (INGRESS), riding (RIDING), or waiting (WAITING)
+        if (state == NPCState.INGRESS || state == NPCState.RIDING || state == NPCState.WAITING)
+        {
+            Debug.Log("Ragdoll disabled during boarding, riding, or waiting.");
+            return; // Exit method if in one of these states
+        }
+
+        if (animator != null) animator.enabled = false;
+        DisableNavigation();
+        setRigidbodyState(false);
+        setColliderState(true);
+        ZeroOutRigidbodyVelocity();
+
+        transform.parent = null;
+
+        foreach (Rigidbody rb in GetComponentsInChildren<Rigidbody>())
+        {
+            rb.AddForce(Vector3.back * 2f, ForceMode.Impulse); // Apply ragdoll force
+        }
+    }
+
 
     private IEnumerator kys()
     {
@@ -485,25 +337,13 @@ public class PedestrianAINavigator : WaypointNavigator
     private void setRigidbodyState(bool state)
     {
         Rigidbody[] rigidbodies = GetComponentsInChildren<Rigidbody>();
-        foreach (Rigidbody rigidbody in rigidbodies)
-        {
-            rigidbody.isKinematic = state;
-        }
-    }
-    private void DisableNavigation()
-    {
-        controller.destinationInfo.reachedDestination = true;
-        controller.enabled = false; 
-        SetDestination(transform.position); 
+        foreach (Rigidbody rb in rigidbodies) rb.isKinematic = state;
     }
 
     private void setColliderState(bool state)
     {
         Collider[] colliders = GetComponentsInChildren<Collider>();
-        foreach (Collider collider in colliders)
-        {
-            collider.enabled = state;
-        }
+        foreach (Collider col in colliders) col.enabled = state;
     }
 
     private void ZeroOutRigidbodyVelocity()
@@ -515,4 +355,15 @@ public class PedestrianAINavigator : WaypointNavigator
             rb.angularVelocity = Vector3.zero;
         }
     }
+
+    private void DisableNavigation()
+    {
+        controller.destinationInfo.reachedDestination = true;
+        controller.enabled = false;
+        SetDestination(transform.position);
+    }
+
+    public void changeStateToIdle() => state = NPCState.STOPPED;
+    public void changeStateToWalk() => state = NPCState.WALKING;
+    public bool isWaiting() => state == NPCState.WAITING;
 }

@@ -12,7 +12,7 @@ public class VehicleManager : MonoBehaviour
     [SerializeField] private GameEvent playerVehiclePassengerStatus;
     [Header("Variables")]
     [SerializeField] private int routeCheckpoint;
-    [SerializeField] private int maxPassengers = 4;
+    [SerializeField] private int maxPassengers = 1;
     [SerializeField] private GameObject VFXPrefab;
     [SerializeField] private GameObject myWaypoint;
     /*    [SerializeField] private List<GameObject> mySeats;*/
@@ -51,33 +51,41 @@ public class VehicleManager : MonoBehaviour
     public void PedestrianIngress(Component sender, object data)
     {
         GameObject obj = (GameObject)data;
-        //INSTANTIATE POOFING VFX OR CALL DIFFERENT GAME EVENT TO INSTANTIATE THE VFX
-        GameObject vfx = Instantiate(VFXPrefab, myWaypoint.transform);
-        Destroy(vfx, 4f);
 
-        myPassengers.Add(obj);
-        onPassengerCountChange.Raise(this, myPassengers.Count);
-        Debug.Log("Passenger Count: " + myPassengers.Count);
+        // Ensure vehicle is not full
+        if (myPassengers.Count < maxPassengers)
+        {
+            // INSTANTIATE POOFING VFX OR CALL DIFFERENT GAME EVENT TO INSTANTIATE THE VFX
+            GameObject vfx = Instantiate(VFXPrefab, myWaypoint.transform);
+            Destroy(vfx, 4f);
 
-        obj.transform.SetParent(myWaypoint.transform);
-        obj.transform.localPosition = new Vector3(0, obj.transform.position.y - 100, 0);
+            myPassengers.Add(obj);
+            onPassengerCountChange.Raise(this, myPassengers.Count);
+            Debug.Log("Passenger Count: " + myPassengers.Count);
 
+            obj.transform.SetParent(myWaypoint.transform);
+            obj.transform.localPosition = new Vector3(0, 0.1f, 0); // Adjusted position
+        }
     }
 
     public void PedestrianEgress(Component sender, object data)
     {
         GameObject obj = (GameObject)data;
-        //INSTANTIATE POOFING VFX OR CALL DIFFERENT GAME EVENT TO INSTANTIATE THE VFX
-        GameObject vfx = Instantiate(VFXPrefab, myWaypoint.transform);
-        Destroy(vfx, 4f);
 
-        myPassengers.Remove(obj);
-        onPassengerCountChange.Raise(this, myPassengers.Count);
-        Debug.Log("Passenger Count: "+myPassengers.Count);
+        // Ensure the pedestrian is egressing correctly
+        if (myPassengers.Contains(obj))
+        {
+            // INSTANTIATE POOFING VFX OR CALL DIFFERENT GAME EVENT TO INSTANTIATE THE VFX
+            GameObject vfx = Instantiate(VFXPrefab, myWaypoint.transform);
+            Destroy(vfx, 4f);
 
-        obj.transform.parent = null;    
-        obj.transform.position = new Vector3(myWaypoint.transform.position.x, myWaypoint.transform.position.y + 0.1f, myWaypoint.transform.position.z);
-        
+            myPassengers.Remove(obj);
+            onPassengerCountChange.Raise(this, myPassengers.Count);
+            Debug.Log("Passenger Count: " + myPassengers.Count);
+
+            obj.transform.parent = null;
+            obj.transform.position = new Vector3(myWaypoint.transform.position.x, myWaypoint.transform.position.y + 0.1f, myWaypoint.transform.position.z); // Adjusted position
+        }
     }
 
     public void IncrementRouteTravelled(Component sender, object data)

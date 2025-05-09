@@ -1,10 +1,12 @@
 	- Add poof particle vfx on SakayPed ingress and egress
 		> Code added. Prefab not assigned yet. Not tested
 	- We need a skybox resetter script to always reset skybox to highnoon when DayNight cycle is not active
+           > Done. Try pressing tryagain or resetting level from mainmenu to check.
 
 	MainMenu Testing Bugs
 	- "The referenced script (Unknown) on this Behaviour is missing!" HUH ?????
 	- Lighting issue when loaded from another scene
+		> Done. Try pressing tryagain or resetting level from mainmenu to check.
 	- Silence after BGM ends
 		> Adjustment made. Not tested
 	- Player can change BGM to radio in MainMenu. 
@@ -22,8 +24,10 @@
 		If 2 or more peds egress only 1 does and the other wants me to move and stop again,
 		(Also 2 or more sakaypeds) Reference to SakayPed becomes Missing in Passenger list
 		upon 2nd SakayPed egress
+	- Passengers now refuse to ride for some reason (have not touched anything regarding this so im confused)
 	- Result Screen Violation text too long. Still too long
 	- Pedestrians are off the ground/flying
+		> Fixed. Waypoint now snaps to ground to prevent them from flying.
 
 	Level 6 Testing Bugs
 	- Same issues as Level 1

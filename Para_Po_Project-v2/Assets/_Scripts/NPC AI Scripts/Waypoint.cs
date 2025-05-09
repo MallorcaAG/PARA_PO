@@ -24,4 +24,24 @@ public class Waypoint : MonoBehaviour
         // Return a random position between the min and max bounds
         return Vector3.Lerp(minBound, maxBound, Random.Range(0f, 1f));
     }
+
+    void Update()
+    {
+        SnapToGround();
+    }
+
+    private void SnapToGround()
+    {
+        RaycastHit hit;
+        Vector3 rayOrigin = transform.position + Vector3.up * 10f;
+        float rayDistance = 100f;
+
+        // Only snap to objects on the "Driveable" layer
+        int driveableMask = LayerMask.GetMask("Driveable");
+
+        if (Physics.Raycast(rayOrigin, Vector3.down, out hit, rayDistance, driveableMask))
+        {
+            transform.position = hit.point;
+        }
+    }
 }

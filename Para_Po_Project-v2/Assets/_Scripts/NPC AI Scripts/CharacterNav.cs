@@ -13,10 +13,13 @@ public class CharacterNav : MonoBehaviour
 
     public float movementSpeed = 5f;
     public float rotationSpeed = 720f;
-    public float stopDistance = 0.1f;
+    public float stopDistance = 0.2f; // Slightly increased for stability
     public DestinationInfo destinationInfo;
+
     private Vector3 lastPosition;
 
+    // Optional: Uncomment if you're using Animator
+    // public Animator animator;
 
     void Start()
     {
@@ -54,8 +57,12 @@ public class CharacterNav : MonoBehaviour
         float fwdDotProduct = Vector3.Dot(transform.forward, velocity);
         float rightDotProduct = Vector3.Dot(transform.right, velocity);
 
-        /*animator.SetFloat("horizontal", rightDotProduct);
-        animator.SetFloat("Forward", fwdDotProduct);*/
+        // Optional: Animator control
+        // if (animator != null)
+        // {
+        //     animator.SetFloat("horizontal", rightDotProduct);
+        //     animator.SetFloat("Forward", fwdDotProduct);
+        // }
     }
 
     public void SetDestination(Vector3 newDestination)

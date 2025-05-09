@@ -1,110 +1,88 @@
-using System;
 using System.Collections;
 using UnityEngine;
 
 public class TimeManager : MonoBehaviour
 {
+    [Header("Events")]
     [SerializeField] private GameEvent onDayActivated;
     [SerializeField] private GameEvent onSunsetActivated;
     [SerializeField] private GameEvent onNightActivated;
     [SerializeField] private GameEvent onSunriseActivated;
 
+    [Header("Skybox Textures")]
     [SerializeField] private Texture2D skyboxNight;
     [SerializeField] private Texture2D skyboxSunrise;
     [SerializeField] private Texture2D skyboxDay;
     [SerializeField] private Texture2D skyboxSunset;
     [SerializeField] private Material Skybox_DualPanoramic;
 
+    [Header("Lighting")]
     [SerializeField] private Gradient gradientNightToSunrise;
     [SerializeField] private Gradient gradientSunriseToDay;
     [SerializeField] private Gradient gradientDayToSunset;
     [SerializeField] private Gradient gradientSunsetToNight;
-
     [SerializeField] private Light globalLight;
 
-    [Tooltip("Lower means = faster, Higher means = slower")]
-    [SerializeField] private float cycleDurationInSeconds = 240f; // Total duration for a full day-night cycle
+    [Tooltip("Lower = faster day cycle")]
+    [SerializeField] private float cycleDurationInSeconds = 240f;
 
     private float elapsedTime;
     private float secondsPerHour;
     private int currentHour;
     private float skyboxScrollSpeed;
-
-    // Flag to check if this is the first time the game has started
-    private bool isFirstTime = true;
+    private Material skyboxInstance;
 
     private void Start()
     {
-        // Set initial cycle duration and tick speed
+        // Always reset time to noon
         secondsPerHour = cycleDurationInSeconds / 24f;
+        elapsedTime = secondsPerHour * 12f; // Start at noon
+        currentHour = 12;
         skyboxScrollSpeed = 1f / cycleDurationInSeconds;
 
-        // Always start at noon (12:00 PM)
-        if (isFirstTime)
-        {
-            elapsedTime = secondsPerHour * 12; // Start at noon
-            currentHour = 12;
+        // Instantiate a new skybox material to prevent cross-scene blending issues
+        skyboxInstance = new Material(Skybox_DualPanoramic);
+        RenderSettings.skybox = skyboxInstance;
+        RenderSettings.skybox.SetTexture("_Texture1", skyboxDay);
+        RenderSettings.skybox.SetFloat("_Blend", 0);
+        RenderSettings.skybox.SetFloat("_Offset", 0);
 
-            // Set skybox and light settings for noon/daytime
-            RenderSettings.skybox = Skybox_DualPanoramic;
-            RenderSettings.skybox.SetTexture("_Texture1", skyboxDay);
-            RenderSettings.skybox.SetFloat("_Blend", 0);
-            RenderSettings.skybox.SetFloat("_Offset", 0);
+        // Set light rotation, color, and intensity to noon
+        float rotationAngle = (elapsedTime / cycleDurationInSeconds) * 360f;
+        globalLight.transform.rotation = Quaternion.Euler(new Vector3(rotationAngle - 90f, 0f, 0f));
+        globalLight.color = gradientSunriseToDay.Evaluate(1f);
+        globalLight.intensity = 1.0f;
+        RenderSettings.sun = globalLight;
+        RenderSettings.fogColor = globalLight.color;
 
-            // Reset sun rotation for noon (top of the sky)
-            float rotationAngle = (elapsedTime / cycleDurationInSeconds) * 360f;
-            globalLight.transform.rotation = Quaternion.Euler(new Vector3(rotationAngle - 90f, 0f, 0f));
-
-            // Set light color and intensity for noon
-            globalLight.color = gradientSunriseToDay.Evaluate(1f); // fully into "day"
-            globalLight.intensity = 1.0f;
-            RenderSettings.sun = globalLight;
-            RenderSettings.fogColor = globalLight.color;
-
-            // Fire day event
-            onDayActivated.Raise(this, 0f);
-            OnHoursChange(currentHour, true);
-
-            // Mark that the game has been initialized
-            isFirstTime = false;
-        }
+        // Trigger day events
+        onDayActivated.Raise(this, 0f);
+        OnHoursChange(currentHour, true);
     }
 
     private void Update()
     {
-        // Only update elapsed time and hour after the initial setup
-        if (!isFirstTime)
+        elapsedTime += Time.deltaTime;
+
+        int newHour = Mathf.FloorToInt((elapsedTime / secondsPerHour) % 24);
+        if (newHour != currentHour)
         {
-            elapsedTime += Time.deltaTime;
+            currentHour = newHour;
+            OnHoursChange(currentHour, false);
+        }
 
-            // Update the hour based on elapsed time
-            int newHour = Mathf.FloorToInt((elapsedTime / secondsPerHour) % 24);
-            if (newHour != currentHour)
-            {
-                currentHour = newHour;
-                OnHoursChange(currentHour, false);
-            }
+        float rotationAngle = (elapsedTime / cycleDurationInSeconds) * 360f;
+        globalLight.transform.rotation = Quaternion.Euler(new Vector3(rotationAngle - 90f, 0f, 0f));
 
-            // Update sun rotation based on elapsed time
-            float rotationAngle = (elapsedTime / cycleDurationInSeconds) * 360f;
-            globalLight.transform.rotation = Quaternion.Euler(new Vector3(rotationAngle - 90f, 0f, 0f));
-
-            // Update the skybox scroll effect
-            if (RenderSettings.skybox != null)
-            {
-                RenderSettings.skybox.SetFloat("_Offset", Time.time * skyboxScrollSpeed);
-            }
-            else
-            {
-                Debug.LogWarning("RenderSettings.skybox is null. Make sure Skybox_DualPanoramic is assigned.");
-            }
+        if (RenderSettings.skybox != null)
+        {
+            RenderSettings.skybox.SetFloat("_Offset", Time.time * skyboxScrollSpeed);
         }
     }
 
     private void OnHoursChange(int hour, bool isInitialSetup)
     {
-        // Handle transitions for different times of the day
-        if (hour == 7) // Sunrise to Day
+        if (hour == 7)
         {
             if (isInitialSetup)
             {
@@ -119,31 +97,29 @@ public class TimeManager : MonoBehaviour
                 onDayActivated.Raise(this, 0);
                 StartCoroutine(LerpSkybox(skyboxSunrise, skyboxDay, secondsPerHour));
                 StartCoroutine(LerpLight(gradientSunriseToDay, secondsPerHour));
-                StartCoroutine(LerpIntensity(globalLight.intensity, 1.0f, secondsPerHour)); // Bright light for daytime
+                StartCoroutine(LerpIntensity(globalLight.intensity, 1.0f, secondsPerHour));
             }
         }
-        else if (hour == 17) // Day to Sunset
+        else if (hour == 17)
         {
             onSunsetActivated.Raise(this, 0);
             StartCoroutine(LerpSkybox(skyboxDay, skyboxSunset, secondsPerHour));
             StartCoroutine(LerpLight(gradientDayToSunset, secondsPerHour));
-            StartCoroutine(LerpIntensity(globalLight.intensity, 0.2f, secondsPerHour)); // Dim light for sunset
+            StartCoroutine(LerpIntensity(globalLight.intensity, 0.2f, secondsPerHour));
         }
-        else if (hour == 21) // Sunset to Night
+        else if (hour == 21)
         {
             onNightActivated.Raise(this, 0);
             StartCoroutine(LerpSkybox(skyboxSunset, skyboxNight, secondsPerHour));
             StartCoroutine(LerpLight(gradientSunsetToNight, secondsPerHour));
-            StartCoroutine(LerpIntensity(globalLight.intensity, 0.05f, secondsPerHour)); // Very dim light for night
+            StartCoroutine(LerpIntensity(globalLight.intensity, 0.05f, secondsPerHour));
         }
-        else if (hour == 5) // Night to Sunrise
+        else if (hour == 5)
         {
             onSunriseActivated.Raise(this, 0);
             StartCoroutine(LerpSkybox(skyboxNight, skyboxSunrise, secondsPerHour));
             StartCoroutine(LerpLight(gradientNightToSunrise, secondsPerHour));
-            StartCoroutine(LerpIntensity(globalLight.intensity, 0.5f, secondsPerHour)); // Dim light for sunrise
-
-            // Transition from sunrise to day
+            StartCoroutine(LerpIntensity(globalLight.intensity, 0.5f, secondsPerHour));
             StartCoroutine(DelayTransitionToDay());
         }
     }
@@ -153,7 +129,7 @@ public class TimeManager : MonoBehaviour
         yield return new WaitForSeconds(secondsPerHour);
         StartCoroutine(LerpSkybox(skyboxSunrise, skyboxDay, secondsPerHour));
         StartCoroutine(LerpLight(gradientSunriseToDay, secondsPerHour));
-        StartCoroutine(LerpIntensity(globalLight.intensity, 1.0f, secondsPerHour)); // Transition to bright daytime light
+        StartCoroutine(LerpIntensity(globalLight.intensity, 1.0f, secondsPerHour));
     }
 
     private IEnumerator LerpSkybox(Texture2D fromTexture, Texture2D toTexture, float duration)
@@ -164,8 +140,7 @@ public class TimeManager : MonoBehaviour
 
         for (float t = 0; t < duration; t += Time.deltaTime)
         {
-            float blend = t / duration;
-            RenderSettings.skybox.SetFloat("_Blend", blend);
+            RenderSettings.skybox.SetFloat("_Blend", t / duration);
             yield return null;
         }
 
@@ -188,11 +163,9 @@ public class TimeManager : MonoBehaviour
     {
         for (float t = 0; t < duration; t += Time.deltaTime)
         {
-            float blend = t / duration;
-            globalLight.intensity = Mathf.Lerp(fromIntensity, toIntensity, blend);
+            globalLight.intensity = Mathf.Lerp(fromIntensity, toIntensity, t / duration);
             yield return null;
         }
-
         globalLight.intensity = toIntensity;
     }
 }
