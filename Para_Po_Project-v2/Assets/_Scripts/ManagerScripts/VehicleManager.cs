@@ -64,7 +64,7 @@ public class VehicleManager : MonoBehaviour
             Debug.Log("Passenger Count: " + myPassengers.Count);
 
             obj.transform.SetParent(myWaypoint.transform);
-            obj.transform.localPosition = new Vector3(0, 0.1f, 0); // Adjusted position
+            obj.transform.localPosition = new Vector3(0, obj.transform.position.y - 100, 0);
         }
     }
 
