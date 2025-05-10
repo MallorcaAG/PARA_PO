@@ -111,7 +111,8 @@ public class PedestrianAINavigator : WaypointNavigator
 
             case NPCState.INGRESS:
                 currentState = state;
-                if (!(playerVehiclePassengerStatus.x > playerVehiclePassengerStatus.y)) state = NPCState.WAITING;
+                if (playerVehiclePassengerStatus.x > playerVehiclePassengerStatus.y) 
+                    { state = NPCState.WAITING; }
                 if (controller.destinationInfo.reachedDestination)
                 {
                     if (allowIngress)
@@ -189,11 +190,17 @@ public class PedestrianAINavigator : WaypointNavigator
 
     public void GetOnVehicle(Component component, object landmarkPlayerIsIn)
     {
+        Debug.LogWarning($"Get on vehicle called by {gameObject.name}");
+
         if ((GameObject)landmarkPlayerIsIn != myLandmark || desiredLandmark == null) return;
-        if (!(playerVehiclePassengerStatus.x > playerVehiclePassengerStatus.y)) return;
+        if (playerVehiclePassengerStatus.x > playerVehiclePassengerStatus.y) 
+        {
+            Debug.LogWarning($"{gameObject.name} cant get on due to vehicle capacity");
+            return; 
+        }
 
         // Only allow boarding if not in ragdoll states (avoid ragdoll interference)
-        if (state != NPCState.INGRESS && state != NPCState.RIDING && state != NPCState.WAITING)
+        if ((state != NPCState.INGRESS) && (state != NPCState.RIDING) && (state != NPCState.WAITING))
         {
             animator.CrossFade(personalityToWalkAnimation(), 0f);
             senses.enabled = false;
