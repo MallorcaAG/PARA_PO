@@ -24,8 +24,12 @@
 		If 2 or more peds egress only 1 does and the other wants me to move and stop again,
 		(Also 2 or more sakaypeds) Reference to SakayPed becomes Missing in Passenger list
 		upon 2nd SakayPed egress
-	
-
+			> Adjustment made. Not tested. "Doesn't reposition onto gameworld correctly" appears to be fixed
+	- StaticSakayPed still not sakaying
+	- Tried to run over SakayPed, ragdoll didn't activate
+	- Add indicator that we're over capacity?
+	- Respawn functionality always respawns at position. Code that respawns at landmark spawnpoint doesnt run?
+	- SakayPed on egress get stuck where they spawn. Doesnt walk to nearest waypoint. WaypointAttacher not working?
 
 	Level 6 Testing Bugs
 	- Same issues as Level 1
