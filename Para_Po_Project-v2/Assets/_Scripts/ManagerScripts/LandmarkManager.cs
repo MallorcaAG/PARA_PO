@@ -64,10 +64,11 @@ public class LandmarkManager : Singleton<LandmarkManager>
             );
 
             npcObj.GetComponent<NPCDistanceToPlayer>().excempted = true;
-            Instantiate(uiIndicator, npcObj.transform, false);
+            GameObject uiRef = Instantiate(uiIndicator, npcObj.transform, false);
 
             GameObject destinationLandmark = GetRandomDifferentLandmark(landmark);
             PedestrianAINavigator npcAI = npcObj.GetComponent<PedestrianAINavigator>();
+            npcAI.setMyUIIndicatorReference(uiRef);
             npcAI.setMyLandmark(landmark);
             npcAI.setDesiredLandmark(destinationLandmark);
             return;

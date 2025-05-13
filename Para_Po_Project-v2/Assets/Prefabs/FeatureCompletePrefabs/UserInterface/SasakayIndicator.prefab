@@ -91,6 +91,7 @@ GameObject:
   - component: {fileID: 7892830277762674139}
   - component: {fileID: 2786342233891841037}
   - component: {fileID: 2076373070229137988}
+  - component: {fileID: 4072157646989916173}
   m_Layer: 5
   m_Name: SasakayIndicator
   m_TagString: Untagged
@@ -206,6 +207,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 954d12358cfeda34ebe9cd25a3626633, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sasakayIndicator: {fileID: 3960397760476305139}
 --- !u!114 &2076373070229137988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -225,6 +227,34 @@ MonoBehaviour:
       - m_Target: {fileID: 2786342233891841037}
         m_TargetAssemblyTypeName: SasakayIndicatorDestroyer, UI
         m_MethodName: DestroyTrigger
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &4072157646989916173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8771351190232783912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 343a05844d3bc104aa8e0351c6314175, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 88d86b0828220d54f9e9e27147d7b17b, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2786342233891841037}
+        m_TargetAssemblyTypeName: SasakayIndicatorDestroyer, UI
+        m_MethodName: UIHider
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

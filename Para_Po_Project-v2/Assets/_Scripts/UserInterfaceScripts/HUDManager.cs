@@ -286,8 +286,9 @@ public class HUDManager : MonoBehaviour
         PARA_PO.SetActive(false); 
     }
 
-    public void TriggerPassengerCapacityIndicator()
+    public void TriggerPassengerCapacityIndicator(Component sender, object data)
     {
+        if (!((bool)data)) return;
         if (passengerCountText.color == Color.red) return;
         StartCoroutine(IndicatePassengerCapacity());
     }

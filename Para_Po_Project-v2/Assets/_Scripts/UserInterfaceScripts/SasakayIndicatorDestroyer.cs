@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SasakayIndicatorDestroyer : MonoBehaviour
 {
+    public GameObject sasakayIndicator;
     private GameObject myObject;
 
     // Start is called before the first frame update
@@ -20,6 +21,21 @@ public class SasakayIndicatorDestroyer : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    public void UIHider(Component sender, object data)
+    {
+        bool isMaxCapacity = (bool)data;
+
+        if(isMaxCapacity)
+        {
+            sasakayIndicator.SetActive(false);
+        }
+        else
+        {
+            sasakayIndicator.SetActive(true);
+        }
+
     }
 
 }
