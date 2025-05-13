@@ -8,7 +8,7 @@
 	- Silence after BGM ends
 		> Adjustment made. Not tested
 	- Player can change BGM to radio in MainMenu. 
-		(Should we keep it, or this shouldnt be allowed to happen? WDYT?)
+		> Adjustment made. Not tested
 
 	Level 1 Testing Bugs
 	- Vehicle's passenger capacity functionality not implemented

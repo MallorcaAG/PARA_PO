@@ -14,6 +14,7 @@ public class BackgroundMusicManager : PersistentSingleton<BackgroundMusicManager
     private int i, start;
     private RadioStations currentStation;
     private float targetTime = 3f;
+    private bool allowPlayerInput = false;
 
     private void Start()
     {
@@ -29,13 +30,22 @@ public class BackgroundMusicManager : PersistentSingleton<BackgroundMusicManager
     {
         if (Timer())
         {
-            if (Input.GetKeyDown(KeyCode.R))
+            if (Input.GetKeyDown(KeyCode.R) && allowPlayerInput)
             {
                 InitRadio();
             }
         }
     }
 
+    public void AllowPlayerInput()
+    {
+        allowPlayerInput = true;
+    }
+
+    public void DisallowPlayerInput()
+    {
+        allowPlayerInput = false;
+    }
     public void InitRadio()
     {
         targetTime = 3f;
