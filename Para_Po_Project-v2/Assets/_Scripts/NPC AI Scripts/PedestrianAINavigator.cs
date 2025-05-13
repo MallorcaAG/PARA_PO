@@ -332,7 +332,10 @@ public class PedestrianAINavigator : WaypointNavigator
     {
         if (animator != null) animator.enabled = false;
 
-        myUIIndicator.SetActive(false);
+        if(MyUIIndicator != null)
+        {
+            myUIIndicator.SetActive(false);
+        }
 
         DisableNavigation();
         setRigidbodyState(false); 
