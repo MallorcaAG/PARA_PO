@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
 public class WaypointAttacher : MonoBehaviour
 {
     [SerializeField] private Waypoint myWaypoint;
@@ -20,7 +22,7 @@ public class WaypointAttacher : MonoBehaviour
             dist = 999;
             return;
         }
-        if(currentClosestWaypoint == null)
+        if (currentClosestWaypoint == null)
         {
             currentClosestWaypoint = waypoints[waypoints.Count - 1];
             dist = Mathf.Abs(Vector3.Distance(myWaypoint.transform.position, currentClosestWaypoint.transform.position));
@@ -30,7 +32,7 @@ public class WaypointAttacher : MonoBehaviour
         foreach (Waypoint waypoint in waypoints)
         {
             //If it is, stay connected
-            if(currentClosestWaypoint == waypoint)
+            if (currentClosestWaypoint == waypoint)
             {
                 return;
             }
@@ -67,7 +69,7 @@ public class WaypointAttacher : MonoBehaviour
         if (!obj.CompareTag("Waypoint"))
             return;
 
-        if(obj.GetComponents<Waypoint>() ==  null || obj.GetComponent<VehicleWaypoint>() != null)
+        if (obj.GetComponents<Waypoint>() == null || obj.GetComponent<VehicleWaypoint>() != null)
             return;
 
         waypoints.Add(obj.GetComponent<Waypoint>());

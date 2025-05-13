@@ -20,7 +20,6 @@ public class PedestrianAINavigator : WaypointNavigator
     [SerializeField] private GameEvent onSuccessfulEgress;
     [SerializeField] private GameEvent onSFXPlay;
     [SerializeField] private GameEvent onParaPo;
-    [SerializeField] private GameEvent onMaxPassengerCapacityReached;
 
     [Header("References")]
     [SerializeField] private AudioClip voiceline;
@@ -187,14 +186,13 @@ public class PedestrianAINavigator : WaypointNavigator
 
     public void GetOnVehicle(Component component, object landmarkPlayerIsIn)
     {
-        
+
 
         if ((GameObject)landmarkPlayerIsIn != myLandmark || desiredLandmark == null) return;
 
-        // IF current Passengers Count is > or = to Max Passenger capacity
         if (playerVehiclePassengerStatus.x >= playerVehiclePassengerStatus.y)
         {
-            onMaxPassengerCapacityReached.Raise(this, true);
+
             return;
         }
 
@@ -308,15 +306,10 @@ public class PedestrianAINavigator : WaypointNavigator
 
     private void EnableRagdoll()
     {
-        if (state == NPCState.INGRESS || state == NPCState.RIDING || state == NPCState.WAITING)
-        {
-            
-            return;
-        }
-
         if (animator != null) animator.enabled = false;
+
         DisableNavigation();
-        setRigidbodyState(false);
+        setRigidbodyState(false); 
         setColliderState(true);
         ZeroOutRigidbodyVelocity();
         transform.parent = null;
@@ -326,7 +319,6 @@ public class PedestrianAINavigator : WaypointNavigator
             rb.AddForce(Vector3.back * 2f, ForceMode.Impulse);
         }
     }
-
     private IEnumerator kys()
     {
         yield return new WaitForSeconds(deathFromImpactWithPlayerTimer);
@@ -362,7 +354,7 @@ public class PedestrianAINavigator : WaypointNavigator
 
     private void SetState(NPCState newState)
     {
-        
+
         state = newState;
     }
 
