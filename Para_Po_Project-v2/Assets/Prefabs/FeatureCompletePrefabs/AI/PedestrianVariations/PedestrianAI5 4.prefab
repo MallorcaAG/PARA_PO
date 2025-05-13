@@ -1362,6 +1362,10 @@ PrefabInstance:
       propertyPath: onSuccessfulEgress
       value: 
       objectReference: {fileID: 11400000, guid: f5174bf72e3227d42be405684c3ab467, type: 2}
+    - target: {fileID: 3799668568912276919, guid: cbf810d05e32c9647b788c0355ad8562, type: 3}
+      propertyPath: onMaxPassengerCapacityReached
+      value: 
+      objectReference: {fileID: 11400000, guid: 88d86b0828220d54f9e9e27147d7b17b, type: 2}
     - target: {fileID: 5152190990239909319, guid: cbf810d05e32c9647b788c0355ad8562, type: 3}
       propertyPath: m_Name
       value: PedestrianAI5 4

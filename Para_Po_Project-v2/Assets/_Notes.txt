@@ -28,6 +28,7 @@
 	- StaticSakayPed still not sakaying
 	- Tried to run over SakayPed, ragdoll didn't activate
 	- Add indicator that we're over capacity?
+			> Adjustment made. Not tested. To test, be full passenger capacity and approach SakayPed. If counter turns Red, it works
 	- Respawn functionality always respawns at position. Code that respawns at landmark spawnpoint doesnt run?
 	- SakayPed on egress get stuck where they spawn. Doesnt walk to nearest waypoint. WaypointAttacher not working?
 

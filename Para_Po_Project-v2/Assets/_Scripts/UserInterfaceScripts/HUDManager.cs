@@ -285,6 +285,19 @@ public class HUDManager : MonoBehaviour
         yield return new WaitForSeconds(ParaPoTextFadeOutTransition); 
         PARA_PO.SetActive(false); 
     }
+
+    public void TriggerPassengerCapacityIndicator()
+    {
+        if (passengerCountText.color == Color.red) return;
+        StartCoroutine(IndicatePassengerCapacity());
+    }
+
+    private IEnumerator IndicatePassengerCapacity()
+    {
+        passengerCountText.color = Color.red;
+        yield return new WaitForSeconds(1f);
+        passengerCountText.color = Color.white;
+    }
     #endregion
 
 
