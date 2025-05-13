@@ -20,6 +20,7 @@ public class PedestrianAINavigator : WaypointNavigator
     [SerializeField] private GameEvent onSuccessfulEgress;
     [SerializeField] private GameEvent onSFXPlay;
     [SerializeField] private GameEvent onParaPo;
+    [SerializeField] private GameEvent onMaxPassengerCapacityReached;
 
     [Header("References")]
     [SerializeField] private AudioClip voiceline;
@@ -192,7 +193,7 @@ public class PedestrianAINavigator : WaypointNavigator
 
         if (playerVehiclePassengerStatus.x >= playerVehiclePassengerStatus.y)
         {
-
+            onMaxPassengerCapacityReached.Raise(this, true);
             return;
         }
 

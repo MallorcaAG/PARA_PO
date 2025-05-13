@@ -1269,7 +1269,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2496534766971377730, guid: 25ad06362f360934b960d94f34b1a4a2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4778717236173107148}
+    - targetCorrespondingSourceObject: {fileID: 2496534766971377730, guid: 25ad06362f360934b960d94f34b1a4a2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8240017722233185804}
   m_SourcePrefab: {fileID: 100100000, guid: 25ad06362f360934b960d94f34b1a4a2, type: 3}
+--- !u!82 &2073449399181203947 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 6476562479567299199, guid: 25ad06362f360934b960d94f34b1a4a2, type: 3}
+  m_PrefabInstance: {fileID: 4982952049475468180}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2611858076563561570 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6996394152904910838, guid: 25ad06362f360934b960d94f34b1a4a2, type: 3}
@@ -1299,7 +1307,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shareMyWaypoint: {fileID: 11400000, guid: ff18660bc83484447986685d21755a99, type: 2}
   onPassengerCountChange: {fileID: 11400000, guid: bd8c05d4e49cbc843b8f985d836dff19, type: 2}
+  playerVehiclePassengerStatus: {fileID: 11400000, guid: 6ffaeded5df4db84a8253341b38098e0, type: 2}
   routeCheckpoint: 0
+  maxPassengers: 4
+  VFXPrefab: {fileID: 8456348488745124637, guid: aa803c54737462d459ff6d6cc5df2a07, type: 3}
   myWaypoint: {fileID: 219341284776256437}
   myPassengers: []
 --- !u!114 &6221561074585418771
@@ -1401,3 +1412,23 @@ MonoBehaviour:
   playerStartPosition: {fileID: 0}
   onPlayerRespawn: {fileID: 11400000, guid: 404b828bab71e0d47ac959963b42ea99, type: 2}
   vehicleManager: {fileID: 0}
+  isTricycle: 1
+  sphereRB: {fileID: 7977953755072442118}
+--- !u!114 &8240017722233185804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7458657353009193942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11201576317e18248ad8db99563b0042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hornSFX: {fileID: 2073449399181203947}
+--- !u!54 &7977953755072442118 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 3139117616578958482, guid: 25ad06362f360934b960d94f34b1a4a2, type: 3}
+  m_PrefabInstance: {fileID: 4982952049475468180}
+  m_PrefabAsset: {fileID: 0}

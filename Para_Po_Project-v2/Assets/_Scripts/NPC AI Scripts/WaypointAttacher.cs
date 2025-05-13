@@ -72,6 +72,8 @@ public class WaypointAttacher : MonoBehaviour
         if (obj.GetComponents<Waypoint>() == null || obj.GetComponent<VehicleWaypoint>() != null)
             return;
 
+        Debug.LogWarning("WAYPOINT FOUND: " + obj.name);
+
         waypoints.Add(obj.GetComponent<Waypoint>());
     }
 
