@@ -29,6 +29,8 @@ public class VehicleManager : MonoBehaviour
     private void Start()
     {
         SendMyWaypoint();
+        sendPlayerVehiclePassengerStatus();
+
     }
 
     private void Update()

@@ -188,17 +188,20 @@ public class PedestrianAINavigator : WaypointNavigator
     public void GetOnVehicle(Component component, object landmarkPlayerIsIn)
     {
 
-
+        Debug.Log("GetOnVehicle was called" + state);
         if ((GameObject)landmarkPlayerIsIn != myLandmark || desiredLandmark == null) return;
-
+        Debug.Log("landmark is in mylandmark" + state);
         if (playerVehiclePassengerStatus.x >= playerVehiclePassengerStatus.y)
         {
             onMaxPassengerCapacityReached.Raise(this, true);
+            Debug.Log("start test" + playerVehiclePassengerStatus.x + ">=" + playerVehiclePassengerStatus.y);
             return;
         }
 
+      
         if (state == NPCState.WAITING || state == NPCState.WALKING)
         {
+            Debug.Log("made it" + state);
             animator.CrossFade(personalityToWalkAnimation(), 0f);
             senses.enabled = false;
             SetState(NPCState.INGRESS);
