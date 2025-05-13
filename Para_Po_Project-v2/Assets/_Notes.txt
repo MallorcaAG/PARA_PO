@@ -1,5 +1,3 @@
-	- Add poof particle vfx on SakayPed ingress and egress
-		> Code added. Prefab not assigned yet. Not tested
 	- We need a skybox resetter script to always reset skybox to highnoon when DayNight cycle is not active
            > Done. Try pressing tryagain or resetting level from mainmenu to check.
 
@@ -11,8 +9,6 @@
 		> Adjustment made. Not tested
 	- Player can change BGM to radio in MainMenu. 
 		(Should we keep it, or this shouldnt be allowed to happen? WDYT?)
-	- Singleton error: loading MainMenu in Runtime duplicates DontDestroyOnLoad objects
-		> Adjustment made. 
 
 	Level 1 Testing Bugs
 	- Vehicle's passenger capacity functionality not implemented
@@ -26,18 +22,18 @@
 		upon 2nd SakayPed egress
 			> Adjustment made. Not tested. "Doesn't reposition onto gameworld correctly" appears to be fixed
 	- StaticSakayPed still not sakaying
+			> Working. Something to do with script execution. Math was not mathing. 
 	- Turn off SakayIndicator ng SakayPed when ragdolling
+			> Adjustment made. Not tested. To test, run over SakayPed, see if Indicator disappears. Also test if capacity is full, indicator should disappear
 	- Add indicator that we're over capacity?
 			> Adjustment made. Not tested. To test, be full passenger capacity and approach SakayPed. If counter turns Red, it works
-	- Respawn functionality always respawns at position. Code that respawns at landmark spawnpoint doesnt run?
-			> Fixed. Its a trike specific issue cause of sphereRB handling go's tf.pos
 	- SakayPed on egress get stuck where they spawn. Doesnt walk to nearest waypoint. WaypointAttacher not working?
 			> WaypointAttacher now works. Re-test if issue is resolved and nothing else broke in relation to the changes made.
 
 	Level 6 Testing Bugs
 	- Same issues as Level 1
 	- Spawnings are delayed?
-	- Trike (Assign onPassengerCountChange GameEvent and playerVehiclePassengerStatus, VFX prefab, Horn.cs, AudioSource for horn)
+	- Trike (Assign onPassengerCountChange GameEvent and playerVehiclePassengerStatus, VFX prefab, Horn.cs, AudioSource for horn, RespawnManager's isTrike bool)
 
 	Level 11 Testing Bugs
 	- Violation Type: property damage ????

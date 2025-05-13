@@ -24,6 +24,7 @@ public class PedestrianAINavigator : WaypointNavigator
 
     [Header("References")]
     [SerializeField] private AudioClip voiceline;
+    [SerializeField] private GameObject myUIIndicator;
 
     private static readonly int Idle0 = Animator.StringToHash("Idle0");
     private static readonly int Idle1 = Animator.StringToHash("Idle1");
@@ -48,6 +49,7 @@ public class PedestrianAINavigator : WaypointNavigator
     private NPCDistanceToPlayer destroyer;
     private Vector2 playerVehiclePassengerStatus;
 
+    #region Setter/Getters
     public void setMyLandmark(GameObject newLandmark) => myLandmark = newLandmark;
     public void setDesiredLandmark(GameObject newLandmark) => desiredLandmark = newLandmark;
     public void setPlayersWaypointRef(Component component, object data)
@@ -67,6 +69,12 @@ public class PedestrianAINavigator : WaypointNavigator
             _ => -1,
         };
     }
+    public void setMyUIIndicatorReference(GameObject ui)
+    {
+        myUIIndicator = ui;
+    }
+    public GameObject MyUIIndicator { get { return myUIIndicator; }  }
+    #endregion
 
     void Start()
     {
@@ -149,6 +157,16 @@ public class PedestrianAINavigator : WaypointNavigator
                 }
                 break;
         }
+
+            //Uncomment if a bug shows up where PassengerCapacity updates are delayed
+        /*if (playerVehiclePassengerStatus.x >= playerVehiclePassengerStatus.y)
+        {
+            onMaxPassengerCapacityReached.Raise(this, true);
+        }
+        else
+        {
+            onMaxPassengerCapacityReached.Raise(this, false);
+        }*/
     }
 
     private int personalityToIdleAnimation() => idlePersonality switch
@@ -188,20 +206,22 @@ public class PedestrianAINavigator : WaypointNavigator
     public void GetOnVehicle(Component component, object landmarkPlayerIsIn)
     {
 
-        Debug.Log("GetOnVehicle was called" + state);
+        //Debug.Log("GetOnVehicle was called" + state);
         if ((GameObject)landmarkPlayerIsIn != myLandmark || desiredLandmark == null) return;
-        Debug.Log("landmark is in mylandmark" + state);
+        //Debug.Log("landmark is in mylandmark" + state);
         if (playerVehiclePassengerStatus.x >= playerVehiclePassengerStatus.y)
         {
             onMaxPassengerCapacityReached.Raise(this, true);
-            Debug.Log("start test" + playerVehiclePassengerStatus.x + ">=" + playerVehiclePassengerStatus.y);
+            //Debug.Log("start test" + playerVehiclePassengerStatus.x + ">=" + playerVehiclePassengerStatus.y);
             return;
         }
 
-      
+        onMaxPassengerCapacityReached.Raise(this, false);
+
+
         if (state == NPCState.WAITING || state == NPCState.WALKING)
         {
-            Debug.Log("made it" + state);
+            //Debug.Log("made it" + state);
             animator.CrossFade(personalityToWalkAnimation(), 0f);
             senses.enabled = false;
             SetState(NPCState.INGRESS);
@@ -311,6 +331,8 @@ public class PedestrianAINavigator : WaypointNavigator
     private void EnableRagdoll()
     {
         if (animator != null) animator.enabled = false;
+
+        myUIIndicator.SetActive(false);
 
         DisableNavigation();
         setRigidbodyState(false); 
