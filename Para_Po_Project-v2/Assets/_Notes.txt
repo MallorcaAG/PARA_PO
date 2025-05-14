@@ -1,34 +1,21 @@
-	- We need a skybox resetter script to always reset skybox to highnoon when DayNight cycle is not active
-           > Done. Try pressing tryagain or resetting level from mainmenu to check.
+- MainMenu background simulation of game. (Add last when we know everything works good)
 
 	MainMenu Testing Bugs
 	- "The referenced script (Unknown) on this Behaviour is missing!" HUH ?????
-	- Lighting issue when loaded from another scene
-		> Done. Try pressing tryagain or resetting level from mainmenu to check.
-	- Silence after BGM ends
-		> Adjustment made. Not tested
-	- Player can change BGM to radio in MainMenu. 
-		> Adjustment made. Not tested
 
 	Level 1 Testing Bugs
 	- Vehicle's passenger capacity functionality not implemented
-		> Implemented but not tested. 
-			To test: temporarily set maxPassenger to 1. Try to ingress 2 peds. 
-			Test with 1 from 2 diff Landmarks, then 2 from same Landmark
+		> 2 from same landmark: The 2nd one just continues going forward forever. Should stop.
 	- Passengers randomly suddenly ceasing to exist??
-	- Runtime-spawned SakayPeds egress errors: Doesn't reposition onto gameworld correctly, 
+	- Runtime-spawned SakayPeds egress errors: 
 		If 2 or more peds egress only 1 does and the other wants me to move and stop again,
 		(Also 2 or more sakaypeds) Reference to SakayPed becomes Missing in Passenger list
 		upon 2nd SakayPed egress
-			> Adjustment made. Not tested. "Doesn't reposition onto gameworld correctly" appears to be fixed
-	- StaticSakayPed still not sakaying
-			> Working. Something to do with script execution. Math was not mathing. 
-	- Turn off SakayIndicator ng SakayPed when ragdolling
-			> Adjustment made. Not tested. To test, run over SakayPed, see if Indicator disappears. Also test if capacity is full, indicator should disappear
+			> Adjustment made. Not tested.
 	- Add indicator that we're over capacity?
-			> Adjustment made. Not tested. To test, be full passenger capacity and approach SakayPed. If counter turns Red, it works
-	- SakayPed on egress get stuck where they spawn. Doesnt walk to nearest waypoint. WaypointAttacher not working?
-			> WaypointAttacher now works. Re-test if issue is resolved and nothing else broke in relation to the changes made.
+			> Reddens but SakayIndicatorUI tho, needs to stop at next SakayPed to say we're overcapacity before all UI turns off.
+	- HostagedPassenger (di binaba sa desiredlandmark), went down sa susunod na landmark. Should happen?
+	- Bridge sa tulay has no colliders. Player can escape intended playable area.
 
 	Level 6 Testing Bugs
 	- Same issues as Level 1
