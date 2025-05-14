@@ -46,6 +46,10 @@ public class PedestrianAINavigator : WaypointNavigator
     private NPCDistanceToPlayer destroyer;
     private Vector2 playerVehiclePassengerStatus;
 
+    // Queue management for egress handling
+    private static Queue<PedestrianAINavigator> egressQueue = new Queue<PedestrianAINavigator>();
+    private static bool isEgressInProgress = false;
+
     #region Setter/Getters
     public void setMyLandmark(GameObject newLandmark) => myLandmark = newLandmark;
     public void setDesiredLandmark(GameObject newLandmark) => desiredLandmark = newLandmark;
@@ -142,16 +146,7 @@ public class PedestrianAINavigator : WaypointNavigator
 
             case NPCState.EGRESS:
                 currentState = state;
-                if (controller.destinationInfo.reachedDestination)
-                {
-                    SetState(NPCState.WALKING);
-                    senses.enabled = true;
-                    canBeViolated = true;
-                    myLandmark = null;
-                    desiredLandmark = null;
-                    playersWaypoint = null;
-                    onSuccessfulEgress.Raise(this, gameObject);
-                }
+                // Egress is handled by queue system; no per-frame logic needed here
                 break;
         }
     }
@@ -215,26 +210,59 @@ public class PedestrianAINavigator : WaypointNavigator
         }
     }
 
+   
     public void LandmarkReached(Component sender, object landmarkPlayerIsIn)
     {
         if (desiredLandmark == null || (GameObject)landmarkPlayerIsIn != desiredLandmark) return;
 
         if (isRiding)
         {
+            
             SetState(NPCState.EGRESS);
+
+           
+            if (!egressQueue.Contains(this))
+            {
+                egressQueue.Enqueue(this);
+            }
+
             onSFXPlay?.Raise(this, voiceline);
             onParaPo?.Raise(this, 0);
+
+          
+            if (!isEgressInProgress)
+            {
+                ProcessNextEgress();
+            }
         }
         else
         {
+            
             Destroy(gameObject);
         }
     }
 
-    public void GetOffVehicle(Component sender, object landmarkPlayerIsIn)
+   
+    private void ProcessNextEgress()
     {
-        if (state != NPCState.EGRESS) return;
+        if (egressQueue.Count == 0)
+        {
+            isEgressInProgress = false;
+            return;
+        }
 
+        isEgressInProgress = true;
+        PedestrianAINavigator nextPedestrian = egressQueue.Peek();
+        nextPedestrian.ExecuteEgress();
+    }
+
+    // Execute the egress process for this pedestrian
+    private void ExecuteEgress()
+    {
+        // Raise event to notify egress has started for this pedestrian
+        onPedestrianEgress?.Raise(this, gameObject);
+
+        // Physics and animation changes to simulate egress
         gameObject.GetComponent<NPCDistanceToPlayer>().excempted = false;
         animator.CrossFade(personalityToWalkAnimation(), 0f);
 
@@ -247,8 +275,8 @@ public class PedestrianAINavigator : WaypointNavigator
         ) + offset;
 
         myRB.useGravity = true;
-        onPedestrianEgress?.Raise(this, gameObject);
 
+        // Set waypoint and resume walking after egress
         currentWaypoint = playersWaypoint ?? currentWaypoint;
         currentWaypoint = !changeDirection ?
             currentWaypoint.nextWaypoint ?? currentWaypoint :
@@ -256,6 +284,34 @@ public class PedestrianAINavigator : WaypointNavigator
 
         isRiding = false;
         SetDestination(currentWaypoint.GetPosition());
+
+        // Start coroutine to finish egress after delay, then process next queue member
+        StartCoroutine(FinishEgressAfterDelay(1.0f)); // 1 second delay is adjustable
+    }
+
+    // Delay to avoid egress overlap and allow clean exit animations
+    private IEnumerator FinishEgressAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        // Remove self from queue once finished egress
+        if (egressQueue.Count > 0 && egressQueue.Peek() == this)
+        {
+            egressQueue.Dequeue();
+        }
+
+        // Check and continue processing next pedestrian for egress if any
+        if (egressQueue.Count > 0)
+        {
+            ProcessNextEgress();
+        }
+        else
+        {
+            isEgressInProgress = false;
+        }
+
+        // Notify general successful egress (optional game event)
+        onSuccessfulEgress?.Raise(this, gameObject);
     }
 
     private void OnCollisionEnter(Collision collision)
