@@ -4,7 +4,7 @@
 	- "The referenced script (Unknown) on this Behaviour is missing!" HUH ?????
 
 	Level 1 Testing Bugs
-	- Vehicle's passenger capacity functionality not implemented
+	- Vehicle's passenger capacity functionality implemented
 		> 2 from same landmark: The 2nd one just continues going forward forever. Should stop.
 	- Passengers randomly suddenly ceasing to exist??
 	- Runtime-spawned SakayPeds egress errors: 
@@ -15,7 +15,7 @@
 	- Add indicator that we're over capacity?
 			> Reddens but SakayIndicatorUI tho, needs to stop at next SakayPed to say we're overcapacity before all UI turns off.
 	- HostagedPassenger (di binaba sa desiredlandmark), went down sa susunod na landmark. Should happen?
-	- Bridge sa tulay has no colliders. Player can escape intended playable area.
+	- Bridge sa tulay, waypoints snap past it towards the terrain below it. Should snap on top of it.
 
 	Level 6 Testing Bugs
 	- Same issues as Level 1
