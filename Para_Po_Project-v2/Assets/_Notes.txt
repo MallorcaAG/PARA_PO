@@ -19,7 +19,7 @@
 				> Adjustment made. Not tested
 	- HostagedPassenger (di binaba sa desiredlandmark), went down sa susunod na landmark. Should happen?
 	- Bridge sa tulay, waypoints snap past it towards the terrain below it. Should snap on top of it.
-			> Fixed
+			> Fixed. needed mesh colliders.
 
 	Level 6 Testing Bugs
 	- Same issues as Level 1
