@@ -315,6 +315,19 @@ public class PedestrianAINavigator : WaypointNavigator
             return;
         }
 
+        // Set waypoint and resume walking after egress
+        currentWaypoint = playersWaypoint ?? currentWaypoint;
+
+        if ((currentWaypoint.nextWaypoint == null) && (currentWaypoint.previousWaypoint == null))
+        {
+            Debug.LogError("ERROR: Both connecting waypoints are null");
+            return;
+        }
+
+        currentWaypoint = !changeDirection ?
+            currentWaypoint.nextWaypoint :
+            currentWaypoint.previousWaypoint;
+
         //Else process egress in front of Queue
         isEgressInProgress = true;
         PedestrianAINavigator nextPedestrian = egressQueue.Peek();
@@ -336,21 +349,15 @@ public class PedestrianAINavigator : WaypointNavigator
         // Reappear passenger back onto GameWorld
         transform.parent = null;
             // ! Is offset still necessary if theres already a delay on their egress?
-        Vector3 offset = new Vector3(Random.Range(-0.5f, 0.5f), 0, Random.Range(-0.5f, 0.5f)); 
+        //Vector3 offset = new Vector3(Random.Range(-0.5f, 0.5f), 0, Random.Range(-0.5f, 0.5f)); 
         transform.position = new Vector3(
             playersWaypoint.transform.position.x,
             playersWaypoint.transform.position.y + 0.15f,
             playersWaypoint.transform.position.z
-        ) + offset;
+        ) /*+ offset*/;
 
         //Physics change
         myRB.useGravity = true;
-
-        // Set waypoint and resume walking after egress
-        currentWaypoint = playersWaypoint ?? currentWaypoint;
-        currentWaypoint = !changeDirection ?
-            currentWaypoint.nextWaypoint ?? currentWaypoint :
-            currentWaypoint.previousWaypoint ?? currentWaypoint;
 
         isRiding = false;
         SetDestination(currentWaypoint.GetPosition());

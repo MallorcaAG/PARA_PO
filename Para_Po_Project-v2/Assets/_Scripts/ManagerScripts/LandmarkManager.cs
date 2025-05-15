@@ -11,7 +11,7 @@ public class LandmarkManager : Singleton<LandmarkManager>
     
     [SerializeField, Min(0)] private int maxNPCsPerLandmark = 3;
 
-    private const float spawnRadius = 2.5f;
+    private const float spawnRadius = 1.0f;
     private const int maxAttempts = 10;
 
     private void Awake()

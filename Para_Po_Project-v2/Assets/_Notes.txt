@@ -1,25 +1,12 @@
 - MainMenu background simulation of game. (Add last when we know everything works good)
-- PlayerWaypoint's Prev and Next waypoints are null at intersection.
-	Make edge case to always be attach, or destroy passenger.
 
 	MainMenu Testing Bugs
-	- "The referenced script (Unknown) on this Behaviour is missing!" HUH ?????
 
 	Level 1 Testing Bugs
-	- Vehicle's passenger capacity functionality implemented
-		> 2 from same landmark: The 2nd one just continues going forward forever. Should stop.
-		> Issue resolved
-	- Passengers randomly suddenly ceasing to exist??
-	- Runtime-spawned SakayPeds egress errors: 
-		(Also 2 or more sakaypeds) Reference to SakayPed becomes Missing in Passenger list
-		upon 2nd SakayPed egress
-			> Adjustment made. Not tested.
 	- Add indicator that we're over capacity?
 			> Reddens but SakayIndicatorUI tho, needs to stop at next SakayPed to say we're overcapacity before all UI turns off.
 				> Adjustment made. Not tested
-	- HostagedPassenger (di binaba sa desiredlandmark), went down sa susunod na landmark. Should happen?
-	- Bridge sa tulay, waypoints snap past it towards the terrain below it. Should snap on top of it.
-			> Fixed. needed mesh colliders.
+	- HostagedPassenger (di binaba sa desiredlandmark), went down sa susunod na landmark. Make it penalty.
 
 	Level 6 Testing Bugs
 	- Same issues as Level 1
