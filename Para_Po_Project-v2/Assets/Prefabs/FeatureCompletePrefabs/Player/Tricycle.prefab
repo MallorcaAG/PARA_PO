@@ -1309,6 +1309,7 @@ MonoBehaviour:
   onPassengerCountChange: {fileID: 11400000, guid: bd8c05d4e49cbc843b8f985d836dff19, type: 2}
   playerVehiclePassengerStatus: {fileID: 11400000, guid: 6ffaeded5df4db84a8253341b38098e0, type: 2}
   barEntry: {fileID: 11400000, guid: d891e0d1b0a88014f9ee90b0a2ed81d2, type: 2}
+  onMaxPassengerCapacityReached: {fileID: 11400000, guid: 88d86b0828220d54f9e9e27147d7b17b, type: 2}
   routeCheckpoint: 0
   maxPassengers: 1
   VFXPrefab: {fileID: 8456348488745124637, guid: aa803c54737462d459ff6d6cc5df2a07, type: 3}

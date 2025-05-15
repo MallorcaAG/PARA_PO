@@ -1,4 +1,6 @@
 - MainMenu background simulation of game. (Add last when we know everything works good)
+- PlayerWaypoint's Prev and Next waypoints are null at intersection.
+	Make edge case to always be attach, or destroy passenger.
 
 	MainMenu Testing Bugs
 	- "The referenced script (Unknown) on this Behaviour is missing!" HUH ?????
@@ -17,11 +19,12 @@
 				> Adjustment made. Not tested
 	- HostagedPassenger (di binaba sa desiredlandmark), went down sa susunod na landmark. Should happen?
 	- Bridge sa tulay, waypoints snap past it towards the terrain below it. Should snap on top of it.
+			> Fixed
 
 	Level 6 Testing Bugs
 	- Same issues as Level 1
 	- Spawnings are delayed?
-	- Trike (Assign GameEvents: (onPassengerCountChange, playerVehiclePassengerStatus, barEntry), VFX prefab, Horn.cs, AudioSource for horn, RespawnManager's isTrike bool)
+	- Trike (Assign GameEvents: (onPassengerCountChange, playerVehiclePassengerStatus, barEntry, maxPassengerCapacity), VFX prefab, Horn.cs, AudioSource for horn, RespawnManager's isTrike bool)
 
 	Level 11 Testing Bugs
 	- Violation Type: property damage ????
