@@ -232,14 +232,6 @@ public class PedestrianAINavigator : WaypointNavigator
 
             onSFXPlay?.Raise(this, voiceline);
             onParaPo?.Raise(this, 0);
-
-            //PROBLEM HERE
-            //EGRESSING RUNS IN LandmarkReached
-            //WHEN IT SHOULD RUN WHEN VEHICLE STOPS AT LANDMARK
-            if (!isEgressInProgress)
-            {
-                ProcessNextEgress();
-            }
         }
         else
         {
@@ -247,12 +239,25 @@ public class PedestrianAINavigator : WaypointNavigator
         }
     }
 
-   
+    public void GetOffVehicle(Component sender, object landmarkPlayerIsIn)
+    {
+        if (state != NPCState.EGRESS) return;
+
+        //Debug.Log("Egress in progress = " + isEgressInProgress);
+
+        if (!isEgressInProgress)
+        {
+            ProcessNextEgress();
+        }
+    }
+
+
     private void ProcessNextEgress()
     {
         //If Queue is empty, no egress to process
         if (egressQueue.Count == 0)
         {
+            Debug.LogWarning("Egress Queue is empty\n");
             isEgressInProgress = false;
             return;
         }
