@@ -118,6 +118,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: 4f028400e34abb849abdda84838ff8b0, type: 3}
     - target: {fileID: 3799668568912276919, guid: cbf810d05e32c9647b788c0355ad8562, type: 3}
+      propertyPath: onAddPoints
+      value: 
+      objectReference: {fileID: 11400000, guid: 6fb20feda94727746ba58d0a8e182bef, type: 2}
+    - target: {fileID: 3799668568912276919, guid: cbf810d05e32c9647b788c0355ad8562, type: 3}
       propertyPath: onImpactWithPlayer
       value: 
       objectReference: {fileID: 11400000, guid: a1736e0de7f699b47a4d5b94abbe16a0, type: 2}

@@ -22,6 +22,7 @@ public class PedestrianAINavigator : WaypointNavigator
     [SerializeField] private GameEvent onSFXPlay;
     [SerializeField] private GameEvent onParaPo;
     [SerializeField] private GameEvent onMaxPassengerCapacityReached;
+    [SerializeField] private GameEvent onAddPoints;
 
     [Header("References")]
     [SerializeField] private AudioClip voiceline;
@@ -168,7 +169,7 @@ public class PedestrianAINavigator : WaypointNavigator
                     myLandmark = null;
                     desiredLandmark = null;
                     playersWaypoint = null;
-                    onSuccessfulEgress.Raise(this, gameObject);
+                    //onSuccessfulEgress.Raise(this, gameObject);
                 }
                 break;
         }
@@ -297,15 +298,16 @@ public class PedestrianAINavigator : WaypointNavigator
         if (state != NPCState.EGRESS) return;
 
         //Debug.Log("Egress in progress = " + isEgressInProgress);
+        GameObject landmark = (GameObject)landmarkPlayerIsIn;
 
         if (!isEgressInProgress)
         {
-            ProcessNextEgress();
+            ProcessNextEgress(landmark);
         }
     }
 
 
-    private void ProcessNextEgress()
+    private void ProcessNextEgress(GameObject landmark)
     {
         //If Queue is empty, no egress to process
         if (egressQueue.Count == 0)
@@ -331,12 +333,15 @@ public class PedestrianAINavigator : WaypointNavigator
         //Else process egress in front of Queue
         isEgressInProgress = true;
         PedestrianAINavigator nextPedestrian = egressQueue.Peek();
-        nextPedestrian.ExecuteEgress();
+        nextPedestrian.ExecuteEgress(landmark);
+
     }
 
     // Execute the egress process for pedestrian in front of Queue
-    private void ExecuteEgress()
+    private void ExecuteEgress(GameObject landmark)
     {
+        
+
         // Raise event to notify egress has started for this pedestrian
         onPedestrianEgress?.Raise(this, gameObject);
 
@@ -363,11 +368,11 @@ public class PedestrianAINavigator : WaypointNavigator
         SetDestination(currentWaypoint.GetPosition());
 
         // Start coroutine to finish egress after delay, then process next queue member
-        StartCoroutine(FinishEgressAfterDelay(egressDelay));
+        StartCoroutine(FinishEgressAfterDelay(egressDelay, landmark));
     }
 
     // Delay to avoid egress overlap and allow clean exit animations
-    private IEnumerator FinishEgressAfterDelay(float delay)
+    private IEnumerator FinishEgressAfterDelay(float delay, GameObject landmark)
     {
         //Wait for delay
         yield return new WaitForSeconds(delay);
@@ -381,7 +386,7 @@ public class PedestrianAINavigator : WaypointNavigator
         // Check and continue processing next pedestrian for egress if any
         if (egressQueue.Count > 0)
         {
-            ProcessNextEgress();
+            ProcessNextEgress(landmark);
         }
         else
         {
@@ -389,7 +394,15 @@ public class PedestrianAINavigator : WaypointNavigator
         }
 
         // Notify general successful egress (optional game event)
-        onSuccessfulEgress?.Raise(this, gameObject);
+        if (landmark == desiredLandmark)
+        {
+            onSuccessfulEgress.Raise(this, gameObject);
+        }
+        else
+        {
+            //Only give 1 point
+            onAddPoints.Raise(this, 1f);
+        }
         //onMaxPassengerCapacityReached.Raise(this, false);
     }
     #endregion

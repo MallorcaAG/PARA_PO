@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7103245120699413098}
   - component: {fileID: 1319798362026771080}
+  - component: {fileID: 3818590097928858962}
   - component: {fileID: 2738187708898693185}
   - component: {fileID: 8228947226556283889}
   - component: {fileID: 6993020591668849996}
@@ -58,8 +59,8 @@ MonoBehaviour:
   hardDifficulty: 0
   easyLevelPedestrianNPCCount: 50
   easyLevelVehicleNPCCount: 20
-  hardLevelPedestrianNPCCount: 0
-  hardLevelVehicleNPCCount: 0
+  hardLevelPedestrianNPCCount: 100
+  hardLevelVehicleNPCCount: 60
   gameTime: {x: 10, y: 5}
   sendPointsData: {fileID: 11400000, guid: 5164d3190bbf4ad4e88efe6e8553d7fe, type: 2}
   sendTimerData: {fileID: 11400000, guid: 371e3b5218c11954486e338f60be9c31, type: 2}
@@ -70,6 +71,34 @@ MonoBehaviour:
   npcs: {fileID: 11400000, guid: b2e29010714b1c74c86042b36a2dc227, type: 2}
   slowMoDuration: 2
   slowMoTimeScale: 0.2
+--- !u!114 &3818590097928858962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7659036989042607094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 343a05844d3bc104aa8e0351c6314175, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 6fb20feda94727746ba58d0a8e182bef, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1319798362026771080}
+        m_TargetAssemblyTypeName: GameManager, Project
+        m_MethodName: addPoints
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2738187708898693185
 MonoBehaviour:
   m_ObjectHideFlags: 0
