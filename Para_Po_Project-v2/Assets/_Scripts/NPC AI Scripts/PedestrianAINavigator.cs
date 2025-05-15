@@ -12,6 +12,7 @@ public class PedestrianAINavigator : WaypointNavigator
     [SerializeField] private GameObject desiredLandmark;
     [SerializeField] private Animator animator;
     [SerializeField] private float deathFromImpactWithPlayerTimer = 5f;
+    [SerializeField] private float egressDelay = 1.0f;
 
     [Header("Game Event")]
     [SerializeField] private GameEvent onPedestrianIngress;
@@ -77,6 +78,7 @@ public class PedestrianAINavigator : WaypointNavigator
     public GameObject MyUIIndicator { get { return myUIIndicator; } }
     #endregion
 
+    #region Game loop functions
     void Start()
     {
         destroyer = gameObject.GetComponent<NPCDistanceToPlayer>();
@@ -151,6 +153,15 @@ public class PedestrianAINavigator : WaypointNavigator
         }
     }
 
+    private void NPCWalking() => NPCTraversal();
+
+    public void pivot(Vector3 sense, float maxDistance)
+    {
+        Vector3 pivotPos = transform.TransformPoint(sense * maxDistance);
+        SetDestination(pivotPos);
+    }
+    #endregion
+    #region Animation Personality
     private int personalityToIdleAnimation() => idlePersonality switch
     {
         0 => Idle0,
@@ -176,15 +187,9 @@ public class PedestrianAINavigator : WaypointNavigator
         4 => 3f,
         _ => 0.8f
     };
+    #endregion
 
-    private void NPCWalking() => NPCTraversal();
-
-    public void pivot(Vector3 sense, float maxDistance)
-    {
-        Vector3 pivotPos = transform.TransformPoint(sense * maxDistance);
-        SetDestination(pivotPos);
-    }
-
+    #region Ingress and Egress Functions
     public void GetOnVehicle(Component component, object landmarkPlayerIsIn)
     {
         if ((GameObject)landmarkPlayerIsIn != myLandmark || desiredLandmark == null) return;
@@ -210,7 +215,6 @@ public class PedestrianAINavigator : WaypointNavigator
         }
     }
 
-   
     public void LandmarkReached(Component sender, object landmarkPlayerIsIn)
     {
         if (desiredLandmark == null || (GameObject)landmarkPlayerIsIn != desiredLandmark) return;
@@ -229,7 +233,9 @@ public class PedestrianAINavigator : WaypointNavigator
             onSFXPlay?.Raise(this, voiceline);
             onParaPo?.Raise(this, 0);
 
-          
+            //PROBLEM HERE
+            //EGRESSING RUNS IN LandmarkReached
+            //WHEN IT SHOULD RUN WHEN VEHICLE STOPS AT LANDMARK
             if (!isEgressInProgress)
             {
                 ProcessNextEgress();
@@ -237,43 +243,49 @@ public class PedestrianAINavigator : WaypointNavigator
         }
         else
         {
-            
-            Destroy(gameObject);
+            StartCoroutine(kys());
         }
     }
 
    
     private void ProcessNextEgress()
     {
+        //If Queue is empty, no egress to process
         if (egressQueue.Count == 0)
         {
             isEgressInProgress = false;
             return;
         }
 
+        //Else process egress in front of Queue
         isEgressInProgress = true;
         PedestrianAINavigator nextPedestrian = egressQueue.Peek();
         nextPedestrian.ExecuteEgress();
     }
 
-    // Execute the egress process for this pedestrian
+    // Execute the egress process for pedestrian in front of Queue
     private void ExecuteEgress()
     {
         // Raise event to notify egress has started for this pedestrian
         onPedestrianEgress?.Raise(this, gameObject);
 
-        // Physics and animation changes to simulate egress
+        // Remove excemption to despawning in relation to player distance
         gameObject.GetComponent<NPCDistanceToPlayer>().excempted = false;
-        animator.CrossFade(personalityToWalkAnimation(), 0f);
 
+        // Animation change
+        animator.CrossFade(personalityToWalkAnimation(), 0f);
+        
+        // Reappear passenger back onto GameWorld
         transform.parent = null;
-        Vector3 offset = new Vector3(Random.Range(-0.5f, 0.5f), 0, Random.Range(-0.5f, 0.5f));
+            // ! Is offset still necessary if theres already a delay on their egress?
+        Vector3 offset = new Vector3(Random.Range(-0.5f, 0.5f), 0, Random.Range(-0.5f, 0.5f)); 
         transform.position = new Vector3(
             playersWaypoint.transform.position.x,
             playersWaypoint.transform.position.y + 0.15f,
             playersWaypoint.transform.position.z
         ) + offset;
 
+        //Physics change
         myRB.useGravity = true;
 
         // Set waypoint and resume walking after egress
@@ -286,12 +298,13 @@ public class PedestrianAINavigator : WaypointNavigator
         SetDestination(currentWaypoint.GetPosition());
 
         // Start coroutine to finish egress after delay, then process next queue member
-        StartCoroutine(FinishEgressAfterDelay(1.0f)); // 1 second delay is adjustable
+        StartCoroutine(FinishEgressAfterDelay(egressDelay));
     }
 
     // Delay to avoid egress overlap and allow clean exit animations
     private IEnumerator FinishEgressAfterDelay(float delay)
     {
+        //Wait for delay
         yield return new WaitForSeconds(delay);
 
         // Remove self from queue once finished egress
@@ -313,7 +326,9 @@ public class PedestrianAINavigator : WaypointNavigator
         // Notify general successful egress (optional game event)
         onSuccessfulEgress?.Raise(this, gameObject);
     }
+    #endregion
 
+    #region Ragdoll and Collisions
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.transform.CompareTag("Player") && canBeViolated)
@@ -377,7 +392,9 @@ public class PedestrianAINavigator : WaypointNavigator
         controller.enabled = false;
         SetDestination(transform.position);
     }
+    #endregion
 
+    #region State Changes
     private void SetState(NPCState newState)
     {
         state = newState;
@@ -386,5 +403,6 @@ public class PedestrianAINavigator : WaypointNavigator
     public void changeStateToIdle() => SetState(NPCState.STOPPED);
     public void changeStateToWalk() => SetState(NPCState.WALKING);
     public bool isWaiting() => state == NPCState.WAITING;
+    #endregion
 }
 
