@@ -128,11 +128,11 @@ public class PedestrianAINavigator : WaypointNavigator
                         if (playerVehiclePassengerStatus.x >= playerVehiclePassengerStatus.y)
                         {
                             BarredEntryToVehicle(this, gameObject);
-                            onMaxPassengerCapacityReached.Raise(this, true);
+                            //onMaxPassengerCapacityReached.Raise(this, true);
                         }
                         else
                         {
-                            onMaxPassengerCapacityReached.Raise(this, false);
+                            //onMaxPassengerCapacityReached.Raise(this, false);
                             Debug.Log("Initiating Ingressing Proceedure: " + gameObject.name);
                             animator.CrossFade(personalityToIdleAnimation(), 0f);
                             SetState(NPCState.RIDING);
@@ -173,7 +173,7 @@ public class PedestrianAINavigator : WaypointNavigator
                 break;
         }
 
-            //Dont delete comment. Still testing something
+        //Dont delete comment. Still testing something
         /*if (playerVehiclePassengerStatus.x >= playerVehiclePassengerStatus.y)
         {
             onMaxPassengerCapacityReached.Raise(this, true);
@@ -228,13 +228,13 @@ public class PedestrianAINavigator : WaypointNavigator
         {
             //Debug.Log("Vehicle is full so " + gameObject.name + " cant get on");
 
-            onMaxPassengerCapacityReached.Raise(this, true);
+            //onMaxPassengerCapacityReached.Raise(this, true);
 
             return;
         }
 
 
-        onMaxPassengerCapacityReached.Raise(this, false);
+        //onMaxPassengerCapacityReached.Raise(this, false);
 
         if (state == NPCState.WAITING || state == NPCState.WALKING)
         {
@@ -383,7 +383,7 @@ public class PedestrianAINavigator : WaypointNavigator
 
         // Notify general successful egress (optional game event)
         onSuccessfulEgress?.Raise(this, gameObject);
-        onMaxPassengerCapacityReached.Raise(this, false);
+        //onMaxPassengerCapacityReached.Raise(this, false);
     }
     #endregion
 

@@ -14,6 +14,7 @@
 			> Adjustment made. Not tested.
 	- Add indicator that we're over capacity?
 			> Reddens but SakayIndicatorUI tho, needs to stop at next SakayPed to say we're overcapacity before all UI turns off.
+				> Adjustment made. Not tested
 	- HostagedPassenger (di binaba sa desiredlandmark), went down sa susunod na landmark. Should happen?
 	- Bridge sa tulay, waypoints snap past it towards the terrain below it. Should snap on top of it.
 

@@ -11,6 +11,7 @@ public class VehicleManager : MonoBehaviour
     [SerializeField] private GameEvent onPassengerCountChange;
     [SerializeField] private GameEvent playerVehiclePassengerStatus;
     [SerializeField] private GameEvent barEntry;
+    [SerializeField] private GameEvent onMaxPassengerCapacityReached;
     [Header("Variables")]
     [SerializeField] private int routeCheckpoint;
     [SerializeField] private int maxPassengers = 1;
@@ -51,6 +52,19 @@ public class VehicleManager : MonoBehaviour
 
         playerVehiclePassengerStatus.Raise(this, vals);
     }
+
+    public void CheckStatus()
+    {
+        if (myPassengers.Count >= maxPassengers)
+        {
+            onMaxPassengerCapacityReached.Raise(this, true);
+        }
+        else
+        {
+            onMaxPassengerCapacityReached.Raise(this, false);
+        }
+    }
+
     public void PedestrianIngress(Component sender, object data)
     {
         GameObject obj = (GameObject)data;
@@ -76,6 +90,8 @@ public class VehicleManager : MonoBehaviour
             //Debug.LogWarning("Can't get on vehicle because full: " + obj.name);
             barEntry.Raise(this, obj);
         }
+
+        CheckStatus();
     }
 
     public void PedestrianEgress(Component sender, object data)
@@ -95,6 +111,8 @@ public class VehicleManager : MonoBehaviour
 
             obj.transform.parent = null;
             obj.transform.position = new Vector3(myWaypoint.transform.position.x, myWaypoint.transform.position.y + 0.1f, myWaypoint.transform.position.z); // Adjusted position
+
+            CheckStatus();
         }
     }
 
