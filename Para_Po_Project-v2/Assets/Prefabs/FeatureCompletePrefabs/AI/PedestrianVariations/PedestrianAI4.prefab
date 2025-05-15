@@ -218,6 +218,9 @@ PrefabInstance:
       addedObject: {fileID: 6296285581486942223}
     - targetCorrespondingSourceObject: {fileID: 5152190990239909319, guid: cbf810d05e32c9647b788c0355ad8562, type: 3}
       insertIndex: 6
+      addedObject: {fileID: -5654375255910348167}
+    - targetCorrespondingSourceObject: {fileID: 5152190990239909319, guid: cbf810d05e32c9647b788c0355ad8562, type: 3}
+      insertIndex: 7
       addedObject: {fileID: -4289016809204088178}
     - targetCorrespondingSourceObject: {fileID: 5152190990239909319, guid: cbf810d05e32c9647b788c0355ad8562, type: 3}
       insertIndex: -1
@@ -286,6 +289,34 @@ MonoBehaviour:
   range: 300
   primeDestruction: 0
   excempted: 0
+--- !u!114 &-5654375255910348167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7763500617937828572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 343a05844d3bc104aa8e0351c6314175, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: d891e0d1b0a88014f9ee90b0a2ed81d2, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1767133623841575596}
+        m_TargetAssemblyTypeName: PedestrianAINavigator, AI
+        m_MethodName: BarredEntryToVehicle
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &-4289016809204088178
 MonoBehaviour:
   m_ObjectHideFlags: 0

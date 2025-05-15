@@ -125,13 +125,23 @@ public class PedestrianAINavigator : WaypointNavigator
                 {
                     if (allowIngress)
                     {
-                        animator.CrossFade(personalityToIdleAnimation(), 0f);
-                        SetState(NPCState.RIDING);
-                        isRiding = true;
-                        myRB.useGravity = false;
-                        onPedestrianIngress.Raise(this, gameObject);
-                        SetDestination(Vector3.zero);
-                        controller.destinationInfo.reachedDestination = false;
+                        if (playerVehiclePassengerStatus.x >= playerVehiclePassengerStatus.y)
+                        {
+                            BarredEntryToVehicle(this, gameObject);
+                            onMaxPassengerCapacityReached.Raise(this, true);
+                        }
+                        else
+                        {
+                            onMaxPassengerCapacityReached.Raise(this, false);
+                            Debug.Log("Initiating Ingressing Proceedure: " + gameObject.name);
+                            animator.CrossFade(personalityToIdleAnimation(), 0f);
+                            SetState(NPCState.RIDING);
+                            isRiding = true;
+                            myRB.useGravity = false;
+                            onPedestrianIngress.Raise(this, gameObject);
+                            SetDestination(Vector3.zero);
+                            controller.destinationInfo.reachedDestination = false;
+                        }
                     }
                     else
                     {
@@ -149,8 +159,29 @@ public class PedestrianAINavigator : WaypointNavigator
             case NPCState.EGRESS:
                 currentState = state;
                 // Egress is handled by queue system; no per-frame logic needed here
+                    //Yes but it doesnt handle when they reach the sidewalk
+                if (controller.destinationInfo.reachedDestination)
+                {
+                    SetState(NPCState.WALKING);
+                    senses.enabled = true;
+                    canBeViolated = true;
+                    myLandmark = null;
+                    desiredLandmark = null;
+                    playersWaypoint = null;
+                    onSuccessfulEgress.Raise(this, gameObject);
+                }
                 break;
         }
+
+            //Dont delete comment. Still testing something
+        /*if (playerVehiclePassengerStatus.x >= playerVehiclePassengerStatus.y)
+        {
+            onMaxPassengerCapacityReached.Raise(this, true);
+        }
+        else
+        {
+            onMaxPassengerCapacityReached.Raise(this, false);
+        }*/
     }
 
     private void NPCWalking() => NPCTraversal();
@@ -195,14 +226,20 @@ public class PedestrianAINavigator : WaypointNavigator
         if ((GameObject)landmarkPlayerIsIn != myLandmark || desiredLandmark == null) return;
         if (playerVehiclePassengerStatus.x >= playerVehiclePassengerStatus.y)
         {
+            //Debug.Log("Vehicle is full so " + gameObject.name + " cant get on");
+
             onMaxPassengerCapacityReached.Raise(this, true);
+
             return;
         }
+
 
         onMaxPassengerCapacityReached.Raise(this, false);
 
         if (state == NPCState.WAITING || state == NPCState.WALKING)
         {
+            //Debug.Log("Getting on Vehicle: "+gameObject.name);
+
             animator.CrossFade(personalityToWalkAnimation(), 0f);
             senses.enabled = false;
             SetState(NPCState.INGRESS);
@@ -211,7 +248,23 @@ public class PedestrianAINavigator : WaypointNavigator
         }
         else
         {
-            Debug.Log("Attempted to board while in invalid state: " + state);
+            Debug.Log(gameObject.name +": Attempted to board while in invalid state: " + state);
+        }
+    }
+
+    public void BarredEntryToVehicle(Component sender, object data)
+    {
+        GameObject ped = (GameObject)data;
+
+        if(ped == this.gameObject)
+        {
+            Debug.LogWarning("I have been barred entry");
+            SetState(NPCState.WAITING);
+            canBeViolated = false;
+            isRiding = false;
+            allowIngress = false;
+            myRB.useGravity = true;
+            SetDestination(transform.position);
         }
     }
 
@@ -330,6 +383,7 @@ public class PedestrianAINavigator : WaypointNavigator
 
         // Notify general successful egress (optional game event)
         onSuccessfulEgress?.Raise(this, gameObject);
+        onMaxPassengerCapacityReached.Raise(this, false);
     }
     #endregion
 

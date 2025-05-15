@@ -10,6 +10,7 @@ public class VehicleManager : MonoBehaviour
     [SerializeField] private GameEvent shareMyWaypoint;
     [SerializeField] private GameEvent onPassengerCountChange;
     [SerializeField] private GameEvent playerVehiclePassengerStatus;
+    [SerializeField] private GameEvent barEntry;
     [Header("Variables")]
     [SerializeField] private int routeCheckpoint;
     [SerializeField] private int maxPassengers = 1;
@@ -57,16 +58,23 @@ public class VehicleManager : MonoBehaviour
         // Ensure vehicle is not full
         if (myPassengers.Count < maxPassengers)
         {
+            //Debug.Log("Got on vehicle: " + obj.name);
+
             // INSTANTIATE POOFING VFX OR CALL DIFFERENT GAME EVENT TO INSTANTIATE THE VFX
             GameObject vfx = Instantiate(VFXPrefab, myWaypoint.transform);
             Destroy(vfx, 4f);
 
             myPassengers.Add(obj);
             onPassengerCountChange.Raise(this, myPassengers.Count);
-            Debug.Log("Passenger Count: " + myPassengers.Count);
+            //Debug.Log("Passenger Count: " + myPassengers.Count);
 
             obj.transform.SetParent(myWaypoint.transform);
             obj.transform.localPosition = new Vector3(0, obj.transform.position.y - 100, 0);
+        }
+        else
+        {
+            //Debug.LogWarning("Can't get on vehicle because full: " + obj.name);
+            barEntry.Raise(this, obj);
         }
     }
 
