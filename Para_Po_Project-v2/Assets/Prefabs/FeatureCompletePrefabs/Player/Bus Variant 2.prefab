@@ -1650,6 +1650,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1655013544872722277}
     - target: {fileID: 465616466467907360, guid: 62283ca975168ed4e8aa8b040f276a46, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 162caf5d1dcf3504fafe0b8ce72dd2cb, type: 3}
+    - target: {fileID: 465616466467907360, guid: 62283ca975168ed4e8aa8b040f276a46, type: 3}
       propertyPath: OutputAudioMixerGroup
       value: 
       objectReference: {fileID: -5011124640074835082, guid: b36a23ca844cde248844bc14c6365d47, type: 2}
@@ -1947,7 +1951,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shareMyWaypoint: {fileID: 11400000, guid: ff18660bc83484447986685d21755a99, type: 2}
+  onPassengerCountChange: {fileID: 0}
+  playerVehiclePassengerStatus: {fileID: 0}
+  barEntry: {fileID: 0}
+  onMaxPassengerCapacityReached: {fileID: 0}
   routeCheckpoint: 0
+  maxPassengers: 1
+  VFXPrefab: {fileID: 0}
   myWaypoint: {fileID: 5857278593601260475}
   myPassengers: []
 --- !u!114 &1780957955235387533
@@ -2070,6 +2080,8 @@ MonoBehaviour:
   playerStartPosition: {fileID: 0}
   onPlayerRespawn: {fileID: 11400000, guid: 404b828bab71e0d47ac959963b42ea99, type: 2}
   vehicleManager: {fileID: 0}
+  isTricycle: 0
+  sphereRB: {fileID: 0}
 --- !u!1 &6626510088607254536 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5380142497734711326, guid: 62283ca975168ed4e8aa8b040f276a46, type: 3}
