@@ -3,19 +3,7 @@
 	MainMenu Testing Bugs
 
 	Level 1 Testing Bugs
-	- Add indicator that we're over capacity?
-		> Reddens but SakayIndicatorUI tho, needs to stop at next SakayPed to say we're overcapacity before all UI turns off.
-			> Adjustment made. Not tested
-	- HostagedPassenger (di binaba sa desiredlandmark), went down sa susunod na landmark. Make it penalty.
-		> Adjustment made but couldn't make it penalty, rather made it add only 1 Point instead. Not tested
-		> Works fine
-	- Radio suddenly changes to main menu theme
-		> Adjustment made. Not tested
-	- Vehicle spawner wont open (maybe ibang way siya? i just tried changing the active state so this might be a skill issue on my end -remus)
-		> Vehicles spawn works, but spawnedVehicle's sensor collides with Lamppost causing them to stop. 
-	- Add delay before activating ragdoll when egressing
-		> Done. Ragdoll and canbeviolated rule delayed by 3 seconds.
-
+		> Finished.
 	Level 6 Testing Bugs
 	- Same issues as Level 1
 	- Spawnings are delayed?
