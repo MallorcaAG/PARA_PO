@@ -60,6 +60,8 @@ public class AISensors : MonoBehaviour
             Gizmos.color = Color.red;
             Gizmos.DrawRay(sensorPosition.position, sensorPosition.forward * hit.distance);
             Gizmos.DrawWireCube(sensorPosition.position + sensorPosition.forward * hit.distance, size);
+
+            //Debug.LogWarning("Colliding with: "+hit.rigidbody.gameObject.name);
         }
         else
         {

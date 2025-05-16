@@ -11,6 +11,7 @@
 		> Works fine
 	- Radio suddenly changes to main menu theme
 	- Vehicle spawner wont open (maybe ibang way siya? i just tried changing the active state so this might be a skill issue on my end -remus)
+		> Vehicles spawn works, but spawnedVehicle's sensor collides with Lamppost causing them to stop. 
 	- Add delay before activating ragdoll when egressing
 
 	Level 6 Testing Bugs
