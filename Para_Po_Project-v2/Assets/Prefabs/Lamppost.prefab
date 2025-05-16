@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2223931943741985708}
   - component: {fileID: 159189773992873172}
   - component: {fileID: 5737279720835431891}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Lamppost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -223,7 +223,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5929780595958682465}
   - component: {fileID: 1075811626709340522}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Spot Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -318,6 +318,14 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 4ea7c531d5670a042a89583e175e72d1, type: 3}
       propertyPath: m_Name
       value: lamppost_motorway
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4ea7c531d5670a042a89583e175e72d1, type: 3}
+      propertyPath: m_Layer
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 4ea7c531d5670a042a89583e175e72d1, type: 3}
+      propertyPath: m_Layer
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4ea7c531d5670a042a89583e175e72d1, type: 3}
       propertyPath: m_RootOrder

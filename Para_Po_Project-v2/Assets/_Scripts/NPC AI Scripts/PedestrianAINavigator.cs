@@ -160,16 +160,18 @@ public class PedestrianAINavigator : WaypointNavigator
             case NPCState.EGRESS:
                 currentState = state;
                 // Egress is handled by queue system; no per-frame logic needed here
-                    //Yes but it doesnt handle when they reach the sidewalk
+                // Yes but it doesn't handle when they reach the sidewalk
                 if (controller.destinationInfo.reachedDestination)
                 {
                     SetState(NPCState.WALKING);
                     senses.enabled = true;
-                    canBeViolated = true;
+
+                    StartCoroutine(EnableCanBeViolatedDelayed(3f)); 
+
                     myLandmark = null;
                     desiredLandmark = null;
                     playersWaypoint = null;
-                    //onSuccessfulEgress.Raise(this, gameObject);
+                    // onSuccessfulEgress.Raise(this, gameObject);
                 }
                 break;
         }
@@ -367,8 +369,10 @@ public class PedestrianAINavigator : WaypointNavigator
         isRiding = false;
         SetDestination(currentWaypoint.GetPosition());
 
+
         // Start coroutine to finish egress after delay, then process next queue member
         StartCoroutine(FinishEgressAfterDelay(egressDelay, landmark));
+       
     }
 
     // Delay to avoid egress overlap and allow clean exit animations
@@ -418,8 +422,25 @@ public class PedestrianAINavigator : WaypointNavigator
         }
     }
 
-    private void EnableRagdoll()
+    public void EnableRagdoll()
     {
+        StartCoroutine(EnableRagdollDelayed());
+    }
+
+    private IEnumerator EnableRagdollDelayed()
+    {
+        float delay = 3f;
+        float countdown = delay;
+
+        while (countdown > 0f)
+        {
+            Debug.Log($"Ragdoll will activate in {Mathf.CeilToInt(countdown)} second(s)...");
+            yield return new WaitForSeconds(1f);
+            countdown -= 1f;
+        }
+
+        Debug.Log("Ragdoll delay ended. Activating ragdoll now.");
+
         if (animator != null) animator.enabled = false;
 
         if (MyUIIndicator != null)
@@ -439,6 +460,19 @@ public class PedestrianAINavigator : WaypointNavigator
         }
     }
 
+    private IEnumerator EnableCanBeViolatedDelayed(float delay)
+    {
+        float countdown = delay;
+        while (countdown > 0f)
+        {
+            Debug.Log($"canBeViolated will be set in {Mathf.CeilToInt(countdown)} second(s)...");
+            yield return new WaitForSeconds(1f);
+            countdown -= 1f;
+        }
+
+        canBeViolated = true;
+        Debug.Log("canBeViolated is now TRUE.");
+    }
     private IEnumerator kys()
     {
         yield return new WaitForSeconds(deathFromImpactWithPlayerTimer);
