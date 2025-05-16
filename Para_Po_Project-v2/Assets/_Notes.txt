@@ -8,6 +8,10 @@
 			> Adjustment made. Not tested
 	- HostagedPassenger (di binaba sa desiredlandmark), went down sa susunod na landmark. Make it penalty.
 		> Adjustment made but couldn't make it penalty, rather made it add only 1 Point instead. Not tested
+	- wont drop at shell - naga road and iglesia ni kristo lokal
+        - Radio suddenly changes to main menu theme
+
+	
 
 	Level 6 Testing Bugs
 	- Same issues as Level 1
