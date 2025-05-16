@@ -328,13 +328,12 @@ public class PedestrianAINavigator : WaypointNavigator
             return;
         }
 
-        currentWaypoint = !changeDirection ?
-            currentWaypoint.nextWaypoint :
-            currentWaypoint.previousWaypoint;
-
         //Else process egress in front of Queue
         isEgressInProgress = true;
         PedestrianAINavigator nextPedestrian = egressQueue.Peek();
+        nextPedestrian.currentWaypoint = !nextPedestrian.changeDirection ?
+            nextPedestrian.currentWaypoint.nextWaypoint :
+            nextPedestrian.currentWaypoint.previousWaypoint;
         nextPedestrian.ExecuteEgress(landmark);
 
     }
@@ -362,6 +361,9 @@ public class PedestrianAINavigator : WaypointNavigator
             playersWaypoint.transform.position.y + 0.15f,
             playersWaypoint.transform.position.z
         ) /*+ offset*/;
+
+        Debug.Log(gameObject.name+": (PlayerWaypoint)"+playersWaypoint.name);
+        Debug.Log(gameObject.name + ": (CurrentWaypoint)" + currentWaypoint.name);
 
         //Physics change
         myRB.useGravity = true;

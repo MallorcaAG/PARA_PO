@@ -79,6 +79,9 @@ public class VehicleManager : MonoBehaviour
             Destroy(vfx, 4f);
 
             myPassengers.Add(obj);
+
+            Debug.LogWarning("Sending passenger count: "+myPassengers.Count);
+
             onPassengerCountChange.Raise(this, myPassengers.Count);
             //Debug.Log("Passenger Count: " + myPassengers.Count);
 
