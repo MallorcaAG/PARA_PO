@@ -1,16 +1,36 @@
 - MainMenu background simulation of game. (Add last when we know everything works good)
+- Cross check values from Level 1 to the other Levels. 
 
 	MainMenu Testing Bugs
+	- Landmark images blocking route map on certain routes
 
 	Level 1 Testing Bugs
-		> Finished.
+	- SakayPed locked on where player Waypoint first stopped. Not where it is currently at.
+	- Add final landmark so 
+
 	Level 6 Testing Bugs
 	- Same issues as Level 1
 	- Spawnings are delayed?
 	- Trike (Assign GameEvents: (onPassengerCountChange, playerVehiclePassengerStatus, barEntry, maxPassengerCapacity), VFX prefab, Horn.cs, AudioSource for horn, RespawnManager's isTrike bool)
 
 	Level 11 Testing Bugs
-	- Violation Type: property damage ????
+	- Violation Type: property damage ???? / Reckless driving ???? invisible trigger. . .
+	- Car fell off the world wtf
 
 	Level 17 Testing Bugs
 	- Violation Type: Counter Flowing Or Driving On Sidewalk (VehicleWaypoints not set properly)
+	- Violations not working
+	- Clip through barrier railing
+
+	UX Testing
+	- Level 1 player doesnt know where to go (left or right). 
+		> Controls need explaining
+	- Player controls not intuitive?
+	- Turning is janky
+	- Camera controls unintuitive? Too sensitive. 
+	- Trike too fast. Slowdown speed and acceleration. 
+	- Jeepney too fast. Slowdown speed and acceleration. 
+	- Increase invincibility. 
+	- Make counterflow checker cooldown more forgiving, atleast for the first few levels
+	- Took multiple attempts to complete first level
+	- Too laggy
