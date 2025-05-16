@@ -10,6 +10,7 @@
 		> Adjustment made but couldn't make it penalty, rather made it add only 1 Point instead. Not tested
 		> Works fine
 	- Radio suddenly changes to main menu theme
+		> Adjustment made. Not tested
 	- Vehicle spawner wont open (maybe ibang way siya? i just tried changing the active state so this might be a skill issue on my end -remus)
 		> Vehicles spawn works, but spawnedVehicle's sensor collides with Lamppost causing them to stop. 
 	- Add delay before activating ragdoll when egressing

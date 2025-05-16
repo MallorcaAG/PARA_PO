@@ -48,6 +48,10 @@ public class BackgroundMusicManager : PersistentSingleton<BackgroundMusicManager
     }
     public void InitRadio()
     {
+        StopAllCoroutines();
+
+        //Debug.Log("Initializing Radio");
+
         targetTime = 3f;
         StartCoroutine(ChangeRadioStation());
     }
@@ -63,6 +67,8 @@ public class BackgroundMusicManager : PersistentSingleton<BackgroundMusicManager
 
     public IEnumerator PlayMainMenuMusic()
     {
+        //Debug.Log("Playing Main Menu music");
+
         PlayBGM(mainMenuMusic, transform, defaultVolume);
 
         yield return new WaitForSeconds(mainMenuMusic.length);
@@ -87,6 +93,8 @@ public class BackgroundMusicManager : PersistentSingleton<BackgroundMusicManager
     {
         for(int j = start; j < currentStation.Tracks.Length; j++)
         {
+            //Debug.Log("NOW PLAYING: " + currentStation.Tracks[j].name);
+
             PlayBGM(currentStation.Tracks[j], transform, defaultVolume);
 
             yield return new WaitForSeconds(currentStation.Tracks[j].length);
@@ -120,6 +128,8 @@ public class BackgroundMusicManager : PersistentSingleton<BackgroundMusicManager
 
     public void StopRadio()
     {
+        //Debug.Log("Stopping Radio");
+
         StopAllCoroutines();
 
         StartCoroutine(PlayMainMenuMusic());
