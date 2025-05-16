@@ -160,18 +160,18 @@ public class PedestrianAINavigator : WaypointNavigator
             case NPCState.EGRESS:
                 currentState = state;
                 // Egress is handled by queue system; no per-frame logic needed here
-                // Yes but it doesn't handle when they reach the sidewalk
+                //Yes but it doesnt handle when they reach the sidewalk
                 if (controller.destinationInfo.reachedDestination)
                 {
                     SetState(NPCState.WALKING);
                     senses.enabled = true;
 
-                    StartCoroutine(EnableCanBeViolatedDelayed(3f)); 
+                    StartCoroutine(EnableCanBeViolatedDelayed(3f));
 
                     myLandmark = null;
                     desiredLandmark = null;
                     playersWaypoint = null;
-                    // onSuccessfulEgress.Raise(this, gameObject);
+                    //onSuccessfulEgress.Raise(this, gameObject);
                 }
                 break;
         }
@@ -251,7 +251,7 @@ public class PedestrianAINavigator : WaypointNavigator
         }
         else
         {
-            Debug.Log(gameObject.name +": Attempted to board while in invalid state: " + state);
+            Debug.Log(gameObject.name + ": Attempted to board while in invalid state: " + state);
         }
     }
 
@@ -259,7 +259,7 @@ public class PedestrianAINavigator : WaypointNavigator
     {
         GameObject ped = (GameObject)data;
 
-        if(ped == this.gameObject)
+        if (ped == this.gameObject)
         {
             Debug.LogWarning("I have been barred entry");
             SetState(NPCState.WAITING);
@@ -277,10 +277,10 @@ public class PedestrianAINavigator : WaypointNavigator
 
         if (isRiding)
         {
-            
+
             SetState(NPCState.EGRESS);
 
-           
+
             if (!egressQueue.Contains(this))
             {
                 egressQueue.Enqueue(this);
@@ -342,7 +342,7 @@ public class PedestrianAINavigator : WaypointNavigator
     // Execute the egress process for pedestrian in front of Queue
     private void ExecuteEgress(GameObject landmark)
     {
-        
+
 
         // Raise event to notify egress has started for this pedestrian
         onPedestrianEgress?.Raise(this, gameObject);
@@ -352,10 +352,10 @@ public class PedestrianAINavigator : WaypointNavigator
 
         // Animation change
         animator.CrossFade(personalityToWalkAnimation(), 0f);
-        
+
         // Reappear passenger back onto GameWorld
         transform.parent = null;
-            // ! Is offset still necessary if theres already a delay on their egress?
+        // ! Is offset still necessary if theres already a delay on their egress?
         //Vector3 offset = new Vector3(Random.Range(-0.5f, 0.5f), 0, Random.Range(-0.5f, 0.5f)); 
         transform.position = new Vector3(
             playersWaypoint.transform.position.x,
@@ -369,10 +369,8 @@ public class PedestrianAINavigator : WaypointNavigator
         isRiding = false;
         SetDestination(currentWaypoint.GetPosition());
 
-
         // Start coroutine to finish egress after delay, then process next queue member
         StartCoroutine(FinishEgressAfterDelay(egressDelay, landmark));
-       
     }
 
     // Delay to avoid egress overlap and allow clean exit animations
@@ -422,25 +420,8 @@ public class PedestrianAINavigator : WaypointNavigator
         }
     }
 
-    public void EnableRagdoll()
+    private void EnableRagdoll()
     {
-        StartCoroutine(EnableRagdollDelayed());
-    }
-
-    private IEnumerator EnableRagdollDelayed()
-    {
-        float delay = 3f;
-        float countdown = delay;
-
-        while (countdown > 0f)
-        {
-            Debug.Log($"Ragdoll will activate in {Mathf.CeilToInt(countdown)} second(s)...");
-            yield return new WaitForSeconds(1f);
-            countdown -= 1f;
-        }
-
-        Debug.Log("Ragdoll delay ended. Activating ragdoll now.");
-
         if (animator != null) animator.enabled = false;
 
         if (MyUIIndicator != null)
@@ -459,7 +440,6 @@ public class PedestrianAINavigator : WaypointNavigator
             rb.AddForce(Vector3.back * 2f, ForceMode.Impulse);
         }
     }
-
     private IEnumerator EnableCanBeViolatedDelayed(float delay)
     {
         float countdown = delay;
@@ -518,4 +498,3 @@ public class PedestrianAINavigator : WaypointNavigator
     public bool isWaiting() => state == NPCState.WAITING;
     #endregion
 }
-
