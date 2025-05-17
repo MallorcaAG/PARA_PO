@@ -4159,7 +4159,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 37b7ee19768313f49befcd263b20a36b, type: 2}
   - {fileID: 11400000, guid: b2035df8ed4107c4ea6574709fa9204b, type: 2}
   audioSource: {fileID: 1085721920}
-  defaultVolume: 1
+  defaultVolume: 0.5
 --- !u!82 &1085721920
 AudioSource:
   m_ObjectHideFlags: 0
