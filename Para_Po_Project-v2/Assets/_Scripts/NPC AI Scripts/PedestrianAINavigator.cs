@@ -47,6 +47,7 @@ public class PedestrianAINavigator : WaypointNavigator
     private bool allowIngress = false, dying = false;
     private NPCDistanceToPlayer destroyer;
     private Vector2 playerVehiclePassengerStatus;
+    private int ingressAttempts = 0;
 
     // Queue management for egress handling
     private static Queue<PedestrianAINavigator> egressQueue = new Queue<PedestrianAINavigator>();
@@ -124,6 +125,7 @@ public class PedestrianAINavigator : WaypointNavigator
                 currentState = state;
                 if (controller.destinationInfo.reachedDestination)
                 {
+
                     if (allowIngress)
                     {
                         if (playerVehiclePassengerStatus.x >= playerVehiclePassengerStatus.y)
@@ -146,9 +148,21 @@ public class PedestrianAINavigator : WaypointNavigator
                     }
                     else
                     {
-                        SetState(NPCState.WAITING);
-                        SetDestination(transform.position);
-                        StartCoroutine(kys());
+                        //Try again
+                        ingressAttempts++;
+                        if(ingressAttempts <= 3)
+                        {
+                            senses.enabled = false;
+                            SetDestination(playersWaypoint.GetPosition());
+                            canBeViolated = false;
+                        }
+                        else
+                        {
+                            SetState(NPCState.WAITING);
+                            SetDestination(transform.position);
+                            StartCoroutine(kys());
+                        }
+
                     }
                 }
                 break;

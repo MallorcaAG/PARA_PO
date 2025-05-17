@@ -1,12 +1,15 @@
 - MainMenu background simulation of game. (Add last when we know everything works good)
 - Cross check values from Level 1 to the other Levels. 
+- Add 5 sec Delay to LoadingScreen unactivating so player doesnt see stuff spawning 
 
 	MainMenu Testing Bugs
 	- Landmark images blocking route map on certain routes
 
 	Level 1 Testing Bugs
 	- SakayPed locked on where player Waypoint first stopped. Not where it is currently at.
-	- Add final landmark so 
+		> Ajustment made. Not tested.
+	- Add final landmark so some passengers will be desired destination there.
+		> Added Terminal landmark. Not tested
 
 	Level 6 Testing Bugs
 	- Same issues as Level 1
@@ -24,7 +27,10 @@
 
 	UX Testing
 	- Level 1 player doesnt know where to go (left or right). 
-		> Controls need explaining
+		> Controls need explaining. 
+		> Maybe tutorial cutscene how to drive?
+		> Show controls from Pause screen in Settings panel in MainMenu
+		> (Unideal, pain in the ass to code) Create a special interactive tutorial level
 	- Player controls not intuitive?
 	- Turning is janky
 	- Camera controls unintuitive? Too sensitive. 
