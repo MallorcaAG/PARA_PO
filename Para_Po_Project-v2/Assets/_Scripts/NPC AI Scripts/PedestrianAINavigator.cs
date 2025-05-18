@@ -150,14 +150,16 @@ public class PedestrianAINavigator : WaypointNavigator
                     {
                         //Try again
                         ingressAttempts++;
-                        if(ingressAttempts <= 3)
+                        if (ingressAttempts <= 3)
                         {
+                            Debug.Log("Initializing ingressAttempts less than");
                             senses.enabled = false;
                             SetDestination(playersWaypoint.GetPosition());
                             canBeViolated = false;
                         }
                         else
                         {
+                            Debug.Log("Initializing the latter");
                             SetState(NPCState.WAITING);
                             SetDestination(transform.position);
                             StartCoroutine(kys());
@@ -284,16 +286,19 @@ public class PedestrianAINavigator : WaypointNavigator
             SetDestination(transform.position);
         }
     }
-
     public void LandmarkReached(Component sender, object landmarkPlayerIsIn)
     {
         if (desiredLandmark == null || (GameObject)landmarkPlayerIsIn != desiredLandmark) return;
 
         if (isRiding)
         {
-
             SetState(NPCState.EGRESS);
 
+            // Ensure currentWaypoint is set before egress
+            if (currentWaypoint == null && playersWaypoint != null)
+            {
+                currentWaypoint = playersWaypoint;
+            }
 
             if (!egressQueue.Contains(this))
             {
@@ -308,6 +313,7 @@ public class PedestrianAINavigator : WaypointNavigator
             StartCoroutine(kys());
         }
     }
+
 
     public void GetOffVehicle(Component sender, object landmarkPlayerIsIn)
     {
@@ -325,7 +331,6 @@ public class PedestrianAINavigator : WaypointNavigator
 
     private void ProcessNextEgress(GameObject landmark)
     {
-        //If Queue is empty, no egress to process
         if (egressQueue.Count == 0)
         {
             Debug.LogWarning("Egress Queue is empty\n");
@@ -333,24 +338,84 @@ public class PedestrianAINavigator : WaypointNavigator
             return;
         }
 
-        // Set waypoint and resume walking after egress
-        currentWaypoint = playersWaypoint ?? currentWaypoint;
-
-        if ((currentWaypoint.nextWaypoint == null) && (currentWaypoint.previousWaypoint == null))
-        {
-            Debug.LogError("ERROR: Both connecting waypoints are null");
-            return;
-        }
-
-        //Else process egress in front of Queue
         isEgressInProgress = true;
         PedestrianAINavigator nextPedestrian = egressQueue.Peek();
-        nextPedestrian.currentWaypoint = !nextPedestrian.changeDirection ?
-            nextPedestrian.currentWaypoint.nextWaypoint :
-            nextPedestrian.currentWaypoint.previousWaypoint;
-        nextPedestrian.ExecuteEgress(landmark);
 
+        if (nextPedestrian.currentWaypoint == null)
+        {
+            if (nextPedestrian.playersWaypoint != null)
+            {
+                nextPedestrian.currentWaypoint = nextPedestrian.playersWaypoint;
+                Debug.Log($"{nextPedestrian.name}: currentWaypoint was null, assigned playersWaypoint '{nextPedestrian.currentWaypoint.name}' as currentWaypoint.");
+            }
+            else
+            {
+                Debug.LogError($"{nextPedestrian.name}: playersWaypoint is null. Cannot assign currentWaypoint. Skipping.");
+                egressQueue.Dequeue();
+                isEgressInProgress = false;
+                return;
+            }
+        }
+        else
+        {
+            Debug.Log($"{nextPedestrian.name}: currentWaypoint is '{nextPedestrian.currentWaypoint.name}'.");
+        }
+
+        Waypoint target = !nextPedestrian.changeDirection ?
+                          nextPedestrian.currentWaypoint.nextWaypoint :
+                          nextPedestrian.currentWaypoint.previousWaypoint;
+
+        if (target == null)
+        {
+            Debug.LogWarning($"{nextPedestrian.name}: No connected waypoint from currentWaypoint '{nextPedestrian.currentWaypoint.name}'. Finding nearest waypoint instead.");
+
+            // Find nearest waypoint to the pedestrian's current position
+            target = FindNearestWaypoint(nextPedestrian.transform.position);
+
+            if (target == null)
+            {
+                Debug.LogError($"{nextPedestrian.name}: No nearest waypoint found. Skipping egress.");
+                egressQueue.Dequeue();
+                isEgressInProgress = false;
+                return;
+            }
+            else
+            {
+                Debug.Log($"{nextPedestrian.name}: Nearest waypoint found '{target.name}'.");
+            }
+        }
+        else
+        {
+            Debug.Log($"{nextPedestrian.name}: Moving from currentWaypoint '{nextPedestrian.currentWaypoint.name}' to target waypoint '{target.name}'.");
+        }
+
+        nextPedestrian.currentWaypoint = target;
+
+        Debug.Log($"{nextPedestrian.name}: Updated currentWaypoint to '{nextPedestrian.currentWaypoint.name}'. Beginning ExecuteEgress.");
+        nextPedestrian.ExecuteEgress(landmark);
     }
+
+    private Waypoint FindNearestWaypoint(Vector3 position)
+    {
+        Waypoint[] allWaypoints = FindObjectsOfType<Waypoint>();
+        Waypoint nearest = null;
+        float minDistance = Mathf.Infinity;
+
+        foreach (var waypoint in allWaypoints)
+        {
+            float dist = Vector3.Distance(position, waypoint.transform.position);
+            if (dist < minDistance)
+            {
+                minDistance = dist;
+                nearest = waypoint;
+            }
+        }
+
+        return nearest;
+    }
+
+
+
 
     // Execute the egress process for pedestrian in front of Queue
     private void ExecuteEgress(GameObject landmark)
@@ -376,7 +441,7 @@ public class PedestrianAINavigator : WaypointNavigator
             playersWaypoint.transform.position.z
         ) /*+ offset*/;
 
-        Debug.Log(gameObject.name+": (PlayerWaypoint)"+playersWaypoint.name);
+        Debug.Log(gameObject.name + ": (PlayerWaypoint)" + playersWaypoint.name);
         Debug.Log(gameObject.name + ": (CurrentWaypoint)" + currentWaypoint.name);
 
         //Physics change

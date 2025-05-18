@@ -8,6 +8,7 @@
 	Level 1 Testing Bugs
 	- SakayPed locked on where player Waypoint first stopped. Not where it is currently at.
 		> Ajustment made. Not tested.
+		> Adjustment made. Find nearest waypoint finder to prevent having a hard time egressing in places
 	- Add final landmark so some passengers will be desired destination there.
 		> Added Terminal landmark. Not tested
 
@@ -21,7 +22,7 @@
 	- Car fell off the world wtf
 
 	Level 17 Testing Bugs
-	- Violation Type: Counter Flowing Or Driving On Sidewalk (VehicleWaypoints not set properly)
+	- Violation Type: Counter Flowing Or Driving On Sidewalk (VehicleWaypoints not gset properly)
 	- Violations not working
 	- Clip through barrier railing
 
