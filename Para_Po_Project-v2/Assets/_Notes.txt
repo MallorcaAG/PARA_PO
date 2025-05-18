@@ -11,11 +11,13 @@
 		> Adjustment made. Find nearest waypoint finder to prevent having a hard time egressing in places
 	- Add final landmark so some passengers will be desired destination there.
 		> Added Terminal landmark. Not tested
+		
 
 	Level 6 Testing Bugs
 	- Same issues as Level 1
 	- Spawnings are delayed?
 	- Trike (Assign GameEvents: (onPassengerCountChange, playerVehiclePassengerStatus, barEntry, maxPassengerCapacity), VFX prefab, Horn.cs, AudioSource for horn, RespawnManager's isTrike bool)
+		> Trike replaced with prefab from level 1
 
 	Level 11 Testing Bugs
 	- Violation Type: property damage ???? / Reckless driving ???? invisible trigger. . .
@@ -38,6 +40,7 @@
 	- Trike too fast. Slowdown speed and acceleration. 
 	- Jeepney too fast. Slowdown speed and acceleration. 
 	- Increase invincibility. 
+		> Invincibility now at 5 seconds
 	- Make counterflow checker cooldown more forgiving, atleast for the first few levels
 	- Took multiple attempts to complete first level
 	- Too laggy
