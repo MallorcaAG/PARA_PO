@@ -12,21 +12,15 @@
 		> Adjustment made. Find nearest waypoint finder to prevent having a hard time egressing in places
 	- Add final landmark so some passengers will be desired destination there.
 		> Added Terminal landmark. Not tested
-		
 
 	Level 5 Testing Bugs
-	- Same issues as Level 1
-	- Spawnings are delayed?
-	- Trike (Assign GameEvents: (onPassengerCountChange, playerVehiclePassengerStatus, barEntry, maxPassengerCapacity), VFX prefab, Horn.cs, AudioSource for horn, RespawnManager's isTrike bool)
-		> Trike replaced with prefab from level 1
+	- Clear
 
 	Level 9 Testing Bugs
-		> Try baking roads then testing
+	- Waypoint fine tuning
 
 	Level 15 Testing Bugs
-	- Violation Type: Counter Flowing Or Driving On Sidewalk (VehicleWaypoints not gset properly)
-	- Violations not working
-	- Clip through barrier railing
+	- Waypoint fine tuning
 
 	UX Testing
 	- Level 1 player doesnt know where to go (left or right). 
