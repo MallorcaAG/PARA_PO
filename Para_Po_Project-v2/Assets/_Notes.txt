@@ -20,8 +20,7 @@
 		> Trike replaced with prefab from level 1
 
 	Level 11 Testing Bugs
-	- Violation Type: property damage ???? / Reckless driving ???? invisible trigger. . .
-	- Car fell off the world wtf
+		> Try baking roads then testing
 
 	Level 17 Testing Bugs
 	- Violation Type: Counter Flowing Or Driving On Sidewalk (VehicleWaypoints not gset properly)
