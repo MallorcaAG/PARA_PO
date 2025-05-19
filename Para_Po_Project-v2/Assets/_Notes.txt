@@ -1,6 +1,7 @@
 - MainMenu background simulation of game. (Add last when we know everything works good)
 - Cross check values from Level 1 to the other Levels. 
 - Add 5 sec Delay to LoadingScreen unactivating so player doesnt see stuff spawning 
+- ResultScreenManager text too long
 
 	MainMenu Testing Bugs
 	- Landmark images blocking route map on certain routes
@@ -13,13 +14,13 @@
 		> Added Terminal landmark. Not tested
 		
 
-	Level 6 Testing Bugs
+	Level 5 Testing Bugs
 	- Same issues as Level 1
 	- Spawnings are delayed?
 	- Trike (Assign GameEvents: (onPassengerCountChange, playerVehiclePassengerStatus, barEntry, maxPassengerCapacity), VFX prefab, Horn.cs, AudioSource for horn, RespawnManager's isTrike bool)
 		> Trike replaced with prefab from level 1
 
-	Level 11 Testing Bugs
+	Level 9 Testing Bugs
 		> Try baking roads then testing
 
 	Level 15 Testing Bugs
