@@ -48,7 +48,7 @@ MonoBehaviour:
   - version: 2.0.0
     name: Bridge
     id: 1575640414.1523824
-    timestamp: 1743326190.884336
+    timestamp: 1747634478.8058448
     objectType: 2
     gameobjectGUID: 
     textureGUID: 
@@ -1992,7 +1992,7 @@ MonoBehaviour:
   - version: 2.0.0
     name: Lampposts
     id: 1492633790.5171874
-    timestamp: 1733831719.1120675
+    timestamp: 1747635140.755846
     objectType: 0
     gameobjectGUID: 
     textureGUID: 
@@ -2023,7 +2023,7 @@ MonoBehaviour:
     weld: 1
     combine: 0
     combineInstantiated: 1
-    markerActive: 1
+    markerActive: 0
     uvType: 0
     uv: 1
     randomObjects: 0
@@ -2075,7 +2075,7 @@ MonoBehaviour:
     defaultStartOffset: 0
     defaultEndOffset: 0
     totalZDistance: 0
-    middleZDistance: 25
+    middleZDistance: 20
     startZDistance: 0
     endZDistance: 0
     minStartZ: 10000
