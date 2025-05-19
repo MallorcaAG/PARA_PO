@@ -21,6 +21,6 @@ EditorBuildSettings:
     path: Assets/_Scenes/Final Scenes/Level 9/Level 9.unity
     guid: eee14f142a60dca4bb96bdcf588e285a
   - enabled: 1
-    path: Assets/_Scenes/Final Scenes/Level 15/Level 15.unity
+    path: Assets/_Scenes/Prototype Scene/Level 15 Dupe.unity
     guid: 4f95fdb1d5e0c924fa03a2ac9a6e0bb0
   m_configObjects: {}

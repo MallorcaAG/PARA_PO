@@ -58,8 +58,7 @@ MonoBehaviour:
   obstructingTrafficStallingOrAFK: -50
   speeding: -50
   notUrFaultBonus: 50
-  immunityCooldown: 3
-  immune: 0
+  immunityCooldown: 5
   onTrafficViolationCommitted: {fileID: 11400000, guid: a31cd28086627ea43915bcd62967315f, type: 2}
   player: {fileID: 0}
   speedLimit: 50.8
