@@ -152,14 +152,14 @@ public class PedestrianAINavigator : WaypointNavigator
                         ingressAttempts++;
                         if (ingressAttempts <= 3)
                         {
-                            Debug.Log("Initializing ingressAttempts less than");
+                            Debug.Log("Reattempting to ingress");
                             senses.enabled = false;
                             SetDestination(playersWaypoint.GetPosition());
                             canBeViolated = false;
                         }
                         else
                         {
-                            Debug.Log("Initializing the latter");
+                            Debug.Log("Initializing \"I give up\"");
                             SetState(NPCState.WAITING);
                             SetDestination(transform.position);
                             StartCoroutine(kys());
