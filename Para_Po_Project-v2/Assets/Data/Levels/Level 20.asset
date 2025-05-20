@@ -17,12 +17,12 @@ MonoBehaviour:
   highScore: 0
   scenes:
   - Level 20
-  vehicleType: 1
-  routeName: PRC to Taft
+  vehicleType: 2
+  routeName: Bicutan to Sucat
   routeMap:
-  - {fileID: 21300000, guid: 59b6e336604afa5479a46f6a5621e5f0, type: 3}
-  - {fileID: 21300000, guid: e9be85f6e6ed2c944b4bc75a1275f78a, type: 3}
+  - {fileID: 21300000, guid: 19c093afa35272141b6e7d54f4821001, type: 3}
+  - {fileID: 21300000, guid: d21832bdf3a1af148bbb814ca20eb739, type: 3}
   routeLandmarkImages:
-  - {fileID: 21300000, guid: f434014066941104988b5d8b4896198b, type: 3}
-  - {fileID: 21300000, guid: 112ca23950d827040b7e65cbf0500feb, type: 3}
-  - {fileID: 21300000, guid: d875d6819f2bf23449d839c86abc5f00, type: 3}
+  - {fileID: 21300000, guid: 39fc778c1dadbea46960c99c91210011, type: 3}
+  - {fileID: 21300000, guid: 7eabdb996288b3a40a037fd0f7374d2c, type: 3}
+  - {fileID: 21300000, guid: 789145b2fb12b2a40bc72b36693a5fd8, type: 3}

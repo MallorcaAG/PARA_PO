@@ -18,11 +18,11 @@ MonoBehaviour:
   scenes:
   - Level 5
   vehicleType: 0
-  routeName: Pulanglupa to CAA
+  routeName: CAA to Casimiro
   routeMap:
-  - {fileID: 21300000, guid: e922579f57f4b364685d4a87cf92d41f, type: 3}
-  - {fileID: 21300000, guid: 42cc081b5116e9a4ab298ec5aab572bc, type: 3}
+  - {fileID: 21300000, guid: 307cc453097cffc4aae56255c025a918, type: 3}
+  - {fileID: 21300000, guid: 9aa43d75d44911d4fb38efa1e72f654a, type: 3}
   routeLandmarkImages:
-  - {fileID: 21300000, guid: 780740605d77bf14498398e6dd13cbf0, type: 3}
-  - {fileID: 21300000, guid: a81cb648486d7854bb75d175f7d32400, type: 3}
-  - {fileID: 21300000, guid: 3f53a118ed8c56749b99ae6a917eec77, type: 3}
+  - {fileID: 21300000, guid: cc539d56f5b9cd7408839274f31c3190, type: 3}
+  - {fileID: 21300000, guid: 4e9f701a961b10a418a0cd11f32b50e3, type: 3}
+  - {fileID: 21300000, guid: 9a468506d5d85d748ab378432e69f3e3, type: 3}

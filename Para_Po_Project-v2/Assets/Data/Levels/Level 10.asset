@@ -17,12 +17,12 @@ MonoBehaviour:
   highScore: 0
   scenes:
   - Level 10
-  vehicleType: 0
-  routeName: CAA to Casimiro
+  vehicleType: 1
+  routeName: BelAir to Washington
   routeMap:
-  - {fileID: 21300000, guid: 307cc453097cffc4aae56255c025a918, type: 3}
-  - {fileID: 21300000, guid: 2b35ed31555a7ae49ae2ebaf8b5ab42e, type: 3}
+  - {fileID: 21300000, guid: cd4ae6e52ca643049a445a56e78d4413, type: 3}
+  - {fileID: 21300000, guid: 588662f52f2e84748b14d9d53e9cf9e2, type: 3}
   routeLandmarkImages:
-  - {fileID: 21300000, guid: cc539d56f5b9cd7408839274f31c3190, type: 3}
-  - {fileID: 21300000, guid: 4e9f701a961b10a418a0cd11f32b50e3, type: 3}
-  - {fileID: 21300000, guid: 9a468506d5d85d748ab378432e69f3e3, type: 3}
+  - {fileID: 21300000, guid: 75fa8ab8bb423ae448ad2b6d60845d41, type: 3}
+  - {fileID: 21300000, guid: ffbbf8d4bb342f44ab4e2787ca7c3ecf, type: 3}
+  - {fileID: 21300000, guid: 772be89ec9652794eb6bdb7047d6ed7a, type: 3}

@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: Tutorial
   m_EditorClassIdentifier: 
   isUnlocked: 1
-  vehicleType: 0
-  routeName: Pulanglupa to CAA
-  routeMap: []
-  routeLandmarkImages: []
-  scenes: {fileID: 0}
   stars: 0
   highScore: 0
+  scenes:
+  - 0
+  vehicleType: 1
+  routeName: Tutorial
+  routeMap: []
+  routeLandmarkImages: []

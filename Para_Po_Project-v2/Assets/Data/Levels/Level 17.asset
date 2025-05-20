@@ -21,7 +21,7 @@ MonoBehaviour:
   routeName: PRC to Taft
   routeMap:
   - {fileID: 21300000, guid: 59b6e336604afa5479a46f6a5621e5f0, type: 3}
-  - {fileID: 21300000, guid: 1384dfd807f821d4a8aaee091353937e, type: 3}
+  - {fileID: 21300000, guid: e9be85f6e6ed2c944b4bc75a1275f78a, type: 3}
   routeLandmarkImages:
   - {fileID: 21300000, guid: 0a16ec1c16e99a347a97238206034689, type: 3}
   - {fileID: 21300000, guid: 15e0cd3baaa4df44db6099c95dc92b84, type: 3}

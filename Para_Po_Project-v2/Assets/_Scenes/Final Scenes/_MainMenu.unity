@@ -5770,6 +5770,9 @@ MonoBehaviour:
   loadIntoLevelSelectionPanel: 0
   Levels:
   - {fileID: 11400000, guid: 8f912590fa6d38849b4ff0c7964698c2, type: 2}
+  - {fileID: 11400000, guid: 8c93055b82a14f842b0e77f1bef1eee3, type: 2}
+  - {fileID: 11400000, guid: 7cb440460ee189a4b8ea59787b06c221, type: 2}
+  - {fileID: 11400000, guid: 4c61e1f6b8e58b842bd0db0a895c7583, type: 2}
   loaderCanvas: {fileID: 2002143279}
   progressBar: {fileID: 6644265}
   tipTextBox: {fileID: 2069255359}
@@ -7963,9 +7966,9 @@ MonoBehaviour:
   playerBestScoreText: {fileID: 697914462}
   levels:
   - {fileID: 11400000, guid: 8f912590fa6d38849b4ff0c7964698c2, type: 2}
-  - {fileID: 11400000, guid: a3495157ce92c4e4eb609ad2cfe15e8d, type: 2}
-  - {fileID: 11400000, guid: cbe28bfbcce3c394895297a8f096605c, type: 2}
-  - {fileID: 11400000, guid: b5cfc61c16c49784aa7fdca31d0ccf0b, type: 2}
+  - {fileID: 11400000, guid: 8c93055b82a14f842b0e77f1bef1eee3, type: 2}
+  - {fileID: 11400000, guid: 7cb440460ee189a4b8ea59787b06c221, type: 2}
+  - {fileID: 11400000, guid: 4c61e1f6b8e58b842bd0db0a895c7583, type: 2}
   vehicles:
   - {fileID: 8400000, guid: a65ff33d782b26b4bbec9e41c2a22082, type: 2}
   - {fileID: 8400000, guid: 0865314f8381adf498d545b1df0b2c3b, type: 2}

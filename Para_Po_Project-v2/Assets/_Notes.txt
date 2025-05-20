@@ -7,20 +7,19 @@
 	- Landmark images blocking route map on certain routes
 
 	Level 1 Testing Bugs
-	- SakayPed locked on where player Waypoint first stopped. Not where it is currently at.
-		> Ajustment made. Not tested.
-		> Adjustment made. Find nearest waypoint finder to prevent having a hard time egressing in places
-	- Add final landmark so some passengers will be desired destination there.
-		> Added Terminal landmark. Not tested
+
 
 	Level 5 Testing Bugs
-	- Clear
+	- Adjust Landmark locations cause too close to start and end, and few in-between.
+	- VehicleAI hit player?? Sensor not working????
 
 	Level 9 Testing Bugs
 	- Waypoint fine tuning
 
 	Level 15 Testing Bugs
 	- Waypoint fine tuning
+	- TrafficLights having a stroke
+	- VehicleAI not following TrafficLights
 
 	UX Testing
 	- Level 1 player doesnt know where to go (left or right). 

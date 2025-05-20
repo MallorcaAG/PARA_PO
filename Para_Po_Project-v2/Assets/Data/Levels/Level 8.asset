@@ -21,7 +21,7 @@ MonoBehaviour:
   routeName: CAA to Casimiro
   routeMap:
   - {fileID: 21300000, guid: 307cc453097cffc4aae56255c025a918, type: 3}
-  - {fileID: 21300000, guid: 2b35ed31555a7ae49ae2ebaf8b5ab42e, type: 3}
+  - {fileID: 21300000, guid: 9aa43d75d44911d4fb38efa1e72f654a, type: 3}
   routeLandmarkImages:
   - {fileID: 21300000, guid: 929f02e92dcfeeb45b9dd8b69f9a5ca0, type: 3}
   - {fileID: 21300000, guid: cc539d56f5b9cd7408839274f31c3190, type: 3}
