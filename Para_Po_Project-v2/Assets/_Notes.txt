@@ -1,7 +1,7 @@
 - MainMenu background simulation of game. (Add last when we know everything works good)
-- Cross check values from Level 1 to the other Levels. 
+
 - Add 5 sec Delay to LoadingScreen unactivating so player doesnt see stuff spawning 
-- ResultScreenManager text too long
+
 
 	MainMenu Testing Bugs
 	- Landmark images blocking route map on certain routes
