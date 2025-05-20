@@ -17,7 +17,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &6453289939976612140
 Transform:
@@ -33,7 +33,7 @@ Transform:
   m_Children:
   - {fileID: 8391934328658580309}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6003899190631589297
 MonoBehaviour:
@@ -151,14 +151,14 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: c8fbe3b9c8d4100438171baac5ad1f6f, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 4488966799815044550, guid: e388def5f86f4024397050cb8d407182, type: 3}
+      objectReference: {fileID: 2100000, guid: 0a5e166039078f945aaaf3da61ca0c62, type: 2}
     - target: {fileID: 919132149155446097, guid: c8fbe3b9c8d4100438171baac5ad1f6f, type: 3}
       propertyPath: m_Name
       value: crowd_control_barrier
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c8fbe3b9c8d4100438171baac5ad1f6f, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 2147483647
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

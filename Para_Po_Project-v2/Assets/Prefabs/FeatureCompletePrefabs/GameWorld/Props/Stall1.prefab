@@ -33,7 +33,7 @@ Transform:
   m_Children:
   - {fileID: 5198018970137302736}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1170862070417235237
 MonoBehaviour:
@@ -148,6 +148,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: dbf401ae8470ba445ac7fc509d83a9dc, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: bae8faca0fabed84f99a526c539d65fc, type: 2}
     - target: {fileID: 919132149155446097, guid: dbf401ae8470ba445ac7fc509d83a9dc, type: 3}
       propertyPath: m_Name
       value: stall
