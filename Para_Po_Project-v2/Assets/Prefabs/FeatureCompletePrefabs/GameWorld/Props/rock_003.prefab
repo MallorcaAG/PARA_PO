@@ -15,7 +15,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &3596653373426832123
 Transform:
@@ -115,10 +115,14 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 74b5cb61cc8295c42b00d61b1a62585f, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 4218046369211427024, guid: 72217397d1a72bc4888bfd7699cb1011, type: 3}
+      objectReference: {fileID: 2100000, guid: 34b62c624b6adf74b9fb401ab7d9df2d, type: 2}
     - target: {fileID: 919132149155446097, guid: 74b5cb61cc8295c42b00d61b1a62585f, type: 3}
       propertyPath: m_Name
       value: rock_004
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 74b5cb61cc8295c42b00d61b1a62585f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

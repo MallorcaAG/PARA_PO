@@ -64,9 +64,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -2615453208677245630, guid: f824a48942ae7a548b1c57dc34170eed, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: -8140499575222096, guid: f824a48942ae7a548b1c57dc34170eed, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f824a48942ae7a548b1c57dc34170eed, type: 3}
       propertyPath: m_Name
       value: Traintracks Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f824a48942ae7a548b1c57dc34170eed, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
