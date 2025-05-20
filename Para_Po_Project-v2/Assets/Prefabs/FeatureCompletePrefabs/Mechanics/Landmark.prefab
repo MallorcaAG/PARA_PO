@@ -32,7 +32,7 @@ Transform:
   m_Children:
   - {fileID: 3118123003458891414}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!135 &6084383741172401590
 SphereCollider:
@@ -70,6 +70,7 @@ MonoBehaviour:
   onPlayerEnterLandmark: {fileID: 11400000, guid: c222c3cb593aab34d97be389eed79fad, type: 2}
   onPlayerExitLandmark: {fileID: 11400000, guid: c54199a9fc5970145a57514a4ef505c7, type: 2}
   onPlayerStopAtLandmark: {fileID: 11400000, guid: c971c394ba6e6654a9a54f2202a5cd0d, type: 2}
+  myCollider: {fileID: 6084383741172401590}
   spawnPoints:
   - {fileID: 9214733065074356738}
 --- !u!1 &9214733065074356738

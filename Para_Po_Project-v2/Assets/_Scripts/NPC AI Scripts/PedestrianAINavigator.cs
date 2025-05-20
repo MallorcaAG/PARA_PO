@@ -541,6 +541,12 @@ public class PedestrianAINavigator : WaypointNavigator
         destroyer.kys();
     }
 
+    public void fastKYS()
+    {
+        dying = true;
+        destroyer.kys();
+    }
+
     private void setRigidbodyState(bool state)
     {
         foreach (Rigidbody rb in GetComponentsInChildren<Rigidbody>()) rb.isKinematic = state;

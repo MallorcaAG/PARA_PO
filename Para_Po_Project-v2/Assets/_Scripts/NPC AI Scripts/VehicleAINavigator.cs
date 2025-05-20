@@ -118,4 +118,10 @@ public class VehicleAINavigator : WaypointNavigator
         destroyer.kys();
     }
 
+    public void fastKYS()
+    {
+        dying = true;
+        destroyer.kys();
+    }
+
 }
