@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: f824a48942ae7a548b1c57dc34170eed, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f824a48942ae7a548b1c57dc34170eed, type: 3}
       propertyPath: m_LocalScale.x
@@ -69,7 +69,8 @@ PrefabInstance:
       value: Traintracks Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: -3438345565330425223, guid: f824a48942ae7a548b1c57dc34170eed, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f824a48942ae7a548b1c57dc34170eed, type: 3}
