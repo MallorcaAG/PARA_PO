@@ -21,8 +21,7 @@ public class VehicleController : MonoBehaviour
     [SerializeField] private float dragCoefficient = 1.5f;
     [SerializeField] private float brakingDragCoefficient = 0.8f;
     [SerializeField] private float gravity = 9.81f;
-    [Range(0f, 1f)]
-    [SerializeField] private float engineSoundVolume = 1f;
+
     private Rigidbody vehicleRB;
 
     private Vector3 localVelocity;
@@ -46,10 +45,7 @@ public class VehicleController : MonoBehaviour
 
     [Header("Audio")]
     [Range(0, 1)] [SerializeField] private float minPitch = 1f;
-    [Range(1, 5)] [SerializeField] private float maxPitch = 1f;
-    [SerializeField] private AudioClip Horn; 
-    [Range(0f, 1f)] [SerializeField] private float playSoundVolume = 1f; 
-    private AudioSource audioSource; 
+    [Range(1, 5)] [SerializeField] private float maxPitch = 3f;
 
     [Header("Game Events")]
     [SerializeField] private GameEvent sendPlayerSpeed;
@@ -64,17 +60,12 @@ public class VehicleController : MonoBehaviour
     private void Start()
     {
         vehicleRB = GetComponent<Rigidbody>();
-        audioSource = gameObject.AddComponent<AudioSource>(); 
-        audioSource.clip = Horn; 
-        audioSource.volume = playSoundVolume; 
-        audioSource.loop = true; 
         StartCoroutine(SendSpeedCoroutine());
     }
 
     private void Update()
     {
         GetPlayerInput();
-        PlaySoundWhileHoldingF();
     }
 
     private void FixedUpdate()
@@ -262,26 +253,6 @@ public class VehicleController : MonoBehaviour
     private void UpdateEngineSound()
     {
         engineSound.pitch = Mathf.Lerp(minPitch, maxPitch, Mathf.Abs(velocityRatio));
-        engineSound.volume = engineSoundVolume;
-    }
-
-
-    private void PlaySoundWhileHoldingF()
-    {
-        if (Input.GetKey(KeyCode.F))
-        {
-            if (!audioSource.isPlaying)
-            {
-                audioSource.Play();
-            }
-        }
-        else
-        {
-            if (audioSource.isPlaying)
-            {
-                audioSource.Stop();
-            }
-        }
     }
 
     #endregion
