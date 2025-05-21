@@ -79,10 +79,8 @@ MonoBehaviour:
   - {fileID: 2496534766971377730, guid: 5a7dc6333bc80ec4ba1b057dea30bb25, type: 3}
   - {fileID: 2496534766971377730, guid: d21cbc4437e7dfc41a47707a6e8dd230, type: 3}
   - {fileID: 2496534766971377730, guid: 90d8fd927eae91c4aa131a238d9f9049, type: 3}
-  - {fileID: 2496534766971377730, guid: 493f5836bf6dd8241b97557eea438b42, type: 3}
-  - {fileID: 2496534766971377730, guid: 0e07f48b4773a4047973f412ac574e77, type: 3}
-  - {fileID: 2496534766971377730, guid: 6be21919756ba5f4b820abc180a34870, type: 3}
   mySpawnedObj: {fileID: 0}
+  spawnType: 0
   newWaypoint: {fileID: 0}
 --- !u!135 &2194871702700640114
 SphereCollider:
