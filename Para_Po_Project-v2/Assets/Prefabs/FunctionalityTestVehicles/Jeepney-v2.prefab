@@ -2551,8 +2551,9 @@ MonoBehaviour:
   springTravel: 0.5
   wheelRadius: 1.67
   acceleration: 80
-  maxSpeed: 150
+  maxSpeed: 110
   deceleration: 50
+  brakingDeceleration: 1000
   steerStrength: 45
   turningCurve:
     serializedVersion: 2
@@ -2588,25 +2589,8 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   dragCoefficient: 60
-  brakingDeceleration: 1000
   brakingDragCoefficient: 30
   gravity: 20
-  moveInput: 0
-  steerInput: 0
-  tireRotSpeed: 3000
-  maxSteeringAngle: 30
-  minPitch: 0.661
-  maxPitch: 2.83
-  vehicleRB: {fileID: 0}
-  rayPoints:
-  - {fileID: 7205871785227762799}
-  - {fileID: 4181578880416540928}
-  - {fileID: 7663866621568025557}
-  - {fileID: 4442483785249205343}
-  drivable:
-    serializedVersion: 2
-    m_Bits: 64
-  accelerationPoint: {fileID: 2209002230385267989}
   tires:
   - {fileID: 4011298117399709714}
   - {fileID: 5648584526532994798}
@@ -2615,7 +2599,21 @@ MonoBehaviour:
   frontTireParents:
   - {fileID: 5318013338898955450}
   - {fileID: 2650826627695925920}
+  tireRotSpeed: 3000
+  maxSteeringAngle: 30
+  rayPoints:
+  - {fileID: 7205871785227762799}
+  - {fileID: 4181578880416540928}
+  - {fileID: 7663866621568025557}
+  - {fileID: 4442483785249205343}
+  accelerationPoint: {fileID: 2209002230385267989}
+  drivable:
+    serializedVersion: 2
+    m_Bits: 64
   engineSound: {fileID: 465616466467907360}
+  minPitch: 0.661
+  maxPitch: 2.83
+  sendPlayerSpeed: {fileID: 0}
 --- !u!82 &465616466467907360
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2628,7 +2626,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.377
   m_Pitch: 1
   Loop: 0
   Mute: 0

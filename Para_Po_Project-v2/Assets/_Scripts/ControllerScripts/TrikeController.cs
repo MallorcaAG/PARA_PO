@@ -6,12 +6,13 @@ using static UnityEngine.UI.Image;
 public class TrikeController : MonoBehaviour
 {
     [Header("Vehicle Settings")]
-    [SerializeField] private float maxSpeed = 20f;
-    [SerializeField] private float acceleration = 4f;
+    [SerializeField] private float maxSpeed = 20f; // in m/s (72 km/h)
+    [SerializeField] private float accelerationRate = 5f; // m/s²
+    [SerializeField] private float decelerationRate = 6f; // m/s² when releasing input
     [SerializeField] private float steerStrength = 15f;
     [SerializeField] private float zTiltAngle = 45f;
     [SerializeField] private float handleRotationValue = 30f;
-    [SerializeField] private float handleRotationSpeed = .15f;
+    [SerializeField] private float handleRotationSpeed = 0.15f;
     [SerializeField] private float tireRotationSpeed = 10000f;
     [SerializeField] private float gravity = 30f;
     [SerializeField] private float xTiltIncrement = 0.1f;
@@ -39,7 +40,7 @@ public class TrikeController : MonoBehaviour
     private float currentVelocityOffset;
     private Vector3 velocity;
     private RaycastHit hit;
-    private float currentInput;
+    private float currentSpeed = 0f;
     private float currentSteer;
 
     private void Start()
@@ -52,8 +53,9 @@ public class TrikeController : MonoBehaviour
 
     private void Update()
     {
-        moveInput = Input.GetAxis("Vertical");
+        moveInput = Input.GetAxis("Vertical"); // W/S or Up/Down arrows
         steerInput = Input.GetAxis("Horizontal");
+
         transform.position = sphereRB.transform.position;
 
         velocity = TrikeBody.transform.InverseTransformDirection(TrikeBody.velocity);
@@ -75,9 +77,12 @@ public class TrikeController : MonoBehaviour
 
     IEnumerator SendSpeed()
     {
-        sendPlayerSpeed.Raise(this, sphereRB.velocity.magnitude.ToString("F4"));
-        yield return new WaitForSeconds(1f);
-        StartCoroutine(SendSpeed());
+        while (true)
+        {
+            float speedKPH = sphereRB.velocity.magnitude * 3.6f;
+            sendPlayerSpeed.Raise(this, speedKPH.ToString("F0")); // whole number km/h
+            yield return new WaitForSeconds(0.5f);
+        }
     }
 
     private void Movement()
@@ -86,8 +91,9 @@ public class TrikeController : MonoBehaviour
         {
             if (!Input.GetKey(KeyCode.Space))
             {
-                Acceleration();
+                Accelerate();
             }
+
             Rotation();
             Brake();
         }
@@ -99,19 +105,35 @@ public class TrikeController : MonoBehaviour
         Tilt();
     }
 
-    private void Acceleration()
+    private void Accelerate()
     {
-        currentInput = Mathf.MoveTowards(currentInput, moveInput, Time.fixedDeltaTime * acceleration);
-        Vector3 targetVelocity = transform.forward * maxSpeed * currentInput;
-        sphereRB.velocity = Vector3.Lerp(sphereRB.velocity, targetVelocity, Time.fixedDeltaTime * acceleration);
+        float targetSpeed = maxSpeed * moveInput;
+
+        if (Mathf.Abs(targetSpeed) > Mathf.Abs(currentSpeed))
+        {
+            // Accelerate
+            currentSpeed = Mathf.MoveTowards(currentSpeed, targetSpeed, accelerationRate * Time.fixedDeltaTime);
+        }
+        else
+        {
+            // Decelerate (coasting)
+            currentSpeed = Mathf.MoveTowards(currentSpeed, targetSpeed, decelerationRate * Time.fixedDeltaTime);
+        }
+
+        Vector3 newVelocity = transform.forward * currentSpeed;
+        sphereRB.velocity = new Vector3(newVelocity.x, sphereRB.velocity.y, newVelocity.z);
     }
 
     private void Rotation()
     {
         currentSteer = Mathf.MoveTowards(currentSteer, steerInput, Time.fixedDeltaTime * 4f);
+
         float speedFactor = Mathf.Clamp01(Mathf.Abs(currentVelocityOffset));
         float steerLimit = turningCurve.Evaluate(speedFactor);
-        float steerAmount = currentSteer * currentInput * steerLimit * steerStrength;
+
+        // Always steer in the correct direction, regardless of forward/reverse
+        float directionSign = Mathf.Sign(Vector3.Dot(sphereRB.velocity, transform.forward));
+        float steerAmount = currentSteer * steerLimit * steerStrength * directionSign;
 
         transform.Rotate(0, steerAmount * Time.fixedDeltaTime, 0, Space.World);
 
@@ -124,11 +146,12 @@ public class TrikeController : MonoBehaviour
             handleRotationSpeed);
     }
 
+
     private void Brake()
     {
         if (Input.GetKey(KeyCode.Space))
         {
-            sphereRB.velocity *= brakingFactor;
+            currentSpeed *= brakingFactor;
             sphereRB.drag = driftDrag;
         }
         else
@@ -147,9 +170,9 @@ public class TrikeController : MonoBehaviour
         float xRot = (Quaternion.FromToRotation(TrikeBody.transform.up, hit.normal) * TrikeBody.transform.rotation).eulerAngles.x;
         float zRot = 0;
 
-        if (currentVelocityOffset > 0)
+        if (currentSpeed > 0.1f)
         {
-            zRot = -zTiltAngle * (currentSteer < 0 ? currentSteer : currentSteer / 2) * currentVelocityOffset;
+            zRot = -zTiltAngle * (currentSteer < 0 ? currentSteer : currentSteer / 2) * (currentSpeed / maxSpeed);
         }
 
         Quaternion targetRot = Quaternion.Slerp(
@@ -166,31 +189,22 @@ public class TrikeController : MonoBehaviour
         float radius = rayLength - 0.02f;
         Vector3 origin = sphereRB.transform.position + radius * Vector3.up;
 
-        if (Physics.SphereCast(origin, radius + 0.02f, -transform.up, out hit, rayLength, drivable))
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return Physics.SphereCast(origin, radius + 0.02f, -transform.up, out hit, rayLength, drivable);
     }
 
     private void ApplyStabilization()
     {
-        // Damp lateral velocity
         Vector3 localVel = transform.InverseTransformDirection(sphereRB.velocity);
-        localVel.x = Mathf.Lerp(localVel.x, 0, Time.fixedDeltaTime * 6f); // Strong side grip
+        localVel.x = Mathf.Lerp(localVel.x, 0, Time.fixedDeltaTime * 6f);
         sphereRB.velocity = transform.TransformDirection(localVel);
 
-        // Downforce to help against tipping
-        float downforce = Mathf.Abs(currentVelocityOffset) * 50f;
+        float downforce = Mathf.Abs(currentSpeed / maxSpeed) * 50f;
         sphereRB.AddForce(-transform.up * downforce);
     }
 
     private void EngineSound()
     {
-        engineSound.pitch = Mathf.Lerp(minPitch, maxPitch, Mathf.Abs(currentVelocityOffset));
+        engineSound.pitch = Mathf.Lerp(minPitch, maxPitch, Mathf.Abs(currentSpeed / maxSpeed));
     }
 
     private void OnDrawGizmosSelected()

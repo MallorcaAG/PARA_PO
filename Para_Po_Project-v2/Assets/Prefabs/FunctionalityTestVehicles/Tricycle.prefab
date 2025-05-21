@@ -2799,34 +2799,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b80562bf41b61742b774c117f1795a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 70
-  acceleration: 7
-  steerStrength: 110
+  maxSpeed: 14
+  accelerationRate: 8
+  decelerationRate: 6
+  steerStrength: 100
   zTiltAngle: 12
   handleRotationValue: 50
   handleRotationSpeed: 50
   tireRotationSpeed: 10000
   gravity: 25
   xTiltIncrement: 0.1
-  normalDrag: 0.75
-  driftDrag: 0.125
+  normalDrag: 0.075
+  driftDrag: 0.075
   turningCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 6.8426037
-      outSlope: 6.8426037
+      inSlope: 0
+      outSlope: 0
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.016666668
+      outWeight: 0
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 0
-      outSlope: 0
+      inSlope: 2
+      outSlope: 2
       tangentMode: 0
       weightedMode: 0
       inWeight: 0

@@ -1449,7 +1449,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStartPosition: {fileID: 0}
   onPlayerRespawn: {fileID: 11400000, guid: 404b828bab71e0d47ac959963b42ea99, type: 2}
-  vehicleManager: {fileID: 0}
+  vehicleManager: {fileID: 7148410764695125209}
   isTricycle: 0
   sphereRB: {fileID: 0}
 --- !u!4 &3177283408058861967 stripped

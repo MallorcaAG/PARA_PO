@@ -5,190 +5,145 @@ using UnityEngine;
 public class VehicleController : MonoBehaviour
 {
     [Header("Suspension Settings")]
-    [SerializeField] private float springStiffness;
-    [SerializeField] private float damperStiffness;
-    [SerializeField] private float restLength;
-    [SerializeField] private float springTravel;
-    [SerializeField] private float wheelRadius;
+    [SerializeField] private float springStiffness = 35000f;
+    [SerializeField] private float damperStiffness = 4500f;
+    [SerializeField] private float restLength = 0.4f;
+    [SerializeField] private float springTravel = 0.3f;
+    [SerializeField] private float wheelRadius = 0.35f;
 
     [Header("Vehicle Settings")]
-    [SerializeField] private float acceleration = 25f;
-    [SerializeField] private float maxSpeed = 100f;
-    [SerializeField] private float deceleration = 10f;
-    [SerializeField] private float steerStrength = 15f;
+    [SerializeField] private float acceleration = 15f;
+    [SerializeField] private float maxSpeed = 70f;
+    [SerializeField] private float deceleration = 8f;
+    [SerializeField] private float brakingDeceleration = 50f;
+    [SerializeField] private float steerStrength = 10f;
     [SerializeField] private AnimationCurve turningCurve;
-    [SerializeField] private float dragCoefficient = 1f;
-    [SerializeField] private float brakingDeceleration = 100f;
-    [SerializeField] private float brakingDragCoefficient = 0.5f;
-    [SerializeField] private float gravity;
+    [SerializeField] private float dragCoefficient = 1.5f;
+    [SerializeField] private float brakingDragCoefficient = 0.8f;
+    [SerializeField] private float gravity = 9.81f;
 
+    private Rigidbody vehicleRB;
 
-    private Vector3 currentCarLocalVelocity = Vector3.zero;
-    private float carVelocityRatio = 0;
-
+    private Vector3 localVelocity;
+    private float velocityRatio;
 
     [Header("Input")]
-    [SerializeField] private float moveInput = 0;
-    [SerializeField] private float steerInput = 0;
+    private float moveInput;
+    private float steerInput;
 
     [Header("Visuals")]
+    [SerializeField] private GameObject[] tires = new GameObject[4];
+    [SerializeField] private GameObject[] frontTireParents = new GameObject[2];
     [SerializeField] private float tireRotSpeed = 3000f;
     [SerializeField] private float maxSteeringAngle = 30f;
 
-    [Header("Audio")]
-    [SerializeField]
-    [Range(0, 1)] private float minPitch = 1f;
-    [SerializeField]
-    [Range(1, 5)] private float maxPitch = 5f;
-
     [Header("References")]
-    [SerializeField] private Rigidbody vehicleRB, vehicleBody;
     [SerializeField] private Transform[] rayPoints;
-    [SerializeField] private LayerMask drivable;
     [SerializeField] private Transform accelerationPoint;
-    [SerializeField] private GameObject[] tires = new GameObject[4];
-    [SerializeField] private GameObject[] frontTireParents = new GameObject[2];
+    [SerializeField] private LayerMask drivable;
     [SerializeField] private AudioSource engineSound;
+
+    [Header("Audio")]
+    [Range(0, 1)] [SerializeField] private float minPitch = 1f;
+    [Range(1, 5)] [SerializeField] private float maxPitch = 3f;
+
     [Header("Game Events")]
     [SerializeField] private GameEvent sendPlayerSpeed;
 
     private int[] wheelIsGrounded = new int[4];
-    private bool isGrounded = false;
+    private bool isGrounded;
 
-    #region Unity Functions
+    #region Unity Callbacks
+
     private void Start()
     {
-        //vehicleRB = GetComponent<Rigidbody>();
-
-        StartCoroutine(SendSpeed());
-    }
-
-    private void FixedUpdate()
-    {
-        Suspension();
-        GroundCheck();
-        CalculateCarVelocity();
-        Movement();
-        Visuals();
-        EngineSound();
+        vehicleRB = GetComponent<Rigidbody>();
+        StartCoroutine(SendSpeedCoroutine());
     }
 
     private void Update()
     {
         GetPlayerInput();
     }
-    #endregion
 
-    #region Coroutines
-    IEnumerator SendSpeed()
+    private void FixedUpdate()
     {
-        sendPlayerSpeed.Raise(this, vehicleRB.velocity.magnitude.ToString("F4"));
+        Suspension();
+        GroundCheck();
+        CalculateLocalVelocity();
 
-        yield return new WaitForSeconds(1f);
-
-        StartCoroutine(SendSpeed());
-    }
-    #endregion
-
-    #region Movement
-
-    private void Movement()
-    {
         if (isGrounded)
         {
-            Acceleration();
-            Deceleration();
-            Turn();
-            SidewaysDrag();
+            HandleMovement();
         }
         else
         {
-            Gravity();
+            ApplyGravity();
         }
+
+        UpdateVisuals();
+        UpdateEngineSound();
     }
 
-    private void Acceleration()
+    #endregion
+
+    #region Movement Methods
+
+    private void HandleMovement()
     {
-        if(currentCarLocalVelocity.z < maxSpeed)
+        ApplyAcceleration();
+        ApplyDeceleration();
+        ApplyTurning();
+        ApplySidewaysDrag();
+    }
+
+    private void ApplyAcceleration()
+    {
+        if (localVelocity.z < maxSpeed && !Input.GetKey(KeyCode.Space))
         {
-            vehicleRB.AddForceAtPosition(acceleration * (!Input.GetKey(KeyCode.Space) ? moveInput : 0) * transform.forward, accelerationPoint.position, ForceMode.Acceleration);
+            Vector3 force = acceleration * moveInput * transform.forward;
+            vehicleRB.AddForceAtPosition(force, accelerationPoint.position, ForceMode.Acceleration);
         }
-        //Debug.Log(currentCarLocalVelocity.z);
     }
 
-    private void Deceleration()
+    private void ApplyDeceleration()
     {
-        vehicleRB.AddForceAtPosition((Input.GetKey(KeyCode.Space) ? brakingDeceleration : deceleration) * Mathf.Abs(carVelocityRatio) * (!Input.GetKey(KeyCode.Space) ? moveInput : 0) * -transform.forward, accelerationPoint.position, ForceMode.Acceleration);
+        float decelForce = Input.GetKey(KeyCode.Space) ? brakingDeceleration : deceleration;
+        float inputMultiplier = (!Input.GetKey(KeyCode.Space) ? moveInput : 0);
+        Vector3 force = decelForce * Mathf.Abs(velocityRatio) * inputMultiplier * -transform.forward;
+        vehicleRB.AddForceAtPosition(force, accelerationPoint.position, ForceMode.Acceleration);
     }
 
-    private void Turn()
+    private void ApplyTurning()
     {
-        vehicleRB.AddTorque(steerStrength * steerInput * turningCurve.Evaluate(Mathf.Abs(carVelocityRatio)) * Mathf.Sign(carVelocityRatio) * transform.up, ForceMode.Acceleration);
+        float steerFactor = turningCurve.Evaluate(Mathf.Abs(velocityRatio)) * Mathf.Sign(velocityRatio);
+        Vector3 torque = steerStrength * steerInput * steerFactor * transform.up;
+        vehicleRB.AddTorque(torque, ForceMode.Acceleration);
     }
 
-    private void SidewaysDrag()
+    private void ApplySidewaysDrag()
     {
-        float currentSidewaysSpeed = currentCarLocalVelocity.x;
-        float dragMagnitude = -currentSidewaysSpeed * (Input.GetKey(KeyCode.Space) ? brakingDragCoefficient : dragCoefficient);
-
-        Vector3 dragForce = transform.right * dragMagnitude;
+        float dragFactor = Input.GetKey(KeyCode.Space) ? brakingDragCoefficient : dragCoefficient;
+        float sidewaysSpeed = localVelocity.x;
+        Vector3 dragForce = -sidewaysSpeed * dragFactor * transform.right;
         vehicleRB.AddForceAtPosition(dragForce, vehicleRB.worldCenterOfMass, ForceMode.Acceleration);
     }
 
-    private void Gravity()
+    private void ApplyGravity()
     {
-        vehicleRB.AddForce(gravity * Vector3.down, ForceMode.Acceleration);
+        vehicleRB.AddForce(Vector3.down * gravity, ForceMode.Acceleration);
     }
 
     #endregion
 
-    #region Input Handling
+    #region Suspension
 
-    private void GetPlayerInput()
-    {
-        moveInput = Input.GetAxis("Vertical");
-        steerInput = Input.GetAxis("Horizontal");
-    }
-
-    #endregion
-
-    #region Car Status Check
-
-    private void GroundCheck()
-    {
-        int tempGroundedWheels = 0;
-
-        for(int i = 0; i < wheelIsGrounded.Length; i++)
-        {
-            tempGroundedWheels += wheelIsGrounded[i];
-        }
-
-        if(tempGroundedWheels > 1)
-        {
-            isGrounded = true;
-        }
-        else
-        {
-            isGrounded = false;
-        }
-    }
-
-    private void CalculateCarVelocity()
-    {
-        currentCarLocalVelocity = transform.InverseTransformDirection(vehicleRB.velocity);
-        carVelocityRatio = currentCarLocalVelocity.z / maxSpeed;
-    }
-
-    #endregion
-
-    #region Suspension Functions
     private void Suspension()
     {
         for (int i = 0; i < rayPoints.Length; i++)
         {
             RaycastHit hit;
             float maxLength = restLength + springTravel;
-            float maxDistance = restLength;
 
             if (Physics.Raycast(rayPoints[i].position, -rayPoints[i].up, out hit, maxLength + wheelRadius, drivable))
             {
@@ -198,71 +153,109 @@ public class VehicleController : MonoBehaviour
                 float springCompression = (restLength - currentSpringLength) / springTravel;
 
                 float springVelocity = Vector3.Dot(vehicleRB.GetPointVelocity(rayPoints[i].position), rayPoints[i].up);
-                float dampForce = damperStiffness * springVelocity;
+                float damperForce = damperStiffness * springVelocity;
 
                 float springForce = springStiffness * springCompression;
 
-                float netForce = springForce - dampForce;
+                float netForce = springForce - damperForce;
 
                 vehicleRB.AddForceAtPosition(netForce * rayPoints[i].up, rayPoints[i].position);
 
-                //Visuals
                 SetTirePosition(tires[i], hit.point + rayPoints[i].up * wheelRadius);
-
                 Debug.DrawLine(rayPoints[i].position, hit.point, Color.red);
             }
             else
             {
                 wheelIsGrounded[i] = 0;
-
-                //Visuals
                 SetTirePosition(tires[i], rayPoints[i].position - rayPoints[i].up * maxLength);
-
-                Debug.DrawLine(rayPoints[i].position, rayPoints[i].position + (wheelRadius + maxLength) * -rayPoints[i].up, Color.green);
+                Debug.DrawLine(rayPoints[i].position, rayPoints[i].position - rayPoints[i].up * (maxLength + wheelRadius), Color.green);
             }
         }
-        
     }
+
+    #endregion
+
+    #region Input
+
+    private void GetPlayerInput()
+    {
+        moveInput = Input.GetAxis("Vertical");
+        steerInput = Input.GetAxis("Horizontal");
+    }
+
+    #endregion
+
+    #region Utility
+
+    private void GroundCheck()
+    {
+        int groundedWheels = 0;
+        for (int i = 0; i < wheelIsGrounded.Length; i++)
+            groundedWheels += wheelIsGrounded[i];
+
+        isGrounded = groundedWheels > 1;
+    }
+
+    private void CalculateLocalVelocity()
+    {
+        localVelocity = transform.InverseTransformDirection(vehicleRB.velocity);
+        velocityRatio = localVelocity.z / maxSpeed;
+    }
+
     #endregion
 
     #region Visuals
 
-    private void Visuals()
+    private void UpdateVisuals()
     {
-        TireVisuals();
+        UpdateTireRotation();
     }
 
-    private void TireVisuals()
+    private void UpdateTireRotation()
     {
         float steeringAngle = maxSteeringAngle * steerInput;
 
         for (int i = 0; i < tires.Length; i++)
         {
-            if(i<2)
+            if (i < 2) // Front tires rotate and steer
             {
-                tires[i].transform.Rotate(Vector3.right, tireRotSpeed * carVelocityRatio * Time.deltaTime, Space.Self);
+                tires[i].transform.Rotate(Vector3.right, tireRotSpeed * velocityRatio * Time.deltaTime, Space.Self);
 
-                frontTireParents[i].transform.localEulerAngles = new Vector3(frontTireParents[i].transform.localEulerAngles.x, steeringAngle, frontTireParents[i].transform.localEulerAngles.z);
+                Vector3 currentAngles = frontTireParents[i].transform.localEulerAngles;
+                frontTireParents[i].transform.localEulerAngles = new Vector3(currentAngles.x, steeringAngle, currentAngles.z);
             }
-            else
+            else // Rear tires just rotate
             {
                 tires[i].transform.Rotate(Vector3.right, tireRotSpeed * moveInput * Time.deltaTime, Space.Self);
             }
         }
     }
 
-    private void SetTirePosition(GameObject tire, Vector3 targetPos)
+    private void SetTirePosition(GameObject tire, Vector3 position)
     {
-        tire.transform.position = targetPos;
+        tire.transform.position = position;
     }
 
     #endregion
 
     #region Audio
 
-    private void EngineSound()
+    private void UpdateEngineSound()
     {
-        engineSound.pitch = Mathf.Lerp(minPitch, maxPitch, Mathf.Abs(carVelocityRatio));
+        engineSound.pitch = Mathf.Lerp(minPitch, maxPitch, Mathf.Abs(velocityRatio));
+    }
+
+    #endregion
+
+    #region Coroutine
+
+    private IEnumerator SendSpeedCoroutine()
+    {
+        while (true)
+        {
+            sendPlayerSpeed.Raise(this, vehicleRB.velocity.magnitude.ToString("F4"));
+            yield return new WaitForSeconds(1f);
+        }
     }
 
     #endregion
