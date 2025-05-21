@@ -8,8 +8,8 @@ public class TrikeController : MonoBehaviour
     [Header("Vehicle Settings")]
     [SerializeField] private float maxSpeed = 20f; // in m/s (72 km/h)
     [SerializeField] private float accelerationRate = 5f; // m/s²
-    [SerializeField] private float decelerationRate = 6f; // m/s² when releasing input
-    [SerializeField] private float steerStrength = 15f;
+    [SerializeField] private float decelerationRate = 8f; // m/s² when releasing input
+    [SerializeField] private float steerStrength = 20f;
     [SerializeField] private float zTiltAngle = 45f;
     [SerializeField] private float handleRotationValue = 30f;
     [SerializeField] private float handleRotationSpeed = 0.15f;
@@ -19,7 +19,7 @@ public class TrikeController : MonoBehaviour
     [SerializeField] private float normalDrag = 2f;
     [SerializeField] private float driftDrag = 0.5f;
     [SerializeField] private AnimationCurve turningCurve;
-    [Range(0.6f, 1f)] [SerializeField] private float brakingFactor = 0.9f;
+    [Range(0.6f, 1f)] [SerializeField] private float brakingFactor = 0.8f;
 
     [Header("Audio")]
     [SerializeField] [Range(0, 1)] private float minPitch = 1f;
@@ -126,7 +126,7 @@ public class TrikeController : MonoBehaviour
 
     private void Rotation()
     {
-        currentSteer = Mathf.MoveTowards(currentSteer, steerInput, Time.fixedDeltaTime * 4f);
+        currentSteer = Mathf.MoveTowards(currentSteer, steerInput, Time.fixedDeltaTime * 6f);
 
         float speedFactor = Mathf.Clamp01(Mathf.Abs(currentVelocityOffset));
         float steerLimit = turningCurve.Evaluate(speedFactor);
@@ -145,7 +145,6 @@ public class TrikeController : MonoBehaviour
                              Handle.transform.localRotation.eulerAngles.z),
             handleRotationSpeed);
     }
-
 
     private void Brake()
     {

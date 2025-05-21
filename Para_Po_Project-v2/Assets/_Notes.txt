@@ -42,12 +42,19 @@
 
 	Lvl 1 Trike Controls Test
 	- Turning feels stiff
+		> Adjusted
 	- Braking is too slow
+		> Adjusted
 	- Rolling stop (decceleration) also too slow, feels like the road is slippery but its not even raining
+		> Adjusted
 	- Seems harder to control
+		> Adjusted
 	- Camera may be wider for the top rig?
+		> Adjusted
 	- Camera doesnt snap through walls. Like I can see inside the wall
+		Camera collider added. Only goes through one back wall (In starting position)
 	- Engine too loud, lower Volume. 
+		> Adjusted
 
 	Lvl 9 Jeep Controls Test
 	- Accelerates too slow at the start, and around the middle accelerates too fast
