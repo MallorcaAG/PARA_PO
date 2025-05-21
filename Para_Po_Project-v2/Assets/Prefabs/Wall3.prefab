@@ -46,15 +46,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 21db1914bf668cf429fe4c207c990af2, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 2147483647
+      value: 125
       objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: 21db1914bf668cf429fe4c207c990af2, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 2147483647
+      value: 125
       objectReference: {fileID: 0}
     - target: {fileID: 100004, guid: 21db1914bf668cf429fe4c207c990af2, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 2147483647
+      value: 125
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 21db1914bf668cf429fe4c207c990af2, type: 3}
       propertyPath: m_RootOrder
