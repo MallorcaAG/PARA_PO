@@ -2801,11 +2801,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxSpeed: 12
   accelerationRate: 8
-  decelerationRate: 6
-  steerStrength: 80
+  decelerationRate: 12
+  steerStrength: 125
   zTiltAngle: 12
   handleRotationValue: 50
-  handleRotationSpeed: 50
+  handleRotationSpeed: 70
   tireRotationSpeed: 10000
   gravity: 25
   xTiltIncrement: 0.1
@@ -2835,9 +2835,9 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  brakingFactor: 0.932
+  brakingFactor: 0.6
   minPitch: 0.778
-  maxPitch: 3.49
+  maxPitch: 1
   sphereRB: {fileID: 3139117616578958482}
   TrikeBody: {fileID: 1660407541915674597}
   Handle: {fileID: 4136304070492569125}
