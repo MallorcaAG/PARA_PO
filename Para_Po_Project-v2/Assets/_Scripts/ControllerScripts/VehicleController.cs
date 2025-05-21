@@ -12,9 +12,9 @@ public class VehicleController : MonoBehaviour
     [SerializeField] private float wheelRadius = 0.35f;
 
     [Header("Vehicle Settings")]
-    [SerializeField] private float acceleration = 15f;
+    [SerializeField] private float acceleration = 30f; // Increased slightly for better feel
     [SerializeField] private float maxSpeed = 70f;
-    [SerializeField] private float deceleration = 8f;
+    [SerializeField] private float deceleration = 10f; // Increased for smoother slow down
     [SerializeField] private float brakingDeceleration = 50f;
     [SerializeField] private float steerStrength = 10f;
     [SerializeField] private AnimationCurve turningCurve;
@@ -52,6 +52,8 @@ public class VehicleController : MonoBehaviour
 
     private int[] wheelIsGrounded = new int[4];
     private bool isGrounded;
+
+    private float currentForwardSpeed = 0f; // For smooth accelerate/decelerate
 
     #region Unity Callbacks
 
@@ -91,26 +93,37 @@ public class VehicleController : MonoBehaviour
 
     private void HandleMovement()
     {
-        ApplyAcceleration();
-        ApplyDeceleration();
+        ApplyAccelerationAndDeceleration();
         ApplyTurning();
         ApplySidewaysDrag();
     }
 
-    private void ApplyAcceleration()
+    private void ApplyAccelerationAndDeceleration()
     {
-        if (localVelocity.z < maxSpeed && !Input.GetKey(KeyCode.Space))
-        {
-            Vector3 force = acceleration * moveInput * transform.forward;
-            vehicleRB.AddForceAtPosition(force, accelerationPoint.position, ForceMode.Acceleration);
-        }
-    }
+        bool braking = Input.GetKey(KeyCode.Space);
 
-    private void ApplyDeceleration()
-    {
-        float decelForce = Input.GetKey(KeyCode.Space) ? brakingDeceleration : deceleration;
-        float inputMultiplier = (!Input.GetKey(KeyCode.Space) ? moveInput : 0);
-        Vector3 force = decelForce * Mathf.Abs(velocityRatio) * inputMultiplier * -transform.forward;
+        // Smooth acceleration or braking speed adjustment
+        if (braking)
+        {
+            currentForwardSpeed = Mathf.MoveTowards(currentForwardSpeed, 0, brakingDeceleration * Time.fixedDeltaTime);
+        }
+        else if (moveInput > 0)
+        {
+            currentForwardSpeed = Mathf.MoveTowards(currentForwardSpeed, maxSpeed * moveInput, acceleration * Time.fixedDeltaTime);
+        }
+        else if (moveInput < 0)
+        {
+            // Allow reversing but slower than forward
+            currentForwardSpeed = Mathf.MoveTowards(currentForwardSpeed, maxSpeed * moveInput * 0.5f, acceleration * Time.fixedDeltaTime);
+        }
+        else
+        {
+            // natural deceleration if no input and not braking
+            currentForwardSpeed = Mathf.MoveTowards(currentForwardSpeed, 0, deceleration * Time.fixedDeltaTime);
+        }
+
+        // Apply the force forward/backward at acceleration point
+        Vector3 force = currentForwardSpeed * transform.forward;
         vehicleRB.AddForceAtPosition(force, accelerationPoint.position, ForceMode.Acceleration);
     }
 
@@ -226,7 +239,7 @@ public class VehicleController : MonoBehaviour
             }
             else // Rear tires just rotate
             {
-                tires[i].transform.Rotate(Vector3.right, tireRotSpeed * moveInput * Time.deltaTime, Space.Self);
+                tires[i].transform.Rotate(Vector3.right, tireRotSpeed * currentForwardSpeed / maxSpeed * Time.deltaTime, Space.Self);
             }
         }
     }
@@ -260,3 +273,4 @@ public class VehicleController : MonoBehaviour
 
     #endregion
 }
+
