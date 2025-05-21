@@ -12,16 +12,17 @@ public class VehicleController : MonoBehaviour
     [SerializeField] private float wheelRadius = 0.35f;
 
     [Header("Vehicle Settings")]
-    [SerializeField] private float acceleration = 30f; // Increased slightly for better feel
+    [SerializeField] private float acceleration = 20f; 
     [SerializeField] private float maxSpeed = 70f;
-    [SerializeField] private float deceleration = 10f; // Increased for smoother slow down
-    [SerializeField] private float brakingDeceleration = 50f;
-    [SerializeField] private float steerStrength = 10f;
+    [SerializeField] private float deceleration = 5f; 
+    [SerializeField] private float brakingDeceleration = 30f; 
+    [SerializeField] private float steerStrength = 8f; 
     [SerializeField] private AnimationCurve turningCurve;
     [SerializeField] private float dragCoefficient = 1.5f;
     [SerializeField] private float brakingDragCoefficient = 0.8f;
     [SerializeField] private float gravity = 9.81f;
-
+    [Range(0f, 1f)]
+    [SerializeField] private float engineSoundVolume = 1f;
     private Rigidbody vehicleRB;
 
     private Vector3 localVelocity;
@@ -35,7 +36,7 @@ public class VehicleController : MonoBehaviour
     [SerializeField] private GameObject[] tires = new GameObject[4];
     [SerializeField] private GameObject[] frontTireParents = new GameObject[2];
     [SerializeField] private float tireRotSpeed = 3000f;
-    [SerializeField] private float maxSteeringAngle = 30f;
+    [SerializeField] private float maxSteeringAngle = 25f; 
 
     [Header("References")]
     [SerializeField] private Transform[] rayPoints;
@@ -45,7 +46,10 @@ public class VehicleController : MonoBehaviour
 
     [Header("Audio")]
     [Range(0, 1)] [SerializeField] private float minPitch = 1f;
-    [Range(1, 5)] [SerializeField] private float maxPitch = 3f;
+    [Range(1, 5)] [SerializeField] private float maxPitch = 1f;
+    [SerializeField] private AudioClip Horn; 
+    [Range(0f, 1f)] [SerializeField] private float playSoundVolume = 1f; 
+    private AudioSource audioSource; 
 
     [Header("Game Events")]
     [SerializeField] private GameEvent sendPlayerSpeed;
@@ -53,19 +57,24 @@ public class VehicleController : MonoBehaviour
     private int[] wheelIsGrounded = new int[4];
     private bool isGrounded;
 
-    private float currentForwardSpeed = 0f; // For smooth accelerate/decelerate
+    private float currentForwardSpeed = 0f;
 
     #region Unity Callbacks
 
     private void Start()
     {
         vehicleRB = GetComponent<Rigidbody>();
+        audioSource = gameObject.AddComponent<AudioSource>(); 
+        audioSource.clip = Horn; 
+        audioSource.volume = playSoundVolume; 
+        audioSource.loop = true; 
         StartCoroutine(SendSpeedCoroutine());
     }
 
     private void Update()
     {
         GetPlayerInput();
+        PlaySoundWhileHoldingF();
     }
 
     private void FixedUpdate()
@@ -102,27 +111,24 @@ public class VehicleController : MonoBehaviour
     {
         bool braking = Input.GetKey(KeyCode.Space);
 
-        // Smooth acceleration or braking speed adjustment
         if (braking)
         {
             currentForwardSpeed = Mathf.MoveTowards(currentForwardSpeed, 0, brakingDeceleration * Time.fixedDeltaTime);
         }
         else if (moveInput > 0)
         {
-            currentForwardSpeed = Mathf.MoveTowards(currentForwardSpeed, maxSpeed * moveInput, acceleration * Time.fixedDeltaTime);
+            float targetSpeed = maxSpeed * moveInput;
+            currentForwardSpeed = Mathf.MoveTowards(currentForwardSpeed, targetSpeed, acceleration * Time.fixedDeltaTime);
         }
         else if (moveInput < 0)
         {
-            // Allow reversing but slower than forward
-            currentForwardSpeed = Mathf.MoveTowards(currentForwardSpeed, maxSpeed * moveInput * 0.5f, acceleration * Time.fixedDeltaTime);
+            currentForwardSpeed = Mathf.MoveTowards(currentForwardSpeed, -maxSpeed * 0.3f, acceleration * Time.fixedDeltaTime);
         }
         else
         {
-            // natural deceleration if no input and not braking
             currentForwardSpeed = Mathf.MoveTowards(currentForwardSpeed, 0, deceleration * Time.fixedDeltaTime);
         }
 
-        // Apply the force forward/backward at acceleration point
         Vector3 force = currentForwardSpeed * transform.forward;
         vehicleRB.AddForceAtPosition(force, accelerationPoint.position, ForceMode.Acceleration);
     }
@@ -230,14 +236,14 @@ public class VehicleController : MonoBehaviour
 
         for (int i = 0; i < tires.Length; i++)
         {
-            if (i < 2) // Front tires rotate and steer
+            if (i < 2)
             {
                 tires[i].transform.Rotate(Vector3.right, tireRotSpeed * velocityRatio * Time.deltaTime, Space.Self);
 
                 Vector3 currentAngles = frontTireParents[i].transform.localEulerAngles;
                 frontTireParents[i].transform.localEulerAngles = new Vector3(currentAngles.x, steeringAngle, currentAngles.z);
             }
-            else // Rear tires just rotate
+            else
             {
                 tires[i].transform.Rotate(Vector3.right, tireRotSpeed * currentForwardSpeed / maxSpeed * Time.deltaTime, Space.Self);
             }
@@ -256,6 +262,26 @@ public class VehicleController : MonoBehaviour
     private void UpdateEngineSound()
     {
         engineSound.pitch = Mathf.Lerp(minPitch, maxPitch, Mathf.Abs(velocityRatio));
+        engineSound.volume = engineSoundVolume;
+    }
+
+
+    private void PlaySoundWhileHoldingF()
+    {
+        if (Input.GetKey(KeyCode.F))
+        {
+            if (!audioSource.isPlaying)
+            {
+                audioSource.Play();
+            }
+        }
+        else
+        {
+            if (audioSource.isPlaying)
+            {
+                audioSource.Stop();
+            }
+        }
     }
 
     #endregion

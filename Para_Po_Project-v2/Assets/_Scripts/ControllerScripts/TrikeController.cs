@@ -80,7 +80,7 @@ public class TrikeController : MonoBehaviour
         while (true)
         {
             float speedKPH = sphereRB.velocity.magnitude * 3.6f;
-            sendPlayerSpeed.Raise(this, speedKPH.ToString("F0")); // whole number km/h
+            sendPlayerSpeed.Raise(this, speedKPH.ToString("F0")); 
             yield return new WaitForSeconds(0.5f);
         }
     }
@@ -111,12 +111,12 @@ public class TrikeController : MonoBehaviour
 
         if (Mathf.Abs(targetSpeed) > Mathf.Abs(currentSpeed))
         {
-            // Accelerate
+            
             currentSpeed = Mathf.MoveTowards(currentSpeed, targetSpeed, accelerationRate * Time.fixedDeltaTime);
         }
         else
         {
-            // Decelerate (coasting)
+           
             currentSpeed = Mathf.MoveTowards(currentSpeed, targetSpeed, decelerationRate * Time.fixedDeltaTime);
         }
 
@@ -131,13 +131,13 @@ public class TrikeController : MonoBehaviour
         float speedFactor = Mathf.Clamp01(Mathf.Abs(currentVelocityOffset));
         float steerLimit = turningCurve.Evaluate(speedFactor);
 
-        // Always steer in the correct direction, regardless of forward/reverse
+       
         float directionSign = Mathf.Sign(Vector3.Dot(sphereRB.velocity, transform.forward));
         float steerAmount = currentSteer * steerLimit * steerStrength * directionSign;
 
         transform.Rotate(0, steerAmount * Time.fixedDeltaTime, 0, Space.World);
 
-        // Visual Handle Rotation
+        
         Handle.transform.localRotation = Quaternion.Slerp(
             Handle.transform.localRotation,
             Quaternion.Euler(Handle.transform.localRotation.eulerAngles.x,

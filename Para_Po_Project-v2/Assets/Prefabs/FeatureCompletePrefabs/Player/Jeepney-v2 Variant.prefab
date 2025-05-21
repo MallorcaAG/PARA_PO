@@ -1075,6 +1075,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 121032377774152971, guid: 62283ca975168ed4e8aa8b040f276a46, type: 3}
+      propertyPath: maxSpeed
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 121032377774152971, guid: 62283ca975168ed4e8aa8b040f276a46, type: 3}
       propertyPath: vehicleRB
       value: 
       objectReference: {fileID: 7972968232284608204}
@@ -1091,12 +1095,16 @@ PrefabInstance:
       value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 121032377774152971, guid: 62283ca975168ed4e8aa8b040f276a46, type: 3}
+      propertyPath: acceleration
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 121032377774152971, guid: 62283ca975168ed4e8aa8b040f276a46, type: 3}
       propertyPath: springTravel
       value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 121032377774152971, guid: 62283ca975168ed4e8aa8b040f276a46, type: 3}
       propertyPath: steerStrength
-      value: 60
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 121032377774152971, guid: 62283ca975168ed4e8aa8b040f276a46, type: 3}
       propertyPath: dragCoefficient
@@ -1106,6 +1114,14 @@ PrefabInstance:
       propertyPath: sendPlayerSpeed
       value: 
       objectReference: {fileID: 11400000, guid: 5a58ba77a25d2764aad4b08298c32925, type: 2}
+    - target: {fileID: 121032377774152971, guid: 62283ca975168ed4e8aa8b040f276a46, type: 3}
+      propertyPath: maxSteeringAngle
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 121032377774152971, guid: 62283ca975168ed4e8aa8b040f276a46, type: 3}
+      propertyPath: brakingDeceleration
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 465616466467907360, guid: 62283ca975168ed4e8aa8b040f276a46, type: 3}
       propertyPath: m_audioClip
       value: 

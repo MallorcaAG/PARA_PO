@@ -61,8 +61,11 @@
 	- Multi-tapping forward causes faster acceleration
 	- Reversing feels delayed/too slow
 	- Brakes a bit too fast/hard?
-	- Turning is too loose/quick/slippery
+	- Turning is too loose/quick/slippery = Adjusted 
 	- No horn
+		> Added
 	- All rigs of camera needs to go up to be able to see TrafficLights
+		> Adjusted
 	- Engine too loud, lower Volume. 
+		> Idk how to lower the volume :( nothing works :( (feels like something is overriding it...)
 	
