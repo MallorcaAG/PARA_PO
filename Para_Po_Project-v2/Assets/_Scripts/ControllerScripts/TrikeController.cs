@@ -6,9 +6,9 @@ using static UnityEngine.UI.Image;
 public class TrikeController : MonoBehaviour
 {
     [Header("Vehicle Settings")]
-    [SerializeField] private float maxSpeed = 20f; // in m/s (72 km/h)
-    [SerializeField] private float accelerationRate = 5f; // m/s²
-    [SerializeField] private float decelerationRate = 8f; // m/s² when releasing input
+    [SerializeField] private float maxSpeed = 20f; 
+    [SerializeField] private float accelerationRate = 5f; 
+    [SerializeField] private float decelerationRate = 8f; 
     [SerializeField] private float steerStrength = 20f;
     [SerializeField] private float zTiltAngle = 45f;
     [SerializeField] private float handleRotationValue = 30f;
