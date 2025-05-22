@@ -32,19 +32,13 @@ ASSETS USED
 - Ultimate Loot VFX Pack by Piloto Studio https://assetstore.unity.com/packages/vfx/particles/ultimate-loot-vfx-pack-175-effects-242936
 - Racing Flag Illustration by Imam Sym https://www.vecteezy.com/vector-art/5430814-racing-flag-vector-illustration
 	Visual
-- Rail track straight by Unreal Nick https://sketchfab.com/3d-models/rail-track-straight-99596461f679492bafe0ddc4a22fa1d0
+
 - Colored Main Roads Map Screenshots by YeetMaps https://snazzymaps.com/style/603883/colored-main-roads-idk
 - Jeepney1 Landmark 1 by Sian Labay https://maps.app.goo.gl/G997AW89kqVChVFM9
 - Jeepney1 Landmark 2 - 7 by Google Street View https://www.google.com/streetview/
 - Jeepney1 Landmark 8 by SMDC https://www.promosmdc.com/jazzresidences
 - Jeepney2 Landmark 2 - 7 by Google Street View https://www.google.com/streetview/
-- BusRoute1 Landmark Azure Residences https://maps.app.goo.gl/GjQ7A8dUShnYbDVX8
-- BusRoute1 Landmark PhilHealth Bicutan https://maps.app.goo.gl/nirVTNda39ybZzb7A
-- BusRoute1 Landmark UniOil Service Rd. https://maps.app.goo.gl/o2WaLQJDkCK2Wafp7
-- Bus Route Landmark (SM Bicutan) https://maps.app.goo.gl/dxycy3huH2xxmVB36
-- BusRoute2 Laguna Bay Inn https://maps.app.goo.gl/MqwKiFVx4zN9Gpqo7 
-- BusRoute2 Honda Motors Service Rd. https://maps.app.goo.gl/snEJbLL9n4AAkVM29 
-- BusRoute2 WalterMart Bicutan https://maps.app.goo.gl/jt5pvu58GTXf2kjH9 
+
 	Audio
 - 2PM by Lud and Schlatt Crossing
 - 10AM by Lud and Schlatt Crossing
@@ -121,3 +115,16 @@ Remus Gumera
 Renzo Capulong
 Roland Paul Capulong
 Ruther Dennis Lombos
+
+	New Stuff
+- BusRoute1 Landmark Azure Residences https://maps.app.goo.gl/GjQ7A8dUShnYbDVX8
+- BusRoute1 Landmark PhilHealth Bicutan https://maps.app.goo.gl/nirVTNda39ybZzb7A
+- BusRoute1 Landmark UniOil Service Rd. https://maps.app.goo.gl/o2WaLQJDkCK2Wafp7
+- Bus Route Landmark (SM Bicutan) https://maps.app.goo.gl/dxycy3huH2xxmVB36
+- BusRoute2 Laguna Bay Inn https://maps.app.goo.gl/MqwKiFVx4zN9Gpqo7 
+- BusRoute2 Honda Motors Service Rd. https://maps.app.goo.gl/snEJbLL9n4AAkVM29 
+- BusRoute2 WalterMart Bicutan https://maps.app.goo.gl/jt5pvu58GTXf2kjH9 
+- Rail track straight by Unreal Nick https://sketchfab.com/3d-models/rail-track-straight-99596461f679492bafe0ddc4a22fa1d0
+- Touch by Anno Domini Beats
+- Future Freeway by Adam MacDougall
+- Jina by Fiona Tiara P. Calayag
