@@ -86,6 +86,7 @@ public class SceneLoadManager : PersistentSingleton<SceneLoadManager>
             }
         }
 
+        await Task.Delay(500);
         loaderCanvas.SetActive(false);
     }
 
@@ -116,6 +117,7 @@ public class SceneLoadManager : PersistentSingleton<SceneLoadManager>
             await Task.Yield(); // No delay, keeps UI responsive
         }
 
+        await Task.Delay(500);
         loaderCanvas.SetActive(false);
 
         //IF loadIntoLevelSelectionPanel

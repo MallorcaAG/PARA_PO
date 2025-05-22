@@ -12,14 +12,16 @@ public class Landmark : MonoBehaviour
     [SerializeField] private GameEvent onPlayerStopAtLandmark;
     [Header("Spawn Points")]
     [SerializeField] private GameObject[] spawnPoints;
+    [Header("References")]
+    [SerializeField] private SphereCollider myCollider;
 
-    private List<PedestrianAINavigator> peddyInBounds = new List<PedestrianAINavigator>();
-    private List<VehicleAINavigator> vehicleInBounds = new List<VehicleAINavigator>();
     private Rigidbody player;
     bool isMoving;
     bool dataSent = false;
     bool playerPassed = false;
     bool clearArea = false;
+    float radius;
+    Vector3 pos;
     public GameObject[] getSpawnpoints()
     {
         return spawnPoints;
@@ -33,6 +35,11 @@ public class Landmark : MonoBehaviour
         return spawnPoints;
     }
 
+    private void Start()
+    {
+        radius = myCollider.radius;
+        pos = transform.position;
+    }
 
     private void LateUpdate()
     {
@@ -66,9 +73,6 @@ public class Landmark : MonoBehaviour
                 }
             }
 
-            
-            
-
         }
     }
 
@@ -88,14 +92,7 @@ public class Landmark : MonoBehaviour
 
             onPlayerEnterLandmark.Raise(this, this.gameObject);
         }
-        else if (obj.TryGetComponent<PedestrianAINavigator>(out PedestrianAINavigator ai))
-        {
-            peddyInBounds.Add(ai);
-        }
-        else if (obj.TryGetComponent<VehicleAINavigator>(out VehicleAINavigator ai2))
-        {
-            vehicleInBounds.Add(ai2);
-        }
+
     }
 
     private void OnTriggerExit(Collider other)
@@ -110,14 +107,7 @@ public class Landmark : MonoBehaviour
 
             playerPassed = true;
         }
-        else if (obj.TryGetComponent<PedestrianAINavigator>(out PedestrianAINavigator ai))
-        {
-            peddyInBounds.Remove(ai);
-        }
-        else if (obj.TryGetComponent<VehicleAINavigator>(out VehicleAINavigator ai2))
-        {
-            vehicleInBounds.Remove(ai2);
-        }
+
     }
 
     /*private void OnTriggerStay(Collider other)
@@ -134,20 +124,28 @@ public class Landmark : MonoBehaviour
 
     public void ClearArea()
     {
-        foreach(PedestrianAINavigator ai in peddyInBounds)
+        Collider[] hitColliders = Physics.OverlapSphere(pos, radius);
+        foreach (Collider hitCollider in hitColliders)
         {
-            Debug.Log(ai.gameObject.name + ": AHHHH IM GETTING ERADICATED\nbleeeehhhh *dying noises*");
-            ai.fastKYS();
+            GameObject obj = hitCollider.gameObject;
+
+            if (obj.CompareTag("Pedestrians"))
+            {
+                obj.TryGetComponent<PedestrianAINavigator>(out PedestrianAINavigator ai);
+                Debug.Log(obj.name + ": AHHHH IM GETTING ERADICATED\nbleeeehhhh *dying noises*");
+                ai.fastKYS();
+            }
+            else if (obj.CompareTag("Vehicles"))
+            {
+                obj.TryGetComponent<VehicleAINavigator>(out VehicleAINavigator ai2);
+                Debug.Log(obj.name + ": AHHHH IM GETTING ERADICATED\nbleeeehhhh *dying noises*");
+                ai2.fastKYS();
+            }
         }
 
-        foreach(VehicleAINavigator ai in vehicleInBounds)
-        {
-            Debug.Log(ai.gameObject.name + ": AHHHH IM GETTING ERADICATED\nbleeeehhhh *dying noises*");
-            ai.fastKYS();
-        }
-
-        //StartCoroutine(clearAreaCoroutine());
     }
+
+    
 
     /*private IEnumerator clearAreaCoroutine()
     {

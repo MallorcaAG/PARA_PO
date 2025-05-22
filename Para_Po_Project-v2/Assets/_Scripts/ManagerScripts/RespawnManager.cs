@@ -58,8 +58,9 @@ public class RespawnManager : MonoBehaviour
 
         if(vehicleManager.getCheckpoint() == null)
         {
-            transform.position = playerStartPosition.transform.position + Vector3.up;
-            transform.rotation = playerStartPosition.transform.rotation;
+            transform.position = playerStartPosition.position + Vector3.up;
+            transform.rotation = playerStartPosition.rotation;
+            ClearArea(transform.position, 5f);
             return;
         }
 
@@ -76,8 +77,9 @@ public class RespawnManager : MonoBehaviour
 
         if (vehicleManager.getCheckpoint() == null)
         {
-            sphereRB.transform.position = playerStartPosition.transform.position + Vector3.up;
-            sphereRB.transform.rotation = playerStartPosition.transform.rotation;
+            sphereRB.transform.position = playerStartPosition.position + Vector3.up;
+            sphereRB.transform.rotation = playerStartPosition.rotation;
+            ClearArea(sphereRB.transform.position, 5f);
             return;
         }
 
@@ -89,6 +91,29 @@ public class RespawnManager : MonoBehaviour
 
         sphereRB.transform.position = spawnpoint.transform.position + Vector3.up;
         sphereRB.transform.rotation = spawnpoint.transform.rotation;
+    }
+
+    public void ClearArea(Vector3 tf, float rad)
+    {
+        Collider[] hitColliders = Physics.OverlapSphere(tf, rad);
+        foreach (Collider hitCollider in hitColliders)
+        {
+            GameObject obj = hitCollider.gameObject;
+
+            if (obj.CompareTag("Pedestrians"))
+            {
+                obj.TryGetComponent<PedestrianAINavigator>(out PedestrianAINavigator ai);
+                Debug.Log(obj.name + ": AHHHH IM GETTING ERADICATED\nbleeeehhhh *dying noises*");
+                ai.fastKYS();
+            }
+            else if (obj.CompareTag("Vehicles"))
+            {
+                obj.TryGetComponent<VehicleAINavigator>(out VehicleAINavigator ai2);
+                Debug.Log(obj.name + ": AHHHH IM GETTING ERADICATED\nbleeeehhhh *dying noises*");
+                ai2.fastKYS();
+            }
+        }
+
     }
 
     private bool Timer()

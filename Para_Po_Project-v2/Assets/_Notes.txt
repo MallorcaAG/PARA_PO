@@ -1,26 +1,34 @@
 - MainMenu background simulation of game. (Add last when we know everything works good)
-- Add 5 sec Delay to LoadingScreen unactivating so player doesnt see stuff spawning 
+- Add 5 sec Delay to LoadingScreen unactivating so player doesnt see stuff spawning
+		> Adjustment made. Not tested
 - RespawnManager: "MissingReferenceException: The object of type 'VehicleAINavigator', Landmark.ClearArea ()"
 	Also doesnt detect npcs that already spawned inside the landmark. Doesnt get assigned to the List. . .
+		> Adjustment made. Not tested
 
 	MainMenu Testing Bugs
 	- Landmark images blocking route map on certain routes
+	- Populate tips in SceneLoadManager
 
 	Level 1 Testing Bugs
 
 
 	Level 5 Testing Bugs
+	- Waypoint fine tuning
 	- Adjust Landmark locations cause too close to start and end, and few in-between.
 	- VehicleAI hit player?? Sensor not working????
+		> Fixed
 
 	Level 9 Testing Bugs
 	- Waypoint fine tuning
 	- Can drive through buildings
+		> Adjustment made. Not tested
 
 	Level 15 Testing Bugs
 	- Waypoint fine tuning
 	- TrafficLights having a stroke
+		> Fixed
 	- VehicleAI not following TrafficLights
+		> Fixed
 
 	UX Testing
 	- Level 1 player doesnt know where to go (left or right). 

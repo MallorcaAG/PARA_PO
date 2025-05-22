@@ -1313,7 +1313,8 @@ PrefabInstance:
       propertyPath: m_FollowOffset.z
       value: -9.5
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 465616466467907360, guid: 62283ca975168ed4e8aa8b040f276a46, type: 3}
     m_RemovedGameObjects:
     - {fileID: 1290354987219347559, guid: 62283ca975168ed4e8aa8b040f276a46, type: 3}
     m_AddedGameObjects:
