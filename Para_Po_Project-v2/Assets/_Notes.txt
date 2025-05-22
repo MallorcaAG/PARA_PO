@@ -24,10 +24,7 @@
 
 	UX Testing
 	- Level 1 player doesnt know where to go (left or right). 
-		> Controls need explaining. 
-		> Maybe tutorial cutscene how to drive?
 		> Show controls from Pause screen in Settings panel in MainMenu
-		> (Unideal, pain in the ass to code) Create a special interactive tutorial level
 	- Player controls not intuitive?
 	- Turning is janky
 	- Camera controls unintuitive? Too sensitive. 
@@ -68,4 +65,5 @@
 		> Adjusted
 	- Engine too loud, lower Volume. 
 		> Idk how to lower the volume :( nothing works :( (feels like something is overriding it...)
+	- Can we attach CameraPackage to Jeepney Prefab? And idk but I think we can dettach MainCamera from CameraPackage and it'll still work. . .
 	
