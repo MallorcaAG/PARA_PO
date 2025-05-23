@@ -1,0 +1,130 @@
+﻿CREDITS
+
+Producer: Cristina A. Pascua
+Project Manager: Remus Newell Gumera
+Gameplay Programmer: Angelo Gabriel Mallorca
+AI Programmer: Angelo Gabriel Mallorca
+Level Designers: Remus Newell Gumera, Angelo Gabriel Mallorca 
+UI/UX Designers: Remus Newell Gumera, Phoenix Lombos
+Systems Designers: Remus Newell Gumera, Angelo Gabriel Mallorca
+Narrative Designers: Remus Newell Gumera, Ioan Phoenix Lombos
+Sound Designers: Remus Newell Gumera, Angelo Gabriel Mallorca
+2D Artist: Ioan Phoenix Lombos
+Animator: Ioan Phoenix Lombos
+Testers: Remus Newell Gumera, Angelo Gabriel Mallorca 
+Researchers: Remus Newell Gumera, Ioan Phoenix Lombos, Angelo Gabriel Mallorca 
+
+ASSETS USED
+
+	Imports
+- Low Poly Tree Pack by Broken Vector https://assetstore.unity.com/packages/3d/vegetation/trees/low-poly-tree-pack-57866
+- City People FREE by Denys Almaral https://assetstore.unity.com/packages/3d/characters/city-people-free-samples-260446
+- Jeepney by Maclin Macalindong https://sketchfab.com/3d-models/jeepney-0b8bcde5df19458da9fa5606989b1e7d
+- Low poly city vehicle pack by Polygonal Assets https://assetstore.unity.com/packages/3d/vehicles/land/low-poly-city-vehicle-pack-217344
+- Low-Poly Simple Nature Pack by JustCreate https://assetstore.unity.com/packages/3d/environments/landscapes/low-poly-simple-nature-pack-162153
+- Stylized Terrain Textures by Raygeas https://assetstore.unity.com/packages/2d/textures-materials/nature/stylized-terrain-textures-256492
+- City Traffic Lights Pack by Tarbo Studios https://assetstore.unity.com/packages/3d/environments/urban/city-traffic-lights-pack-free-low-poly-3d-art-154053
+- TheBaseMesh meshes https://www.thebasemesh.com/
+- Tricycle by kurtcamarines https://sketchfab.com/3d-models/tricycle-a1bfcae534604c2588dcb49c9598f979
+- EasyRoads3D Pro by AndaSoft https://assetstore.unity.com/packages/tools/terrain/easyroads3d-pro-v3-469
+- Fantasy Skybox FREE by Render Knight https://assetstore.unity.com/packages/2d/textures-materials/sky/fantasy-skybox-free-18353
+- City Generated using Blosm for Blender by Prochitecture https://prochitecture.gumroad.com/l/blender-osm?layout=profile 
+- Ultimate Loot VFX Pack by Piloto Studio https://assetstore.unity.com/packages/vfx/particles/ultimate-loot-vfx-pack-175-effects-242936
+- Racing Flag Illustration by Imam Sym https://www.vecteezy.com/vector-art/5430814-racing-flag-vector-illustration
+	Visual
+
+- Colored Main Roads Map Screenshots by YeetMaps https://snazzymaps.com/style/603883/colored-main-roads-idk
+- Jeepney1 Landmark 1 by Sian Labay https://maps.app.goo.gl/G997AW89kqVChVFM9
+- Jeepney1 Landmark 2 - 7 by Google Street View https://www.google.com/streetview/
+- Jeepney1 Landmark 8 by SMDC https://www.promosmdc.com/jazzresidences
+- Jeepney2 Landmark 2 - 7 by Google Street View https://www.google.com/streetview/
+
+	Audio
+- 2PM by Lud and Schlatt Crossing
+- 10AM by Lud and Schlatt Crossing
+- Ammil by The Tides
+- BAKIT BA by Siakol
+- Chill City by Skule Toyama
+- DANCING QUEEN by KING & QUEEN
+- Deja Vu by Dave Rodgers
+- Dentists Office by Lud and Schlatt Crossing
+- Don't stop the music by Lou Grant
+- Double Horizon by LittleLight
+- Dreaming by Oak Studios
+- Financial Obligations by Lud and Schlatt Crossing
+- GAS GAS GAS by MANUEL
+- Grand-Opening by Lud and Schlatt Crossing
+- Halaga by Parokya Ni Edgar
+- happy tomorrow by Snoozybeats
+- Hari Ng Sablay by Sugarfree	
+- I need your love by Dave Simons
+- Killing My Love by Leslie Parrish
+- Lintik by Brownman Revival
+- Lord Patawad by Bassilyo
+- Medical Hospital Clinic by INPLUSMUSIC
+- Miss U (Miss, Miss Sa Loob Ng Jeepney) by Grin Department
+- My Banyo Queen (feat. Rica Peralejo) by Andrew E.
+- Night of Fire by Niko
+- Pagsubok by Orient Pearl
+- Pare Ko by Eraserheads
+- Pauwi Nako by PDL, Skusta Clee, Jnske, Bullet D, Yuri Dope & Flow-G
+- Prinsesa by Teeth
+- radio-static Sound Effect by freesound_community from Pixabay
+- Rage Your Dream by M.O.V.E
+- Remember Me by Leslie Parrish
+- Running In The 90's by Max Coveri
+- Salamat by The Dawn
+- Sama-Sama by Alamid
+- Save Me by Leslie Parrish
+- Sirena by Ebe Dancel ft. Gloc-9
+- Speed Lover by Speedman
+- Sumayaw Sumunod by The Boyfriends
+- Sunset Pier by Lud and Schlatt Crossing
+- The 25th Hour by Lud and Schlatt Crossing
+- Tuloy Pa Rin by Neocolours
+- UI Audio and Interface Sounds by Kenney
+- VehicleSFX and Ambiance Sounds in The GameAudioGDC Bundle by Sonniss LTD
+- Vibing in the 20s by Context Sensitive
+- We Shop Song by Lud and Schlatt Crossing
+	NPC Voices
+Aldrin Jacob Hilaria
+Alfonso Bendanillo
+Alliah Dela Cruz
+Alyssa Dela Cruz
+Angelo Gabriel Mallorca
+Darwin Dela Cruz
+Desiree Dela Cruz
+Dex Gumera
+Divina Mendoza
+Dylan Mackenzie Lombos
+Elaiza Urriza
+Gina Capulong
+Gloria Capulong
+Helen Mallorca
+Ioan Phoenix Lombos
+Jessie Miguel Palamo
+Jessie Palamo
+Lea Katrina Lombos
+Marian Capulong
+Nathalie Gumera
+Nelson Mendoza
+Nova Gumera
+Patricia Dela Cruz
+Princess Dela Cruz
+Remus Gumera
+Renzo Capulong
+Roland Paul Capulong
+Ruther Dennis Lombos
+
+	New Stuff
+- BusRoute1 Landmark Azure Residences https://maps.app.goo.gl/GjQ7A8dUShnYbDVX8
+- BusRoute1 Landmark PhilHealth Bicutan https://maps.app.goo.gl/nirVTNda39ybZzb7A
+- BusRoute1 Landmark UniOil Service Rd. https://maps.app.goo.gl/o2WaLQJDkCK2Wafp7
+- Bus Route Landmark (SM Bicutan) https://maps.app.goo.gl/dxycy3huH2xxmVB36
+- BusRoute2 Laguna Bay Inn https://maps.app.goo.gl/MqwKiFVx4zN9Gpqo7 
+- BusRoute2 Honda Motors Service Rd. https://maps.app.goo.gl/snEJbLL9n4AAkVM29 
+- BusRoute2 WalterMart Bicutan https://maps.app.goo.gl/jt5pvu58GTXf2kjH9 
+- Rail track straight by Unreal Nick https://sketchfab.com/3d-models/rail-track-straight-99596461f679492bafe0ddc4a22fa1d0
+- Touch by Anno Domini Beats
+- Future Freeway by Adam MacDougall
+- Jina by Fiona Tiara P. Calayag
