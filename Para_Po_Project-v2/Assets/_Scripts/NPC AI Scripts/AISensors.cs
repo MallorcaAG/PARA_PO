@@ -39,7 +39,12 @@ public class AISensors : MonoBehaviour
         holdDist = maxDistance;
     }
 
-    private void OnDrawGizmos()
+    private void Update()
+    {
+        
+    }
+
+    protected void raycasting()
     {
         RaycastHit hit;
 
@@ -48,6 +53,12 @@ public class AISensors : MonoBehaviour
 
         sensorDetected = Physics.BoxCast(sensorPosition.position, halfExtent, sensorPosition.forward, out hit, sensorPosition.rotation, maxDistance, includeLayers);
 
+        //Debug.Log(gameObject.name + " Sensor detected" + sensorDetected);
+    }
+
+    /*private void OnDrawGizmos()
+    {
+        
 
         //Debugging Section
         if(!showCastsDebug)
@@ -69,5 +80,5 @@ public class AISensors : MonoBehaviour
             Gizmos.DrawRay(sensorPosition.position, sensorPosition.forward * maxDistance);
             Gizmos.DrawWireCube(sensorPosition.position + sensorPosition.forward * maxDistance, size);
         }
-    }
+    }*/
 }

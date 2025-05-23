@@ -17,6 +17,8 @@ public class VehicleAISensors : AISensors
     // Update is called once per frame
     void Update()
     {
+        raycasting();
+
         if (!sensorDetected)
         {
             myNav.Gas();
