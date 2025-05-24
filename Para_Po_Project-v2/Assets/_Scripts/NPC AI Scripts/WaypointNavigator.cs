@@ -144,6 +144,8 @@ public class WaypointNavigator : MonoBehaviour
         fullStop = true;
     }
 
+
+
     public void Go()
 
     //Old implementation, dont remove cause idk if i may need this later

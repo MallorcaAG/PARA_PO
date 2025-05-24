@@ -4,6 +4,8 @@
 - RespawnManager: "MissingReferenceException: The object of type 'VehicleAINavigator', Landmark.ClearArea ()"
 	Also doesnt detect npcs that already spawned inside the landmark. Doesnt get assigned to the List. . .
 		> Adjustment made. Not tested
+- NPC Counter doesnt change values max npcs in runtime
+- PedestrianNPC doesnt ragdoll and die when VehicleNPC hits them
 
 	MainMenu Testing Bugs
 	- Landmark images blocking route map on certain routes

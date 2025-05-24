@@ -16,16 +16,23 @@ public class NPCCount : ScriptableObject
     #region Game Initialization Setting Functions
     public void setMaxPedestrianCount(int num)
     {
+        Debug.Log("Setting max runtime pedestrian count to " + maxVehicleCount + " | " + num);
+
+
         maxPedestrianCount = num;
     }
 
     public void setMaxVehicleCount(int num)
     {
+        Debug.Log("Setting max runtime vehicle count to "+maxVehicleCount+ " | "+num);
+
         maxVehicleCount = num;
     }
 
     public void setDefaultNPCCount()
     {
+        Debug.Log("Setting Default NPC Count");
+
         int ped = 50;
         int veh = 20;
 

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: NPC Counter
   m_EditorClassIdentifier: 
   maxPedestrianCount: 50
-  maxVehicleCount: 20
-  currentPedestrianCount: 0
-  currentVehicleCount: 0
+  maxVehicleCount: 50
+  currentPedestrianCount: 8
+  currentVehicleCount: 40

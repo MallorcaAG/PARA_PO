@@ -16,7 +16,7 @@ public class VehicleAINavigator : WaypointNavigator
     [Header("Game Event")]
     [SerializeField] private GameEvent onImpactWithPlayer;
 
-    bool isStopped = false, playerHit = false, dying = false;
+    bool isStopped = false, playerHit = false, dying = false, checkStopVel;
     private AISensors senses;
     private NPCDistanceToPlayer destroyer;
     private float holdBaseSpd;
@@ -65,6 +65,15 @@ public class VehicleAINavigator : WaypointNavigator
         {
             FULLSTOPNOW();
         }
+
+        if(fullStop)
+        {
+            if (checkStopVel)
+            {
+                return;
+            }
+            StartCoroutine(stopChecker());
+        }
     }
     #endregion
 
@@ -109,6 +118,18 @@ public class VehicleAINavigator : WaypointNavigator
             StartCoroutine(kys());
         }
         isStopped = true;
+    }
+
+    private IEnumerator stopChecker()
+    {
+        checkStopVel = true;
+        yield return new WaitForSeconds(10f);
+        
+        if (fullStop || (controller.movementSpeed <= 1f))
+        {
+            checkStopVel = false;
+            fastKYS();
+        }
     }
 
     private IEnumerator kys()
