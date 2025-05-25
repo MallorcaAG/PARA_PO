@@ -58,14 +58,27 @@ public class ResultScreenManager : MonoBehaviour
         float[] f = (float[])data;
         success.scoreTxt.text = f[0].ToString("F4");
         success.highScoreTxt.text = f[2].ToString("F4");
+        int stars = (int)f[1];
 
-        Debug.Log("Stars: "+(int)f[1]);
-
-        for (int i = 0; i < (int)f[1]; i++)
+        switch(stars)
         {
-            if(success.stars[i] != null)
-                success.stars[i].sprite = activeStar;
+            case 1:
+                success.stars[0].sprite = activeStar;
+                break;
+            case 2:
+                success.stars[0].sprite = activeStar;
+                success.stars[1].sprite = activeStar;
+                break;
+            case 3:
+                success.stars[0].sprite = activeStar;
+                success.stars[1].sprite = activeStar;
+                success.stars[2].sprite = activeStar;
+                break;
+            default:
+
+                break;
         }
+
         success.populateViolationsTxt(playerViolationsCode);
     }
 

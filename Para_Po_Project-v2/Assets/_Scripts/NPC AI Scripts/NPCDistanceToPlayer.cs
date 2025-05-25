@@ -11,6 +11,11 @@ public class NPCDistanceToPlayer : MonoBehaviour
     private Transform player;
     private float distance;
 
+    public void setNPCCount(NPCCount obj)
+    {
+        this.npcs = obj;
+    }
+
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;

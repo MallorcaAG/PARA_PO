@@ -27,6 +27,7 @@ public class VehicleSpawnManager : SpawnManager
 
         obj.transform.position = transform.position;
         obj.GetComponent<VehicleAINavigator>().setCurrentWaypoint(newWaypoint);
+        obj.GetComponent<NPCDistanceToPlayer>().setNPCCount(npcs);
 
         mySpawnedObj = obj;
 

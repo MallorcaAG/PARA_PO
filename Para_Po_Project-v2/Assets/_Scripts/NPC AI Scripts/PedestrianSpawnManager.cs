@@ -20,6 +20,8 @@ public class PedestrianSpawnManager : SpawnManager
 
         obj.transform.position = transform.position;
         obj.GetComponent<PedestrianAINavigator>().setCurrentWaypoint(myWaypoint);
+        obj.GetComponent<NPCDistanceToPlayer>().setNPCCount(npcs);
+
 
         mySpawnedObj = obj;
 
