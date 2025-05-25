@@ -124,7 +124,7 @@ public class Landmark : MonoBehaviour
 
     public void ClearArea()
     {
-        Collider[] hitColliders = Physics.OverlapSphere(pos, radius);
+        Collider[] hitColliders = Physics.OverlapSphere(pos, radius * 2);
         foreach (Collider hitCollider in hitColliders)
         {
             GameObject obj = hitCollider.gameObject;

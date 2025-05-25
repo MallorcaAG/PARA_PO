@@ -67,6 +67,8 @@ public class VehicleSpawnManager : SpawnManager
                 if (mySpawnedObj == null)
                 {
                     Spawn();
+
+                    gameObject.SetActive(false);
                 }
             }
         }
