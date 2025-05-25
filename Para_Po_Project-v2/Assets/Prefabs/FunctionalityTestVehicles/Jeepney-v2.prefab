@@ -2550,7 +2550,7 @@ MonoBehaviour:
   restLength: 1
   springTravel: 0.5
   wheelRadius: 1.67
-  acceleration: 80
+  acceleration: 25
   maxSpeed: 110
   deceleration: 50
   brakingDeceleration: 1000
@@ -2610,7 +2610,7 @@ MonoBehaviour:
   drivable:
     serializedVersion: 2
     m_Bits: 64
-  engineSound: {fileID: 465616466467907360}
+  engineSound: {fileID: 0}
   minPitch: 0.661
   maxPitch: 2.83
   sendPlayerSpeed: {fileID: 0}
