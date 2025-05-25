@@ -5,7 +5,11 @@
 	Also doesnt detect npcs that already spawned inside the landmark. Doesnt get assigned to the List. . .
 		> Adjustment made. Not tested
 - NPC Counter doesnt change values max npcs in runtime
+		> Workaround: Change NPC Count in GameManager and all VehicleManagers to appropriate NPC Count Scriptable Object
 - PedestrianNPC doesnt ragdoll and die when VehicleNPC hits them
+		> Yes
+- Cars run over pedestrian and the player gets blamed
+		> Adjustment made. Not tested
 
 	MainMenu Testing Bugs
 	- Landmark images blocking route map on certain routes

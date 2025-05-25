@@ -4,13 +4,14 @@ using UnityEngine;
 
 public enum SpawnType
 {
-    CONSTANT, ONETIME
+    CONSTANT, ONEATATIME, ONSTART
 }
 
 public class VehicleSpawnManager : SpawnManager
 {
     [SerializeField] private SpawnType spawnType = SpawnType.CONSTANT;
     [SerializeField] private VehicleWaypoint newWaypoint;
+    [SerializeField] private bool forceSpawn = false;
 
     public void Spawn()
     {
@@ -38,14 +39,36 @@ public class VehicleSpawnManager : SpawnManager
     {
         if (other.name == "SpawningDespawning Influence")
         {
+            if (npcs.maxVehicleCountReached())
+            {
+                return;
+            }
+
             if (mySpawnedObj == null)
             {
-                if (!npcs.maxVehicleCountReached())
+                Spawn();
+
+                if (spawnType == SpawnType.CONSTANT)
+                    StartCoroutine(Wait());
+
+            }
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.name == "SpawningDespawning Influence")
+        {
+            if (npcs.maxVehicleCountReached() && !forceSpawn)
+            {
+                return;
+            }
+
+            if (spawnType == SpawnType.ONSTART)
+            {
+                if (mySpawnedObj == null)
                 {
                     Spawn();
-
-                    if(spawnType == SpawnType.CONSTANT)
-                        StartCoroutine(Wait());
                 }
             }
         }
@@ -53,7 +76,7 @@ public class VehicleSpawnManager : SpawnManager
 
     private IEnumerator Wait()
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(6f);
 
         mySpawnedObj = null;
     }

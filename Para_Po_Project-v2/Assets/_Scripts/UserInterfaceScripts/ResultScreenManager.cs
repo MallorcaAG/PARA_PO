@@ -58,6 +58,9 @@ public class ResultScreenManager : MonoBehaviour
         float[] f = (float[])data;
         success.scoreTxt.text = f[0].ToString("F4");
         success.highScoreTxt.text = f[2].ToString("F4");
+
+        Debug.Log("Stars: "+(int)f[1]);
+
         for (int i = 0; i < (int)f[1]; i++)
         {
             if(success.stars[i] != null)
