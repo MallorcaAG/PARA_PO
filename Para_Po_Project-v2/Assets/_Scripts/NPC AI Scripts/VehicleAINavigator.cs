@@ -16,10 +16,10 @@ public class VehicleAINavigator : WaypointNavigator
     [Header("Game Event")]
     [SerializeField] private GameEvent onImpactWithPlayer;
 
-    bool isStopped = false, playerHit = false, dying = false, checkStopVel;
+    bool isStopped = false, playerHit = false, dying = false, timerSet = false;
     private AISensors senses;
     private NPCDistanceToPlayer destroyer;
-    private float holdBaseSpd;
+    private float holdBaseSpd, targetTime;
 
 
     #region Getter/Setter Functions
@@ -68,11 +68,21 @@ public class VehicleAINavigator : WaypointNavigator
 
         if(fullStop)
         {
-            if (checkStopVel)
+            if(!timerSet)
             {
-                return;
+                targetTime = 15f;
+                timerSet = true;
             }
-            StartCoroutine(stopChecker());
+
+            if (Timer())
+            {
+                stopChecker();
+            }
+            
+        }
+        else
+        {
+            timerSet = false;
         }
     }
     #endregion
@@ -120,14 +130,11 @@ public class VehicleAINavigator : WaypointNavigator
         isStopped = true;
     }
 
-    private IEnumerator stopChecker()
+    private void stopChecker()
     {
-        checkStopVel = true;
-        yield return new WaitForSeconds(10f);
-        
-        if (fullStop || (controller.movementSpeed <= 1f))
+        if ((controller.movementSpeed <= 1f))
         {
-            checkStopVel = false;
+            Debug.LogWarning("Death by obstruction, "+gameObject.name);
             fastKYS();
         }
     }
@@ -143,6 +150,18 @@ public class VehicleAINavigator : WaypointNavigator
     {
         dying = true;
         destroyer.kys();
+    }
+
+    private bool Timer()
+    {
+        targetTime -= Time.deltaTime;
+
+        if (targetTime <= 0.0f)
+        {
+            return true;
+        }
+
+        return false;
     }
 
 }
