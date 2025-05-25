@@ -39,18 +39,15 @@ public class VehicleSpawnManager : SpawnManager
     {
         if (other.name == "SpawningDespawning Influence")
         {
-            if (npcs.maxVehicleCountReached())
-            {
-                return;
-            }
-
             if (mySpawnedObj == null)
             {
-                Spawn();
+                if (!npcs.maxVehicleCountReached())
+                {
+                    Spawn();
 
-                if (spawnType == SpawnType.CONSTANT)
-                    StartCoroutine(Wait());
-
+                    if (spawnType == SpawnType.CONSTANT)
+                        StartCoroutine(Wait());
+                }
             }
         }
     }
