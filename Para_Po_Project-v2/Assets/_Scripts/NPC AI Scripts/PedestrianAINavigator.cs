@@ -493,7 +493,7 @@ public class PedestrianAINavigator : WaypointNavigator
     #region Ragdoll and Collisions
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.transform.CompareTag("Player") && canBeViolated)
+        if ((collision.transform.CompareTag("Player") || collision.transform.CompareTag("Vehicles")) && canBeViolated)
         {
             onImpactWithPlayer.Raise(this, gameObject);
             EnableRagdoll();
