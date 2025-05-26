@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Dif Jeep 1
   m_EditorClassIdentifier: 
   maxPedestrianCount: 120
-  maxVehicleCount: 70
+  maxVehicleCount: 90
   currentPedestrianCount: 0
   currentVehicleCount: 0

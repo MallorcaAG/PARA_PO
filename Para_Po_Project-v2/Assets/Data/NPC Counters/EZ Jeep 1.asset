@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: EZ Jeep 1
   m_EditorClassIdentifier: 
   maxPedestrianCount: 70
-  maxVehicleCount: 30
+  maxVehicleCount: 45
   currentPedestrianCount: 0
   currentVehicleCount: 0
