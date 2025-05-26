@@ -133,13 +133,19 @@ public class Landmark : MonoBehaviour
             {
                 obj.TryGetComponent<PedestrianAINavigator>(out PedestrianAINavigator ai);
                 Debug.Log(obj.name + ": AHHHH IM GETTING ERADICATED\nbleeeehhhh *dying noises*");
-                ai.fastKYS();
+                if(ai != null)
+                {
+                    ai.fastKYS();
+                }
             }
             else if (obj.CompareTag("Vehicles"))
             {
                 obj.TryGetComponent<VehicleAINavigator>(out VehicleAINavigator ai2);
                 Debug.Log(obj.name + ": AHHHH IM GETTING ERADICATED\nbleeeehhhh *dying noises*");
-                ai2.fastKYS();
+                if(ai2 != null)
+                {
+                    ai2.fastKYS();
+                }
             }
         }
 

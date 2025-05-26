@@ -349,7 +349,7 @@ GameObject:
   - component: {fileID: 1666673291427616799}
   - component: {fileID: 6196184301007760321}
   - component: {fileID: 9065454297645332388}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube_004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -849,7 +849,7 @@ GameObject:
   - component: {fileID: 1011544917606145407}
   - component: {fileID: 1783267955447006341}
   - component: {fileID: 1271515072710241563}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube_003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1635,7 +1635,7 @@ GameObject:
   - component: {fileID: 7434241406167554362}
   - component: {fileID: 4813054082725062166}
   - component: {fileID: 5365049779027538298}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube_002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1972,7 +1972,7 @@ GameObject:
   - component: {fileID: 287186687809962600}
   - component: {fileID: 5682724097478207097}
   - component: {fileID: 8721122437787014082}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2407,7 +2407,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2593331180378404784}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Path
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3597,7 +3597,7 @@ GameObject:
   - component: {fileID: 3918601636682171660}
   - component: {fileID: 83144649371825953}
   - component: {fileID: 1338695191138042342}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube_005
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3821,7 +3821,7 @@ GameObject:
   - component: {fileID: 4630452330708814030}
   - component: {fileID: 9105329629132623485}
   - component: {fileID: 2645981739736083160}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4576,7 +4576,7 @@ GameObject:
   - component: {fileID: 2118503381048113213}
   - component: {fileID: 6721788497100027204}
   - component: {fileID: 8472111638392330654}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube_006
   m_TagString: Untagged
   m_Icon: {fileID: 0}

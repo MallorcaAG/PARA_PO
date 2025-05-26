@@ -20,7 +20,7 @@ public class VehicleAINavigator : WaypointNavigator
     private AISensors senses;
     private NPCDistanceToPlayer destroyer;
     private float holdBaseSpd, targetTime;
-
+    private float obstructionDespawnTimer = 15f;
 
     #region Getter/Setter Functions
     public void setBaseSpeed(float n)
@@ -30,6 +30,10 @@ public class VehicleAINavigator : WaypointNavigator
     public float getMyBaseSpeed()
     {
         return holdBaseSpd;
+    }
+    public void setObstructionDespawnTimer(float n)
+    {
+        obstructionDespawnTimer = n;
     }
     #endregion
 
@@ -70,7 +74,7 @@ public class VehicleAINavigator : WaypointNavigator
         {
             if(!timerSet)
             {
-                targetTime = 15f;
+                targetTime = obstructionDespawnTimer;
                 timerSet = true;
             }
 

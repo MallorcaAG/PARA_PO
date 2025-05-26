@@ -75,7 +75,7 @@ public class ResultScreenManager : MonoBehaviour
                 success.stars[2].sprite = activeStar;
                 break;
             default:
-
+                Debug.LogWarning("No stars to display");
                 break;
         }
 

@@ -12,6 +12,7 @@ public class VehicleSpawnManager : SpawnManager
     [SerializeField] private SpawnType spawnType = SpawnType.CONSTANT;
     [SerializeField] private VehicleWaypoint newWaypoint;
     [SerializeField] private bool forceSpawn = false;
+    [SerializeField] private float obstructionTimer = 15f;
 
     public void Spawn()
     {
@@ -22,16 +23,19 @@ public class VehicleSpawnManager : SpawnManager
             return;
         }
         GameObject obj = Instantiate(prefabCollection[Random.Range(0, prefabCollection.Length)], gameObject.transform);
+        Transform objTF = obj.transform;
+        VehicleAINavigator objNav = obj.GetComponent<VehicleAINavigator>();
 
         npcs.addVehicleNPC();
 
-        obj.transform.position = transform.position;
-        obj.GetComponent<VehicleAINavigator>().setCurrentWaypoint(newWaypoint);
+        objTF.position = transform.position;
+        objNav.setCurrentWaypoint(newWaypoint);
+        objNav.setObstructionDespawnTimer(obstructionTimer);
         obj.GetComponent<NPCDistanceToPlayer>().setNPCCount(npcs);
 
         mySpawnedObj = obj;
 
-        obj.transform.parent = null;
+        objTF.parent = null;
 
         /*}*/
     }
