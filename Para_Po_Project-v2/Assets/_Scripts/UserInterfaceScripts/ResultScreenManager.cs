@@ -21,7 +21,7 @@ public class ResultScreenManager : MonoBehaviour
     [SerializeField] private GameEvent onTryAgainButtonPressed;
     [SerializeField] private GameEvent onExitButtonPressed;
 
-
+    [SerializeField] private List<GameObject> starsRef;
 
     private void Start()
     {
@@ -63,16 +63,16 @@ public class ResultScreenManager : MonoBehaviour
         switch(stars)
         {
             case 1:
-                success.stars[0].sprite = activeStar;
+                starsRef[0].GetComponent<Image>().sprite = activeStar;
                 break;
             case 2:
-                success.stars[0].sprite = activeStar;
-                success.stars[1].sprite = activeStar;
+                starsRef[0].GetComponent<Image>().sprite = activeStar;
+                starsRef[1].GetComponent<Image>().sprite = activeStar;
                 break;
             case 3:
-                success.stars[0].sprite = activeStar;
-                success.stars[1].sprite = activeStar;
-                success.stars[2].sprite = activeStar;
+                starsRef[0].GetComponent<Image>().sprite = activeStar;
+                starsRef[1].GetComponent<Image>().sprite = activeStar;
+                starsRef[2].GetComponent<Image>().sprite = activeStar;
                 break;
             default:
                 Debug.LogWarning("No stars to display");

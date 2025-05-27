@@ -2170,6 +2170,10 @@ MonoBehaviour:
   onContinueButtonPressed: {fileID: 11400000, guid: 2515659baeb09e5458947f529b450eae, type: 2}
   onTryAgainButtonPressed: {fileID: 11400000, guid: ad27b16266320064eb4a54c771c0c1d2, type: 2}
   onExitButtonPressed: {fileID: 11400000, guid: 19c29a8cfcd6b9744a5531c6aadc6e03, type: 2}
+  starsRef:
+  - {fileID: 271098679197596973}
+  - {fileID: 4900713073380535152}
+  - {fileID: 6155707162842486823}
 --- !u!114 &1765138078312033698
 MonoBehaviour:
   m_ObjectHideFlags: 0
