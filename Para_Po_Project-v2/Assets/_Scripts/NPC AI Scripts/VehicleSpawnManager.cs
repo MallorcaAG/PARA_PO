@@ -11,7 +11,8 @@ public class VehicleSpawnManager : SpawnManager
 {
     [SerializeField] private SpawnType spawnType = SpawnType.CONSTANT;
     [SerializeField] private VehicleWaypoint newWaypoint;
-    [SerializeField] private bool forceSpawn = false;
+    [SerializeField] private bool forceSpawn = false, overrideNPCdist2PlayerRange = false;
+    [SerializeField] private float newNPCDistRange = 300f;
     [SerializeField] private float obstructionTimer = 15f;
 
     public void Spawn()
@@ -25,13 +26,19 @@ public class VehicleSpawnManager : SpawnManager
         GameObject obj = Instantiate(prefabCollection[Random.Range(0, prefabCollection.Length)], gameObject.transform);
         Transform objTF = obj.transform;
         VehicleAINavigator objNav = obj.GetComponent<VehicleAINavigator>();
+        NPCDistanceToPlayer objDist = obj.GetComponent<NPCDistanceToPlayer>();
 
         npcs.addVehicleNPC();
 
         objTF.position = transform.position;
         objNav.setCurrentWaypoint(newWaypoint);
         objNav.setObstructionDespawnTimer(obstructionTimer);
-        obj.GetComponent<NPCDistanceToPlayer>().setNPCCount(npcs);
+        objDist.setNPCCount(npcs);
+
+        if(overrideNPCdist2PlayerRange)
+        {
+            objDist.setRange(newNPCDistRange);
+        }
 
         mySpawnedObj = obj;
 

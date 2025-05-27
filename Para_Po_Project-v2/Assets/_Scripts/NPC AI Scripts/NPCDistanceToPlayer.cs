@@ -16,6 +16,11 @@ public class NPCDistanceToPlayer : MonoBehaviour
         this.npcs = obj;
     }
 
+    public void setRange(float r)
+    {
+        this.range = r;
+    }
+
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
