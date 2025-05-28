@@ -343,8 +343,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 1963203668}
+  sceneString: CreditsCutscene
   isMainMenu: 0
-  sceneString: _MainMenu
+  StartPanel: {fileID: 0}
 --- !u!1 &1089845087
 GameObject:
   m_ObjectHideFlags: 0

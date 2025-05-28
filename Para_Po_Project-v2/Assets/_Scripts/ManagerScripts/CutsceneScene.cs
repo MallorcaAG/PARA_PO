@@ -6,9 +6,12 @@ using UnityEngine.Video;
 public class CutsceneScene : MonoBehaviour
 {
     [SerializeField] private VideoPlayer _player;
-    [SerializeField] private bool isMainMenu = false;
     [Tooltip("Load into Main Menu")]
     [SerializeField] private string sceneString = "_MainMenu";
+
+    [Header("MainMenu settings")]
+    [SerializeField] private bool isMainMenu = false;
+    [SerializeField] private GameObject StartPanel;
 
     private VideoClip clip;
     private bool skipCutscene = false, loadingScene = false;
@@ -52,6 +55,7 @@ public class CutsceneScene : MonoBehaviour
             {
                 _player.Stop();
                 gameObject.SetActive(false);
+                StartPanel.SetActive(true);
                 return;
             }
 
