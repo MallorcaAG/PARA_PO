@@ -318,7 +318,7 @@ MonoBehaviour:
   maxDistance: 10
   includeLayers:
     serializedVersion: 2
-    m_Bits: 4481
+    m_Bits: 790913
   showCastsDebug: 1
 --- !u!114 &-474379209097001744
 MonoBehaviour:
