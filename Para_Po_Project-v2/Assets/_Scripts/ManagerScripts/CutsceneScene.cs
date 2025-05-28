@@ -51,9 +51,10 @@ public class CutsceneScene : MonoBehaviour
         {
             skipCutscene = false;
 
+            _player.Stop();
+
             if (isMainMenu)
             {
-                _player.Stop();
                 gameObject.SetActive(false);
                 StartPanel.SetActive(true);
                 return;

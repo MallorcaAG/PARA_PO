@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3791729243577173780}
   - component: {fileID: 507361684074243085}
   - component: {fileID: 3770626643557240077}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: Quad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -118,7 +118,7 @@ GameObject:
   - component: {fileID: 4256233020169656811}
   - component: {fileID: 5478618237600699224}
   - component: {fileID: 4588666454357883633}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: End Of Route
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -140,7 +140,7 @@ Transform:
   - {fileID: 8112115281341792144}
   - {fileID: 8838739370468535867}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 21.114, z: 0}
 --- !u!114 &4256233020169656811
 MonoBehaviour:
@@ -211,6 +211,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5294578710738488680}
     m_Modifications:
+    - target: {fileID: 8755930673646269568, guid: c2de0db4e571afc43a29266a881df236, type: 3}
+      propertyPath: m_Layer
+      value: 21
+      objectReference: {fileID: 0}
     - target: {fileID: 8755930673646269573, guid: c2de0db4e571afc43a29266a881df236, type: 3}
       propertyPath: lengthInSec
       value: 1
@@ -307,6 +311,14 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8755930673655343475, guid: c2de0db4e571afc43a29266a881df236, type: 3}
+      propertyPath: m_Layer
+      value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 8755930674067374404, guid: c2de0db4e571afc43a29266a881df236, type: 3}
+      propertyPath: m_Layer
+      value: 21
+      objectReference: {fileID: 0}
     - target: {fileID: 8755930674067374425, guid: c2de0db4e571afc43a29266a881df236, type: 3}
       propertyPath: InitialModule.startColor.maxColor.b
       value: 1
@@ -352,8 +364,16 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8755930674520202990, guid: c2de0db4e571afc43a29266a881df236, type: 3}
+      propertyPath: m_Layer
+      value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 8755930674520202990, guid: c2de0db4e571afc43a29266a881df236, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8755930674548529512, guid: c2de0db4e571afc43a29266a881df236, type: 3}
+      propertyPath: m_Layer
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 8755930674548529517, guid: c2de0db4e571afc43a29266a881df236, type: 3}
       propertyPath: InitialModule.startColor.maxColor.b
@@ -386,6 +406,10 @@ PrefabInstance:
     - target: {fileID: 8755930674650360602, guid: c2de0db4e571afc43a29266a881df236, type: 3}
       propertyPath: m_Name
       value: LootBeam_Tech_Common_V2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8755930674650360602, guid: c2de0db4e571afc43a29266a881df236, type: 3}
+      propertyPath: m_Layer
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 8755930674650360602, guid: c2de0db4e571afc43a29266a881df236, type: 3}
       propertyPath: m_IsActive
@@ -468,6 +492,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8755930674663648827, guid: c2de0db4e571afc43a29266a881df236, type: 3}
+      propertyPath: m_Layer
+      value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 8755930674663648827, guid: c2de0db4e571afc43a29266a881df236, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -487,6 +515,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8755930675521021833, guid: c2de0db4e571afc43a29266a881df236, type: 3}
+      propertyPath: m_Layer
+      value: 21
+      objectReference: {fileID: 0}
     - target: {fileID: 8755930675521021838, guid: c2de0db4e571afc43a29266a881df236, type: 3}
       propertyPath: InitialModule.startColor.maxColor.b
       value: 1
@@ -526,6 +558,10 @@ PrefabInstance:
     - target: {fileID: 8755930675577652066, guid: c2de0db4e571afc43a29266a881df236, type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8755930675577652067, guid: c2de0db4e571afc43a29266a881df236, type: 3}
+      propertyPath: m_Layer
+      value: 21
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

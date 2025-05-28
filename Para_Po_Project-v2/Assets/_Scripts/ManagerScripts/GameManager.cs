@@ -51,14 +51,14 @@ public class GameManager : Singleton<GameManager>
         targetTime = gameTimeInFloat;
         currentHighScore = DataManager.Instance.CurrentLevel.HighScore;
 
-        if(!hardDifficulty)
+        /*if(!hardDifficulty)
         {
             npcs.setMaxPedestrianCount(easyLevelPedestrianNPCCount);
             npcs.setMaxVehicleCount(easyLevelVehicleNPCCount);
             return;
         }
         npcs.setMaxPedestrianCount(hardLevelPedestrianNPCCount);
-        npcs.setMaxVehicleCount(hardLevelVehicleNPCCount);
+        npcs.setMaxVehicleCount(hardLevelVehicleNPCCount);*/
     }
 
     private void Update()
