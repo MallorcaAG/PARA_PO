@@ -28,7 +28,7 @@ public class SceneLoadManager : PersistentSingleton<SceneLoadManager>
     {
         data = DataManager.Instance;
 
-        LoadLevelsData();
+        LoadLevelsData();   
     }
 
     private void Update()

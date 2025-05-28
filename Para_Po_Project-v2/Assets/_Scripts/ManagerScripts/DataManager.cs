@@ -23,10 +23,15 @@ public class DataManager : PersistentSingleton<DataManager>
     public void load()
     {
         SaveData data = SaveSystem.LoadLevel(currentLevel);
+
         if (data == null)
         {
             return;
         }
+
+        Debug.Log(data.isUnlocked);
+        Debug.Log(data.stars);
+        Debug.Log(data.highScore);
 
         if (data.isUnlocked)
         {

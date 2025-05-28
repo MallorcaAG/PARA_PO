@@ -9,7 +9,7 @@ public static class SaveSystem
     public static void SaveLevel(Levels level)
     {
         BinaryFormatter formatter = new BinaryFormatter();
-        string path = Application.persistentDataPath + level.name + ".para";
+        string path = Application.persistentDataPath + "/" + level.name + ".para";
         FileStream stream = new FileStream(path , FileMode.Create);
 
         SaveData data = new SaveData(level);
@@ -28,6 +28,8 @@ public static class SaveSystem
 
             SaveData data = formatter.Deserialize(stream) as SaveData;
             stream.Close();
+
+            Debug.Log("Found "+ level.name + "Level in " + path);
 
             return data;
         }

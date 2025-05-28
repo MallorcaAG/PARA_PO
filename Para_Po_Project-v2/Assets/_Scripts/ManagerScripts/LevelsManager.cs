@@ -25,23 +25,30 @@ public class LevelsManager : Singleton<LevelsManager>
     [SerializeField] private Sprite GoodStar;
     private List<Levels> unlockedLevels;
     private int i;
+    private bool init = false;
 
     public List<Levels> Levels { get { return levels; } }
 
     private void Start()
     {
         populateUnlockedLevelsArray();
-        
+
         i = 0;
 
         UpdateUI();
+
+        init = true;
 
         gameObject.SetActive(false);
     }
 
     private void OnEnable()
     {
-        UpdateUI();
+        if(init)
+        {
+            UpdateUI();
+            return;
+        }
     }
 
     private void populateUnlockedLevelsArray()
@@ -64,6 +71,7 @@ public class LevelsManager : Singleton<LevelsManager>
 
     public void UpdateUI()
     {
+        Debug.Log(unlockedLevels[i]);
         Levels currentLvl = unlockedLevels[i];
 
         levelNameText.text = currentLvl.name;
@@ -127,8 +135,16 @@ public class LevelsManager : Singleton<LevelsManager>
     {
         if(i == 0)
         {
+            if(unlockedLevels.Count == 1)
+            {
+                rightArrowNav.SetActive(false);
+            }
+            else
+            {
+                rightArrowNav.SetActive(true);
+            }
+
             leftArrowNav.SetActive(false);
-            rightArrowNav.SetActive(true);
 
         }
         else if(i == unlockedLevels.Count - 1)
