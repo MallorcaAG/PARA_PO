@@ -22,7 +22,7 @@ MonoBehaviour:
   eastStraight: 0
   eastRight: 0
   westLeft: 1
-  westStraight: 0
-  westRight: 0
+  westStraight: 1
+  westRight: 1
   isPlayerRed: 1
   phaseDuration: 7
