@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxPedestrianCount: 50
   maxVehicleCount: 20
-  currentPedestrianCount: 0
-  currentVehicleCount: 0
+  currentPedestrianCount: 17
+  currentVehicleCount: 23
