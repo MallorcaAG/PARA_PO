@@ -39,6 +39,11 @@ public class LevelsManager : Singleton<LevelsManager>
         gameObject.SetActive(false);
     }
 
+    private void OnEnable()
+    {
+        UpdateUI();
+    }
+
     private void populateUnlockedLevelsArray()
     {
         unlockedLevels = new List<Levels>();
@@ -126,7 +131,7 @@ public class LevelsManager : Singleton<LevelsManager>
             rightArrowNav.SetActive(true);
 
         }
-        else if(i == unlockedLevels.Count)
+        else if(i == unlockedLevels.Count - 1)
         {
             leftArrowNav.SetActive(true);
             rightArrowNav.SetActive(false);
