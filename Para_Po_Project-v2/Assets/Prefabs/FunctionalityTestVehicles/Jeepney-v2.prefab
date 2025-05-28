@@ -2547,14 +2547,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   springStiffness: 30000
   damperStiffness: 3000
-  restLength: 1
+  restLength: 0.23
   springTravel: 0.5
   wheelRadius: 1.67
   acceleration: 25
-  maxSpeed: 110
+  maxSpeed: 80
   deceleration: 50
-  brakingDeceleration: 1000
-  steerStrength: 45
+  brakingDeceleration: 300
+  steerStrength: 40
   turningCurve:
     serializedVersion: 2
     m_Curve:
