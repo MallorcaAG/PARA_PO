@@ -56,11 +56,9 @@ MonoBehaviour:
   starsToGive: 0
   currentTrafficViolations: 0
   maxTrafficViolations: 3
-  hardDifficulty: 0
-  easyLevelPedestrianNPCCount: 50
-  easyLevelVehicleNPCCount: 20
-  hardLevelPedestrianNPCCount: 100
-  hardLevelVehicleNPCCount: 60
+  Star1Score: 500
+  Star2Score: 750
+  Star3Score: 1000
   gameTime: {x: 10, y: 5}
   sendPointsData: {fileID: 11400000, guid: 5164d3190bbf4ad4e88efe6e8553d7fe, type: 2}
   sendTimerData: {fileID: 11400000, guid: 371e3b5218c11954486e338f60be9c31, type: 2}
@@ -68,6 +66,7 @@ MonoBehaviour:
   onTimeScaleChange: {fileID: 11400000, guid: d7aede6da92d47a4ebc117735ba704a7, type: 2}
   onFixedDeltaTimeChange: {fileID: 11400000, guid: 5c7acc4273bfe1d409398ca44468fc09, type: 2}
   sceneString: _MainMenu
+  loadIntoLevelSelectionPanel: 0
   npcs: {fileID: 11400000, guid: b2e29010714b1c74c86042b36a2dc227, type: 2}
   slowMoDuration: 2
   slowMoTimeScale: 0.2
