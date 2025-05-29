@@ -1,52 +1,12 @@
-- MainMenu background simulation of game. (Add last when we know everything works good)
-- Add 5 sec Delay to LoadingScreen unactivating so player doesnt see stuff spawning
-		> Adjustment made. Not tested
-- NPC Counter doesnt change values max npcs in runtime
-		> Workaround: Change NPC Count in GameManager and all VehicleManagers to appropriate NPC Count Scriptable Object
 
 
 	MainMenu Testing Bugs
 	- Landmark images blocking route map on certain routes
 	- Populate tips in SceneLoadManager
+		> Done
 	- LevelPanel Stars and Score saves latest and not best
+		> Adjustment made. Not tested
 	- Delete Save Data Button not working
+		> Adjustment made. Not tested
 
-	Level 1 Testing Bugs
-
-
-	Level 5 Testing Bugs
-
-	Level 9 Testing Bugs
-	- Waypoint fine tuning
-
-	Level 15 Testing Bugs
-	- Waypoint fine tuning
-	- TrafficLights having a stroke
-		> Fixed
-
-	UX Testing
-	- Level 1 player doesnt know where to go (left or right). 
-		> Show controls from Pause screen in Settings panel in MainMenu
-	- Player controls not intuitive?
-	- Turning is janky
-	- Camera controls unintuitive? Too sensitive. 
-	- Trike too fast. Slowdown speed and acceleration. 
-	- Jeepney too fast. Slowdown speed and acceleration. 
-	- Increase invincibility. 
-		> Invincibility now at 5 seconds
-	- Make counterflow checker cooldown more forgiving, atleast for the first few levels
-	- Took multiple attempts to complete first level
-	- Too laggy
-
-
-	Lvl 1 Trike Controls Test
-	- Braking is too slow
-		> Adjusted
-
-
-	Lvl 9 Jeep Controls Test
-	- Accelerates too slow at the start, and around the middle accelerates too fast
-	- Multi-tapping forward causes faster acceleration
-	- Reversing feels delayed/too slow
-	- Brakes a bit too fast/hard?
 	

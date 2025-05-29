@@ -113,10 +113,11 @@ public class GameManager : Singleton<GameManager>
         Levels l = dm.CurrentLevel;
         Levels nl = dm.NextLevel;
         
-        l.Stars = starsToGive;
-        if(points > l.HighScore)
+        
+        if(points > l.HighScore) //High Score checker
         {
             l.HighScore = points;
+            l.Stars = starsToGive;
         }
 
         if(l.Stars >= 2f) //PASSING NUMBER OF STARS TO UNLOCK NEXT LEVEL
