@@ -45,6 +45,13 @@ public class Levels : ScriptableObject
     public string[] Scenes { get { return scenes; } }
     public int Stars { get { return stars; } set { stars = value; } }
     public float HighScore { get { return highScore; } set { highScore = value; } }  
+
+    public void Clear()
+    {
+        isUnlocked = false;
+        stars = 0;
+        highScore = 0;
+    }
     #endregion
 }
 
