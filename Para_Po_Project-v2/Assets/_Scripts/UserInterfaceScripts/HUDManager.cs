@@ -69,7 +69,7 @@ public class HUDManager : MonoBehaviour
     {
         passengerCount = (int)data;
 
-        Debug.LogWarning("Passenger count data received: "+passengerCount);
+        //Debug.LogWarning("Passenger count data received: "+passengerCount);
 
         UpdatePassengerCount();
     }

@@ -41,15 +41,17 @@ public class GameManager : Singleton<GameManager>
     private string failType;
     private bool end = false;
     private float currentHighScore;
-
+    private DataManager dm;
     private void Start()
     {
         npcs.ResetCurrentNPCValues();
 
+        dm = DataManager.Instance;
+
         float min = gameTime.x * 60f, sec = gameTime.y;
         gameTimeInFloat = min + sec;
         targetTime = gameTimeInFloat;
-        currentHighScore = DataManager.Instance.CurrentLevel.HighScore;
+        currentHighScore = dm.CurrentLevel.HighScore;
 
         /*if(!hardDifficulty)
         {
@@ -106,7 +108,25 @@ public class GameManager : Singleton<GameManager>
 
     public void saveGame()
     {
-        DataManager.Instance.save();
+        Levels l = dm.CurrentLevel;
+        Levels nl = dm.NextLevel;
+        
+        l.Stars = starsToGive;
+        if(points > l.HighScore)
+        {
+            l.HighScore = points;
+        }
+
+        if(l.Stars >= 2f) //PASSING NUMBER OF STARS TO UNLOCK NEXT LEVEL
+        {
+            if(!nl.IsUnlocked)
+            {
+                nl.UnlockLevel();
+                dm.saveNext();
+            }
+        }
+
+        dm.save();
         npcs.ResetCurrentNPCValues();
         SceneLoadManager.Instance.LoadScene(sceneString);
     }

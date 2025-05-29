@@ -110,7 +110,7 @@ public class VehicleManager : MonoBehaviour
 
             myPassengers.Remove(obj);
             onPassengerCountChange.Raise(this, myPassengers.Count);
-            Debug.Log("Passenger Count: " + myPassengers.Count);
+            //Debug.Log("Passenger Count: " + myPassengers.Count);
 
             obj.transform.parent = null;
             obj.transform.position = new Vector3(myWaypoint.transform.position.x, myWaypoint.transform.position.y + 0.1f, myWaypoint.transform.position.z); // Adjusted position

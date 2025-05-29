@@ -29,7 +29,7 @@ public static class SaveSystem
             SaveData data = formatter.Deserialize(stream) as SaveData;
             stream.Close();
 
-            Debug.Log("Found "+ level.name + "Level in " + path);
+            Debug.Log("Found "+ level.name + " Level in " + path);
 
             return data;
         }

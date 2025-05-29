@@ -26,11 +26,13 @@ public class LevelsManager : Singleton<LevelsManager>
     private List<Levels> unlockedLevels;
     private int i;
     private bool init = false;
-
+    private DataManager dm;
     public List<Levels> Levels { get { return levels; } }
 
     private void Start()
     {
+        dm = DataManager.Instance;
+
         populateUnlockedLevelsArray();
 
         i = 0;
@@ -174,9 +176,14 @@ public class LevelsManager : Singleton<LevelsManager>
 
     public void LoadLevel()
     {
-        Levels currentLvl = unlockedLevels[i];
+        Levels currentLvl = levels[i];
 
-        DataManager.Instance.CurrentLevel = currentLvl;
-        SceneLoadManager.Instance.LoadLevelsScenes(currentLvl, i);
+        dm.CurrentLevel = currentLvl;
+        if(!(i + 1 >  levels.Count - 1))
+        {
+            dm.NextLevel = levels[i + 1];
+        }
+        
+            SceneLoadManager.Instance.LoadLevelsScenes(currentLvl, i);
     }
 }

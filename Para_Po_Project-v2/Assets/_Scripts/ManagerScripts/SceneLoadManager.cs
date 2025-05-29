@@ -21,14 +21,16 @@ public class SceneLoadManager : PersistentSingleton<SceneLoadManager>
     [SerializeField] private TextMeshProUGUI tipTextBox;
 
     private float target;
-
+    private bool init = false;
     private DataManager data;
 
     private void Start()
     {
         data = DataManager.Instance;
 
-        LoadLevelsData();   
+        init = true;
+
+        LoadLevelsData();
     }
 
     private void Update()
@@ -126,8 +128,15 @@ public class SceneLoadManager : PersistentSingleton<SceneLoadManager>
     #endregion
 
     #region DataLoadingHandling
-    private void LoadLevelsData()
+    public void LoadLevelsData()
     {
+        if(!init)
+        {
+            return;
+        }
+
+        Debug.Log("Loading Levels Data");
+
         for (int i = 0; i < Levels.Length; i++)
         {
             data.CurrentLevel = Levels[i];

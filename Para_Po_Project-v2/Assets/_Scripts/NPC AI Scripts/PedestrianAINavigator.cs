@@ -367,31 +367,31 @@ public class PedestrianAINavigator : WaypointNavigator
 
         if (target == null)
         {
-            Debug.LogWarning($"{nextPedestrian.name}: No connected waypoint from currentWaypoint '{nextPedestrian.currentWaypoint.name}'. Finding nearest waypoint instead.");
+            //Debug.LogWarning($"{nextPedestrian.name}: No connected waypoint from currentWaypoint '{nextPedestrian.currentWaypoint.name}'. Finding nearest waypoint instead.");
 
             // Find nearest waypoint to the pedestrian's current position
             target = FindNearestWaypoint(nextPedestrian.transform.position);
 
             if (target == null)
             {
-                Debug.LogError($"{nextPedestrian.name}: No nearest waypoint found. Skipping egress.");
+                //Debug.LogError($"{nextPedestrian.name}: No nearest waypoint found. Skipping egress.");
                 egressQueue.Dequeue();
                 isEgressInProgress = false;
                 return;
             }
             else
             {
-                Debug.Log($"{nextPedestrian.name}: Nearest waypoint found '{target.name}'.");
+                //Debug.Log($"{nextPedestrian.name}: Nearest waypoint found '{target.name}'.");
             }
         }
         else
         {
-            Debug.Log($"{nextPedestrian.name}: Moving from currentWaypoint '{nextPedestrian.currentWaypoint.name}' to target waypoint '{target.name}'.");
+            //Debug.Log($"{nextPedestrian.name}: Moving from currentWaypoint '{nextPedestrian.currentWaypoint.name}' to target waypoint '{target.name}'.");
         }
 
         nextPedestrian.currentWaypoint = target;
 
-        Debug.Log($"{nextPedestrian.name}: Updated currentWaypoint to '{nextPedestrian.currentWaypoint.name}'. Beginning ExecuteEgress.");
+        //Debug.Log($"{nextPedestrian.name}: Updated currentWaypoint to '{nextPedestrian.currentWaypoint.name}'. Beginning ExecuteEgress.");
         nextPedestrian.ExecuteEgress(landmark);
     }
 
@@ -441,8 +441,8 @@ public class PedestrianAINavigator : WaypointNavigator
             playersWaypoint.transform.position.z
         ) /*+ offset*/;
 
-        Debug.Log(gameObject.name + ": (PlayerWaypoint)" + playersWaypoint.name);
-        Debug.Log(gameObject.name + ": (CurrentWaypoint)" + currentWaypoint.name);
+        //Debug.Log(gameObject.name + ": (PlayerWaypoint)" + playersWaypoint.name);
+        //Debug.Log(gameObject.name + ": (CurrentWaypoint)" + currentWaypoint.name);
 
         //Physics change
         myRB.useGravity = true;
