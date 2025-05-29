@@ -53,4 +53,9 @@ public class DataManager : PersistentSingleton<DataManager>
         currentLevel.HighScore = data.highScore;
     }
 
+    public void delete()
+    {
+        SaveSystem.DeleteSaveData(currentLevel);
+    }
+
 } 

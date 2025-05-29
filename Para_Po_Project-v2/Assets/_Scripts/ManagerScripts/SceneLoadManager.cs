@@ -25,6 +25,11 @@ public class SceneLoadManager : PersistentSingleton<SceneLoadManager>
     private bool init = false;
     private DataManager data;
 
+
+    public Levels[] getLevels()
+    {
+        return Levels;
+    }
     public void LoadIntoLevelSelectionPanel(bool con)
     {
         loadIntoLevelSelectionPanel = con;

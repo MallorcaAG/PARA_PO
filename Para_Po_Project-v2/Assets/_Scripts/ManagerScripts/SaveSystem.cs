@@ -40,4 +40,37 @@ public static class SaveSystem
         }
 
     }
+
+    public static void DeleteSaveData(Levels level)
+    {
+        string path = Application.persistentDataPath + "/" + level.name + ".para";
+        if (File.Exists(path))
+        {
+            BinaryFormatter formatter = new BinaryFormatter();
+                
+            Debug.Log("Found " + level.name + " Level in " + path 
+                + "\n DELETING NOW. . .");
+
+            File.Delete(path);
+
+            RefreshEditorProjectWindow();
+
+            if (!File.Exists(path))
+            {
+                Debug.Log("Save file not found in " + path);
+            }
+        }
+        else
+        {
+            Debug.Log("Save file not found in " + path);
+        }
+
+        void RefreshEditorProjectWindow()
+        {
+        #if UNITY_EDITOR
+            UnityEditor.AssetDatabase.Refresh();
+        #endif
+        }
+
+    }
 }
