@@ -8,6 +8,8 @@
 	MainMenu Testing Bugs
 	- Landmark images blocking route map on certain routes
 	- Populate tips in SceneLoadManager
+	- LevelPanel Stars and Score saves latest and not best
+	- Delete Save Data Button not working
 
 	Level 1 Testing Bugs
 

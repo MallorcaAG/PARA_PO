@@ -131,7 +131,7 @@ public class SceneLoadManager : PersistentSingleton<SceneLoadManager>
         //IF loadIntoLevelSelectionPanel
         if(loadIntoLevelSelectionPanel)
         {
-            onLoadIntoLevelSelectionPanelIsTrue.Raise(this, 0);
+            onLoadIntoLevelSelectionPanelIsTrue.Raise(this, data.CurrentIterator);
         }
         //SCREAM GAMEEVENT TO OPEN IN LEVEL SELECTION PANEL IN MAINMENU CANVAS
     }

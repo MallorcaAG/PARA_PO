@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using CodiceApp.EventTracking;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -186,5 +187,19 @@ public class LevelsManager : Singleton<LevelsManager>
         }
         
             SceneLoadManager.Instance.LoadLevelsScenes(currentLvl, i);
+    }
+
+    public void ChangeIterator(Component sender, object data)
+    {
+        int j = (int)data;
+
+        if(j <= levels.Count - 1)
+        {
+            i = j + 1;
+        }
+        else
+        {
+            i = j;
+        }
     }
 }
