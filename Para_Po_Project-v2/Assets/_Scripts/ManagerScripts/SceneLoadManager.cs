@@ -11,6 +11,7 @@ public class SceneLoadManager : PersistentSingleton<SceneLoadManager>
     [Header("Variables")]
     [SerializeField] private string[] tips;
     [SerializeField] private bool loadIntoLevelSelectionPanel = false;
+    [SerializeField] private GameEvent onLoadIntoLevelSelectionPanelIsTrue;
     private int levelInUnlockedLevels;
     [Header("References")]
     [Tooltip("ENSURE WHAT IS ASSIGNED BELOW IS THE SAME AS WHAT IS ASSIGNED IN THE LEVELSMANGER \n" +
@@ -23,6 +24,11 @@ public class SceneLoadManager : PersistentSingleton<SceneLoadManager>
     private float target;
     private bool init = false;
     private DataManager data;
+
+    public void LoadIntoLevelSelectionPanel(bool con)
+    {
+        loadIntoLevelSelectionPanel = con;
+    }
 
     private void Start()
     {
@@ -123,6 +129,10 @@ public class SceneLoadManager : PersistentSingleton<SceneLoadManager>
         loaderCanvas.SetActive(false);
 
         //IF loadIntoLevelSelectionPanel
+        if(loadIntoLevelSelectionPanel)
+        {
+            onLoadIntoLevelSelectionPanelIsTrue.Raise(this, 0);
+        }
         //SCREAM GAMEEVENT TO OPEN IN LEVEL SELECTION PANEL IN MAINMENU CANVAS
     }
     #endregion

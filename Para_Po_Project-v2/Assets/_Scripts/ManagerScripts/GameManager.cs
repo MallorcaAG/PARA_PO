@@ -12,11 +12,9 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private int currentTrafficViolations = 0;
     [SerializeField] private int maxTrafficViolations = 3;
     [Header("Game Variables")]
-    [SerializeField] private bool hardDifficulty = false;
-    [SerializeField] private int easyLevelPedestrianNPCCount = 50;
-    [SerializeField] private int easyLevelVehicleNPCCount = 20;
-    [SerializeField] private int hardLevelPedestrianNPCCount;
-    [SerializeField] private int hardLevelVehicleNPCCount;
+    [SerializeField] private float Star1Score = 250f;
+    [SerializeField] private float Star2Score = 500f;
+    [SerializeField] private float Star3Score = 750f;
     private bool routeSuccessful = false;
     private bool isGameEnded = false;
     [Tooltip("X = minutes, Y = seconds")]
@@ -30,6 +28,8 @@ public class GameManager : Singleton<GameManager>
     [Header("Next Scene")]
     [Tooltip("Load into Main Menu or enter cutscene name")]
     [SerializeField] private string sceneString;
+    [Tooltip("Set as true only if going to MainMenu")]
+    [SerializeField] private bool loadIntoLevelSelectionPanel;
     [SerializeField] private NPCCount npcs;
     [Header("Violation Settings")]
     [SerializeField] private float slowMoDuration = 2f; 
@@ -42,11 +42,13 @@ public class GameManager : Singleton<GameManager>
     private bool end = false;
     private float currentHighScore;
     private DataManager dm;
+    private SceneLoadManager slm;
     private void Start()
     {
         npcs.ResetCurrentNPCValues();
 
         dm = DataManager.Instance;
+        slm = SceneLoadManager.Instance;
 
         float min = gameTime.x * 60f, sec = gameTime.y;
         gameTimeInFloat = min + sec;
@@ -128,19 +130,20 @@ public class GameManager : Singleton<GameManager>
 
         dm.save();
         npcs.ResetCurrentNPCValues();
-        SceneLoadManager.Instance.LoadScene(sceneString);
+        slm.LoadIntoLevelSelectionPanel(loadIntoLevelSelectionPanel);
+        slm.LoadScene(sceneString);
     }
 
     public void restartGame(Component sender, object data)
     {
         string s = (string)data;
 
-        SceneLoadManager.Instance.LoadScene(s);
+        slm.LoadScene(s);
     }
 
     public void exitGame(Component sender, object data)
     {
-        SceneLoadManager.Instance.LoadScene((string)data);
+        slm.LoadScene((string)data);
     }
 
     public void endOfRouteReached(Component sender, object data)
@@ -212,15 +215,15 @@ public class GameManager : Singleton<GameManager>
     #region Points System
     private void calculateStarsToGive(float p)
     {
-        if(p >= 750f)
+        if(p >= Star3Score)
         {
             starsToGive = 3;
         }
-        else if(p >= 500f)
+        else if(p >= Star2Score)
         {
             starsToGive = 2;
         }
-        else if(p >= 250f)
+        else if(p >= Star1Score)
         {
             starsToGive = 1;
         }

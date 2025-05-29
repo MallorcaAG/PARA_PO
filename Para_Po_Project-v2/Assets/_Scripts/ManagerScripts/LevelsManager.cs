@@ -179,6 +179,7 @@ public class LevelsManager : Singleton<LevelsManager>
         Levels currentLvl = levels[i];
 
         dm.CurrentLevel = currentLvl;
+        dm.CurrentIterator = i;
         if(!(i + 1 >  levels.Count - 1))
         {
             dm.NextLevel = levels[i + 1];

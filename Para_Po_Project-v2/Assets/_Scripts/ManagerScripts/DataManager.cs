@@ -9,11 +9,14 @@ public class DataManager : PersistentSingleton<DataManager>
     [SerializeField] private Levels currentLevel, nextLevel;
     [SerializeField] private float masterVolumeSliderValue = 0.5f, sfxVolumeSliderValue = 0.5f, musicVolumeSliderValue = 0.5f;
 
+    private float currentIterator;
+
     public Levels CurrentLevel { get { return currentLevel; } set { currentLevel = value; } }
     public Levels NextLevel { get { return nextLevel; } set { nextLevel = value; } }
     public float MasterVolumeSliderValue { get { return masterVolumeSliderValue; } set { masterVolumeSliderValue = value; } }
     public float SFXVolumeSliderValue { get { return sfxVolumeSliderValue; } set { sfxVolumeSliderValue = value; } }
     public float MusicVolumeSliderValue { get {return musicVolumeSliderValue;} set { musicVolumeSliderValue = value; } }    
+    public float CurrentIterator { get { return currentIterator; } set { currentIterator = value; } }
 
     public void save()
     {
