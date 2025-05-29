@@ -49,12 +49,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecdd347c4ffe17741a54941be05b5cb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runningOverPedestrians: -150
-  hittingAnotherVehicle: -100
+  runningOverPedestrians: -250
+  hittingAnotherVehicle: -200
   counterflowingOrDrivingOnSidewalk: -100
-  beatingRedLight: -50
+  beatingRedLight: -150
   hittingSignPostTrafficObject: -100
-  crashingIntoBuilding: -150
+  crashingIntoBuilding: -200
   obstructingTrafficStallingOrAFK: -50
   speeding: -50
   notUrFaultBonus: 50
