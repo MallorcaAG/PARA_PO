@@ -1,12 +1,6 @@
 
 
 	MainMenu Testing Bugs
-	- Landmark images blocking route map on certain routes
-	- Populate tips in SceneLoadManager
-		> Done
-	- LevelPanel Stars and Score saves latest and not best
-		> Adjustment made. Not tested
-	- Delete Save Data Button not working
-		> Adjustment made. Not tested
+	- Upon reload from level, play button is not working (missing game reference) and landmark animation bug (possibly connected?)
 
 	
