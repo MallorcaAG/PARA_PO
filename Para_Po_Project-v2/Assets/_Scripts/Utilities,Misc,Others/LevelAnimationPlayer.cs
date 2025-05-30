@@ -12,12 +12,14 @@ public class LevelAnimationPlayer : MonoBehaviour
         public string clipName;                
     }
 
-    [Tooltip("Assign one animation per level (Level 1 to Level 20)")]
-    [SerializeField] private LevelAnimation[] levelAnimations = new LevelAnimation[20];
+    [Tooltip("Assign one animation per level (Level 1 to Level 21)")]
+    [SerializeField] private LevelAnimation[] levelAnimations = new LevelAnimation[21];
+
+    private int currentLevelIndex;
 
     void Start()
     {
-        int currentLevelIndex = DataManager.Instance.CurrentIterator;
+         currentLevelIndex = DataManager.Instance.CurrentIterator;
 
         if (currentLevelIndex < 0 || currentLevelIndex >= levelAnimations.Length)
         {

@@ -136,6 +136,7 @@ public class LevelsManager : Singleton<LevelsManager>
     }
     private void checkCurrentArrayPos()
     {
+        dm.CurrentIterator = i;
         if(i == 0)
         {
             if(unlockedLevels.Count == 1)
