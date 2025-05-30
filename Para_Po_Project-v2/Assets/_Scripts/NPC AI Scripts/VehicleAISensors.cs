@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class VehicleAISensors : AISensors
+﻿public class VehicleAISensors : AISensors
 {
     private VehicleAINavigator myNav;
 

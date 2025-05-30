@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using log4net.Core;
 using UnityEngine;
 using UnityEngine.Audio;
 

@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting.YamlDotNet.Core;
 using UnityEngine;
 
 public enum Shift

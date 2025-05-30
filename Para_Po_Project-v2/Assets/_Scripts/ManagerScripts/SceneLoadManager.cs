@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
@@ -67,7 +65,7 @@ public class SceneLoadManager : PersistentSingleton<SceneLoadManager>
         var scene = SceneManager.LoadSceneAsync(lvl.Scenes[0], LoadSceneMode.Single);
         scene.allowSceneActivation = false;
 
-        loaderCanvas.SetActive(true);
+        loaderCanvas.SetActive(true);   //ISSUES
         tipTextBox.text = tips[Random.Range(0, tips.Length)];
 
         do
