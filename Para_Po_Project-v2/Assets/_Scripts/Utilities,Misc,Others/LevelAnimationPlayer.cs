@@ -19,7 +19,22 @@ public class LevelAnimationPlayer : MonoBehaviour
 
     void Start()
     {
-         currentLevelIndex = DataManager.Instance.CurrentIterator;
+         CheckValidIndex();
+    }
+
+    private void Update()
+    {
+        if(currentLevelIndex == DataManager.Instance.CurrentIterator)
+        {
+            return;
+        }
+
+        CheckValidIndex();
+    }
+
+    private void CheckValidIndex()
+    {
+        currentLevelIndex = DataManager.Instance.CurrentIterator;
 
         if (currentLevelIndex < 0 || currentLevelIndex >= levelAnimations.Length)
         {
