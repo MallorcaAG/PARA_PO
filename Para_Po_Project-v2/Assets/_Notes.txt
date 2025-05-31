@@ -1,4 +1,6 @@
 
+- Volume sliders in MainMenu but PauseScreen volume sliders work
+- Pedestrians dont wanna egress anymore T_T
 
 	MainMenu Testing Bugs
 	- Upon reload from level, play button is not working (missing game reference) and landmark animation bug (possibly connected?)
