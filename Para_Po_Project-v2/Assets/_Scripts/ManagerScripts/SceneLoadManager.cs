@@ -54,6 +54,34 @@ public class SceneLoadManager : PersistentSingleton<SceneLoadManager>
         Debug.Log("Quitting Game");
     }
 
+    private void ReAssignCanvasReferences()
+    {
+        if ((loaderCanvas == null) || (progressBar == null) || (tipTextBox == null))
+        {
+            GameObject[] objs = GameObject.FindGameObjectsWithTag("LoadingScreen");
+            foreach (GameObject obj in objs)
+            {
+                if ((obj.name == "LoadingScreenPanel") && (loaderCanvas == null))
+                {
+                    loaderCanvas = obj;
+                    Debug.LogWarning("Assigning loaderCanvas");
+                }
+
+                if ((obj.name == "Slider") && (progressBar == null))
+                {
+                    progressBar = obj.GetComponent<Slider>();
+                    Debug.LogWarning("Assigning progressBar");
+                }
+
+                if ((obj.name == "Text (TMP)") && (tipTextBox == null))
+                {
+                    tipTextBox = obj.GetComponent<TextMeshProUGUI>();
+                    Debug.LogWarning("Assigning tipTextBox");
+                }
+            }
+        }
+    }
+
     public async void LoadLevelsScenes(Levels lvl, int unlockedLvlPos)  //GOD I HOPE THIS WORKS
     {
         target = 0;
@@ -64,6 +92,8 @@ public class SceneLoadManager : PersistentSingleton<SceneLoadManager>
 
         var scene = SceneManager.LoadSceneAsync(lvl.Scenes[0], LoadSceneMode.Single);
         scene.allowSceneActivation = false;
+
+        ReAssignCanvasReferences();
 
         loaderCanvas.SetActive(true);   //ISSUES
         tipTextBox.text = tips[Random.Range(0, tips.Length)];

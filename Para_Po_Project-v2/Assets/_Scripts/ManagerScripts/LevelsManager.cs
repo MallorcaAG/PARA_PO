@@ -184,8 +184,9 @@ public class LevelsManager : Singleton<LevelsManager>
         {
             dm.NextLevel = levels[i + 1];
         }
-        
-            SceneLoadManager.Instance.LoadLevelsScenes(currentLvl, i);
+
+        //SceneLoadManager.Instance.LoadLevelsScenes(currentLvl, i);
+        SceneLoadManager.Instance.LoadScene(currentLvl.Scenes[0]);
     }
 
     public void ChangeIterator(Component sender, object data)
