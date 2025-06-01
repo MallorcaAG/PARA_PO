@@ -27,7 +27,7 @@ SpriteAtlas:
       m_ResizeAlgorithm: 0
       m_TextureFormat: -1
       m_TextureCompression: 1
-      m_CompressionQuality: 50
+      m_CompressionQuality: 60
       m_CrunchedCompression: 1
       m_AllowsAlphaSplitting: 0
       m_Overridden: 0
@@ -36,11 +36,11 @@ SpriteAtlas:
       m_ForceMaximumCompressionQuality_BC6H_BC7: 0
     packingSettings:
       serializedVersion: 2
-      padding: 4
+      padding: 8
       blockOffset: 1
       allowAlphaSplitting: 0
-      enableRotation: 1
-      enableTightPacking: 1
+      enableRotation: 0
+      enableTightPacking: 0
       enableAlphaDilation: 0
     secondaryTextureSettings: {}
     variantMultiplier: 1

@@ -9,7 +9,11 @@ public class Clickable : MonoBehaviour, IPointerEnterHandler
 
     private void Start()
     {
-        this.GetComponent<Image>().alphaHitTestMinimumThreshold = alphaThreshold;
+        try
+        {
+            this.GetComponent<Image>().alphaHitTestMinimumThreshold = alphaThreshold;
+        }
+        catch { Debug.LogWarning("Warning: Cannot set alphaThreshold on Image " + this.gameObject.name); return; }
     }
 
     public void OnPointerEnter(PointerEventData eventData)
