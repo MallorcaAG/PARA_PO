@@ -54,6 +54,10 @@ public class PedestrianAINavigator : WaypointNavigator
     private static bool isEgressInProgress = false;
 
     #region Setter/Getters
+   public GameObject getMyLandmark()
+    {
+        return myLandmark;
+    }
     public void setMyLandmark(GameObject newLandmark) => myLandmark = newLandmark;
     public void setDesiredLandmark(GameObject newLandmark) => desiredLandmark = newLandmark;
     public void setPlayersWaypointRef(Component component, object data)
