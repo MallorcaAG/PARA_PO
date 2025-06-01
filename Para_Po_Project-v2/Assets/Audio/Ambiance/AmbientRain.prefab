@@ -32,7 +32,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &2767698746252502626
 AudioSource:
@@ -44,9 +44,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 8518896614975057461, guid: b36a23ca844cde248844bc14c6365d47, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 9d150bd04650df64f94889b246ae57ce, type: 3}
+  m_audioClip: {fileID: 8300000, guid: e1173e234a2e136458cbb09c1c458b41, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_Volume: 0.35
   m_Pitch: 1
   Loop: 1
   Mute: 0

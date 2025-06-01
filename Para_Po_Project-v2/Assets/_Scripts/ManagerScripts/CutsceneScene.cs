@@ -75,6 +75,8 @@ public class CutsceneScene : MonoBehaviour
     {
         yield return new WaitForSeconds(duration);
 
+        skipCutscene = true;
+
         if (!loadingScene)
         {
             LoadNextScene();
