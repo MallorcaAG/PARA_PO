@@ -38,7 +38,7 @@ public class GameManager : Singleton<GameManager>
     private float gameTimeInFloat;
     private float targetTime;
     private string failType;
-    private bool end = false;
+    private bool doneExec = false;
     private float currentHighScore;
     private DataManager dm;
     private SceneLoadManager slm;
@@ -66,40 +66,42 @@ public class GameManager : Singleton<GameManager>
 
     private void Update()
     {
-        if (isGameEnded)
+        if (!isGameEnded)
         {
-            if(end)
-                { return; }
-
-            if(!routeSuccessful)
-            {
-                onEndGame.Raise(this, failType);
-                return;
-            }
-            Debug.Log("Calculating points...");
-            calculateStarsToGive(calculateEndOfGamePoints());
-            Debug.Log("Game end\nStars Given: "+starsToGive);
-
-            float[] f = new float[3];
-            f[0] = points;
-            f[1] = Mathf.Clamp((float)starsToGive,0,3);  
-            if(points > currentHighScore)
-            {
-                f[2] = points;
-            }
-            else
-            {
-                f[2] = currentHighScore;
-            }
-            end = true;
-            onEndGame.Raise(this,f);
-            
+            sendPointsData.Raise(this, ((points + targetTime) > 0f) ? (points + targetTime) : 0f);
+            sendTimerData.Raise(this, targetTime);
+            checkViolations();
+            checkTimeLimit();
+            checkPoints();
+            return;            
         }
 
-        sendPointsData.Raise(this, ((points + targetTime) > 0f) ? (points + targetTime) : 0f);
-        sendTimerData.Raise(this, targetTime);
-        checkViolations();
-        checkTimeLimit();
+
+        if (doneExec)
+        { return; }
+
+        if (!routeSuccessful)
+        {
+            onEndGame.Raise(this, failType);
+            return;
+        }
+        Debug.Log("Calculating points...");
+        calculateStarsToGive(calculateEndOfGamePoints());
+        Debug.Log("Game end\nStars Given: " + starsToGive);
+
+        float[] f = new float[3];
+        f[0] = points;
+        f[1] = Mathf.Clamp((float)starsToGive, 0, 3);
+        if (points > currentHighScore)
+        {
+            f[2] = points;
+        }
+        else
+        {
+            f[2] = currentHighScore;
+        }
+        doneExec = true;
+        onEndGame.Raise(this, f);
     }
     #region Game Functions
     private void endGame()
@@ -213,6 +215,16 @@ public class GameManager : Singleton<GameManager>
 
     #endregion
     #region Points System
+    private void checkPoints()
+    {
+        if ((points + targetTime) <= 0f)
+        {
+            failType = "Ran out of points";
+
+            endGame();
+            return;
+        }
+    }
     private void calculateStarsToGive(float p)
     {
         if(p >= Star3Score)
