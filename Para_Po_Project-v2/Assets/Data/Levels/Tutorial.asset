@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Tutorial
   m_EditorClassIdentifier: 
   isUnlocked: 1
-  stars: 0
-  highScore: 0
+  stars: 3
+  highScore: 913.32996
   scenes:
   - Cutscene 1
   vehicleType: 1
