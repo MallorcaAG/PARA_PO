@@ -42,9 +42,12 @@ public class Levels : ScriptableObject
     public int Stars { get { return stars; } set { stars = value; } }
     public float HighScore { get { return highScore; } set { highScore = value; } }  
 
-    public void Clear()
+    public void Clear(bool isFirst)
     {
-        isUnlocked = false;
+        if(!isFirst)
+        {
+            isUnlocked = false;
+        }
         stars = 0;
         highScore = 0;
     }

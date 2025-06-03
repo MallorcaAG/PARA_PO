@@ -24,7 +24,7 @@ public class SaveDataDeleter : MonoBehaviour
         {
             data.CurrentLevel = l[i];
             data.delete();
-            data.CurrentLevel.Clear();
+            data.CurrentLevel.Clear( !(i==0) ? false:true);
         }
 
     }
