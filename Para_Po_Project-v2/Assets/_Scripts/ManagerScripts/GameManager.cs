@@ -92,11 +92,11 @@ public class GameManager : Singleton<GameManager>
                 f[2] = currentHighScore;
             }
             end = true;
-            onEndGame.Raise(this,f); //PROBLEMATIC
+            onEndGame.Raise(this,f);
             
         }
 
-        sendPointsData.Raise(this, points);
+        sendPointsData.Raise(this, ((points + targetTime) > 0f) ? (points + targetTime) : 0f);
         sendTimerData.Raise(this, targetTime);
         checkViolations();
         checkTimeLimit();

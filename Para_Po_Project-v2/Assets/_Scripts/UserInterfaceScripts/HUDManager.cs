@@ -103,7 +103,7 @@ public class HUDManager : MonoBehaviour
     {
         float num = (float)data;
 
-        pointsText.text = num.ToString("####0.##") + " pts";
+        pointsText.text = num.ToString("####0") + " pts";
     }
 
     public void UpdateLocationSignageDisplay(Component sender, object data)
