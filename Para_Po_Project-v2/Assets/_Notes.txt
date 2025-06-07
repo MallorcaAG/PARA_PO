@@ -1,3 +1,13 @@
+- Please remove if fixed 
+
 End of route collision with finish line (remove)
 Level 16 collision problem on an area + cars having problem turning because of barrier (might have other levels with the same problem)
 Make all levels unlocked copy + normal standard copy
+
+	Bus Levels Bugs
+	
+	- vehicle spawners on roads are too many and spawn too much (try replacing with onstart spawner?)
+	- adjust waypoint branching to reduce changing lanes too much
+	- vehicles tend to change directions when hit and not vanish
+	- opposite lane vehicles spawn in same direction as player and try to cross over to the other side (next waypoint issue? or spawner issue?)
+	- continue button not working
