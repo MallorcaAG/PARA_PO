@@ -1,8 +1,3 @@
-
-- Volume sliders in MainMenu but PauseScreen volume sliders work
-- Pedestrians dont wanna egress anymore T_T
-
-	MainMenu Testing Bugs
-	- Upon reload from level, play button is not working (missing game reference) and landmark animation bug (possibly connected?)
-
-	
+End of route collision with finish line (remove)
+Level 16 collision problem on an area + cars having problem turning because of barrier (might have other levels with the same problem)
+Make all levels unlocked copy + normal standard copy
