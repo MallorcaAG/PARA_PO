@@ -5,3 +5,6 @@ Make all levels unlocked copy + normal standard copy
 
 	- vehicles tend to change directions when hit and not vanish
 		> I havent seen this so cant fix?
+
+
+	NOTE: LEVEL 8 IS STILL NOT RAIN YET. DONT FORGET TO FIX THAT...
