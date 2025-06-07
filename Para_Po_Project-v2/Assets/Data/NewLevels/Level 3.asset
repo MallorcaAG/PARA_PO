@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb68b1502438c394a880c782e90e9d0a, type: 3}
+  m_Name: Level 3
+  m_EditorClassIdentifier: 
+  isUnlocked: 0
+  stars: 0
+  highScore: 0
+  scenes:
+  - Level 6
+  vehicleType: 0
+  routeName: CAA to Casimiro
+  routeMap:
+  - {fileID: 21300000, guid: 307cc453097cffc4aae56255c025a918, type: 3}
+  - {fileID: 21300000, guid: 2b35ed31555a7ae49ae2ebaf8b5ab42e, type: 3}
+  routeLandmarkImages:
+  - {fileID: 21300000, guid: 9a468506d5d85d748ab378432e69f3e3, type: 3}
+  - {fileID: 21300000, guid: 929f02e92dcfeeb45b9dd8b69f9a5ca0, type: 3}
+  - {fileID: 21300000, guid: 4e9f701a961b10a418a0cd11f32b50e3, type: 3}
