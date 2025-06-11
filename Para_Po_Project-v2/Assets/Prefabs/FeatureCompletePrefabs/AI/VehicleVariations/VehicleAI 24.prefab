@@ -124,8 +124,8 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
+  MinDistance: 3
+  MaxDistance: 50
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -273,8 +273,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 8.88, y: 7, z: 20.29}
-  m_Center: {x: 0, y: 0.79, z: 0}
+  m_Size: {x: 8.88, y: 5.9922795, z: 19.786142}
+  m_Center: {x: 0, y: 1.7347398, z: 0.062981896}
 --- !u!54 &7696431550909371731
 Rigidbody:
   m_ObjectHideFlags: 0

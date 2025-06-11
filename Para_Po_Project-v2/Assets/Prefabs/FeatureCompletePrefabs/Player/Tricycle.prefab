@@ -649,7 +649,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4787504487492634056}
-  m_LocalRotation: {x: 0.20566536, y: 0.054945305, z: -0.011566252, w: 0.97701025}
+  m_LocalRotation: {x: 0.20566535, y: 0.05494535, z: -0.011566261, w: 0.97701025}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -798,7 +798,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5974097460681799454}
-  m_LocalRotation: {x: 0.23100002, y: 0.054625977, z: -0.012991025, w: 0.9713322}
+  m_LocalRotation: {x: 0.23100002, y: 0.054626048, z: -0.012991042, w: 0.9713322}
   m_LocalPosition: {x: 0, y: 8.695652, z: -21.73913}
   m_LocalScale: {x: 4.347826, y: 4.347826, z: 4.347826}
   m_ConstrainProportionsScale: 0
@@ -923,7 +923,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7995703362649186912}
-  m_LocalRotation: {x: 0.23100002, y: 0.05462599, z: -0.012991031, w: 0.9713322}
+  m_LocalRotation: {x: 0.23100002, y: 0.05462603, z: -0.012991039, w: 0.9713322}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1245,6 +1245,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 448322479829585931, guid: 25ad06362f360934b960d94f34b1a4a2, type: 3}
+      propertyPath: m_Size.x
+      value: 4.19983
+      objectReference: {fileID: 0}
+    - target: {fileID: 448322479829585931, guid: 25ad06362f360934b960d94f34b1a4a2, type: 3}
+      propertyPath: m_Size.y
+      value: 4.817664
+      objectReference: {fileID: 0}
+    - target: {fileID: 448322479829585931, guid: 25ad06362f360934b960d94f34b1a4a2, type: 3}
+      propertyPath: m_Size.z
+      value: 6.135758
+      objectReference: {fileID: 0}
+    - target: {fileID: 448322479829585931, guid: 25ad06362f360934b960d94f34b1a4a2, type: 3}
+      propertyPath: m_Center.x
+      value: 0.48625067
+      objectReference: {fileID: 0}
+    - target: {fileID: 448322479829585931, guid: 25ad06362f360934b960d94f34b1a4a2, type: 3}
+      propertyPath: m_Center.y
+      value: 3.6838396
+      objectReference: {fileID: 0}
+    - target: {fileID: 448322479829585931, guid: 25ad06362f360934b960d94f34b1a4a2, type: 3}
+      propertyPath: m_Center.z
+      value: -2.3553598
+      objectReference: {fileID: 0}
     - target: {fileID: 830219416673056429, guid: 25ad06362f360934b960d94f34b1a4a2, type: 3}
       propertyPath: m_Lens.FieldOfView
       value: 55
@@ -1320,6 +1344,30 @@ PrefabInstance:
     - target: {fileID: 4272570703156069302, guid: 25ad06362f360934b960d94f34b1a4a2, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437838159330470700, guid: 25ad06362f360934b960d94f34b1a4a2, type: 3}
+      propertyPath: m_Size.x
+      value: 1.6046939
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437838159330470700, guid: 25ad06362f360934b960d94f34b1a4a2, type: 3}
+      propertyPath: m_Size.y
+      value: 3.319253
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437838159330470700, guid: 25ad06362f360934b960d94f34b1a4a2, type: 3}
+      propertyPath: m_Size.z
+      value: 6.702589
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437838159330470700, guid: 25ad06362f360934b960d94f34b1a4a2, type: 3}
+      propertyPath: m_Center.x
+      value: -2.45839
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437838159330470700, guid: 25ad06362f360934b960d94f34b1a4a2, type: 3}
+      propertyPath: m_Center.y
+      value: 2.9346342
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437838159330470700, guid: 25ad06362f360934b960d94f34b1a4a2, type: 3}
+      propertyPath: m_Center.z
+      value: -1.9505376
       objectReference: {fileID: 0}
     - target: {fileID: 4439890082230195666, guid: 25ad06362f360934b960d94f34b1a4a2, type: 3}
       propertyPath: m_audioClip
