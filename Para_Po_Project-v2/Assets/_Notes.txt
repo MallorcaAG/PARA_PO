@@ -7,4 +7,7 @@ Make all levels unlocked copy + normal standard copy
 		> I havent seen this so cant fix?
 
 
-	NOTE: LEVEL 8 IS STILL NOT RAIN YET. DONT FORGET TO FIX THAT...
+	NOTE: LEVEL 8 IS STILL NOT RAIN YET. DONT FORGET TO FIX THAT... 
+
+	- Make sphere collider for pedestrian ingress a little bigger to prevent spinning (possible solution?)
+	- Revamp sensors to prevent cars rear-ending/colliding with player or each other. 
