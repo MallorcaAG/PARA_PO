@@ -1342,6 +1342,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1499849777201232806, guid: cbf810d05e32c9647b788c0355ad8562, type: 3}
+      propertyPath: stopDistance
+      value: 0.33
+      objectReference: {fileID: 0}
     - target: {fileID: 3799668568912276919, guid: cbf810d05e32c9647b788c0355ad8562, type: 3}
       propertyPath: animator
       value: 
