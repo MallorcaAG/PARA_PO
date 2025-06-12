@@ -109,8 +109,10 @@ public class VehicleAINavigator : WaypointNavigator
 
         if (collision.transform.CompareTag("Player"))
         {
+            Rigidbody playerRB = collision.transform.GetComponent<Rigidbody>();
+
             playerHit = true;
-            if(senses.getSensors() && controller.movementSpeed > 0.1f)
+            if(playerRB.velocity.magnitude <= 0.1f)
             {
                 //I'm at fault
                 onImpactWithPlayer.Raise(this, 0);
