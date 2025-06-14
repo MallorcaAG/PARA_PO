@@ -8,6 +8,7 @@ Make all levels unlocked copy + normal standard copy
 
 
 	NOTE: LEVEL 8 IS STILL NOT RAIN YET. DONT FORGET TO FIX THAT... 
+		DONE
 
 	- Make sphere collider for pedestrian ingress a little bigger to prevent spinning (possible solution?)
 		FIXED
