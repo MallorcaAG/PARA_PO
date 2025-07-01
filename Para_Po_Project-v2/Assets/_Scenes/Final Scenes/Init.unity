@@ -827,27 +827,17 @@ MonoBehaviour:
   loadIntoLevelSelectionPanel: 0
   onLoadIntoLevelSelectionPanelIsTrue: {fileID: 11400000, guid: cf5eb78003212ef44b3025f59113c0cb, type: 2}
   Levels:
-  - {fileID: 11400000, guid: 5d9c6b72a15fd46468ba1ed8bb37d1b5, type: 2}
-  - {fileID: 11400000, guid: 8f912590fa6d38849b4ff0c7964698c2, type: 2}
-  - {fileID: 11400000, guid: a11f2a0107f403f43b9ce91adf462cdf, type: 2}
-  - {fileID: 11400000, guid: 07b85d7dc0154d747ac9b2aa300855de, type: 2}
-  - {fileID: 11400000, guid: fc8e10d68080872479180b0669f96b33, type: 2}
-  - {fileID: 11400000, guid: 8c93055b82a14f842b0e77f1bef1eee3, type: 2}
-  - {fileID: 11400000, guid: a3495157ce92c4e4eb609ad2cfe15e8d, type: 2}
-  - {fileID: 11400000, guid: 36df8c1f6c45c1a43b5dbbbab5f27b86, type: 2}
-  - {fileID: 11400000, guid: 1f2654d25b905f441b4b28ac840cf64e, type: 2}
-  - {fileID: 11400000, guid: 7cb440460ee189a4b8ea59787b06c221, type: 2}
-  - {fileID: 11400000, guid: f13f4d90101054140b50fba20ccaac9e, type: 2}
-  - {fileID: 11400000, guid: cbe28bfbcce3c394895297a8f096605c, type: 2}
-  - {fileID: 11400000, guid: a6ffcec95c36e4642a4b4ea321cec277, type: 2}
-  - {fileID: 11400000, guid: c750cdcd4eadaba4a8cb755c01ef1644, type: 2}
-  - {fileID: 11400000, guid: 7363d484edd166745a29e63b913d9709, type: 2}
-  - {fileID: 11400000, guid: 4c61e1f6b8e58b842bd0db0a895c7583, type: 2}
-  - {fileID: 11400000, guid: 6c67fe17878c6ec4ca0bc11c888b2eb0, type: 2}
-  - {fileID: 11400000, guid: b5cfc61c16c49784aa7fdca31d0ccf0b, type: 2}
-  - {fileID: 11400000, guid: c678070b017b81a489eca8fc717a2928, type: 2}
-  - {fileID: 11400000, guid: c013ca20fa42f564fb06b20146da220e, type: 2}
-  - {fileID: 11400000, guid: 6ed7ca0f31fa8a642a91343612f7fb48, type: 2}
+  - {fileID: 11400000, guid: dc901e81c66b85b44811cd92f07408e3, type: 2}
+  - {fileID: 11400000, guid: 6f6187fa9c9c66d4b8fed76d5618b3e3, type: 2}
+  - {fileID: 11400000, guid: b38f3e348ada2644cbe789e91489cd35, type: 2}
+  - {fileID: 11400000, guid: abe6db7535535984292f75964c5c6be5, type: 2}
+  - {fileID: 11400000, guid: bb8b9d0e50d08454f9e085d58caf489e, type: 2}
+  - {fileID: 11400000, guid: 09332e941a34d69438ad6d24f19081b2, type: 2}
+  - {fileID: 11400000, guid: a9138f951d9e53f4291c6d401beedaaf, type: 2}
+  - {fileID: 11400000, guid: 92f3a152d5314684b931e7c6c0462c60, type: 2}
+  - {fileID: 11400000, guid: ba2dd406a7c7de04d9342de89b117223, type: 2}
+  - {fileID: 11400000, guid: 92eece2ec3acae24b84c3cc9a11c38d1, type: 2}
+  - {fileID: 11400000, guid: 7039dcdc29a2f6e4490a4ed666dfa91c, type: 2}
   loaderCanvas: {fileID: 611474041}
   progressBar: {fileID: 6644265}
   tipTextBox: {fileID: 2069255359}
