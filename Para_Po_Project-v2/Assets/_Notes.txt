@@ -1,4 +1,25 @@
 
+REVISIONS
+> {REMUS}	Fix Sound Button Click (Main Menu [Settings])		
+> {PHOENIX} Redesign Buttons for consistency (Hover should darken/enlargen, and UI shit like that)
+	> Save Data Button Redesign
+	> Pause Menu Button Redesign
+> {ANGELO} High-score fix font, spacing and shit
+> {ANGELO} Remove No-entry sign on Barrier
+> {ANGELO} Recalculate Speed (VehicleController.cs > SendSpeedCoroutine():Line 261)
+	> Possible Idea: Choose a straight line in game, calculate distance and time based on Google Maps.
+		Ask ChatGPT for help with the rest of the calculations.
+> {REMUS, PHOENIX, ANGELO} Add in Levels
+	> Trike Levels (Pedestrian Lanes, No-blowing of horn [+ Violation {IF POSSIBLE}]) 
+	> Jeepney Levels (Pedestrian Lanes, Traffic Signs)
+	> Bus Levels (Overspeeding)
+> {REMUS} Fix Bus Level Pathfinding, opposite Lane should go the other direction
+
+
+
+
+
+
 Make all levels unlocked copy + normal standard copy
 
 	Bus Levels Bugs
