@@ -1,6 +1,7 @@
 
 REVISIONS
-> {REMUS}   Fix Sound Button Click (Main Menu [Settings])		
+> {REMUS}   Fix Sound Button Click (Main Menu [Settings])
+	> Upon clicking the sound icon, value will be set to 0 (please confirm if working on your end. remove if yes		
 > {PHOENIX} Redesign Buttons for consistency (Hover should darken/enlargen, and UI shit like that)
 	> Save Data Button Redesign
 	> Pause Menu Button Redesign
