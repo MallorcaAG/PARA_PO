@@ -1,9 +1,10 @@
 
 REVISIONS
-> {REMUS}	Fix Sound Button Click (Main Menu [Settings])		
+> {REMUS}   Fix Sound Button Click (Main Menu [Settings])		
 > {PHOENIX} Redesign Buttons for consistency (Hover should darken/enlargen, and UI shit like that)
 	> Save Data Button Redesign
 	> Pause Menu Button Redesign
+	> Delete Save Data button
 > {ANGELO} High-score fix font, spacing and shit
 > {ANGELO} Remove No-entry sign on Barrier
 > {ANGELO} Recalculate Speed (VehicleController.cs > SendSpeedCoroutine():Line 261)
@@ -13,7 +14,7 @@ REVISIONS
 	> Trike Levels (Pedestrian Lanes, No-blowing of horn [+ Violation {IF POSSIBLE}]) 
 	> Jeepney Levels (Pedestrian Lanes, Traffic Signs)
 	> Bus Levels (Overspeeding)
-> {REMUS} Fix Bus Level Pathfinding, opposite Lane should go the other direction
+
 
 
 
