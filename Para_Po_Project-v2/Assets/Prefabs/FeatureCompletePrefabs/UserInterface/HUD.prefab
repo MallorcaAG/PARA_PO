@@ -3097,7 +3097,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Speed: 000.00kmph'
+  m_text: 'Speed: 000kmph'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 956ea162bf9abe243b64f6342d238755, type: 2}
   m_sharedMaterial: {fileID: -4012535112111235001, guid: 956ea162bf9abe243b64f6342d238755, type: 2}

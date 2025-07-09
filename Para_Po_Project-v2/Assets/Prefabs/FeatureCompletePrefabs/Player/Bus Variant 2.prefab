@@ -1625,9 +1625,17 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 121032377774152971, guid: 62283ca975168ed4e8aa8b040f276a46, type: 3}
+      propertyPath: maxSpeed
+      value: 420
+      objectReference: {fileID: 0}
+    - target: {fileID: 121032377774152971, guid: 62283ca975168ed4e8aa8b040f276a46, type: 3}
       propertyPath: vehicleRB
       value: 
       objectReference: {fileID: 1921714820748378898}
+    - target: {fileID: 121032377774152971, guid: 62283ca975168ed4e8aa8b040f276a46, type: 3}
+      propertyPath: scaleFactor
+      value: 1.1
+      objectReference: {fileID: 0}
     - target: {fileID: 121032377774152971, guid: 62283ca975168ed4e8aa8b040f276a46, type: 3}
       propertyPath: vehicleBody
       value: 
@@ -1635,6 +1643,14 @@ PrefabInstance:
     - target: {fileID: 121032377774152971, guid: 62283ca975168ed4e8aa8b040f276a46, type: 3}
       propertyPath: wheelRadius
       value: 0.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 121032377774152971, guid: 62283ca975168ed4e8aa8b040f276a46, type: 3}
+      propertyPath: acceleration
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 121032377774152971, guid: 62283ca975168ed4e8aa8b040f276a46, type: 3}
+      propertyPath: deceleration
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 121032377774152971, guid: 62283ca975168ed4e8aa8b040f276a46, type: 3}
       propertyPath: springTravel
@@ -1648,6 +1664,10 @@ PrefabInstance:
       propertyPath: sendPlayerSpeed
       value: 
       objectReference: {fileID: 11400000, guid: 5a58ba77a25d2764aad4b08298c32925, type: 2}
+    - target: {fileID: 121032377774152971, guid: 62283ca975168ed4e8aa8b040f276a46, type: 3}
+      propertyPath: brakingDeceleration
+      value: 500
+      objectReference: {fileID: 0}
     - target: {fileID: 121032377774152971, guid: 62283ca975168ed4e8aa8b040f276a46, type: 3}
       propertyPath: tires.Array.data[0]
       value: 

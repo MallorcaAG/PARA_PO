@@ -34,7 +34,7 @@ public class TrafficEnforcer : MonoBehaviour
     [Header("References")]
     [SerializeField] private GameObject player;
     [SerializeField] private float speedLimit = 16f;
-    [Range(0f, 5f)] [SerializeField] private float speedingGracePeriod = 3f;
+    [Range(1f, 30f)] [SerializeField] private float speedingGracePeriod = 3f;
     [Range(10f, 60f)] [SerializeField] private float obstructionChargeCooldown = 20f;
 
     private float targetTime, targetTime2, targetTime3;
@@ -215,7 +215,7 @@ public class TrafficEnforcer : MonoBehaviour
     public void checkPlayerSpeed(Component sender, object data)
     {
 
-
+        
 
         float speed = float.Parse((string)data);
 

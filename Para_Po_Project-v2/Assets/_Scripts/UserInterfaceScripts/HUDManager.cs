@@ -209,7 +209,7 @@ public class HUDManager : MonoBehaviour
     {
         float num = float.Parse((string)data);
 
-        string format = "Speed: "+ num.ToString("000.00")+"kmph";
+        string format = "Speed: "+ num.ToString("000")+"kmph";
 
         SpeedText.text = format;
     }

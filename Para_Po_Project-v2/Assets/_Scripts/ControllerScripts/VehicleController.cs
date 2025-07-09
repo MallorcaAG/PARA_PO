@@ -11,11 +11,11 @@ public class VehicleController : MonoBehaviour
     [SerializeField] private float wheelRadius = 0.35f;
 
     [Header("Vehicle Settings")]
-    [SerializeField] private float acceleration = 20f; 
+    [SerializeField] private float acceleration = 20f;
     [SerializeField] private float maxSpeed = 70f;
-    [SerializeField] private float deceleration = 5f; 
-    [SerializeField] private float brakingDeceleration = 30f; 
-    [SerializeField] private float steerStrength = 8f; 
+    [SerializeField] private float deceleration = 5f;
+    [SerializeField] private float brakingDeceleration = 30f;
+    [SerializeField] private float steerStrength = 8f;
     [SerializeField] private AnimationCurve turningCurve;
     [SerializeField] private float dragCoefficient = 1.5f;
     [SerializeField] private float brakingDragCoefficient = 0.8f;
@@ -34,7 +34,10 @@ public class VehicleController : MonoBehaviour
     [SerializeField] private GameObject[] tires = new GameObject[4];
     [SerializeField] private GameObject[] frontTireParents = new GameObject[2];
     [SerializeField] private float tireRotSpeed = 3000f;
-    [SerializeField] private float maxSteeringAngle = 25f; 
+    [SerializeField] private float maxSteeringAngle = 25f;
+    [Tooltip("For the km/h visual.\nGet irl distance and divide by seconds taken in-game to travel that same distance. Then divide that with the initial value of km/h on visual. Thats your scale factor" +
+        "\n\nfactor * initialKmph = irlDist / timeInGame")]
+    [SerializeField] private float scaleFactor = 1f;
 
     [Header("References")]
     [SerializeField] private Transform[] rayPoints;
@@ -262,7 +265,7 @@ public class VehicleController : MonoBehaviour
     {
         while (true)
         {
-            sendPlayerSpeed.Raise(this, vehicleRB.velocity.magnitude.ToString("F4"));
+            sendPlayerSpeed.Raise(this, (vehicleRB.velocity.magnitude * scaleFactor).ToString("F4"));
             yield return new WaitForSeconds(1f);
         }
     }

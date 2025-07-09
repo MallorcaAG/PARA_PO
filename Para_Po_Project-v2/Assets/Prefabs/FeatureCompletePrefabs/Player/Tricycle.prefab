@@ -1450,13 +1450,29 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7579697361782375381, guid: 25ad06362f360934b960d94f34b1a4a2, type: 3}
+      propertyPath: maxSpeed
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 7579697361782375381, guid: 25ad06362f360934b960d94f34b1a4a2, type: 3}
+      propertyPath: scaleFactor
+      value: 1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7579697361782375381, guid: 25ad06362f360934b960d94f34b1a4a2, type: 3}
       propertyPath: acceleration
       value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7579697361782375381, guid: 25ad06362f360934b960d94f34b1a4a2, type: 3}
+      propertyPath: steerStrength
+      value: 140
       objectReference: {fileID: 0}
     - target: {fileID: 7579697361782375381, guid: 25ad06362f360934b960d94f34b1a4a2, type: 3}
       propertyPath: sendPlayerSpeed
       value: 
       objectReference: {fileID: 11400000, guid: 5a58ba77a25d2764aad4b08298c32925, type: 2}
+    - target: {fileID: 7579697361782375381, guid: 25ad06362f360934b960d94f34b1a4a2, type: 3}
+      propertyPath: accelerationRate
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 7579697361782375381, guid: 25ad06362f360934b960d94f34b1a4a2, type: 3}
       propertyPath: handleRotationValue
       value: 35

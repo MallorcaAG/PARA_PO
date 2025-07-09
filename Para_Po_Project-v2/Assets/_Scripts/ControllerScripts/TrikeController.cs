@@ -32,6 +32,9 @@ public class TrikeController : MonoBehaviour
 
     [Header("Game Events")]
     [SerializeField] private GameEvent sendPlayerSpeed;
+    [Tooltip("For the km/h visual.\nGet irl distance and divide by seconds taken in-game to travel that same distance. Then divide that with the initial value of km/h on visual. Thats your scale factor" +
+        "\n\nfactor * initialKmph = irlDist / timeInGame")]
+    [SerializeField] private float scaleFactor = 1f;
 
     private float moveInput, steerInput;
     private float rayLength;
@@ -77,7 +80,7 @@ public class TrikeController : MonoBehaviour
     {
         while (true)
         {
-            float speedKPH = sphereRB.velocity.magnitude * 3.6f;
+            float speedKPH = sphereRB.velocity.magnitude * scaleFactor;
             sendPlayerSpeed.Raise(this, speedKPH.ToString("F0")); 
             yield return new WaitForSeconds(0.5f);
         }
