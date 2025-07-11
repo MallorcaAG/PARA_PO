@@ -8,9 +8,9 @@ DONE	> {ANGELO} High-score fix font, spacing and shit
 DONE	> {ANGELO} Remove No-entry sign on Barrier	
 DONE	> {ANGELO} Recalculate Speed (VehicleController.cs > SendSpeedCoroutine():Line 261)		
 > {REMUS, PHOENIX, ANGELO} Add & Adjust in Levels
-	> Trike Levels (Pedestrian Lanes, No-blowing of horn [+ Violation {IF POSSIBLE}]), SpeedLimit = 45 (33 [HARD MODE]) kmph, SpeedingGracePeriod
-	> Jeepney Levels (Pedestrian Lanes, Traffic Signs), SpeedLimit = 55 (43 [HARD MODE]) kmph , SpeedingGracePeriod
-	> Bus Levels (Overspeeding), SpeedLimit = 55 kmph, SpeedingGracePeriod
+	DONE > Trike Levels (Pedestrian Lanes, No-blowing of horn [+ Violation {IF POSSIBLE}]), SpeedLimit = 45 (33 [HARD MODE]) kmph, SpeedingGracePeriod
+	DONE > Jeepney Levels (Pedestrian Lanes, Traffic Signs), SpeedLimit = 55 (43 [HARD MODE]) kmph , SpeedingGracePeriod
+	DONE > Bus Levels (Overspeeding), SpeedLimit = 55 kmph, SpeedingGracePeriod
 DONE	> {REMUS} Fix Bus Level Pathfinding, opposite Lane should go the other direction
 
 
