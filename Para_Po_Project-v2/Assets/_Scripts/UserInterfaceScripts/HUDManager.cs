@@ -202,6 +202,15 @@ public class HUDManager : MonoBehaviour
             violationTriggerAnimation();
 
         }
+        else if (code == "VIOLATION_09") // Blowing of Horn
+        {
+            format = "<=R.A 4136" + "\n\n" +
+                     "Blowing of Horn";
+
+            violationTicket(format);
+            violationTriggerAnimation();
+
+        }
 
     }
 

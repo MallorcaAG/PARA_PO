@@ -20,6 +20,8 @@ public class TrafficEnforcer : MonoBehaviour
     [Tooltip("BE SURE TO INCLUDE THE NEGATIVE SIGN")]
     [SerializeField] private float speeding = -50;
     [Tooltip("BE SURE TO INCLUDE THE NEGATIVE SIGN")]
+    [SerializeField] private float blowingOfHornInSchoolZone = -50;
+    [Tooltip("BE SURE TO INCLUDE THE NEGATIVE SIGN")]
     [SerializeField] private float notUrFaultBonus = 50;
 
     [Header("Immunity")]
@@ -156,8 +158,13 @@ public class TrafficEnforcer : MonoBehaviour
                     return 0;
             }
         }
+        else if (sender.TryGetComponent<BlowingHornViolation>(out BlowingHornViolation horn))
+        {
+            Debug.LogWarning("Violation Type: Blowing of Horn in School Zone");
+            return blowingOfHornInSchoolZone;
+        }
 
-        return 0;
+            return 0;
     }
 
     private string ViolationType(Component sender, object data)
@@ -207,6 +214,10 @@ public class TrafficEnforcer : MonoBehaviour
                 default:
                     return "na";
             }
+        }
+        else if (sender.TryGetComponent<BlowingHornViolation>(out BlowingHornViolation horn))
+        {
+            return "VIOLATION_09";
         }
 
         return "na";
