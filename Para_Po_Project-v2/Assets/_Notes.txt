@@ -1,35 +1,7 @@
 
 REVISIONS
-DONE	> {REMUS}	Fix Sound Button Click (Main Menu [Settings])		
-> {PHOENIX} Redesign Buttons for consistency (Hover should darken/enlargen, and UI shit like that)
-	> Save Data Button Redesign
-	> Pause Menu Button Redesign
-DONE	> {ANGELO} High-score fix font, spacing and shit
-DONE	> {ANGELO} Remove No-entry sign on Barrier	
-DONE	> {ANGELO} Recalculate Speed (VehicleController.cs > SendSpeedCoroutine():Line 261)		
-> {REMUS, PHOENIX, ANGELO} Add & Adjust in Levels
-	DONE > Trike Levels (Pedestrian Lanes, No-blowing of horn, SpeedLimit = 45 (33 [HARD MODE]) kmph, SpeedingGracePeriod
-	DONE > Jeepney Levels (Pedestrian Lanes, Traffic Signs), SpeedLimit = 55 (43 [HARD MODE]) kmph , SpeedingGracePeriod
-	DONE > Bus Levels (Overspeeding), SpeedLimit = 55 kmph, SpeedingGracePeriod
-DONE	> {REMUS} Fix Bus Level Pathfinding, opposite Lane should go the other direction
-DONE (Not tested)	> No-blowing of horn Violation
+
+traffic signs are not visible (invisible in game) 
+level 3 and 4 tricycle not adjusted only 15kmph max speed 
 
 
-
-
-
-Make all levels unlocked copy + normal standard copy
-
-	Bus Levels Bugs
-
-	- vehicles tend to change directions when hit and not vanish
-		> I havent seen this so cant fix?
-
-
-	NOTE: LEVEL 8 IS STILL NOT RAIN YET. DONT FORGET TO FIX THAT... 
-		DONE
-
-	- Make sphere collider for pedestrian ingress a little bigger to prevent spinning (possible solution?)
-		FIXED
-	- Revamp sensors to prevent cars rear-ending/colliding with player or each other. 
-		FIXED
