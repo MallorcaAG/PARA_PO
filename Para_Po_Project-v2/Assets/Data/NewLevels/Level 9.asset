@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb68b1502438c394a880c782e90e9d0a, type: 3}
   m_Name: Level 9
   m_EditorClassIdentifier: 
-  isUnlocked: 0
+  isUnlocked: 1
   stars: 0
   highScore: 0
   scenes:

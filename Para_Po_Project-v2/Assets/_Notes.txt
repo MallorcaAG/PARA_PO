@@ -1,7 +1,6 @@
 
 REVISIONS
 
-traffic signs are not visible (invisible in game) 
 level 3 and 4 tricycle not adjusted only 15kmph max speed 
 
 
