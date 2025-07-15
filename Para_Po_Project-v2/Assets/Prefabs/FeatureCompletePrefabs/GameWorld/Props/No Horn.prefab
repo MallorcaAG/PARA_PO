@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2658334936653530943}
   - component: {fileID: 2576295187052109023}
   - component: {fileID: 4686460445708745764}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Cube.062
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 9187365724394521644}
   - component: {fileID: 38631197639707645}
   - component: {fileID: 4543023893590286510}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: No Horn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -201,7 +201,7 @@ GameObject:
   - component: {fileID: 7621488697641688681}
   - component: {fileID: 2076066655954512166}
   - component: {fileID: 6109894748706356048}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Cube.124
   m_TagString: Untagged
   m_Icon: {fileID: 0}
