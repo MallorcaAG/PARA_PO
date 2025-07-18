@@ -108,7 +108,7 @@ public class LevelsManager : Singleton<LevelsManager>
                 break;
         }
         checkCurrentArrayPos();
-        playerBestScoreText.text = "Highscore: " + currentLvl.HighScore.ToString("#####0") + " pts";
+        playerBestScoreText.text = "Highscore: " + currentLvl.HighScore.ToString("N0") + " pts";
     }
 
     private void resetStarDisplay()

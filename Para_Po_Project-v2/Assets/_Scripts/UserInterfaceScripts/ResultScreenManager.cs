@@ -54,8 +54,8 @@ public class ResultScreenManager : MonoBehaviour
 
         DisplayWin();
         float[] f = (float[])data;
-        success.scoreTxt.text = f[0].ToString("####0");
-        success.highScoreTxt.text = f[2].ToString("####0");
+        success.scoreTxt.text = f[0].ToString("N0");
+        success.highScoreTxt.text = f[2].ToString("N0");
         int stars = (int)f[1];
 
         switch(stars)
